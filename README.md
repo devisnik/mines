@@ -1,4 +1,4 @@
 mines
 =====
 
-models the Game "Minesweeper"
+java models to play the game "Minesweeper".
