@@ -16,7 +16,7 @@ public class Field implements IField {
 	private boolean isBomb;
 	private boolean isFlagged;
 	private boolean isOpen;
-	private final ArrayList itsListeners = new ArrayList();
+	private final ArrayList<IFieldListener> itsListeners = new ArrayList<IFieldListener>();
 	private Field[] neighbors;
 	private boolean isExploded;
 	private int bombCount;

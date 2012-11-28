@@ -1,6 +1,7 @@
 package de.devisnik.mine.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import de.devisnik.mine.IBoard;
@@ -11,23 +12,23 @@ public class ExcludeNeighborsBoardMiner implements IBoardMiner {
 
 	public void mine(IBoard board, int bombs, IField excludeField) {
 		Point dimension = board.getDimension();
-		ArrayList excludeList = createExcludeList(excludeField);
+		List<IField> excludeList = createExcludeList(excludeField);
 		if (bombs >= dimension.x * dimension.y - excludeList.size())
 			setAllOthersBombs(board, excludeList, dimension);
 		else
 			setBombsRandomly(board, bombs, excludeList, dimension);
 	}
 
-	private ArrayList createExcludeList(IField field) {
+	private List<IField> createExcludeList(IField field) {
 		IField[] neighbors = field.getNeighbors();
-		ArrayList excludeList = new ArrayList();
+		ArrayList<IField> excludeList = new ArrayList<IField>();
 		excludeList.add(field);
 		for (int i = 0; i < neighbors.length; i++)
 			excludeList.add(neighbors[i]);
 		return excludeList;
 	}
 
-	private void setBombsRandomly(IBoard board, int bombs, ArrayList excludeFields,
+	private void setBombsRandomly(IBoard board, int bombs, List<IField> excludeFields,
 			Point dimension) {
 		int count = bombs;
 		while (count > 0) {
@@ -47,7 +48,7 @@ public class ExcludeNeighborsBoardMiner implements IBoardMiner {
 		return field;
 	}
 
-	private void setAllOthersBombs(IBoard board, ArrayList excludeFields,
+	private void setAllOthersBombs(IBoard board, List<IField> excludeFields,
 			Point dimension) {
 		for (int i = 0; i < dimension.y; i++) {
 			for (int j = 0; j < dimension.x; j++) {

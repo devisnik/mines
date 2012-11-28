@@ -1,7 +1,6 @@
 package de.devisnik.mine.impl;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import de.devisnik.mine.IBoard;
@@ -41,29 +40,22 @@ public class Game implements IGame {
 		for (IMinesGameListener listener : itsListeners) {
 			listener.onBusted();
 		}
-//		for (final Iterator iter = itsListeners.iterator(); iter.hasNext();) {
-//			final IMinesGameListener listener = (IMinesGameListener) iter.next();
-//			listener.onBusted();
-//		}
 	}
 
 	private void fireChange() {
-		for (final Iterator iter = itsListeners.iterator(); iter.hasNext();) {
-			final IMinesGameListener listener = (IMinesGameListener) iter.next();
+		for (IMinesGameListener listener : itsListeners) {
 			listener.onChange(itsBoard.getFlagCount(), getBombCount());
 		}
 	}
 
 	private void fireDisarmed() {
-		for (final Iterator iter = itsListeners.iterator(); iter.hasNext();) {
-			final IMinesGameListener listener = (IMinesGameListener) iter.next();
+		for (IMinesGameListener listener : itsListeners) {
 			listener.onDisarmed();
 		}
 	}
 
 	private void fireStart() {
-		for (final Iterator iter = itsListeners.iterator(); iter.hasNext();) {
-			final IMinesGameListener listener = (IMinesGameListener) iter.next();
+		for (IMinesGameListener listener : itsListeners) {
 			listener.onStart();
 		}
 	}
