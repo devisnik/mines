@@ -25,34 +25,33 @@ public class Board implements IBoard {
 		createFieldArray(state);
 	}
 
+	@Override
 	public IField getField(final int x, final int y) {
 		return itsFields[x * dimY + y];
 	}
 
 	private void createFieldArray(final BoardState state) {
 		itsFields = new Field[dimX * dimY];
-		for (int x = 0; x < dimX; x++) {
+		for (int x = 0; x < dimX; x++)
 			for (int y = 0; y < dimY; y++) {
-				itsFields[x * dimY + y] = Field.createFromState(state
-						.getFieldState(x, y));
-				Field field = itsFields[x * dimY + y];
+				int index = x * dimY + y;
+				Field field = Field.createFromState(state.getFieldState(x, y));
+				itsFields[index] = field;
+				field.setTag(index);
 				if (field.isExploded())
 					isExploded = true;
 				if (field.isTouched())
 					itsTouchField = field;
 			}
-		}
-		for (int i = 0; i < dimX; i++) {
-			for (int j = 0; j < dimY; j++) {
+		for (int i = 0; i < dimX; i++)
+			for (int j = 0; j < dimY; j++)
 				itsFields[i * dimY + j].setNeighbors(computeNeighbors(i, j));
-			}
-		}
 		setNeighborBombNumbers();
 	}
 
 	private Field[] computeNeighbors(final int x, final int y) {
 		final List<Field> neighborList = new ArrayList<Field>();
-		for (int i = -1; i <= 1; i++) {
+		for (int i = -1; i <= 1; i++)
 			for (int j = -1; j <= +1; j++) {
 				final int posX = x + i;
 				final int posY = y + j;
@@ -61,46 +60,39 @@ public class Board implements IBoard {
 				if (posX != x || posY != y)
 					neighborList.add(itsFields[posX * dimY + posY]);
 			}
-		}
-		return (Field[]) neighborList.toArray(new Field[neighborList.size()]);
+		return neighborList.toArray(new Field[neighborList.size()]);
 	}
 
+	@Override
 	public Point getDimension() {
 		return new Point(dimX, dimY);
 	}
 
+	@Override
 	public int getFlagCount() {
 		int counter = 0;
-		for (int i = 0; i < dimY; i++) {
-			for (int j = 0; j < dimX; j++) {
-				if (itsFields[j * dimY + i].isFlagged())
+		for (Field field : itsFields)
+			if (field.isFlagged())
 					counter++;
-			}
-		}
 		return counter;
 	}
 
+	@Override
 	public int getOpenCount() {
 		int counter = 0;
-		for (int i = 0; i < dimY; i++) {
-			for (int j = 0; j < dimX; j++) {
-				if (itsFields[j * dimY + i].isOpen())
-					counter++;
-			}
-		}
+		for (Field field : itsFields)
+			if (field.isOpen())
+				counter++;
 		return counter;
 	}
 
 	public void openAllFlaggedOrBomb() {
-		for (int i = 0; i < dimX; i++) {
-			for (int j = 0; j < dimY; j++) {
-				Field field = itsFields[i * dimY + j];
-				if (field.isBomb() || field.isFlagged())
-					field.setOpen(true);
-			}
-		}
+		for (Field field : itsFields)
+			if (field.isBomb() || field.isFlagged())
+				field.setOpen(true);
 	}
 
+	@Override
 	public String toString() {
 		final StringBuffer sb = new StringBuffer();
 		for (int i = 0; i < dimY; i++) {
@@ -117,25 +109,17 @@ public class Board implements IBoard {
 		return sb.toString();
 	}
 
+	@Override
 	public Point getPosition(final IField field) {
-		for (int i = 0; i < dimX; i++) {
-			for (int j = 0; j < dimY; j++) {
-				IField current = itsFields[i * dimY + j];
-				if (current == field)
-					return new Point(i, j);
-			}
-		}
-		throw new RuntimeException("unknown field");
+		int tag = ((Field) field).getTag();
+		return new Point(tag / dimY, tag % dimY);
 	}
 
+	@Override
 	public boolean isOverflagged() {
-		for (int posX = 0; posX < dimX; posX++) {
-			for (int posY = 0; posY < dimY; posY++) {
-				final Field field = itsFields[posX * dimY + posY];
-				if (field.isOpen() && isOverflagged(field))
-					return true;
-			}
-		}
+		for (Field field : itsFields)
+			if (field.isOpen() && isOverflagged(field))
+				return true;
 		return false;
 	}
 
@@ -144,26 +128,19 @@ public class Board implements IBoard {
 	}
 
 	public void setNeighborBombNumbers() {
-		for (int i = 0; i < dimX; i++) {
-			for (int j = 0; j < dimY; j++) {
-				Field field = itsFields[i * dimY + j];
-				field.setNeighborBombs(countNeighborBombs(field));
-			}
-		}
+		for (Field field : itsFields)
+			field.setNeighborBombs(countNeighborBombs(field));
 	}
 
 	private int countNeighborBombs(final Field field) {
 		int count = 0;
-		IField[] neighbors = field.getNeighbors();
-		for (int i = 0; i < neighbors.length; i++) {
-			IField neighbor = neighbors[i];
+		for (IField neighbor : field.getNeighbors())
 			if (neighbor.isBomb())
 				count++;
-		}
 		return count;
 	}
 
-	public int getNeighborFlags(final IField field) {
+	int getNeighborFlags(final IField field) {
 		return ((Field) field).getNeighborFlags();
 	}
 
@@ -171,7 +148,6 @@ public class Board implements IBoard {
 		if (field.isOpen())
 			return false;
 		field.setOpen(true);
-		// field.setFlagged(false); // evtl flag loeschen
 		if (field.isBomb()) {
 			field.setExploded(true);
 			isExploded = true;
@@ -187,33 +163,27 @@ public class Board implements IBoard {
 			itsTouchField.setTouched(true);
 	}
 
-	void toggleFlagged(final IField field) {
-		((Field) field).setFlagged(!field.isFlagged());
+	void toggleFlagged(final Field field) {
+		field.setFlagged(!field.isFlagged());
 	}
 
 	void openWithNeighbors(final Field field) {
 		ArrayList<Field> fieldsToOpen = new ArrayList<Field>();
 		fieldsToOpen.add(field);
-		// addNonOpenNeighborsToList(field, fieldsToOpen);
 		int index = 0;
 		while (index < fieldsToOpen.size()) {
-			Field indexField = (Field) fieldsToOpen.get(index);
-			if (openField(indexField)) {
+			Field indexField = fieldsToOpen.get(index);
+			if (openField(indexField))
 				if (indexField.getNeighborBombs() == 0)
 					addNonOpenNeighborsToList(indexField, fieldsToOpen);
-			}
 			index++;
 		}
 	}
 
-	private void addNonOpenNeighborsToList(final Field field,
-			final ArrayList<Field> neighborList) {
-		IField[] neighbors = field.getNeighbors();
-		for (int index = 0; index < neighbors.length; index++) {
-			Field indexField = (Field) neighbors[index];
-			if (!indexField.isOpen())
-				neighborList.add(indexField);
-		}
+	private void addNonOpenNeighborsToList(final Field field, final ArrayList<Field> neighborList) {
+		for (Field neighbor : field.getNeighborsImpl())
+			if (!neighbor.isOpen())
+				neighborList.add(neighbor);
 	}
 
 	public boolean isExploded() {

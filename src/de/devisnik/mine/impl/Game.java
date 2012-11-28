@@ -32,34 +32,32 @@ public class Game implements IGame {
 		itsStopWatch = new StopWatch(state.getWatchState());
 	}
 
+	@Override
 	public void addListener(final IMinesGameListener listener) {
 		itsListeners.add(listener);
 	}
 
 	private void fireBusted() {
-		for (IMinesGameListener listener : itsListeners) {
+		for (IMinesGameListener listener : itsListeners)
 			listener.onBusted();
-		}
 	}
 
 	private void fireChange() {
-		for (IMinesGameListener listener : itsListeners) {
+		for (IMinesGameListener listener : itsListeners)
 			listener.onChange(itsBoard.getFlagCount(), getBombCount());
-		}
 	}
 
 	private void fireDisarmed() {
-		for (IMinesGameListener listener : itsListeners) {
+		for (IMinesGameListener listener : itsListeners)
 			listener.onDisarmed();
-		}
 	}
 
 	private void fireStart() {
-		for (IMinesGameListener listener : itsListeners) {
+		for (IMinesGameListener listener : itsListeners)
 			listener.onStart();
-		}
 	}
 
+	@Override
 	public IBoard getBoard() {
 		return itsBoard;
 	}
@@ -67,6 +65,7 @@ public class Game implements IGame {
 	/**
 	 * @return Returns the itsBombsCount.
 	 */
+	@Override
 	public int getBombCount() {
 		return itsBombsCount;
 	}
@@ -75,9 +74,8 @@ public class Game implements IGame {
 		if (itsBoard.isExploded()) {
 			itsBoard.openAllFlaggedOrBomb();
 			fireBusted();
-		} else if (isDisarmed()) {
+		} else if (isDisarmed())
 			fireDisarmed();
-		}
 	}
 
 	private boolean isAllFlagsUsed() {
@@ -94,9 +92,6 @@ public class Game implements IGame {
 		return isDisarmed() || itsBoard.isExploded();
 	}
 
-	/**
-	 * @return Returns the itsIsMined.
-	 */
 	boolean isMined() {
 		return itsIsMined;
 	}
@@ -107,19 +102,18 @@ public class Game implements IGame {
 		itsIsMined = true;
 	}
 
+	@Override
 	public void onRequestFlag(final IField field) {
-		if (isFinished()) {
+		if (isFinished())
 			return;
-		}
 		itsBoard.updateLastTouched(field);
 		if (!field.isOpen()) {
 			if (!isAllFlagsUsed() || field.isFlagged()) {
-				toggleFlag(field);
+				toggleFlag((Field) field);
 				fireChange();
 			}
-		} else {
+		} else
 			openNeighborsIfFullyFlagged(field);
-		}
 		handleGameDone();
 	}
 
@@ -130,10 +124,10 @@ public class Game implements IGame {
 		}
 	}
 
+	@Override
 	public void onRequestOpen(final IField field) {
-		if (isFinished()) {
+		if (isFinished())
 			return;
-		}
 		// treat open on a flagged field as an unflag operation
 		if (field.isFlagged()) {
 			onRequestFlag(field);
@@ -144,19 +138,21 @@ public class Game implements IGame {
 			mine(field);
 			fireStart();
 		}
-		if (field.isOpen()) {
+		if (field.isOpen())
 			openNeighborsIfFullyFlagged(field);
-		} else {
-			open((Field)field);
+		else {
+			open((Field) field);
 			fireChange();
 		}
 		handleGameDone();
 	}
 
+	@Override
 	public boolean isStarted() {
 		return isMined();
 	}
 
+	@Override
 	public boolean isRunning() {
 		return isStarted() && !isFinished();
 	}
@@ -169,20 +165,21 @@ public class Game implements IGame {
 		IField[] neighbors = field.getNeighbors();
 		for (int i = 0; i < neighbors.length; i++) {
 			IField neighbor = neighbors[i];
-			if (!neighbor.isFlagged()) {
+			if (!neighbor.isFlagged())
 				open((Field) neighbor);
-			}
 		}
 	}
 
+	@Override
 	public void removeListener(final IMinesGameListener listener) {
 		itsListeners.remove(listener);
 	}
 
-	private void toggleFlag(final IField field) {
+	private void toggleFlag(final Field field) {
 		itsBoard.toggleFlagged(field);
 	}
 
+	@Override
 	public String toString() {
 		return itsBoard.toString();
 	}
@@ -195,10 +192,12 @@ public class Game implements IGame {
 		return new GameState(this);
 	}
 
+	@Override
 	public IStopWatch getWatch() {
 		return itsStopWatch;
 	}
 
+	@Override
 	public void tickWatch() {
 		if (isRunning())
 			itsStopWatch.tick();

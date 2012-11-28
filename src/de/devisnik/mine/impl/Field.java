@@ -1,6 +1,7 @@
 package de.devisnik.mine.impl;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.devisnik.mine.IField;
 import de.devisnik.mine.IFieldListener;
@@ -16,11 +17,13 @@ public class Field implements IField {
 	private boolean isBomb;
 	private boolean isFlagged;
 	private boolean isOpen;
-	private final ArrayList<IFieldListener> itsListeners = new ArrayList<IFieldListener>();
+	private final List<IFieldListener> itsListeners = new ArrayList<IFieldListener>();
 	private Field[] neighbors;
 	private boolean isExploded;
 	private int bombCount;
 	private boolean isTouched;
+
+	private int tag;
 
 	Field() {
 		this(0);
@@ -30,51 +33,61 @@ public class Field implements IField {
 		setState(state);
 	}
 
+	@Override
 	public void addListener(IFieldListener listener) {
 		itsListeners.add(listener);
 	}
 
 	private void fireFieldOpened(boolean value) {
-		for (int i = 0; i < itsListeners.size(); i++) {
-			IFieldListener listener = (IFieldListener) itsListeners.get(i);
+		for (IFieldListener listener : itsListeners)
 			listener.onFieldOpenChange(this, value);
-		}
 	}
 
 	private void fireFieldExploded(boolean value) {
-		for (int i = 0; i < itsListeners.size(); i++) {
-			IFieldListener listener = (IFieldListener) itsListeners.get(i);
+		for (IFieldListener listener : itsListeners)
 			listener.onFieldExplodedChange(this, value);
-		}
 	}
 
 	private void fireFieldFlagged(boolean value) {
-		for (int i = 0; i < itsListeners.size(); i++) {
-			IFieldListener listener = (IFieldListener) itsListeners.get(i);
+		for (IFieldListener listener : itsListeners)
 			listener.onFieldFlagChange(this, value);
-		}
 	}
 
+	private void fireFieldTouched(boolean value) {
+		for (IFieldListener listener : itsListeners)
+			listener.onFieldTouchedChange(this, value);
+	}
+
+	@Override
 	public IField[] getNeighbors() {
 		return neighbors;
 	}
 
+	Field[] getNeighborsImpl() {
+		return neighbors;
+	}
+
+	@Override
 	public boolean isBomb() {
 		return isBomb;
 	}
 
+	@Override
 	public boolean isFlagged() {
 		return isFlagged;
 	}
 
+	@Override
 	public boolean isOpen() {
 		return isOpen;
 	}
 
+	@Override
 	public boolean isExploded() {
 		return isExploded;
 	}
 
+	@Override
 	public void removeListener(final IFieldListener listener) {
 		itsListeners.remove(listener);
 	}
@@ -90,24 +103,16 @@ public class Field implements IField {
 		fireFieldTouched(value);
 	}
 
-	private void fireFieldTouched(boolean value) {
-		for (int i = 0; i < itsListeners.size(); i++) {
-			IFieldListener listener = (IFieldListener) itsListeners.get(i);
-			listener.onFieldTouchedChange(this, value);
-		}
-	}
-
+	@Override
 	public boolean isTouched() {
 		return isTouched;
 	}
 
 	int getNeighborFlags() {
 		int counter = 0;
-		for (int i = 0; i < neighbors.length; i++) {
-			final IField neighbor = neighbors[i];
+		for (IField neighbor : neighbors)
 			if (neighbor.isFlagged())
 				counter++;
-		}
 		return counter;
 	}
 
@@ -155,12 +160,12 @@ public class Field implements IField {
 	}
 
 	private static boolean getBit(int position, int value) {
-		return (value & (1 << position)) != 0;
+		return (value & 1 << position) != 0;
 	}
 
 	private static int setBit(int position, int value, boolean booleanValue) {
 		if (booleanValue)
-			return value | (1 << position);
+			return value | 1 << position;
 		return value & ~(1 << position);
 	}
 
@@ -172,10 +177,12 @@ public class Field implements IField {
 		bombCount = number;
 	}
 
+	@Override
 	public int getNeighborBombs() {
 		return bombCount;
 	}
 
+	@Override
 	public int getImage() {
 		int imgnr = 0;
 		if (isOpen()) {
@@ -186,18 +193,23 @@ public class Field implements IField {
 					imgnr = Image.FLAG;
 				else
 					imgnr = Image.BOMB;
-			} else {
-				if (isFlagged())
-					imgnr = Image.FLAG_WRONG;
-				else
-					imgnr = getNeighborBombs();
-			}
-		} else {
-			if (isFlagged())
-				imgnr = Image.FLAG;
+			} else if (isFlagged())
+				imgnr = Image.FLAG_WRONG;
 			else
-				imgnr = Image.CLOSED;
-		}
+				imgnr = getNeighborBombs();
+		} else if (isFlagged())
+			imgnr = Image.FLAG;
+		else
+			imgnr = Image.CLOSED;
 		return imgnr;
 	}
+
+	int getTag() {
+		return tag;
+	}
+
+	void setTag(int tag) {
+		this.tag = tag;
+	}
+
 }

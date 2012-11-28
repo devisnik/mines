@@ -5,9 +5,6 @@ import de.devisnik.mine.IField;
 
 /**
  * Interface for laying out mines into a board.
- * 
- * @author ELEV
- * 
  */
 public interface IBoardMiner {
 

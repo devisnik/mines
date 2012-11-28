@@ -8,7 +8,7 @@ import de.devisnik.mine.IStopWatchListener;
 
 public class StopWatch implements IStopWatch {
 
-	private List<IStopWatchListener> itsListeners = new ArrayList<IStopWatchListener>();
+	private final List<IStopWatchListener> itsListeners = new ArrayList<IStopWatchListener>();
 	private int itsTime;
 
 	public StopWatch() {
@@ -19,24 +19,26 @@ public class StopWatch implements IStopWatch {
 		itsTime = initialTime;
 	}
 
+	@Override
 	public void addListener(IStopWatchListener listener) {
 		if (!itsListeners.contains(listener))
 			itsListeners.add(listener);
 	}
 
+	@Override
 	public int getTime() {
 		return itsTime;
 	}
 
+	@Override
 	public void removeListener(IStopWatchListener listener) {
 		itsListeners.remove(listener);
 	}
 
 	void tick() {
 		itsTime++;
-		for (IStopWatchListener listener : itsListeners) {
+		for (IStopWatchListener listener : itsListeners)
 			listener.onTimeChange(itsTime);
-		}
 	}
 
 }
