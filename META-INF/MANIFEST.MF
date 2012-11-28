@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Mines Model
+Bundle-SymbolicName: de.devisnik.mine;singleton:=true
+Bundle-Version: 1.3.0.qualifier
+Bundle-Vendor: devisnik.de
+Export-Package: de.devisnik.mine,
+ de.devisnik.mine.impl;x-friends:="de.devisnik.mine.robot"
+Bundle-ActivationPolicy: lazy

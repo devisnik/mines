@@ -1,4 +1,9 @@
 *.class
+.DS_Store
+.settings
+
+bin
+build
 
 # Package Files #
 *.jar
