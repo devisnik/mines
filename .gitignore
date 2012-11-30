@@ -1,6 +1,9 @@
 *.class
 .DS_Store
+.project
+.classpath
 .settings
+.gradle
 
 bin
 build
