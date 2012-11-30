@@ -58,12 +58,7 @@ public class Field implements IField {
 			listener.onFieldTouchedChange(this, value);
 	}
 
-	@Override
-	public IField[] getNeighbors() {
-		return neighbors;
-	}
-
-	Field[] getNeighborsImpl() {
+	Field[] getNeighbors() {
 		return neighbors;
 	}
 
@@ -210,6 +205,46 @@ public class Field implements IField {
 
 	void setTag(int tag) {
 		this.tag = tag;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + bombCount;
+		result = prime * result + (isBomb ? 1231 : 1237);
+		result = prime * result + (isExploded ? 1231 : 1237);
+		result = prime * result + (isFlagged ? 1231 : 1237);
+		result = prime * result + (isOpen ? 1231 : 1237);
+		result = prime * result + (isTouched ? 1231 : 1237);
+		result = prime * result + tag;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Field other = (Field) obj;
+		if (bombCount != other.bombCount)
+			return false;
+		if (isBomb != other.isBomb)
+			return false;
+		if (isExploded != other.isExploded)
+			return false;
+		if (isFlagged != other.isFlagged)
+			return false;
+		if (isOpen != other.isOpen)
+			return false;
+		if (isTouched != other.isTouched)
+			return false;
+		if (tag != other.tag)
+			return false;
+		return true;
 	}
 
 }

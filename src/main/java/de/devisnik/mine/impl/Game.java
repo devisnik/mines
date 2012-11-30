@@ -96,20 +96,21 @@ public class Game implements IGame {
 		return itsIsMined;
 	}
 
-	private void mine(final IField firstField) {
+	private void mine(final Field firstField) {
 		itsMiner.mine(itsBoard, itsBombsCount, firstField);
 		itsBoard.setNeighborBombNumbers();
 		itsIsMined = true;
 	}
 
 	@Override
-	public void onRequestFlag(final IField field) {
+	public void onRequestFlag(final IField fieldInterface) {
+		Field field = (Field) fieldInterface;
 		if (isFinished())
 			return;
 		itsBoard.updateLastTouched(field);
 		if (!field.isOpen()) {
 			if (!isAllFlagsUsed() || field.isFlagged()) {
-				toggleFlag((Field) field);
+				toggleFlag(field);
 				fireChange();
 			}
 		} else
@@ -117,7 +118,7 @@ public class Game implements IGame {
 		handleGameDone();
 	}
 
-	private void openNeighborsIfFullyFlagged(final IField field) {
+	private void openNeighborsIfFullyFlagged(final Field field) {
 		if (field.getNeighborBombs() == itsBoard.getNeighborFlags(field)) {
 			openUnflaggedNeighbors(field);
 			fireChange();
@@ -125,7 +126,8 @@ public class Game implements IGame {
 	}
 
 	@Override
-	public void onRequestOpen(final IField field) {
+	public void onRequestOpen(final IField fieldInterface) {
+		Field field = (Field) fieldInterface;
 		if (isFinished())
 			return;
 		// treat open on a flagged field as an unflag operation
@@ -141,7 +143,7 @@ public class Game implements IGame {
 		if (field.isOpen())
 			openNeighborsIfFullyFlagged(field);
 		else {
-			open((Field) field);
+			open(field);
 			fireChange();
 		}
 		handleGameDone();
@@ -161,12 +163,12 @@ public class Game implements IGame {
 		itsBoard.openWithNeighbors(field);
 	}
 
-	private void openUnflaggedNeighbors(final IField field) {
-		IField[] neighbors = field.getNeighbors();
+	private void openUnflaggedNeighbors(final Field field) {
+		Field[] neighbors = field.getNeighbors();
 		for (int i = 0; i < neighbors.length; i++) {
-			IField neighbor = neighbors[i];
+			Field neighbor = neighbors[i];
 			if (!neighbor.isFlagged())
-				open((Field) neighbor);
+				open(neighbor);
 		}
 	}
 
@@ -201,5 +203,42 @@ public class Game implements IGame {
 	public void tickWatch() {
 		if (isRunning())
 			itsStopWatch.tick();
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (itsBoard == null ? 0 : itsBoard.hashCode());
+		result = prime * result + itsBombsCount;
+		result = prime * result + (itsIsMined ? 1231 : 1237);
+		result = prime * result + (itsStopWatch == null ? 0 : itsStopWatch.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Game other = (Game) obj;
+		if (itsBoard == null) {
+			if (other.itsBoard != null)
+				return false;
+		} else if (!itsBoard.equals(other.itsBoard))
+			return false;
+		if (itsBombsCount != other.itsBombsCount)
+			return false;
+		if (itsIsMined != other.itsIsMined)
+			return false;
+		if (itsStopWatch == null) {
+			if (other.itsStopWatch != null)
+				return false;
+		} else if (!itsStopWatch.equals(other.itsStopWatch))
+			return false;
+		return true;
 	}
 }

@@ -83,18 +83,18 @@ public class BoardTest extends TestCase {
 
 	public void testGetNeighbors() {
 		Board board = new Board(3, 3);
-		assertNeighbors(board.getField(0, 0), board, new int[][] { { 1, 0 },
+		assertNeighbors((Field) board.getField(0, 0), board, new int[][] { { 1, 0 },
 				{ 0, 1 }, { 1, 1 } });
-		assertNeighbors(board.getField(1, 0), board, new int[][] { { 0, 0 },
+		assertNeighbors((Field) board.getField(1, 0), board, new int[][] { { 0, 0 },
 				{ 0, 1 }, { 1, 1 }, { 2, 1 }, { 2, 0 } });
-		assertNeighbors(board.getField(1, 1), board, new int[][] { { 0, 0 },
+		assertNeighbors((Field) board.getField(1, 1), board, new int[][] { { 0, 0 },
 				{ 0, 1 }, { 0, 2 }, { 1, 2 }, { 2, 2 }, { 2, 1 }, { 2, 0 },
 				{ 1, 0 } });
 
 	}
 
-	private void assertNeighbors(IField field, IBoard board, int[][] positions) {
-		List<IField> neighbors = new ArrayList<IField>();
+	private void assertNeighbors(Field field, IBoard board, int[][] positions) {
+		List<Field> neighbors = new ArrayList<Field>();
 		neighbors.addAll(Arrays.asList(field.getNeighbors()));
 		assertEquals(neighbors.size(), positions.length);
 		for (int i = 0; i < positions.length; i++) {

@@ -26,8 +26,6 @@ public interface IField {
 
 	void removeListener(final IFieldListener listener);
 
-	IField[] getNeighbors();
-
 	boolean isBomb();
 
 	boolean isExploded();

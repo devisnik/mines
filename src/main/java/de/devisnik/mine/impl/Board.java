@@ -1,6 +1,7 @@
 package de.devisnik.mine.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import de.devisnik.mine.IBoard;
@@ -127,21 +128,21 @@ public class Board implements IBoard {
 		return field.getNeighborFlags() - field.getNeighborBombs() > 0;
 	}
 
-	public void setNeighborBombNumbers() {
+	void setNeighborBombNumbers() {
 		for (Field field : itsFields)
 			field.setNeighborBombs(countNeighborBombs(field));
 	}
 
 	private int countNeighborBombs(final Field field) {
 		int count = 0;
-		for (IField neighbor : field.getNeighbors())
+		for (Field neighbor : field.getNeighbors())
 			if (neighbor.isBomb())
 				count++;
 		return count;
 	}
 
-	int getNeighborFlags(final IField field) {
-		return ((Field) field).getNeighborFlags();
+	int getNeighborFlags(final Field field) {
+		return field.getNeighborFlags();
 	}
 
 	private boolean openField(final Field field) {
@@ -155,10 +156,10 @@ public class Board implements IBoard {
 		return true;
 	}
 
-	void updateLastTouched(final IField field) {
+	void updateLastTouched(final Field field) {
 		if (itsTouchField != null)
 			itsTouchField.setTouched(false);
-		itsTouchField = (Field) field;
+		itsTouchField = field;
 		if (itsTouchField != null)
 			itsTouchField.setTouched(true);
 	}
@@ -181,7 +182,7 @@ public class Board implements IBoard {
 	}
 
 	private void addNonOpenNeighborsToList(final Field field, final ArrayList<Field> neighborList) {
-		for (Field neighbor : field.getNeighborsImpl())
+		for (Field neighbor : field.getNeighbors())
 			if (!neighbor.isOpen())
 				neighborList.add(neighbor);
 	}
@@ -196,5 +197,42 @@ public class Board implements IBoard {
 
 	static Board createFromState(final BoardState state) {
 		return new Board(state);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + dimX;
+		result = prime * result + dimY;
+		result = prime * result + (isExploded ? 1231 : 1237);
+		result = prime * result + Arrays.hashCode(itsFields);
+		result = prime * result + (itsTouchField == null ? 0 : itsTouchField.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Board other = (Board) obj;
+		if (dimX != other.dimX)
+			return false;
+		if (dimY != other.dimY)
+			return false;
+		if (isExploded != other.isExploded)
+			return false;
+		if (!Arrays.equals(itsFields, other.itsFields))
+			return false;
+		if (itsTouchField == null) {
+			if (other.itsTouchField != null)
+				return false;
+		} else if (!itsTouchField.equals(other.itsTouchField))
+			return false;
+		return true;
 	}
 }
