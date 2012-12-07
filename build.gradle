@@ -8,7 +8,8 @@ apply plugin: 'eclipse'
 
 group = "de.devisnik"
 archivesBaseName = "de.devisnik.mine"
-version = '1.3.2'
+versionName = '1.3.2'
+version = new Version(baseVersion: versionName)
 
 sourceCompatibility = 1.6
 
@@ -55,3 +56,12 @@ artifacts {
 
 assemble.dependsOn.add('link_jars')
 install.dependsOn.add('build')
+
+class Version {
+	String baseVersion
+	String date = new Date().format("yyyyMMddHHmm")
+
+	String toString() {
+		"$baseVersion.$date"
+	}
+}
