@@ -3,8 +3,10 @@ import java.security.acl.Group;
 import sun.tools.asm.Assembler;
 
 apply plugin: 'java'
+apply plugin: 'maven'
 apply plugin: 'eclipse'
 
+group = "de.devisnik"
 archivesBaseName = "de.devisnik.mine"
 version = '1.3.2'
 
@@ -41,4 +43,15 @@ task link_jars(dependsOn:[jar, sources_jar]) {
 	}
 }
 
+install {
+	outputs.file files(jar.archivePath, sources_jar.archivePath, link_jars.jarProperties)
+}
+artifacts {
+	archives sources_jar
+	archives(link_jars.jarProperties) {
+		type = 'jar.properties' // ensure correct file extension
+	}  
+}
+
 assemble.dependsOn.add('link_jars')
+install.dependsOn.add('build')
