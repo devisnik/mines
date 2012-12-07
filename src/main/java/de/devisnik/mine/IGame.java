@@ -1,7 +1,3 @@
-/*
- * Created on 27.01.2006 by Volker
- *
- */
 package de.devisnik.mine;
 
 /**

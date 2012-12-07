@@ -1,7 +1,7 @@
 package de.devisnik.mine;
 
 /**
- * 2-dimensional minesweeper board, containing of fields.
+ * 2-dimensional minesweeper board, consisting of fields.
  * 
  * @since 1.0
  */

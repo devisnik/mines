@@ -10,7 +10,7 @@ import de.devisnik.mine.impl.GameState;
 import de.devisnik.mine.impl.StatePersistence;
 
 /**
- * Factory to create, persist, clone and restore game obejcts.
+ * Factory to create, persist, clone and restore game objects.
  * 
  * @since 1.0
  */
