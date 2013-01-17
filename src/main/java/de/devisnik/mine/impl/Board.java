@@ -157,6 +157,8 @@ public class Board implements IBoard {
 	}
 
 	void updateLastTouched(final Field field) {
+		if (itsTouchField == field)
+			return;
 		if (itsTouchField != null)
 			itsTouchField.setTouched(false);
 		itsTouchField = field;

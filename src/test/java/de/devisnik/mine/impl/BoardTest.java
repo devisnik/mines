@@ -7,6 +7,7 @@ import java.util.List;
 import junit.framework.TestCase;
 import de.devisnik.mine.IBoard;
 import de.devisnik.mine.IField;
+import de.devisnik.mine.IFieldListener;
 import de.devisnik.mine.Point;
 
 public class BoardTest extends TestCase {
@@ -160,5 +161,66 @@ public class BoardTest extends TestCase {
 		itsBoard.openWithNeighbors(bomb(1, 1));
 		Board board = Board.createFromState(itsBoard.getState());
 		assertEquals(true, board.isExploded());
+	}
+
+	public void testUpdateTouchedField() {
+		final Field field = (Field) itsBoard.getField(0, 0);
+		final int[] counter = new int[1];
+		field.addListener(new IFieldListener() {
+
+			@Override
+			public void onFieldTouchedChange(IField ifield, boolean value) {
+				counter[0]++;
+				assertEquals(field, ifield);
+			}
+
+			@Override
+			public void onFieldOpenChange(IField field, boolean value) {
+				fail();
+			}
+
+			@Override
+			public void onFieldFlagChange(IField field, boolean value) {
+				fail();
+			}
+
+			@Override
+			public void onFieldExplodedChange(IField field, boolean value) {
+				fail();
+			}
+		});
+		itsBoard.updateLastTouched(field);
+		assertEquals(1, counter[0]);
+	}
+
+	public void testResetTouchOnAlreadyTouchedField() {
+		final Field field = (Field) itsBoard.getField(0, 0);
+		itsBoard.updateLastTouched(field);
+		final int[] counter = new int[1];
+		field.addListener(new IFieldListener() {
+
+			@Override
+			public void onFieldTouchedChange(IField ifield, boolean value) {
+				counter[0]++;
+				assertEquals(field, ifield);
+			}
+
+			@Override
+			public void onFieldOpenChange(IField field, boolean value) {
+				fail();
+			}
+
+			@Override
+			public void onFieldFlagChange(IField field, boolean value) {
+				fail();
+			}
+
+			@Override
+			public void onFieldExplodedChange(IField field, boolean value) {
+				fail();
+			}
+		});
+		itsBoard.updateLastTouched(field);
+		assertEquals(0, counter[0]);
 	}
 }
