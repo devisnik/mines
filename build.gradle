@@ -8,7 +8,7 @@ apply plugin: 'eclipse'
 
 group = "de.devisnik"
 archivesBaseName = "de.devisnik.mine"
-versionName = '1.3.3'
+versionName = '1.3.4'
 version = new Version(baseVersion: versionName)
 
 sourceCompatibility = 1.6
