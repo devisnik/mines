@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">¡Pulsación larga para abrir!</string>
+	<string name="toast_win">¡Has ganado!</string>
+	<string name="toast_lose">¡Has explotado!</string>
+	<string name="pref_category_effects">Efectos</string>
+	<string name="pref_category_online">Recursos en línea</string>
+	<string name="pref_value_not_set">Sin definir</string>
+	<string name="pref_user">Nombre de usuario</string>
+	<string name="pref_user_dialog">Introduce tu nombre</string>
+	<string name="pref_theme">Seleccionar Tema</string>
+	<string name="pref_theme_dialog">Elige Tema</string>
+	<string name="pref_zoom">Seleccionar Zoom</string>
+	<string name="pref_zoom_dialog">Elige Zoom</string>
+	<string name="pref_touchfocus">Foco al Pulsar</string>
+	<string name="pref_touchfocus_summary">Desplazar el foco al pulsar en una casilla</string>
+	<string name="pref_vibrate">Usar Vibración</string>
+	<string name="pref_vibrate_summary">Vibrar en pulsaciones largas y explosiones</string>
+	<string name="pref_faq">Mostrar las FAQs</string>
+	<string name="pref_faq_summary">Abrir en línea las Frequently Asked Questions en el navegador</string>
+	<string name="pref_notes">Mostrar Notas de la Versión</string>
+	<string name="pref_notes_summary">Abrir en línea las notas de la versión en el navegador</string>
+	<string name="board">Tablero</string>
+	<string name="board_small">Pequeño</string>
+	<string name="board_medium">Mediano</string>
+	<string name="board_large">Grande</string>
+	<string name="board_huge">Enorme</string>
+	<string name="board_giant">Gigante</string>
+	<string name="field_small">Pequeño</string>
+	<string name="field_medium">Mediano</string>
+	<string name="field_large">Grande</string>
+	<string name="level">Dificultad</string>
+	<string name="level_easy">Fácil</string>
+	<string name="level_medium">Medio</string>
+	<string name="level_hard">Difícil</string>
+	<string name="level_tricky">Extra</string>
+	<string name="level_insane">Utópico</string>
+	<string name="theme_simple">Monocromo</string>
+	<string name="theme_classic">Clásico</string>
+	<string name="theme_dark">Oscuro</string>
+	<string name="menu_new_game">Nueva partida</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Opciones</string>
+	<string name="menu_shortcut_settings">O</string>
+	<string name="menu_scores">Marcadores</string>
+	<string name="menu_shortcut_scores">M</string>
+	<string name="menu_help">Ayuda</string>
+	<string name="menu_shortcut_help">A</string>
+	<string name="menu_zoom">Zoom</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Ajustar</string>
+	<string name="another_game">¿Otra partida?</string>
+	<string name="another_game_yes">Sí</string>
+	<string name="another_game_no">No</string>
+	<string name="intro_title">Mines for Android</string>
+	<string name="intro_version">Versión</string>
+	<string name="intro_message">Mines trae el clásico juego Minesweeper a la plataforma Android. \n\nEl objetivo del juego es
+		despejar un campo de minas abstracto sin detonar ninguna mina. \n\nMarca cada casilla (pulsación corta) que contenga
+		una mina. Abre cada casilla (pulsación larga) que no contenga minas. \nLas casillas abiertas presentan un dígito que
+		indica el número de casillas adyacentes que contienen minas.</string>
+	<string name="intro_thanx">Gracias a deadfalkon por su beta testing y sugerencias.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="score_new_title">¡Nuevo Récord!</string>
+	<string name="score_delete_title"> ¿Borrar Marcador?</string>
+	<string name="score_edit_title"> Editar Marcador</string>
+	<string name="score_menu_share"> Compartir</string>
+	<string name="score_menu_edit"> Editar</string>
+	<string name="score_menu_delete"> Borrar</string>
+	<string name="score_share_title"> Récord en Mines</string>
+	<string name="score_share_message"> Récord en Mines - %1$s resuelto en %2$d segundos</string>
+	
+	<string name="scores_no_entries">vacía</string>
+	<string name="pref_highlight">Resaltar al tocar</string>
+	<string name="pref_highlight_summary">Resaltar el último campo tocado</string>
+</resources>

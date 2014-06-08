@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<integer-array name="board_size_small">
+		<item>6</item>
+		<item>8</item>
+	</integer-array>
+	<integer-array name="board_size_medium">
+		<item>8</item>
+		<item>11</item>
+	</integer-array>
+	<integer-array name="board_size_large">
+		<item>10</item>
+		<item>13</item>
+	</integer-array>
+	<integer-array name="board_size_huge">
+		<item>12</item>
+		<item>16</item>
+	</integer-array>
+	<integer-array name="board_size_giant">
+		<item>15</item>
+		<item>20</item>
+	</integer-array>
+<dimen name="field_size_small">36dp</dimen>
+<dimen name="field_size_medium">44dp</dimen>
+<dimen name="field_size_large">52dp</dimen>
+</resources>

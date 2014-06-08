@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bitmap
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:src="@drawable/bomb_big"
+    android:antialias="true"
+    android:dither="true"
+    android:gravity="fill_vertical|center_horizontal"
+    android:tileMode="disabled"/>

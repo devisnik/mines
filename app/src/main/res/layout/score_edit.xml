@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="8dp"
+    tools:ignore="HardcodedText" >
+
+    <EditText
+        android:id="@+id/score_name"
+        style="@style/Score.Name"
+        android:layout_marginRight="5dip"
+        android:layout_toLeftOf="@id/score_time"
+        android:layout_toRightOf="@id/score_rank"
+        android:hint="@string/new_score_name_hint"
+        android:inputType="textPersonName"
+        android:maxLength="15"
+        android:textSize="@dimen/score_name_size" />
+
+    <TextView
+        android:id="@+id/score_date"
+        style="@style/Score.Date"
+        android:layout_below="@id/score_name"
+        android:layout_toLeftOf="@id/score_time"
+        android:layout_toRightOf="@id/score_rank"
+        android:text="@+id/score_date" />
+
+    <TextView
+        android:id="@+id/score_rank"
+        style="@style/Score.Number.Rank"
+        android:layout_alignBaseline="@+id/score_name"
+        android:layout_alignBottom="@+id/score_name"
+        android:layout_alignParentLeft="true"
+        android:text="3." />
+
+    <TextView
+        android:id="@+id/score_time"
+        style="@style/Score.Number.Time"
+        android:layout_alignBaseline="@+id/score_name"
+        android:layout_alignBottom="@+id/score_name"
+        android:layout_alignParentRight="true"
+        android:text="1243" />
+
+</RelativeLayout>

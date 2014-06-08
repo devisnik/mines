@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/zoom"
+        android:alphabeticShortcut="@string/menu_shortcut_zoom"
+        android:icon="@drawable/ic_action_zoom_in"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_zoom">
+    </item>
+    <item
+        android:id="@+id/new_game"
+        android:alphabeticShortcut="@string/menu_shortcut_new_game"
+        android:icon="@android:drawable/ic_menu_add"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_new_game"/>
+    <!--
+    <item
+        android:id="@+id/fit"
+        android:alphabeticShortcut="@string/menu_shortcut_zoom"
+        android:icon="@drawable/ic_action_zoom_out"
+        android:showAsAction="ifRoom|withText"
+        android:title="@string/menu_fit">
+    </item>
+    -->
+
+    <item
+        android:id="@+id/settings"
+        android:alphabeticShortcut="@string/menu_shortcut_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
+        android:title="@string/menu_settings">
+    </item>
+    <item
+        android:id="@+id/scores"
+        android:alphabeticShortcut="@string/menu_shortcut_scores"
+        android:icon="@drawable/ic_menu_star"
+        android:title="@string/menu_scores">
+    </item>
+    <item
+        android:id="@+id/help"
+        android:alphabeticShortcut="@string/menu_shortcut_help"
+        android:icon="@android:drawable/ic_menu_help"
+        android:title="@string/menu_help">
+    </item>
+
+</menu>

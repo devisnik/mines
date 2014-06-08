@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/layoutStyle"
+    tools:context=".MineSweeper"
+    tools:ignore="HardcodedText" >
+
+    <de.devisnik.android.mine.CounterView
+        android:id="@+id/count"
+        style="?attr/counterViewStyle"
+        android:paddingRight="5dip" />
+
+    <de.devisnik.android.mine.CounterView
+        android:id="@+id/time"
+        style="?attr/counterViewStyle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="right"
+        android:paddingLeft="5dip" />
+
+    <de.devisnik.android.mine.GameInfoView
+        android:id="@+id/level"
+        style="?attr/gameInfoViewStyle"
+        android:layout_alignBottom="@id/count"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@id/time"
+        android:layout_toRightOf="@id/count"
+        android:text="MineSweeper" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/count"
+        layout="@layout/board" />
+
+</RelativeLayout>

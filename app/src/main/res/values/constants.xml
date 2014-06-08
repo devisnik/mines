@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="prefkey_board_highlight" translatable="false">mine.board.highlight</string>
+  <string name="prefkey_board_touch_focus" translatable="false">mine.board.touchfocus</string>
+  <string name="prefkey_board_size" translatable="false">mine.board.size</string>
+  <string name="prefkey_board_fit" translatable="false">mine.board.fit</string>
+  <string name="prefkey_board_theme" translatable="false">mine.board.theme</string>
+  <string name="prefkey_field_size" translatable="false">mine.field.size</string>
+  <string name="prefkey_game_level" translatable="false">mine.game.level</string>
+  <string name="prefkey_game_notification" translatable="false">mine.game.notification</string>
+  <string name="prefkey_user_name" translatable="false">mine.user.name</string>
+  <string name="prefkey_game_intro_shown" translatable="false">mine.board.intro_shown</string>
+  <string name="prefkey_board_vibrate" translatable="false">mine.board.vibrate</string>
+  <string name="board_value_small" translatable="false">small</string>
+  <string name="board_value_medium" translatable="false">medium</string>
+  <string name="board_value_large" translatable="false">large</string>
+  <string name="board_value_huge" translatable="false">huge</string>
+  <string name="board_value_giant" translatable="false">giant</string>
+  <string name="field_value_small" translatable="false">small</string>
+  <string name="field_value_medium" translatable="false">medium</string>
+  <string name="field_value_large" translatable="false">large</string>
+  <string name="level_value_easy" translatable="false">easy</string>
+  <string name="level_value_medium" translatable="false">medium</string>
+  <string name="level_value_hard" translatable="false">hard</string>
+  <string name="level_value_tricky" translatable="false">tricky</string>
+  <string name="level_value_insane" translatable="false">insane</string>
+  <string name="theme_value_simple" translatable="false">simple</string>
+  <string name="theme_value_classic" translatable="false">classic</string>
+  <string name="theme_value_dark" translatable="false">dark</string>
+  <string name="faq_url" translatable="false">http://mines.devisnik.de/faq.html</string>
+  <string name="notes_url" translatable="false">http://mines.devisnik.de/notes.txt</string>
+  <string name="led_font" translatable="false">DIGITALDREAM.ttf</string>
+</resources>

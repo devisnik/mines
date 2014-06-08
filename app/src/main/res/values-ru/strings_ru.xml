@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Сапёр</string>
+	<string name="toast_longpress">Для открытия используйте долгое нажатие!</string>
+	<string name="toast_win">Вы выиграли!</string>
+	<string name="toast_lose">Вы подорвались!</string>
+	<string name="pref_category_effects">Эффекты</string>
+	<string name="pref_category_online">Ресурсы онлайн</string>
+	<string name="pref_value_not_set">Не установлено</string>
+	<string name="pref_user">имя пользователя</string>
+	<string name="pref_user_dialog">введите свое имя</string>
+	<string name="pref_theme">выбор темы</string>
+	<string name="pref_theme_dialog">выбор темы</string>
+	<string name="pref_zoom">выбор разрешения</string>
+	<string name="pref_zoom_dialog">выбор разрешения</string>
+
+	<string name="pref_touchfocus">Фокус на прикосновение</string>
+	<string name="pref_touchfocus_summary">Используйте фокус для выбора поля в модусе прикосновения</string>
+
+	<string name="pref_vibrate">использовать вибрацию</string>
+	<string name="pref_vibrate_summary">Вибрация при долгом нажатии и при взрыве</string>
+	<string name="pref_faq">Показать часто задаваемые вопросы</string>
+	<string name="pref_faq_summary">открыть часто задаваемые вопросы в браузере</string>
+	<string name="pref_notes">Показать примечания к релизу</string>
+	<string name="pref_notes_summary">Показать примечания к релизу в браузере</string>
+	<string name="board">Поле</string>
+	<string name="board_small">маленькое</string>
+	<string name="board_medium">среднее</string>
+	<string name="board_large">большое</string>
+	<string name="board_huge">очень большое</string>
+	<string name="board_giant">огромное</string>
+	<string name="field_small">маленькое</string>
+	<string name="field_medium">среднее</string>
+	<string name="field_large">большое</string>
+	<string name="level">уровень</string>
+	<string name="level_easy">простой</string>
+	<string name="level_medium">средний</string>
+	<string name="level_hard">сложный</string>
+	<string name="level_tricky">с подвохом</string>
+	<string name="level_insane">cумасшедший</string>
+	<string name="theme_simple">монохромный</string>
+	<string name="theme_classic">классический</string>
+	<string name="theme_dark">темный</string>
+	<string name="menu_new_game">Новая игра</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Настройки</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">Очки</string>
+	<string name="menu_shortcut_scores">C</string>
+	<string name="menu_help">Помощь</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Изменение размера</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Подогнать</string>
+	<string name="another_game">Новая игра?</string>
+	<string name="another_game_yes">Да</string>
+	<string name="another_game_no">Нет</string>
+	<string name="intro_title">"Сапёр" для операционной системы Андроид</string>
+	<string name="intro_version">Версия</string>
+	<string name="intro_message">Данная игра представляет собой классическую игру "Сапёр" для Андроида. Смысл игры состоит в определении места мин на минном поле. Помечайте каждое поле, которое содержит мину, с помощью короткого нажатия. Открывайте поля, не содержащие мин, с помощью длинного нажатия. Открытое пустое поле содержит число, которое показывает количество мин вокруг данного поля.</string>
+	<string name="intro_thanx">Спасибо deadfalkon-у за бета тестирование и  полезные советы.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="score_new_title">Новые лучшие результаты!</string>
+    <string name="score_delete_title">Удалить результат?</string>
+    <string name="score_edit_title">Исправить результат</string>
+    <string name="score_menu_share">Поделиться</string>
+    <string name="score_menu_edit">Править</string>
+    <string name="score_menu_delete">Удалить</string>
+    <string name="score_share_title">Сапёр. Результат.</string>
+    <string name="score_share_message">Сапёр. Результат: %1$s пройден за %2$d секунд</string>
+    
+   	<string name="scores_no_entries">Пусто</string>
+	<string name="pref_highlight">Последний ход</string>
+	<string name="pref_highlight_summary">Выделять последний ход</string>   
+</resources>

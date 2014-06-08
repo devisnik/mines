@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="de.devisnik.android.mine"
+    android:installLocation="auto"
+    android:versionCode="51"
+    android:versionName="1.7.1" >
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="19" />
+
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" >
+    </uses-feature>
+
+    <supports-screens android:anyDensity="true" >
+    </supports-screens>
+
+    <application
+        android:name=".MinesApplication"
+        android:allowClearUserData="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <activity
+            android:name=".MineSweeper"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="de.devisnik.android.mine.main" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MinesPreferences"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name=".HighScores"
+            android:label="@string/app_name" >
+        </activity>
+        <!-- 
+        <activity
+            android:name=".Preview"
+            android:label="Preview"
+            android:taskAffinity="de.devisnik.android.mine.preview"
+            android:theme="@style/MinesTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" >
+                </action>
+
+                <category android:name="android.intent.category.LAUNCHER" >
+                </category>
+            </intent-filter>
+        </activity>
+         -->
+    </application>
+
+</manifest>

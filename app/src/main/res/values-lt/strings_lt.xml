@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Minos</string>
+	<string name="toast_longpress">Atvėrimui naudok ilgą paspaudimą!</string>
+	<string name="toast_win">Tu laimėjai!</string>
+	<string name="toast_lose">Susprogai!</string>
+	<string name="pref_category_effects">Efektai</string>
+	<string name="pref_category_online">Tinklo resursai</string>
+	<string name="pref_value_not_set">nenustatyta</string>
+	<string name="pref_user">Slapyvardis</string>
+	<string name="pref_user_dialog">Įvesk savo vardą</string>
+	<string name="pref_theme">Temos pasirinkimas</string>
+	<string name="pref_theme_dialog">Pasirink temą</string>
+	<string name="pref_zoom">Išdidinimas</string>
+	<string name="pref_zoom_dialog">Pasirink išdidinimą</string>
+
+	<string name="pref_touchfocus">Focus on Touch</string>
+	<string name="pref_touchfocus_summary">Naudojant liečiamą ekraną, po pirmo palietimo laukelis bus tik pažymėtas</string>
+
+	<string name="pref_vibrate">Naudoti vibraciją</string>
+	<string name="pref_vibrate_summary">Vibruoja ilgai paspaudus arba sprogus minai</string>
+	<string name="pref_faq">Rodyti DUK</string>
+	<string name="pref_faq_summary">Atveria dažniausiai užduodamus klausimus naršyklėje</string>
+	<string name="pref_notes">Show Release notes</string>
+	<string name="pref_notes_summary">Laidos užrašai</string>
+	<string name="board">Laukas</string>
+	<string name="board_small">Mažas</string>
+	<string name="board_medium">Vidutinis</string>
+	<string name="board_large">Didelis</string>
+	<string name="board_huge">Didžiulis</string>
+	<string name="board_giant">Milžiniškas</string>
+	<string name="field_small">Mažas</string>
+	<string name="field_medium">Vidutinis</string>
+	<string name="field_large">Didelis</string>
+	<string name="level">Lygis</string>
+	<string name="level_easy">Lengvas</string>
+	<string name="level_medium">Vidutinis</string>
+	<string name="level_hard">Sunkus</string>
+	<string name="level_tricky">Suktas</string>
+	<string name="level_insane">Pamišęs</string>
+	<string name="theme_simple">Monochrome</string>
+	<string name="theme_classic">Classic</string>
+	<string name="theme_dark">Tamsi</string>
+	<string name="menu_new_game">Naujas žaidimas</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Nustatymai</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">Rezultatai</string>
+	<string name="menu_shortcut_scores">C</string>
+	<string name="menu_help">Pagalba</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Išdidinti</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Pritaikyti</string>
+	<string name="another_game">Žaisti dar?</string>
+	<string name="another_game_yes">Taip</string>
+	<string name="another_game_no">Ne</string>
+	<string name="intro_title">Minos Android\'ui</string>
+	<string name="intro_version">Versija</string>
+	<string name="intro_message">Minos - klasikinis Minesweeper žaidimas Android platformai.
+	\n\nŽaidimo tikslas yra išvalyti minų lauką nedetonavus minos.
+	\n\nPažymėk vėliavėle (trumpas paspaudimas) kiekvieną laukelį, kuriame yra mina. Atverk visus laukelius, kuriuose nėra minos (ilgas paspaudimas).
+	\nAtverti laukeliai su skaičiumi nurodo, keliuose gretimuose laukeliuose yra mina.</string>
+	<string name="intro_thanx">Ačiū deadfalkon už beta versijos bandymą ir patarimus.</string>
+	<string name="intro_okay">Gerai</string>
+
+	<string name="score_new_title">Naujas aukščiausias rezultatas!</string>
+	<!-- dialog title of the highscore delete dialog -->
+	<string name="score_delete_title">Pašalinti rezultatą?</string>
+	<!-- dialog title of the highscore edit dialog-->
+	<string name="score_edit_title">Redaguoti rezultatą</string>
+	<!-- name of the highscore share context menu action -->
+	<string name="score_menu_share">Dalintis</string>
+	<!-- name of the highscore edit context menu action -->
+	<string name="score_menu_edit">Redaguoti</string>
+	<!-- name of the highscore delete context menu action -->
+	<string name="score_menu_delete">Pašalinti</string>
+	<!-- title of the message to share (via email, facebook, twitter, etc.) -->
+	<string name="score_share_title">Žaidimo Minos rezultatas</string>
+	<!-- message to share, %1$s will be automatically replaced with the
+	game info (level, boardsize), %2$s will be replaced with the highscore time -->
+	<string name="score_share_message">Žaidimas Minos - %1$s pabaigtas per %2$d s.</string>
+	
+	<string name="scores_no_entries">Rezultatų kol kas nėra</string>
+	<string name="pref_highlight">Paskutinio laukelio pažymėjimas</string>
+	<string name="pref_highlight_summary">Pažymimas paskutinis paspaustas laukelis</string>
+	
+</resources>

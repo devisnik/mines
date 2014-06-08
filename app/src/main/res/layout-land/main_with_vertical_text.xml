@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	style="?attr/layoutStyle"
+>
+	<de.devisnik.android.mine.CounterView
+		style="?attr/counterViewStyle"
+		android:id="@+id/time"
+		android:layout_alignParentLeft="true"
+		android:layout_alignParentTop="true" />
+	<de.devisnik.android.mine.CounterView
+		style="?attr/counterViewStyle"
+		android:id="@+id/count"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentLeft="true" />
+	<de.devisnik.android.mine.VerticalLabelView
+		android:layout_width="wrap_content"
+		android:layout_height="fill_parent"
+		android:id="@+id/verticalLevelLabel"
+		app:text="Hallo"		
+		app:textColor="#fff"
+		android:layout_below="@id/time"
+		android:layout_above="@id/count" />
+	<de.devisnik.android.mine.GameInfoView
+		style="?attr/gameInfoViewStyle"
+		android:id="@+id/level"
+		android:layout_alignParentTop="true"
+		android:layout_toRightOf="@id/time"
+		android:layout_alignBottom="@id/time" />
+	<include 
+		layout="@layout/board" 
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:layout_toRightOf="@id/time"
+		android:layout_below="@id/level"
+	/>
+</RelativeLayout>

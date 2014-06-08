@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Langer Klick öffnet!</string>
+	<string name="toast_win">Gewonnen!</string>
+	<string name="toast_lose">Explodiert!</string>
+	<string name="pref_category_effects">Effekte</string>
+	<string name="pref_category_online">Online Ressourcen</string>
+	<string name="pref_value_not_set">nicht gesetzt</string>
+	<string name="pref_user">Spieler-Name</string>
+	<string name="pref_user_dialog">Gib deinen Namen ein!</string>
+	<string name="pref_theme">Darstellung</string>
+	<string name="pref_theme_dialog">Wähle Darstellung</string>
+	<string name="pref_zoom">Vergrößerung</string>
+	<string name="pref_zoom_dialog">Wähle Vergrößerung</string>
+	<string name="pref_touchfocus">Fokus bei Berührung</string>
+	<string name="pref_touchfocus_summary">Fokus zur Feld-Auswahl auch im Touch-Modus verwenden</string>
+		
+	<string name="pref_vibrate">Vibration verwenden</string>
+	<string name="pref_vibrate_summary">Vibration für langen Klick und bei Explosion verwenden</string>
+	<string name="pref_faq">FAQs anzeigen</string>
+	<string name="pref_faq_summary">Öffnet Online-Antworten häufig gestellter Fragen im Browser</string>
+	<string name="pref_notes">Entwicklungshistorie anzeigen</string>
+	<string name="pref_notes_summary">Öffnet die Entwicklungshistorie im Browser</string>
+	<string name="board">Größe</string>
+	<string name="board_small">Klein</string>
+	<string name="board_medium">Mittel</string>
+	<string name="board_large">Groß</string>
+	<string name="board_huge">Riesig</string>
+	<string name="board_giant">Gigantisch</string>
+	<string name="field_small">Klein</string>
+	<string name="field_medium">Mittel</string>
+	<string name="field_large">Groß</string>
+	<string name="level">Stärke</string>
+	<string name="level_easy">Einfach</string>
+	<string name="level_medium">Mittel</string>
+	<string name="level_hard">Schwierig</string>
+	<string name="level_tricky">Schwer</string>
+	<string name="level_insane">Sehr Schwer</string>
+	<string name="theme_simple">Monochrome</string>
+	<string name="theme_classic">Classic</string>
+	<string name="theme_dark">Dark</string>
+	<string name="menu_new_game">Neues Spiel</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Einstellungen</string>
+	<string name="menu_shortcut_settings">E</string>
+	<string name="menu_scores">Bestenliste</string>
+	<string name="menu_shortcut_scores">B</string>
+	<string name="menu_help">Hilfe</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Groß</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Anpassen</string>
+	<string name="another_game">Neues Spiel?</string>
+	<string name="another_game_yes">Ja</string>
+	<string name="another_game_no">Nein</string>
+	<string name="intro_title">Mines für Android</string>
+	<string name="intro_version">Version</string>
+	<string name="intro_message">Mines bringt den Spiele-Klassiker Minesweeper auf die Android Plattform.
+	\n\nZiel des Spiels ist es, ein Minenfeld zu räumen, ohne dass eine der Minen explodiert.
+	\n\nSetze eine Fahne (kurzer Klick) auf jedes Feld das vermint ist. Öffne die nicht verminten Felder (langer
+		Klick).
+	\nEin geöffnetes Feld zeigt an, wieviele seiner Nachbar-Felder vermint sind.</string>
+	<string name="intro_thanx">Thanx to deadfalkon for beta testing and helpful suggestions.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="score_new_title">Neuer Bestwert!</string>
+	<string name="score_delete_title">Eintrag löschen?</string>
+	<string name="score_edit_title">Eintrag ändern</string>
+	<string name="score_menu_share">Versenden</string>
+	<string name="score_menu_edit">Ändern</string>
+	<string name="score_menu_delete">Löschen</string>
+	<string name="score_share_title">Mines Bestwert</string>
+	<string name="score_share_message">Mines Bestwert - %1$s gelöst in %2$d Sekunden</string>
+	
+   	<string name="scores_no_entries">keine Einträge</string>
+	<string name="pref_highlight">Berührung anzeigen</string>
+	<string name="pref_highlight_summary">Markiert das zuletzt berührte Feld</string>   	
+</resources>

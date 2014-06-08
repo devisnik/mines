@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string-array name="levels">
+		<item>@string/level_easy</item>
+		<item>@string/level_medium</item>
+		<item>@string/level_hard</item>
+		<item>@string/level_tricky</item>
+		<item>@string/level_insane</item>
+	</string-array>
+	<string-array name="levels_values">
+		<item>@string/level_value_easy</item>
+		<item>@string/level_value_medium</item>
+		<item>@string/level_value_hard</item>
+		<item>@string/level_value_tricky</item>
+		<item>@string/level_value_insane</item>
+	</string-array>
+	<string-array name="sizes">
+		<item>@string/board_small</item>
+		<item>@string/board_medium</item>
+		<item>@string/board_large</item>
+		<item>@string/board_huge</item>
+		<item>@string/board_giant</item>
+	</string-array>
+	<string-array name="sizes_values">
+		<item>@string/board_value_small</item>
+		<item>@string/board_value_medium</item>
+		<item>@string/board_value_large</item>
+		<item>@string/board_value_huge</item>
+		<item>@string/board_value_giant</item>
+	</string-array>
+	<string-array name="field_sizes">
+		<item>@string/field_small</item>
+		<item>@string/field_medium</item>
+		<item>@string/field_large</item>
+	</string-array>
+	<string-array name="field_sizes_values">
+		<item>@string/field_value_small</item>
+		<item>@string/field_value_medium</item>
+		<item>@string/field_value_large</item>
+	</string-array>
+	<string-array name="themes">
+		<item>@string/theme_simple</item>
+		<item>@string/theme_classic</item>
+		<item>@string/theme_dark</item>
+	</string-array>
+	<string-array name="themes_values">
+		<item>@string/theme_value_simple</item>
+		<item>@string/theme_value_classic</item>
+		<item>@string/theme_value_dark</item>
+	</string-array>
+</resources>

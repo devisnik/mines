@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Tieni premuto per aprire!</string>
+	<string name="toast_win">Hai vinto!</string>
+	<string name="toast_lose">Sei esploso!</string>
+	<string name="pref_category_effects">Effetti</string>
+	<string name="pref_category_online">Risorse online</string>
+	<string name="pref_value_not_set">non impostato</string>
+	<string name="pref_user">Nome Utente</string>
+	<string name="pref_user_dialog">Inserisci il tuo nome</string>
+	<string name="pref_theme">Seleziona Tema</string>
+	<string name="pref_theme_dialog">Scegli Tema</string>
+	<string name="pref_zoom">Seleziona Zoom</string>
+	<string name="pref_zoom_dialog">Scegli Zoom</string>
+	
+	
+	<string name="pref_touchfocus">Seleziona al tocco</string>
+	<string name="pref_touchfocus_summary">Seleziona la casella al tocco</string>
+	
+	
+	<string name="pref_vibrate">Usa Vibrazione</string>
+	<string name="pref_vibrate_summary">Vibra alla pressione lunga e alle esplosioni</string>
+	<string name="pref_faq">Visualizza FAQ</string>
+	<string name="pref_faq_summary">Apre le domande frequenti online nel browser</string>
+	<string name="pref_notes">Visualizza Release notes</string>
+	<string name="pref_notes_summary">Apre le note di rilascio online nel browser</string>
+	<string name="board">Griglia</string>
+	<string name="board_small">Piccola</string>
+	<string name="board_medium">Media</string>
+	<string name="board_large">Grande</string>
+	<string name="board_huge">Enorme</string>
+	<string name="board_giant">Gigante</string>
+	<string name="field_small">Piccolo</string>
+	<string name="field_medium">Medio</string>
+	<string name="field_large">Grande</string>
+	<string name="level">Livello</string>
+	<string name="level_easy">Facile</string>
+	<string name="level_medium">Medio</string>
+	<string name="level_hard">Difficile</string>
+	<string name="level_tricky">Intricato</string>
+	<string name="level_insane">Folle</string>
+	<string name="theme_simple">Monocromatico</string>
+	<string name="theme_classic">Classico</string>
+	<string name="theme_dark">Scuro</string>
+	<string name="menu_new_game">Nuova partita</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Impostazioni</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">Punteggi</string>
+	<string name="menu_shortcut_scores">C</string>
+	<string name="menu_help">Guida</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Zoom</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Adatta</string>
+	<string name="another_game">Un\'altra partita?</string>
+	<string name="another_game_yes">Si</string>
+	<string name="another_game_no">No</string>
+	<string name="intro_title">Mines per Android</string>
+	<string name="intro_version">Versione</string>
+	<string name="intro_message">Mines porta il classico gioco Campo Minato sulla piattaforma Android.
+	\n\nLo scopo del gioco è di bonificare un campo minato senza far esplodere le mine.
+	\n\nMetti una bambierina (click breve) in ogni casella che pensi contenga una mina. Apri ogni casella (click lungo) che pensi non contenga mine.
+	\n\nNelle caselle aperte è presente una cifra, che indica il numero di celle adiacienti che contengono mine.
+	\n\nPuoi cliccare sui numeri svelati, dopo aver inserito le bandierine nelle celle sospette circostanti, per aprire tutte le caselle non segnate adiacenti.</string>
+	<string name="intro_thanx">Grazie a deadfalkon per il beta testing e gli utili suggerimenti.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="new_score_name_hint">Il tuo nome</string>
+	<string name="score_new_title">Nuovo record!</string>
+	<string name="score_delete_title">Elimina punteggio?</string>
+	<string name="score_edit_title">Edita Punteggio</string>
+	<string name="score_menu_share">Condividi</string>
+	<string name="score_menu_edit">Edita</string>
+	<string name="score_menu_delete">Elimina</string>
+	<string name="score_share_title">Mines HighScore</string>
+	<string name="score_share_message">Mines HighScore - %1$s risolto in %2$d secondi</string>
+	
+	<string name="scores_no_entries">nessuna voce</string>
+	<string name="pref_highlight">Evidenzia Tocco</string>
+	<string name="pref_highlight_summary">Evidenza l\'ultimo campo toccato</string>	
+</resources>

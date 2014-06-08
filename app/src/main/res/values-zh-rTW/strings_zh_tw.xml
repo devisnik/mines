@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">掃雷</string>
+	<string name="toast_longpress">長按可以翻開!</string>
+	<string name="toast_win">你贏了!</string>
+	<string name="toast_lose">你踩雷了!</string>
+	<string name="pref_category_effects">效果</string>
+	<string name="pref_category_online">線上資源</string>
+	<string name="pref_value_not_set">未設定</string>
+	<string name="pref_user">使用者名稱</string>
+	<string name="pref_user_dialog">輸入您的姓名</string>
+	<string name="pref_theme">選擇主題</string>
+	<string name="pref_theme_dialog">選擇主題</string>
+	<string name="pref_zoom">選擇縮放</string>
+	<string name="pref_zoom_dialog">選擇縮放</string>
+
+	<string name="pref_touchfocus">觸摸焦點</string>
+	<string name="pref_touchfocus_summary">在觸摸模式中使用焦點選擇區網網網域</string>
+
+	<string name="pref_vibrate">使用振動</string>
+	<string name="pref_vibrate_summary">在長按和爆炸時使用振動</string>
+	<string name="pref_faq">顯示常見問答</string>
+	<string name="pref_faq_summary">使用瀏覽器開啟舊檔線上常見問答</string>
+	<string name="pref_notes">顯示發行說明</string>
+	<string name="pref_notes_summary">使用瀏覽器開啟舊檔線上發行說明</string>
+	<string name="board">規格</string>
+	<string name="board_small">小</string>
+	<string name="board_medium">中</string>
+	<string name="board_large">大</string>
+	<string name="board_huge">龐大</string>
+	<string name="board_giant">巨大</string>
+	<string name="field_small">小</string>
+	<string name="field_medium">中</string>
+	<string name="field_large">大</string>
+	<string name="level">級別</string>
+	<string name="level_easy">簡單</string>
+	<string name="level_medium">中等</string>
+	<string name="level_hard">困難</string>
+	<string name="level_tricky">棘手</string>
+	<string name="level_insane">瘋狂</string>
+	<string name="theme_simple">黑白</string>
+	<string name="theme_classic">經典</string>
+	<string name="theme_dark">黑暗</string>
+	<string name="menu_new_game">新遊戲</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">設定</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">得分</string>
+	<string name="menu_shortcut_scores">C</string>
+	<string name="menu_help">說明</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">縮放</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">縮放</string>
+	<string name="another_game">新遊戲?</string>
+	<string name="another_game_yes">是</string>
+	<string name="another_game_no">否</string>
+	<string name="intro_title">掃雷 Android 版</string>
+	<string name="intro_version">版本</string>
+	<string name="intro_message">經典的掃雷來到 Android 平台上。
+	\n\n遊戲的的目的是在不踩到地雷的前提下清除雷區。
+	\n\n標記每個包含地雷的區網網網域 (短按)
+		。翻開所有不包含地雷的區網網網域 (長按)。
+	\n翻開的區網網網域內包含的數字是指相鄰區網網網域內的地雷數。</string>
+	<string name="intro_thanx">感謝 deadfalkon 的初期測試和有益的建議。</string>
+	<string name="intro_okay">確認</string>
+	<string name="score_new_title">新高分!</string>
+	<string name="score_delete_title">移除分數?</string> 
+	<string name="score_edit_title">編輯分數</string> 
+	<string name="score_menu_share">分享</string>
+	<string name="score_menu_edit">編輯</string> 
+	<string name="score_menu_delete">移除</string> 
+	<string name="score_share_title">開採高分榜</string> 
+	<string name="score_share_message">開採高分榜 -  用 %2$d 秒完成 %1$s</string> 
+	<string name="scores_no_entries">沒有列表</string>
+	<string name="pref_highlight">觸摸標注部分</string>
+	<string name="pref_highlight_summary">標注最後觸摸區域</string>	
+</resources>

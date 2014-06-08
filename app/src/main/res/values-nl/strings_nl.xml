@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Houd lang ingedrukt om te openen!</string>
+	<string name="toast_win">Gewonnen!</string>
+	<string name="toast_lose">Je bent ontploft!</string>
+	<string name="pref_category_effects">Effecten</string>
+	<string name="pref_category_online">Online hulp</string>
+	<string name="pref_value_not_set">niet ingesteld</string>
+	<string name="pref_user">Gebruikersnaam</string>
+	<string name="pref_user_dialog">Voor uw naam in</string>
+	<string name="pref_theme">Thema selecteren</string>
+	<string name="pref_theme_dialog">Thema kiezen</string>
+	<string name="pref_zoom">Zoom niveau selecteren</string>
+	<string name="pref_zoom_dialog">Zoom niveau kiezen</string>
+		
+	<string name="pref_touchfocus">Bij aanraking focussen</string>
+	<string name="pref_touchfocus_summary">Gebruik focus voor het selecteren van een veld in aanraakmodus</string>
+	<string name="pref_vibrate">Gebruik vibratie</string>
+	<string name="pref_vibrate_summary">Vibratie bij lang indrukken of explosie</string>
+	<string name="pref_faq">Geef FAQs weer</string>
+	<string name="pref_faq_summary">Open de veelgestelde vragen in de browser</string>
+	<string name="pref_notes">Geef \'Release notes\' weer</string>
+	<string name="pref_notes_summary">Geef de online \'Release notes\' weer in de browser</string>
+	<string name="board">Bord</string>
+	<string name="board_small">Klein</string>
+	<string name="board_medium">Gemiddeld</string>
+	<string name="board_large">Groot</string>
+	<string name="board_huge">Enorm</string>
+	<string name="board_giant">Gigantisch</string>
+	<string name="field_small">Klein</string>
+	<string name="field_medium">Gemiddeld</string>
+	<string name="field_large">Groot</string>
+	<string name="level">Level</string>
+	<string name="level_easy">Makkelijk</string>
+	<string name="level_medium">Gemiddeld</string>
+	<string name="level_hard">Moeilijk</string>
+	<string name="level_tricky">Zeer moeilijk</string>
+	<string name="level_insane">Moeilijkst</string>
+	<string name="theme_simple">Monochroom</string>
+	<string name="theme_classic">Klassiek</string>
+	<string name="theme_dark">Donker</string>
+	<string name="menu_new_game">Niew spel</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Instellingen</string>
+	<string name="menu_shortcut_settings">I</string>
+	<string name="menu_scores">Scores</string>
+	<string name="menu_shortcut_scores">S</string>
+	<string name="menu_help">Help</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Zoom</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Maak passend</string>
+	<string name="another_game">Nog een spel?</string>
+	<string name="another_game_yes">Ja</string>
+	<string name="another_game_no">Nee</string>
+	<string name="intro_title">Mines voor Android</string>
+	<string name="intro_version">Versie</string>
+	<string name="intro_message">Mines brengt het klassieke spel Minesweeper naar het Android platform.
+	\n\nHet doel van het spel is een abstract mijnveld leeg te maken zonder een mijn te raken.
+	\n\nZet een vlag (kort klikken) op elk veld met een mijn. Open elk veld (lang klikken) zonder een mijn.
+	\nIn open veldjes staat een getal, dat geeft aan hoevel mijnen er in de aangrenzende veldjes liggen.</string>
+	<string name="intro_thanx">Met dank aan deadfalkon beta-testen en hulpvolle suggesties.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="new_score_name_hint">Uw naam</string>
+	<string name="score_new_title">Nieuwe Highscore!</string>
+	<string name="score_delete_title">Verwijder score?</string>
+	<string name="score_edit_title">Bewerk score</string>
+	<string name="score_menu_share">Delen</string>
+	<string name="score_menu_edit">Bewerken</string>
+	<string name="score_menu_delete">Verwijderen</string>
+	<string name="score_share_title">Mines Highscore</string>
+	<string name="score_share_message">Mines Highscore - %1$s opgelost in %2$d seconden</string>
+	<string name="scores_no_entries">geen scores</string>
+	<string name="pref_highlight">Oplichten bij aanraking</string>
+	<string name="pref_highlight_summary">Laat het laatst aangeraakte veld oplichten</string>
+		
+</resources>

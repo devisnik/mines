@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/score_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dip"
+    android:paddingTop="5dip"
+    tools:ignore="HardcodedText" >
+
+    <TextView
+        android:id="@+id/score_rank"
+        style="@style/Score.Number.Rank"
+        android:text="3."
+        android:textColor="?attr/scoresColor" />
+
+    <TextView
+        android:id="@+id/score_time"
+        style="@style/Score.Number.Time"
+        android:text="1243"
+        android:textColor="?attr/scoresColor" />
+
+    <TextView
+        android:id="@+id/score_name"
+        style="@style/Score.Name"
+        android:layout_toLeftOf="@id/score_time"
+        android:layout_toRightOf="@id/score_rank"
+        android:text="@+id/score_name"
+        android:textColor="?attr/scoresColor" />
+
+    <TextView
+        android:id="@+id/score_date"
+        style="@style/Score.Date"
+        android:layout_below="@id/score_name"
+        android:layout_toLeftOf="@id/score_time"
+        android:layout_toRightOf="@id/score_rank"
+        android:text="@+id/score_date"
+        android:textColor="?attr/scoresColor" />
+
+</RelativeLayout>

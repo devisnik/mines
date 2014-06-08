@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Score">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="Score.Number">
+		<item name="android:gravity">right|center_vertical</item>
+		<item name="android:paddingRight">2pt</item>
+	</style>
+	<style name="Score.Number.Rank">
+		<item name="android:textSize">@dimen/score_rank_size</item>
+		<item name="android:minWidth">20pt</item>
+	</style>
+	<style name="Score.Number.Time">
+		<item name="android:layout_marginRight">5dip</item>
+		<item name="android:textSize">@dimen/score_time_size</item>
+		<item name="android:layout_alignParentRight">true</item>
+	</style>
+	<style name="Score.Name">
+		<item name="android:textSize">@dimen/score_name_size</item>
+		<item name="android:layout_alignParentTop">true</item>
+	</style>
+	<style name="Score.Date">
+		<item name="android:textSize">@dimen/score_date_size</item>
+	</style>
+</resources>

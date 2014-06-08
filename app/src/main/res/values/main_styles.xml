@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<style name="Transparent">
+		<item name="android:background">@android:color/transparent</item>
+	</style>
+	<style name="Wrap" parent="Transparent">
+		<item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="Fill" parent="Transparent">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">fill_parent</item>
+	</style>
+	<style name="FillHorizontal" parent="Transparent">
+		<item name="android:layout_width">fill_parent</item>
+		<item name="android:layout_height">wrap_content</item>
+	</style>
+	<style name="Layout" parent="Fill">
+	</style>
+	<style name="BoardView" parent="Fill">
+		<item name="android:fadingEdge">horizontal|vertical</item>
+		<item name="android:fadeScrollbars">false</item>
+		<item name="android:scrollbars">horizontal|vertical</item>
+		<item name="android:scrollbarStyle">outsideOverlay</item>
+	</style>
+	<style name="BoardPanel" parent="Wrap">
+	</style>
+	<style name="Counter" parent="Wrap">
+		<item name="android:textSize">24dip</item>
+	</style>
+	<style name="GameInfo" parent="FillHorizontal">
+		<item name="android:gravity">center</item>
+		<item name="android:singleLine">true</item>
+  		<item name="android:ellipsize">marquee</item>
+		<item name="android:marqueeRepeatLimit">-1</item>	
+	</style>
+</resources>

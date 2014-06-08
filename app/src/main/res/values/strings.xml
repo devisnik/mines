@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<!-- application name, used in AndroidManifest.xml-->
+	<string name="app_name">Mines</string>
+	<!-- shown when user clicks on an UNSTARTED board -->
+	<string name="toast_longpress">Use long press to open!</string>
+	<!-- shown when a board is cleared -->
+	<string name="toast_win">You win!</string>
+	<!-- shown when a bomb exploded -->
+	<string name="toast_lose">You exploded!</string>
+	
+	<!-- category name for preferences that are used in game presentation -->
+	<string name="pref_category_effects">Effects</string>
+	<!-- category name for preferences that link to external resources -->
+	<string name="pref_category_online">Online Resources</string>
+	<!-- shown when a preference has no value -->
+	<string name="pref_value_not_set">not set</string>
+	<!-- label of the 'user name' preference -->
+	<string name="pref_user">User Name</string>
+	<!-- title of the user name input dialog -->
+	<string name="pref_user_dialog">Enter Your Name</string>
+	<!--  label of the 'theme' preference -->
+	<string name="pref_theme">Select Theme</string>
+	<!-- title of the theme preference selection dialog -->
+	<string name="pref_theme_dialog">Choose Theme</string>
+	<!--  label of the 'zoom' preference
+	used only in zoom mode (is ignored in fit-on-screen mode)
+	determines the size of the fields in zoom-mode -->
+	<string name="pref_zoom">Select Zoom</string>
+	<!-- title of the zoom preference selection dialog -->
+	<string name="pref_zoom_dialog">Choose Zoom</string>		
+	<!-- label of the 'highlight touch' preference, 
+	if set the last touched field is highlighted 
+	(currently by overlaying it with a semi-transparent disc) 
+	since v29, 1.3.1
+	-->
+	<string name="pref_highlight">Highlight Touch</string>
+	<!-- explanation text of the 'highlight touch' preference, rendered below the name 
+	since v29, 1.3.1
+	-->
+	<string name="pref_highlight_summary">Highlight the last touched field</string>
+	<!-- label for the 'touchfocus' preference 
+	used ONLY in fit-on-screen mode (ignored in zoom mode)
+	if set, touching an unselected field moves the focus onto that field, 
+	touching a selected field flags it, long press opens it.
+	-->
+	<string name="pref_touchfocus">Focus on Touch</string>
+	<!-- explanation text of the 'touchfocus' preference, rendered below the name 
+	-->
+	<string name="pref_touchfocus_summary">Use focus for field selection in touch mode</string>
+	<!-- label for the 'vibrate' preference
+	if set, opening a field an explosions cause a vibration
+	 -->
+	<string name="pref_vibrate">Use Vibration</string>	
+	<!-- explanation text of the 'vibrate' preference, rendered below the name -->
+	<string name="pref_vibrate_summary">Vibrate on long press and on explosion</string>
+	<!-- label for the 'show_faq' preference -->
+	<string name="pref_faq">Show FAQs</string>
+	<!-- explanation text of the 'show_faq' preference, rendered below the name -->
+	<string name="pref_faq_summary">Open the online Frequently Asked Questions in the browser</string>
+	<!-- label for the 'show_notes' preference -->	
+	<string name="pref_notes">Show Release notes</string>
+	<!-- explanation text of the 'show_notes' preference, rendered below the name -->
+	<string name="pref_notes_summary">Open the online release notes in the browser</string>
+	<!-- label for the game board -->
+	<string name="board">Board</string>
+	<!-- labels for the different sizes of the game board -->
+	<string name="board_small">Small</string>
+	<string name="board_medium">Medium</string>
+	<string name="board_large">Large</string>
+	<string name="board_huge">Huge</string>
+	<string name="board_giant">Giant</string>
+	<!-- labels for the different field sizes -->
+	<string name="field_small">Small</string>
+	<string name="field_medium">Medium</string>
+	<string name="field_large">Large</string>
+	<!-- label of the game level -->
+	<string name="level">Level</string>
+	<!-- labels for the different game levels -->
+	<string name="level_easy">Easy</string>
+	<string name="level_medium">Medium</string>
+	<string name="level_hard">Hard</string>
+	<string name="level_tricky">Tricky</string>
+	<string name="level_insane">Insane</string>
+	<!-- labels for the different themes -->
+	<string name="theme_simple">Monochrome</string>
+	<string name="theme_classic">Classic</string>
+	<string name="theme_dark">Dark</string>
+	
+	<!-- labels for the menu actions -->
+	<string name="menu_new_game">New Game</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Settings</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">Scores</string>
+	<string name="menu_shortcut_scores">C</string>
+	<string name="menu_help">Help</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Zoom</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Fit</string>
+	
+	<!-- text to be shown if highscore list is empty -->
+	<string name="scores_no_entries">no entries</string>
+	<!-- label of the 'new highscore' confirmation button -->
+	<string name="new_score_confirm">Confirm</string>
+	<!-- hint text displayed inside the name input field when it is empty -->
+	<string name="new_score_name_hint">Your Name</string>
+	<!-- title of the 'new game' dialog -->
+	<string name="another_game">Another Game?</string>
+	<!-- label of the 'ok' button -->
+	<string name="another_game_yes">Yes</string>
+	<!-- label of the 'cancel' button -->
+	<string name="another_game_no">No</string>
+	<!-- help dialog title -->
+	<string name="intro_title">Mines for Android</string>
+	<!-- version label -->
+	<string name="intro_version">Version</string>
+	<!-- help dialog text -->
+	<string name="intro_message">Mines brings the classic Minesweeper game to the Android platform.
+	\n\nThe	object of the game is to clear an abstract minefield without detonating a mine.
+	\n\nFlag each field (short click) that contains a mine. Open each field (long click) not containing a mine.
+	\nOpen fields present a digit indicating the number of adjacent fields that contain mines.</string>
+	<!-- thanks rendered at the end of the help dialog -->
+	<string name="intro_thanx">Thanx to deadfalkon for beta testing and helpful suggestions.</string>
+	<!-- help dialog okay button label -->
+	<string name="intro_okay">Ok</string>
+	<!-- translators information at the bottom of the help dialog -->
+	<string name="intro_translations">
+	chinese/taiwanese:
+	\n netdragon (www.nd.com.cn)
+	\nlithuanian:
+	\n Justinas Lelys (lelys.lt)
+	\nespañol:
+	\n JACalvo (jacalvo.com)
+	\npolish:
+	\n Sebastian Lasek
+	\nrussian:
+	\n Natüshka, Dmitry 
+	\n idelena, St.Petersburg, Russia
+	\nfrançais :
+	\n Éric Lassauge (lassauge.free.fr)	
+	\nitaliano:
+	\n Demetrius
+	\nNederlands:
+    \n Divendo (divendo-webs.com)
+    \nczech:
+    \n Laco Balaz
+	\n Radek Šmejdíř
+	\nslovakian:
+    \n Laco Balaz
+    \nbahasa indonesia:
+	\n Adrian Setyadi (learnbi.wordpress.com)
+	\nbrazilian portuguese:
+	\n Fabiano Marangoni
+	</string>
+	<!-- title of the 'new highscore' dialog -->
+	<string name="score_new_title">New HighScore!</string>
+	<!-- dialog title of the highscore delete dialog -->
+	<string name="score_delete_title">Delete Score?</string>
+	<!-- dialog title of the highscore edit dialog-->
+	<string name="score_edit_title">Edit Score</string>
+	<!-- name of the highscore share context menu action -->
+	<string name="score_menu_share">Share</string>
+	<!-- name of the highscore edit context menu action -->
+	<string name="score_menu_edit">Edit</string>
+	<!-- name of the highscore delete context menu action -->
+	<string name="score_menu_delete">Delete</string>
+	<!-- title of the message to share (via email, facebook, twitter, etc.) -->
+	<string name="score_share_title">Mines HighScore</string>
+	<!-- message to share, 
+	%1 will be automatically replaced with the game info (level, boardsize), 
+	%2 will be replaced with the highscore time
+	-->
+	<string name="score_share_message">Mines HighScore - %1$s solved in %2$d seconds</string>
+	<string name="pref_notification_summary">Remind me of an interrupted game (experimental)</string>
+	<string name="pref_notification_title">Notifications</string>	
+</resources>

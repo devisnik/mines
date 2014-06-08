@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Przyciśnij dłużej aby otworzyć!</string>
+	<string name="toast_win">Wygrałeś!</string>
+	<string name="toast_lose">Eksplodowałes!</string>
+	<string name="pref_category_effects">Efekty</string>
+	<string name="pref_category_online">Zasoby online</string>
+	<string name="pref_value_not_set">nie ustawione</string>
+	<string name="pref_user">Nazwa Użytkownika</string>
+	<string name="pref_user_dialog">Wpisz swoje imię</string>
+	<string name="pref_theme">Wybierz skórke</string>
+	<string name="pref_theme_dialog">Wybierz skórke</string>
+	<string name="pref_zoom">Wybierz zbliżenie</string>
+	<string name="pref_zoom_dialog">Wybierz zbliżenie</string>
+
+	<string name="pref_touchfocus">Ustaw przy dotknięciu</string>
+	<string name="pref_touchfocus_summary">Zaznacz pole przy użyciu dotknięcia</string>
+
+	<string name="pref_vibrate">Użyj wibracji</string>
+	<string name="pref_vibrate_summary">Wibruj przy długim przyciśnięciu i eksplozji</string>
+	<string name="pref_faq">Pokaż FAQs</string>
+	<string name="pref_faq_summary">Przejdz do Frequently Asked Questions online</string>
+	<string name="pref_notes">Pokaz Release notes</string>
+	<string name="pref_notes_summary">Przejdz do release notes online</string>
+	<string name="board">Plansza</string>
+	<string name="board_small">Mała</string>
+	<string name="board_medium">Średnia</string>
+	<string name="board_large">Duża</string>
+	<string name="board_huge">Ogromna</string>
+	<string name="board_giant">Gigantyczna</string>
+	<string name="field_small">Mały</string>
+	<string name="field_medium">Średnii</string>
+	<string name="field_large">Duży</string>
+	<string name="level">Poziom</string>
+	<string name="level_easy">Łatwy</string>
+	<string name="level_medium">Średni</string>
+	<string name="level_hard">Ciężki</string>
+	<string name="level_tricky">Bardzo ciężki</string>
+	<string name="level_insane">Prawie niemożliwy</string>
+	<string name="theme_simple">Monochromatycznia</string>
+	<string name="theme_classic">Klasycznia</string>
+	<string name="theme_dark">Ciemna</string>
+	<string name="menu_new_game">Nowa gra</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Ustawienia</string>
+	<string name="menu_shortcut_settings">U</string>
+	<string name="menu_scores">Punkty</string>
+	<string name="menu_shortcut_scores">P</string>
+	<string name="menu_help">Pomoc</string>
+	<string name="menu_shortcut_help">H</string>
+	<string name="menu_zoom">Powiększenie</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Dopasuj</string>
+	<string name="another_game">Nowa gra?</string>
+	<string name="another_game_yes">Tak</string>
+	<string name="another_game_no">Nie</string>
+	<string name="intro_title">Mines na Androida</string>
+	<string name="intro_version">Wersja</string>
+	<string name="intro_message">
+            Mines na platformę Android to adaptacja klasycznego sapera.
+            \n\nCelem gry jest wyczyszczenie pola minowego bez wylecenia pryz tym w powietrze.
+            \n\nPostaw flage w mejscu gdzie jest mina. Odkryj pola gdzie min nie ma (przyciśnij dłużej).
+            \nOdkryte pola pokazują cyfrę określąjacą liczbę min na sąsiadujących polach.
+	</string>
+	<string name="intro_thanx">Dzięki dla deadfalkon za beta testy i pomocne sugestie.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="score_new_title">Pobiłeś rekord!</string>
+     <!-- dialog title of the highscore delete dialog -->
+     <string name="score_delete_title">Skasowac pukty?</string>
+     <!-- dialog title of the highscore edit dialog-->
+     <string name="score_edit_title">Edytuj punkty</string>
+     <!-- name of the highscore share context menu action -->
+     <string name="score_menu_share">Dziel</string>
+     <!-- name of the highscore edit context menu action -->
+     <string name="score_menu_edit">Edytuj</string>
+     <!-- name of the highscore delete context menu action -->
+     <string name="score_menu_delete">Kasuj</string>
+     <!-- title of the message to share (via email, facebook, twitter, etc.) -->
+     <string name="score_share_title">Mines HighScore</string>
+     <!-- message to share, %1$s will be automatically replaced with the game info (level, boardsize), %2$s will be replaced with the highscore time -->
+     <string name="score_share_message">Mines HighScore - %1$s uzyskane w ciagu %2$d sekund</string>   
+	 <string name="scores_no_entries">Brak wpisów</string>
+	 <string name="pref_highlight">Pokaż ślad</string>
+     <string name="pref_highlight_summary">Pokazuje ostantio zaznaczone pole</string>
+</resources>

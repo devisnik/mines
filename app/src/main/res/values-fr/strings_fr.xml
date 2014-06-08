@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ French translations for Mine
+ FILE=$RCSfile: strings.xml,v $, issue $Revision: 1.1 $, updated the $Date: 2010/05/10 18:06:33 $"
+ Copyright (C) 2010 E. LASSAUGE
+ 
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.    See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.        
+If not, see <http://www.gnu.org/licenses
+-->
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Utilisez un appui long pour ouvrir !</string>
+	<string name="toast_win">Gagné !</string>
+	<string name="toast_lose">Perdu !</string>
+	<string name="pref_category_effects">Effets</string>
+	<string name="pref_category_online">Ressources en ligne</string>
+	<string name="pref_value_not_set">non positionné</string>
+	<string name="pref_user">Nom d\'utilisateur</string>
+	<string name="pref_user_dialog">Entrez votre nom</string>
+	<string name="pref_theme">Sélection thème</string>
+	<string name="pref_theme_dialog">Choisir le thème</string>
+	<string name="pref_zoom">Sélection zoom</string>
+	<string name="pref_zoom_dialog">Choisir le zoom</string>
+
+	<string name="pref_touchfocus">Visualiser l\'appui</string>
+	<string name="pref_touchfocus_summary">Utiliser une aide visuelle pour la cible en mode tactile</string>
+
+	<string name="pref_vibrate">Utiliser vibreur</string>
+	<string name="pref_vibrate_summary">Vibrer sur appui long ou explosion</string>
+	<string name="pref_faq">FAQ</string>
+	<string name="pref_faq_summary">Ouvrir la Foire Aux Questions dans le navigateur</string>
+	<string name="pref_notes">Montrer les infos de version</string>
+	<string name="pref_notes_summary">Ouvrir les infos de version dans le navigateur</string>
+	<string name="board">Grille</string>
+	<string name="board_small">Petite</string>
+	<string name="board_medium">Moyenne</string>
+	<string name="board_large">Grande</string>
+	<string name="board_huge">Immense</string>
+	<string name="board_giant">Géante</string>
+	<string name="field_small">Petit</string>
+	<string name="field_medium">Moyen</string>
+	<string name="field_large">Grand</string>
+	<string name="level">Niveau </string>
+	<string name="level_easy">Facile</string>
+	<string name="level_medium">Moyen</string>
+	<string name="level_hard">Dur</string>
+	<string name="level_tricky">Retors</string>
+	<string name="level_insane">Fou</string>
+	<string name="theme_simple">Monochrome</string>
+	<string name="theme_classic">Classique</string>
+	<string name="theme_dark">Sombre</string>
+	<string name="menu_new_game">Nouvelle partie</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Paramètres</string>
+	<string name="menu_shortcut_settings">P</string>
+	<string name="menu_scores">Scores</string>
+	<string name="menu_shortcut_scores">S</string>
+	<string name="menu_help">Aide</string>
+	<string name="menu_shortcut_help">A</string>
+	<string name="menu_zoom">Zoom</string>
+	<string name="menu_shortcut_zoom">Z</string>
+	<string name="menu_fit">Ajusté</string>
+	<string name="another_game">Nouvelle partie ?</string>
+	<string name="another_game_yes">Oui</string>
+	<string name="another_game_no">Non</string>
+	<string name="intro_title">Démineur pour Android</string>
+	<string name="intro_version">Version</string>
+	<string name="intro_message">« Mines » apporte le jeu de démineur classique à la plate-forme Android.
+	\n\nLe but du jeu est de localiser des mines cachées dans un champ virtuel sans en faire exploser.
+	\n\nSignaler les cases contenant des mines présumées par un drapeau (appui court).
+	\nOuvrir les cases libres (appui long).
+	\nSur les cases libres un chiffre apparaît, indiquant le nombre de cases adjacentes contenant une mine.</string>
+	<string name="intro_thanx">Merci à Deadfalkon pour les tests et suggestions.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="new_score_name_hint">Votre nom</string>
+	<string name="score_new_title">Meilleur score !</string>
+	<string name="score_delete_title">Delete Score?</string>
+	<string name="score_edit_title">Edit Score</string>
+</resources>

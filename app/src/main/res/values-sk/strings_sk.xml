@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Dlhé kliknutie otvára!</string>
+	<string name="toast_win">Výhra!</string>
+	<string name="toast_lose">Výbuch!</string>
+	<string name="pref_category_effects">Efekty</string>
+	<string name="pref_category_online">Online zdroje</string>
+	<string name="pref_value_not_set">nenastavené</string>
+	<string name="pref_user">Meno hráča</string>
+	<string name="pref_user_dialog">Zadaj svoje meno!</string>
+	<string name="pref_theme">Znázornenie</string>
+	<string name="pref_theme_dialog">Zadaj znázornenie</string>
+	<string name="pref_zoom">Zväčšenie</string>
+	<string name="pref_zoom_dialog">Zadaj zväčšenie</string>
+	<string name="pref_touchfocus">Fókus pri dotyku</string>
+	<string name="pref_touchfocus_summary">Fókus pri voľbe políčka používať aj v dotykovom móde</string>
+	<string name="pref_vibrate">Používať vibráciu</string>
+	<string name="pref_vibrate_summary">Používať vibráciu pri dlhom kliknutí a pri výbuchu</string>
+	<string name="pref_faq">Ukázať FAQs</string>
+	<string name="pref_faq_summary">Otvára v prehliadači Online-odpovede často kladaných otázok</string>
+	<string name="pref_notes">Ukázať vývojovú históriu</string>
+	<string name="pref_notes_summary">Otvára v prehliadači vývojovú históriu</string>
+	<string name="board">Veľkosť</string>
+	<string name="board_small">Malá</string>
+	<string name="board_medium">Stredná</string>
+	<string name="board_large">Veľká</string>
+	<string name="board_huge">Obrovská</string>
+	<string name="board_giant">Gigantická</string>
+	<string name="field_small">Malé</string>
+	<string name="field_medium">Stredné</string>
+	<string name="field_large">Veľké</string>
+	<string name="level">Obtiažnosť</string>
+	<string name="level_easy">Jednoduchá</string>
+	<string name="level_medium">Stredná</string>
+	<string name="level_hard">Obtiažná</string>
+	<string name="level_tricky">Ťažká</string>
+	<string name="level_insane">Veľmi ťažká</string>
+	<string name="theme_simple">Jednofarebné</string>
+	<string name="theme_classic">Klasické</string>
+	<string name="theme_dark">Tmavé</string>
+	<string name="menu_new_game">Nová hra</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Nastavenia</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">Skóre</string>
+	<string name="menu_shortcut_scores">K</string>
+	<string name="menu_help">Pomoc</string>
+	<string name="menu_shortcut_help">P</string>
+	<string name="menu_zoom">Veľké</string>
+	<string name="menu_shortcut_zoom">V</string>
+	<string name="menu_fit">Prispôsobiť</string>
+	<string name="another_game">Nová hra?</string>
+	<string name="another_game_yes">Áno</string>
+	<string name="another_game_no">Nie</string>
+	<string name="intro_title">Mines pre android</string>
+	<string name="intro_version">Verzia</string>
+	<string name="intro_message">Mines prináša klasickú hru Minesweeper na androidnú platformu.
+	\n\nCieľon hry je vyčistiť mínove pole bez toho, aby čo len jedna mína vybuchla.
+	\n\nPolož vlajku (krátke kliknutie) na zamínované políčko. Otvor nezamínované políčka (dlhé kliknutie).
+	\nOtvorené políčko uvádza, koľko susedných políčok je zamínovaných.</string>
+	<string name="intro_okay">Ok</string>
+	<string name="score_new_title">Nové najlepšie skóre!</string>
+	<string name="score_delete_title">Zápis zmazať?</string>
+	<string name="score_edit_title">zápis zmeniť</string>
+	<string name="score_menu_share">Posľať</string>
+	<string name="score_menu_edit">Zmeniť</string>
+	<string name="score_menu_delete">Zmazať</string>
+	<string name="score_share_title">Mines najlepšie skóre</string>
+	<string name="score_share_message">Mines najlepšie skóre - %1$s vyriešené za %2$d sekúnd</string>
+ 	<string name="scores_no_entries">žiadné zápisy</string>
+	<string name="pref_highlight">Ukázať dotyk</string>
+	<string name="pref_highlight_summary">Označí naposledy dotknuté políčko</string>
+</resources>

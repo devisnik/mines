@@ -1,67 +1,19 @@
-import java.security.acl.Group;
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 
-import sun.tools.asm.Assembler;
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.10.+'
 
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'eclipse'
-
-group = "de.devisnik"
-archivesBaseName = "de.devisnik.mine"
-versionName = '1.3.4'
-version = new Version(baseVersion: versionName)
-
-sourceCompatibility = 1.6
-
-repositories { mavenCentral() }
-
-dependencies {
-	testCompile group: 'junit', name: 'junit', version: '4.+'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
 }
 
-jar {
-	manifest {
-		attributes 'Implementation-Title': archivesBaseName, 'Implementation-Version': version
-	}
-}
-
-task sources_jar(type: Jar, dependsOn:classes) {
-	description = 'Assembles a jar archive containing the sources.'
-	group = 'build'
-	classifier = 'sources'
-	from sourceSets.main.allSource
-}
-
-task link_jars(dependsOn:[jar, sources_jar]) {
-	description = 'Creates a properties file conforming Android project standards to link source-jar to code-jar'
-	ext.jarFile = new File("${jar.archivePath}")
-	ext.jarProperties = new File("${jar.archivePath}.properties")
-	ext.sourceJarFile = new File("${sources_jar.archivePath}")
-	inputs.file files(jarFile, sourceJarFile)
-	outputs.file jarProperties
-	doLast {
-		file(jarProperties).write "src=${sources_jar.archiveName}\n"
-	}
-}
-
-install {
-	outputs.file files(jar.archivePath, sources_jar.archivePath, link_jars.jarProperties)
-}
-artifacts {
-	archives sources_jar
-	archives(link_jars.jarProperties) {
-		type = 'jar.properties' // ensure correct file extension
-	}  
-}
-
-assemble.dependsOn.add('link_jars')
-install.dependsOn.add('build')
-
-class Version {
-	String baseVersion
-	String date = new Date().format("yyyyMMddHHmm")
-
-	String toString() {
-		"$baseVersion.$date"
-	}
+allprojects {
+    repositories {
+        mavenCentral()
+    }
 }

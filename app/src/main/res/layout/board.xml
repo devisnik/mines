@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<de.devisnik.android.mine.BoardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/board"
+    style="?attr/boardViewStyle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" >
+
+    <de.devisnik.android.mine.BoardPanel
+        android:id="@+id/board_panel"
+        style="?attr/boardPanelStyle" />
+
+    <requestFocus />
+
+</de.devisnik.android.mine.BoardView>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:orientation="vertical"
+	android:padding="4dip"
+	>
+	<TextView
+		android:id="@+id/TextView01"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:paddingLeft="5dip"
+		android:text="@string/board"
+		/>
+	<Spinner
+		android:id="@+id/BoardSpinner"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:entries="@array/sizes" 
+		/>
+	<TextView
+		android:id="@+id/TextView02"
+		android:layout_height="wrap_content"
+		android:layout_width="wrap_content"
+		android:text="@string/level"
+		android:paddingLeft="5dip"
+		/>
+	<Spinner
+		android:id="@+id/LevelSpinner"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:entries="@array/levels" 
+		/>
+</LinearLayout>

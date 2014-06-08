@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+	<item
+		android:id="@+id/share_score"
+		android:title="@string/score_menu_share" android:icon="@android:drawable/ic_menu_share"></item>
+	<item
+		android:id="@+id/edit_score"
+		android:title="@string/score_menu_edit" android:icon="@android:drawable/ic_menu_edit"></item>
+	<item
+		android:id="@+id/delete_score"
+		android:title="@string/score_menu_delete" android:icon="@android:drawable/ic_menu_delete"></item>
+</menu>

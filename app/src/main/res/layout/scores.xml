@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	style="?attr/layoutStyle"
+>
+	<ListView
+		android:id="@android:id/list"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:cacheColorHint="#00000000"
+		android:dividerHeight="1dip"
+		android:divider="?attr/scoresLine" 
+		android:listSelector="?attr/scoresSelectorColor"/>
+	<TextView
+		android:id="@id/android:empty"
+		android:text="@string/scores_no_entries"
+		android:textSize="@dimen/score_rank_size"
+		android:textColor="?attr/scoresColor"
+		android:layout_marginTop="10dip"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:gravity="center_horizontal" />
+</LinearLayout>

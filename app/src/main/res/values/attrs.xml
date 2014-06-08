@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+	<declare-styleable name="VerticalLabelView">
+		<attr name="textSize" format="integer"/>
+		<attr name="textColor" format="color"/>
+		<attr name="text" format="string"/>
+	</declare-styleable>
+	<declare-styleable name="MinesTheme">
+		<attr name="counterViewStyle" format="reference"/>
+		<attr name="boardPanelStyle" format="reference"/>
+		<attr name="boardViewStyle" format="reference"/>
+		<attr name="gameInfoViewStyle" format="reference"/>
+		<attr name="layoutStyle" format="reference"/>
+		<attr name="scoresColor" format="color"/>		
+		<attr name="scoresSelectorColor" format="reference"/>		
+		<attr name="scoresLine" format="reference"/>		
+	</declare-styleable>
+	<declare-styleable name="GameInfoView">
+		<attr name="infoTextColor" format="color" />
+	</declare-styleable>
+	<declare-styleable name="BrowserPreference">
+		<attr name="url" format="string" />
+	</declare-styleable>
+	<declare-styleable name="CounterView">
+		<attr name="digits" format="integer" />
+		<attr name="typeface" format="string" />
+	</declare-styleable>
+	<!-- BoardView must be styleable so that BoardPanel can get styled -->
+	<declare-styleable name="BoardView">
+	</declare-styleable>
+	<declare-styleable name="BoardPanel">
+		<attr name="NO_1_COLOR" format="color" />
+		<attr name="NO_2_COLOR" format="color" />
+		<attr name="NO_3_COLOR" format="color" />
+		<attr name="NO_4_COLOR" format="color" />
+		<attr name="NO_5_COLOR" format="color" />
+		<attr name="NO_6_COLOR" format="color" />
+		<attr name="NO_7_COLOR" format="color" />
+		<attr name="NO_8_COLOR" format="color" />
+		<attr name="ERROR_COLOR" format="color" />
+		<attr name="FLAG_COLOR_LIGHT" format="color" />
+		<attr name="FLAG_COLOR_DARK" format="color" />
+		<attr name="BOMB_COLOR_BODY" format="color" />
+		<attr name="BOMB_COLOR_SPIKES" format="color" />
+		<attr name="FLAGPOLE_COLOR" format="color" />
+		<attr name="BUTTON_COLOR_UP_LEFT" format="color" />
+		<attr name="BUTTON_COLOR_LOW_RIGHT" format="color" />
+		<attr name="FOCUS_COLOR" format="color" />
+		<attr name="TOUCH_COLOR" format="color" />
+	</declare-styleable>
+</resources>

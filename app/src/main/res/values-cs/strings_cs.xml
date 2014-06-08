@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">Mines</string>
+	<string name="toast_longpress">Dlouze stiskni pro odkrytí políčka!</string>
+	<string name="toast_win">Vyhrál jsi!</string>
+	<string name="toast_lose">Vybouchl jsi!</string>
+	<string name="pref_category_effects">Efekty</string>
+	<string name="pref_category_online">Online zdroje</string>
+	<string name="pref_value_not_set">nenastaveno</string>
+	<string name="pref_user">Jméno hráče</string>
+	<string name="pref_user_dialog">Zadej své jméno</string>
+	<string name="pref_theme">Motiv</string>
+	<string name="pref_theme_dialog">Vyber motiv</string>
+	<string name="pref_zoom">Zvětšení</string>
+	<string name="pref_zoom_dialog">Vyber zvětšení</string>
+	<string name="pref_touchfocus">Označit políčko stiskem</string>
+	<string name="pref_touchfocus_summary">Stisk pro označení políčka, druhý stisk pro umístění vlajky</string>
+	<string name="pref_vibrate">Používat vibrace</string>
+	<string name="pref_vibrate_summary">Používat vibrace při dlouhém stisku a při výbuchu</string>
+	<string name="pref_faq">FAQs</string>
+	<string name="pref_faq_summary">Zobrazí v prohlížeči odpovědi na často kladené otázky</string>
+	<string name="pref_notes">Vývojová historie</string>
+	<string name="pref_notes_summary">Zobrazí v prohlížeči vývojovou historii aplikace</string>
+	<string name="board">Velikost herní plochy</string>
+	<string name="board_small">Malá</string>
+	<string name="board_medium">Střední</string>
+	<string name="board_large">Velká</string>
+	<string name="board_huge">Obrovská</string>
+	<string name="board_giant">Gigantická</string>
+	<string name="field_small">Malé</string>
+	<string name="field_medium">Střední</string>
+	<string name="field_large">Velké</string>
+	<string name="level">Obtížnost</string>
+	<string name="level_easy">Jednoduchá</string>
+	<string name="level_medium">Střední</string>
+	<string name="level_hard">Obtížná</string>
+	<string name="level_tricky">Těžká</string>
+	<string name="level_insane">Velmi těžká</string>
+	<string name="theme_simple">Jednobarevný</string>
+	<string name="theme_classic">Klasický</string>
+	<string name="theme_dark">Tmavý</string>
+	<string name="menu_new_game">Nová hra</string>
+	<string name="menu_shortcut_new_game">N</string>
+	<string name="menu_settings">Nastavení</string>
+	<string name="menu_shortcut_settings">S</string>
+	<string name="menu_scores">Skóre</string>
+	<string name="menu_shortcut_scores">K</string>
+	<string name="menu_help">Nápověda</string>
+	<string name="menu_shortcut_help">P</string>
+	<string name="menu_zoom">Přiblížit</string>
+	<string name="menu_shortcut_zoom">B</string>
+	<string name="menu_fit">Přizpůsobit</string>
+	<string name="new_score_confirm">Potvrdit</string>
+	<string name="another_game">Nová hra?</string>
+	<string name="another_game_yes">Ano</string>
+	<string name="another_game_no">Ne</string>
+	<string name="intro_title">Mines pro android</string>
+	<string name="intro_version">Verze</string>
+	<string name="intro_message">Mines prináši klasickou hru hledání min (Minesweeper) pro platformu Android.
+	\n\nCílem hry je vyčistit minové pole bez toho, aniž by nějaká mina vybouchla.
+	\n\nOznač vlajkou (krátký stisk) všechna zaminovaná políčka a všechna nezaminovaná odkryj pomocí dlouhého stisku.
+	\nČíslo zobrazené v odkrytém políčku udává, kolik sousedních políček je zaminováno.</string>
+	<string name="intro_okay">OK</string>
+	<string name="score_new_title">Nové nejlepší skóre!</string>
+	<string name="score_delete_title">Smazat záznam?</string>
+	<string name="score_edit_title">Změnit záznam</string>
+	<string name="score_menu_share">Sdílet</string>
+	<string name="score_menu_edit">Změnit</string>
+	<string name="score_menu_delete">Smazat</string>
+	<string name="score_share_title">Mines nejlepší skóre</string>
+	<string name="score_share_message">Mines nejlepší skóre - %1$s vyřešené za %2$d sekund</string>
+ 	<string name="scores_no_entries">žádné záznamy</string>
+	<string name="pref_highlight">Ukázat stisk</string>
+	<string name="pref_highlight_summary">Označí naposledy stisknuté políčko</string>
+</resources>

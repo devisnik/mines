@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MinesTextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">?attr/scoresColor</item>
+    </style>
+
+    <style name="Layout.Theme">
+        <item name="android:background">@android:color/black</item>
+    </style>
+
+    <style name="Layout.Theme.Dark">
+        <item name="android:background">@drawable/ring_tiles_black</item>
+    </style>
+
+    <style name="Layout.Theme.Classic">
+        <item name="android:background">@drawable/ring_tiles_grey</item>
+    </style>
+
+    <style name="Layout.Theme.White">
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="GameInfo.Theme">
+        <item name="android:textColor">?attr/scoresColor</item>
+        <item name="android:textSize">@dimen/game_info_size</item>
+    </style>
+
+    <style name="Counter.Theme">
+        <item name="digits">3</item>
+        <item name="android:textColor">?attr/scoresColor</item>
+    </style>
+
+    <style name="Counter.Theme.LED">
+        <item name="typeface">@string/led_font</item>
+        <item name="android:textSize">@dimen/counter_size</item>
+        <item name="android:paddingTop">2dip</item>
+    </style>
+
+    <style name="Counter.Theme.LED.Red">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="Counter.Theme.LED.DarkRed">
+        <item name="android:textColor">@color/dark_red</item>
+    </style>
+
+    <style name="BoardView.Theme">
+    </style>
+
+    <style name="BoardPanel.Theme">
+        <item name="NO_1_COLOR">@color/blue</item>
+        <item name="NO_2_COLOR">@color/dark_green</item>
+        <item name="NO_3_COLOR">@color/dark_red</item>
+        <item name="NO_4_COLOR">@color/dark_blue</item>
+        <item name="NO_5_COLOR">#060</item>
+        <item name="NO_6_COLOR">#600</item>
+        <item name="NO_7_COLOR">#660</item>
+        <item name="NO_8_COLOR">#666</item>
+        <item name="ERROR_COLOR">@color/red</item>
+        <item name="FLAG_COLOR_LIGHT">@color/red</item>
+        <item name="FLAG_COLOR_DARK">@color/red</item>
+        <item name="BOMB_COLOR_BODY">@android:color/black</item>
+        <item name="BOMB_COLOR_SPIKES">@android:color/black</item>
+        <item name="FLAGPOLE_COLOR">@android:color/black</item>
+        <item name="BUTTON_COLOR_UP_LEFT">#ffa0a0a0</item>
+        <item name="BUTTON_COLOR_LOW_RIGHT">#ff606060</item>
+        </style>
+
+    <style name="BoardPanel.Theme.Classic">
+        <item name="NO_2_COLOR">@color/darker_green</item>
+        <item name="FLAG_COLOR_DARK">#ff440000</item>
+        <item name="BOMB_COLOR_BODY">#ff777777</item>
+        <item name="BUTTON_COLOR_UP_LEFT">#ffa0a0a0</item>
+        <item name="BUTTON_COLOR_LOW_RIGHT">#ff606060</item>
+        <item name="FOCUS_COLOR">#66f88800</item>
+        <item name="TOUCH_COLOR">#33000000</item>
+    </style>
+
+    <style name="BoardPanel.Theme.Dark">
+        <item name="FLAG_COLOR_DARK">#ffC08080</item>
+        <item name="BOMB_COLOR_BODY">@color/dark_red</item>
+        <item name="BOMB_COLOR_SPIKES">#FF444444</item>
+        <item name="FLAGPOLE_COLOR">#ff808080</item>
+        <item name="BUTTON_COLOR_UP_LEFT">#ff404040</item>
+        <item name="BUTTON_COLOR_LOW_RIGHT">#ff101010</item>
+        <item name="FOCUS_COLOR">#66ffffff</item>
+        <item name="TOUCH_COLOR">#77888888</item>
+    </style>
+
+    <style name="BoardPanel.Theme.Monochrome">
+        <item name="NO_1_COLOR">@android:color/black</item>
+        <item name="NO_2_COLOR">@android:color/black</item>
+        <item name="NO_3_COLOR">@android:color/black</item>
+        <item name="NO_4_COLOR">@android:color/black</item>
+        <item name="NO_5_COLOR">@android:color/black</item>
+        <item name="NO_6_COLOR">@android:color/black</item>
+        <item name="NO_7_COLOR">@android:color/black</item>
+        <item name="NO_8_COLOR">@android:color/black</item>
+        <item name="ERROR_COLOR">#ff888888</item>
+        <item name="FLAG_COLOR_LIGHT">#ff888888</item>
+        <item name="FLAG_COLOR_DARK">@android:color/black</item>
+        <item name="BOMB_COLOR_BODY">@android:color/black</item>
+        <item name="FLAGPOLE_COLOR">@android:color/black</item>
+        <item name="BUTTON_COLOR_UP_LEFT">#ffc0c0c0</item>
+        <item name="BUTTON_COLOR_LOW_RIGHT">#ffc0c0c0</item>
+        <item name="FOCUS_COLOR">#66888888</item>
+        <item name="TOUCH_COLOR">#44888888</item>
+    </style>
+
+    <style name="BaseTheme" parent="android:style/Theme"></style>
+
+    <style name="MinesTheme" parent="BaseTheme">
+        <item name="counterViewStyle">@style/Counter.Theme</item>
+        <item name="boardViewStyle">@style/BoardView.Theme</item>
+        <item name="boardPanelStyle">@style/BoardPanel.Theme.Classic</item>
+        <item name="gameInfoViewStyle">@style/GameInfo.Theme</item>
+        <item name="layoutStyle">@style/Layout.Theme</item>
+    </style>
+
+    <style name="Classic" parent="MinesTheme">
+        <item name="layoutStyle">@style/Layout.Theme.Classic</item>
+        <item name="counterViewStyle">@style/Counter.Theme.LED</item>
+        <item name="scoresColor">@android:color/black</item>
+        <item name="scoresSelectorColor">@drawable/scores_selector_classic</item>
+        <item name="scoresLine">@drawable/black_line_with_transparency</item>
+    </style>
+
+    <style name="Dark" parent="MinesTheme">
+        <item name="boardPanelStyle">@style/BoardPanel.Theme.Dark</item>
+        <item name="layoutStyle">@style/Layout.Theme.Dark</item>
+        <item name="counterViewStyle">@style/Counter.Theme.LED.Red</item>
+        <item name="scoresColor">#aaa</item>
+        <item name="scoresSelectorColor">@drawable/scores_selector_dark</item>
+        <item name="scoresLine">@drawable/grey_line_with_transparency</item>
+    </style>
+
+    <style name="Monochrome" parent="MinesTheme">
+        <item name="boardPanelStyle">@style/BoardPanel.Theme.Monochrome</item>
+        <item name="layoutStyle">@style/Layout.Theme.White</item>
+        <item name="scoresColor">@android:color/black</item>
+        <item name="scoresSelectorColor">@drawable/scores_selector_monochrome</item>
+        <item name="scoresLine">@drawable/black_line_with_transparency</item>
+    </style>
+
+</resources>
