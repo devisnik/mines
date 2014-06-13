@@ -16,155 +16,131 @@ import de.devisnik.mine.IGame;
 import de.devisnik.mine.IMinesGameListener;
 import de.devisnik.mine.robot.AutoPlayer;
 
+import static java.util.concurrent.TimeUnit.SECONDS;
+
 public class MinesScreen {
 
-	private GameCanvas itsGameCanvas;
-	private Composite itsComposite;
-	private AutoPlayer itsAutoPlayer;
-	private Counter itsCounter;
-	private Counter itsTimerCounter;
-	private Timer itsTimer;
+    private Composite gameComposite;
+    private AutoPlayer autoPlayer;
+    private Counter flagCountDown;
+    private Counter timeCounter;
+    private Timer secondsTimer;
 
-	private IGame itsGame;
+    private final IMinesGameListener itsMinesGameListener = new IMinesGameListener() {
 
-	private final IMinesGameListener itsMinesGameListener = new IMinesGameListener() {
+        public void onBusted() {
+            stopTimer();
+            fireDoneDelayed();
+        }
 
-		public void onBusted() {
-			stopTimer();
-			fireDoneDelayed();
-		}
+        private void fireDoneDelayed() {
+            gameComposite.getDisplay().timerExec((int) SECONDS.toMillis(5), new Runnable() {
 
-		private void fireDoneDelayed() {
-//			itsComposite.getDisplay().timerExec(5000, new Runnable() {
-//
-//				public void run() {
-//					fireScreenDone();
-//				}
-//			});
-		}
+                public void run() {
+                    System.exit(0);
+                }
+            });
+        }
 
-		public void onChange(final int flags, final int mines) {
-			if (!itsCounter.isDisposed()) {
-				itsCounter.reset(mines - flags);
-			}
-		}
+        public void onChange(final int flags, final int mines) {
+            if (!flagCountDown.isDisposed()) {
+                flagCountDown.reset(mines - flags);
+            }
+        }
 
-		public void onDisarmed() {
-			stopTimer();
-			fireDoneDelayed();
-		}
+        public void onDisarmed() {
+            stopTimer();
+            fireDoneDelayed();
+        }
 
-		public void onStart() {
-			startTimer();
-		}
-	};
-	private Composite itsRootComposite;
-
-	public MinesScreen() {
-//		super("Minesweeper");
-	}
+        public void onStart() {
+            startTimer();
+        }
+    };
 
     private static GridLayout createLayout(int numColumns) {
-        GridLayout result = new GridLayout(numColumns, false);
-        result.horizontalSpacing = 0;
-        result.marginBottom = 0;
-        result.marginHeight = 0;
-        result.marginLeft = 0;
-        result.marginRight = 0;
-        result.marginTop = 0;
-        result.marginWidth = 0;
-        result.verticalSpacing = 0;
-        return result;
+        final GridLayout layout = new GridLayout(numColumns, false);
+        layout.marginWidth = 0;
+        layout.marginHeight = 0;
+        return layout;
     }
 
     public void createControl(final Composite parent) {
-		itsGame = GameFactory.create(50,
-                30, 200);
-		itsGame.addListener(itsMinesGameListener);
-		final Color black = parent.getDisplay().getSystemColor(SWT.COLOR_BLACK);
-		itsRootComposite = new Composite(parent, SWT.NONE);
-		itsRootComposite.setBackground(black);
-		itsRootComposite.setLayout(createLayout(1));
-		itsComposite = new Composite(itsRootComposite, SWT.NONE);
-		itsComposite.setLayout(createLayout(2));
-        final GridData gridData = new GridData();
-        gridData.grabExcessHorizontalSpace = true;
-        gridData.grabExcessVerticalSpace = true;
-        gridData.horizontalAlignment = SWT.FILL;
-        gridData.verticalAlignment = SWT.FILL;
-        itsComposite.setLayoutData(gridData);
-//		itsComposite.setLayoutData(GridDataFactory.fillDefaults().align(
-//				SWT.CENTER, SWT.CENTER).grab(true, true).create());
-		itsComposite.setBackground(black);
-		itsCounter = new Counter(itsComposite, SWT.NONE, 3, itsGame
-				.getBombCount(), null);
-//		itsCounter.setLayoutData(GridDataFactory.fillDefaults().align(
-//				SWT.BEGINNING, SWT.CENTER).grab(true, false).create());
-		itsTimerCounter = new Counter(itsComposite, SWT.NONE, 3, 0, null);
+        IGame game = GameFactory.create(50, 30, 200);
+        game.addListener(itsMinesGameListener);
+        GameCanvas gameCanvas = setupGameUI(parent, game);
+        autoPlayer = new AutoPlayer(gameCanvas.getGame(), true);
+        gameCanvas.getDisplay().timerExec((int) SECONDS.toMillis(1), new Runnable() {
+
+            public void run() {
+                autoPlayer.doNextMove();
+            }
+        });
+    }
+
+    private GameCanvas setupGameUI(final Composite parent, final IGame game) {
+        final Color black = parent.getDisplay().getSystemColor(SWT.COLOR_BLACK);
+        Composite rootComposite = new Composite(parent, SWT.NONE);
+        final GridLayout rootLayout = createLayout(1);
+        rootComposite.setLayout(rootLayout);
+        gameComposite = new Composite(rootComposite, SWT.NONE);
+        gameComposite.setLayout(createLayout(2));
+        gameComposite.setLayoutData(createFillGridData());
+        gameComposite.setBackground(black);
+        flagCountDown = new Counter(gameComposite, SWT.NONE, 3, game
+                .getBombCount(), null);
+        timeCounter = new Counter(gameComposite, SWT.NONE, 3, 0, null);
         final GridData timerGridData = new GridData();
         timerGridData.horizontalAlignment = SWT.END;
-        itsTimerCounter.setLayoutData(timerGridData);
-//		itsTimerCounter.setLayoutData(GridDataFactory.fillDefaults().align(
-//				SWT.CENTER, SWT.END).create());
-		itsGameCanvas = new GameCanvas(itsComposite, SWT.NONE, itsGame);
+        timeCounter.setLayoutData(timerGridData);
+        GameCanvas itsGameCanvas = new GameCanvas(gameComposite, SWT.NONE, game);
+        itsGameCanvas.setLayoutData(createGameCanvasGridData());
+        return itsGameCanvas;
+    }
+
+    private GridData createGameCanvasGridData() {
         final GridData gameGridData = new GridData();
         gameGridData.horizontalSpan = 2;
-        itsGameCanvas.setLayoutData(gameGridData);
-//		itsGameCanvas.setLayoutData(GridDataFactory.fillDefaults().span(2, 1)
-//				.create());
-		itsAutoPlayer = new AutoPlayer(itsGameCanvas.getGame(), true);
-		itsGameCanvas.getDisplay().timerExec(1000, new Runnable() {
+        return gameGridData;
+    }
 
-			public void run() {
-				itsAutoPlayer.doNextMove();
-			}
-		});
-	}
+    private GridData createFillGridData() {
+        final GridData gridData = new GridData();
+        gridData.horizontalAlignment = SWT.FILL;
+        gridData.verticalAlignment = SWT.FILL;
+        return gridData;
+    }
 
-	public void dispose() {
-	}
+    private void startTimer() {
+        secondsTimer = new Timer();
+        final Display display = Display.getCurrent();
+        secondsTimer.schedule(new TimerTask() {
 
-	public void disposeControl() {
-		stopTimer();
-		itsGame.removeListener(itsMinesGameListener);
-		itsRootComposite.dispose();
-	}
+            public void run() {
+                display.asyncExec(new Runnable() {
 
-	public void setFocus() {
-		itsRootComposite.setFocus();
-	}
+                    public void run() {
+                        if (!timeCounter.isDisposed()) {
+                            timeCounter.increase();
+                            autoPlayer.doNextMove();
+                        }
+                    }
+                });
+            }
+        }, SECONDS.toMillis(1), SECONDS.toMillis(1));
+    }
 
-	private void startTimer() {
-		itsTimer = new Timer();
-		final Display display = Display.getCurrent();
-		itsTimer.schedule(new TimerTask() {
-
-			public void run() {
-				display.asyncExec(new Runnable() {
-
-					public void run() {
-						if (!itsTimerCounter.isDisposed()) {
-							itsTimerCounter.increase();
-							itsAutoPlayer.doNextMove();
-						}
-					}
-				});
-			}
-		}, 1000, 1000);
-	}
-
-	private void stopTimer() {
-		if (itsTimer != null) {
-			itsTimer.cancel();
-		}
-	}
+    private void stopTimer() {
+        if (secondsTimer != null) {
+            secondsTimer.cancel();
+        }
+    }
 
     public static void main(String[] args) {
         final Display display = new Display();
         final Shell shell = new Shell(display);
         shell.setLayout(new GridLayout(1, false));
         new MinesScreen().createControl(shell);
-
         shell.pack();
         shell.open();
         while (!shell.isDisposed()) {
@@ -173,6 +149,5 @@ public class MinesScreen {
             }
         }
         display.dispose();
-
     }
 }
