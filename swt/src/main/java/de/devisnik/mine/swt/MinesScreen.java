@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -64,7 +65,7 @@ public class MinesScreen {
 	}
 
     private static GridLayout createLayout(int numColumns) {
-        GridLayout result = new GridLayout(numColumns, true);
+        GridLayout result = new GridLayout(numColumns, false);
         result.horizontalSpacing = 0;
         result.marginBottom = 0;
         result.marginHeight = 0;
@@ -77,8 +78,8 @@ public class MinesScreen {
     }
 
     public void createControl(final Composite parent) {
-		itsGame = GameFactory.create(10,
-                10, 10);
+		itsGame = GameFactory.create(50,
+                30, 200);
 		itsGame.addListener(itsMinesGameListener);
 		final Color black = parent.getDisplay().getSystemColor(SWT.COLOR_BLACK);
 		itsRootComposite = new Composite(parent, SWT.NONE);
@@ -86,19 +87,31 @@ public class MinesScreen {
 		itsRootComposite.setLayout(createLayout(1));
 		itsComposite = new Composite(itsRootComposite, SWT.NONE);
 		itsComposite.setLayout(createLayout(2));
+        final GridData gridData = new GridData();
+        gridData.grabExcessHorizontalSpace = true;
+        gridData.grabExcessVerticalSpace = true;
+        gridData.horizontalAlignment = SWT.FILL;
+        gridData.verticalAlignment = SWT.FILL;
+        itsComposite.setLayoutData(gridData);
 //		itsComposite.setLayoutData(GridDataFactory.fillDefaults().align(
 //				SWT.CENTER, SWT.CENTER).grab(true, true).create());
 		itsComposite.setBackground(black);
 		itsCounter = new Counter(itsComposite, SWT.NONE, 3, itsGame
 				.getBombCount(), null);
-		itsCounter.setLayoutData(GridDataFactory.fillDefaults().align(
-				SWT.BEGINNING, SWT.CENTER).grab(true, false).create());
+//		itsCounter.setLayoutData(GridDataFactory.fillDefaults().align(
+//				SWT.BEGINNING, SWT.CENTER).grab(true, false).create());
 		itsTimerCounter = new Counter(itsComposite, SWT.NONE, 3, 0, null);
-		itsTimerCounter.setLayoutData(GridDataFactory.fillDefaults().align(
-				SWT.CENTER, SWT.END).create());
+        final GridData timerGridData = new GridData();
+        timerGridData.horizontalAlignment = SWT.END;
+        itsTimerCounter.setLayoutData(timerGridData);
+//		itsTimerCounter.setLayoutData(GridDataFactory.fillDefaults().align(
+//				SWT.CENTER, SWT.END).create());
 		itsGameCanvas = new GameCanvas(itsComposite, SWT.NONE, itsGame);
-		itsGameCanvas.setLayoutData(GridDataFactory.fillDefaults().span(2, 1)
-				.create());
+        final GridData gameGridData = new GridData();
+        gameGridData.horizontalSpan = 2;
+        itsGameCanvas.setLayoutData(gameGridData);
+//		itsGameCanvas.setLayoutData(GridDataFactory.fillDefaults().span(2, 1)
+//				.create());
 		itsAutoPlayer = new AutoPlayer(itsGameCanvas.getGame(), true);
 		itsGameCanvas.getDisplay().timerExec(1000, new Runnable() {
 
@@ -149,6 +162,7 @@ public class MinesScreen {
     public static void main(String[] args) {
         final Display display = new Display();
         final Shell shell = new Shell(display);
+        shell.setLayout(new GridLayout(1, false));
         new MinesScreen().createControl(shell);
 
         shell.pack();
