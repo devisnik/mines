@@ -9,7 +9,7 @@ android {
     buildToolsVersion '19.1.0'
 
     defaultConfig {
-        packageName 'de.devisnik.android.mine'
+        applicationId 'de.devisnik.android.mine'
         minSdkVersion 8
         targetSdkVersion 19
         versionCode 51

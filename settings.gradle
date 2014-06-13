@@ -1,1 +1,1 @@
-include 'model', 'android', 'robot'
+include 'model', 'android', 'robot', 'swt'

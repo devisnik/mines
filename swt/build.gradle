@@ -1,0 +1,63 @@
+apply plugin: 'java'
+
+archivesBaseName = "de.devisnik.mine.swt"
+version = '1.0'
+sourceCompatibility = 1.6
+
+repositories {
+    maven {
+        url "https://swt-repo.googlecode.com/svn/repo/"
+    }
+}
+
+String getPlatform(String platform) {
+    switch (platform.replaceAll(' ', '').toLowerCase()) {
+        case ~/.*linux.*/: return 'linux'
+        case ~/.*darwin.*/: return 'darwin'
+        case ~/.*osx.*/: return 'darwin'
+        case ~/.*win.*/: return 'windows'
+        default: return null
+    }
+}
+
+String getSWTWindowingLibrary(String platform) {
+    switch (platform.replaceAll(' ', '').toLowerCase()) {
+        case ~/.*linux.*/: return 'gtk'
+        case ~/.*darwin.*/: return 'cocoa'
+        case ~/.*osx.*/: return 'cocoa'
+        case ~/.*win.*/: return 'win32'
+        default: return null
+    }
+}
+
+String getSWTArch(String arch) {
+    switch (arch) {
+        case ~/.*64.*/: return 'x86_64'
+        default: return 'x86'
+    }
+}
+
+String getSWTPlatform(String platform) {
+    switch (platform.replaceAll(' ', '').toLowerCase()) {
+        case ~/.*linux.*/: return 'linux'
+        case ~/.*darwin.*/: return 'macosx'
+        case ~/.*osx.*/: return 'macosx'
+        case ~/.*win.*/: return 'win32'
+        default: return platform
+    }
+}
+
+ext {
+    swtWindowingLibrary = getSWTWindowingLibrary(System.properties['os.name'])
+    swtArch = getSWTArch(System.properties['os.arch'])
+    swtPlatform = getSWTPlatform(System.properties['os.name'])
+    swtVersion = '4.3'
+    swtArtifactName = "org.eclipse.swt.${swtWindowingLibrary}.${swtPlatform}.${swtArch}"
+    platform = getPlatform(System.properties['os.name'])
+}
+
+dependencies {
+    compile project(':model')
+    compile project(':robot')
+    compile "org.eclipse.swt:${swtArtifactName}:${swtVersion}"
+}
