@@ -4,5 +4,7 @@ gradle.properties
 /.idea
 .DS_Store
 **/build
+android/releases
+android/sync_build.sh
 *.iml
 *.keystore

@@ -4,16 +4,29 @@ dependencies {
     compile project(':model')
 }
 
+ext {
+    VERSION_CODE = 52
+    VERSION_NAME = '1.8.0'
+    APP_NAME     = 'de.devisnik.android.mine'
+    BUILD_DATE   = today()
+}
+
+def today() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
 android {
     compileSdkVersion 19
     buildToolsVersion '19.1.0'
 
     defaultConfig {
-        applicationId 'de.devisnik.android.mine'
+        applicationId APP_NAME
         minSdkVersion 8
         targetSdkVersion 19
-        versionCode 51
-        versionName '1.7.1'
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
     }
     signingConfigs {
         release {
@@ -34,4 +47,11 @@ android {
         abortOnError false;
         lintConfig file('lint_config.xml')
     }
+}
+
+task archiveRelease(type: Copy) {
+    from 'build/outputs/apk', 'build/outputs/'
+    into "releases/${VERSION_CODE}"
+    include('android-release.apk', 'proguard/**')
+    rename ('android-release.apk', "${APP_NAME}_${BUILD_DATE}_${VERSION_NAME}_${VERSION_CODE}.apk")
 }
