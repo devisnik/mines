@@ -173,6 +173,13 @@
 	%2 will be replaced with the highscore time
 	-->
 	<string name="score_share_message">Mines HighScore - %1$s solved in %2$d seconds</string>
+
+  <!--
+    not yet translated resources
+    -->
 	<string name="pref_notification_summary">Remind me of an interrupted game (experimental)</string>
-	<string name="pref_notification_title">Notifications</string>	
+	<string name="pref_notification_title">Notifications</string>
+  <string name="pref_board_animate_title">Animate Touch</string>
+  <string name="pref_board_animate_summary">Pulse when a field is touched</string>
+
 </resources>

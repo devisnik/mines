@@ -1,64 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res/de.devisnik.android.mine"
->
-	<EditTextPreference
-		android:inputType="textPersonName"
-		android:maxLength="15"
-		android:title="@string/pref_user"
-		android:key="@string/prefkey_user_name"
-		android:dialogTitle="@string/pref_user_dialog" />
-	<PreferenceCategory
-		android:title="@string/pref_category_effects"
-	>
-		<ListPreference
-			android:key="@string/prefkey_board_theme"
-			android:title="@string/pref_theme"
-			android:dialogTitle="@string/pref_theme_dialog"
-			android:entryValues="@array/themes_values"
-			android:entries="@array/themes"
-			android:defaultValue="@string/theme_value_classic" />
-		<ListPreference
-			android:key="@string/prefkey_field_size"
-			android:title="@string/pref_zoom"
-			android:dialogTitle="@string/pref_zoom_dialog"
-			android:entryValues="@array/field_sizes_values"
-			android:entries="@array/field_sizes"
-			android:defaultValue="@string/field_value_large" />
-		<CheckBoxPreference
-			android:key="@string/prefkey_board_touch_focus"
-			android:title="@string/pref_touchfocus"
-			android:defaultValue="false"
-			android:summary="@string/pref_touchfocus_summary" />
-		<CheckBoxPreference
-			android:key="@string/prefkey_board_vibrate"
-			android:title="@string/pref_vibrate"
-			android:defaultValue="true"
-			android:summary="@string/pref_vibrate_summary" />
-		<CheckBoxPreference
-			android:key="@string/prefkey_board_highlight"
-			android:summary="@string/pref_highlight_summary"
-			android:title="@string/pref_highlight"
-			android:defaultValue="true"
-		></CheckBoxPreference>
-		<CheckBoxPreference
-			android:key="@string/prefkey_game_notification"
-			android:summary="@string/pref_notification_summary"
-			android:title="@string/pref_notification_title"
-			android:defaultValue="false"
-		></CheckBoxPreference>
-	</PreferenceCategory>
-	<PreferenceCategory
-		android:title="@string/pref_category_online"
-	>
-		<de.devisnik.android.mine.BrowserPreference
-			android:title="@string/pref_faq"
-			app:url="@string/faq_url"
-			android:summary="@string/pref_faq_summary" />
-		<de.devisnik.android.mine.BrowserPreference
-			android:title="@string/pref_notes"
-			app:url="@string/notes_url"
-			android:summary="@string/pref_notes_summary" />
-	</PreferenceCategory>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res/de.devisnik.android.mine">
+  <EditTextPreference
+    android:inputType="textPersonName"
+    android:maxLength="15"
+    android:title="@string/pref_user"
+    android:key="@string/prefkey_user_name"
+    android:dialogTitle="@string/pref_user_dialog" />
+  <PreferenceCategory android:title="@string/pref_category_effects">
+    <ListPreference
+      android:key="@string/prefkey_board_theme"
+      android:title="@string/pref_theme"
+      android:dialogTitle="@string/pref_theme_dialog"
+      android:entryValues="@array/themes_values"
+      android:entries="@array/themes"
+      android:defaultValue="@string/theme_value_classic" />
+    <ListPreference
+      android:key="@string/prefkey_field_size"
+      android:title="@string/pref_zoom"
+      android:dialogTitle="@string/pref_zoom_dialog"
+      android:entryValues="@array/field_sizes_values"
+      android:entries="@array/field_sizes"
+      android:defaultValue="@string/field_value_large" />
+    <CheckBoxPreference
+      android:key="@string/prefkey_board_vibrate"
+      android:title="@string/pref_vibrate"
+      android:defaultValue="true"
+      android:summary="@string/pref_vibrate_summary" />
+    <CheckBoxPreference
+      android:key="@string/prefkey_board_highlight"
+      android:summary="@string/pref_highlight_summary"
+      android:title="@string/pref_highlight"
+      android:defaultValue="true" />
+    <CheckBoxPreference
+      android:key="@string/prefkey_board_touch_focus"
+      android:title="@string/pref_touchfocus"
+      android:defaultValue="false"
+      android:summary="@string/pref_touchfocus_summary" />
+    <CheckBoxPreference
+      android:key="@string/prefkey_game_notification"
+      android:summary="@string/pref_notification_summary"
+      android:title="@string/pref_notification_title"
+      android:defaultValue="false" />
+    <CheckBoxPreference
+      android:key="@string/prefkey_board_animate"
+      android:title="@string/pref_board_animate_title"
+      android:summary="@string/pref_board_animate_summary"
+      android:defaultValue="true" />
+  </PreferenceCategory>
+  <PreferenceCategory android:title="@string/pref_category_online">
+    <de.devisnik.android.mine.BrowserPreference
+      android:title="@string/pref_faq"
+      app:url="@string/faq_url"
+      android:summary="@string/pref_faq_summary" />
+    <de.devisnik.android.mine.BrowserPreference
+      android:title="@string/pref_notes"
+      app:url="@string/notes_url"
+      android:summary="@string/pref_notes_summary" />
+  </PreferenceCategory>
 </PreferenceScreen>

@@ -215,7 +215,11 @@ public final class Settings {
 		return getBooleanPreference(R.string.prefkey_board_vibrate, true);
 	}
 
-	public void setUserNameIfNotSet(final String value) {
+    public boolean isAnimate() {
+        return getBooleanPreference(R.string.prefkey_board_animate, true);
+    }
+
+    public void setUserNameIfNotSet(final String value) {
 		if (isSetUserName() || isInvalidUserName(value))
 			return;
 		writeString(R.string.prefkey_user_name, value);

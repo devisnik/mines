@@ -11,22 +11,28 @@
   <string name="prefkey_user_name" translatable="false">mine.user.name</string>
   <string name="prefkey_game_intro_shown" translatable="false">mine.board.intro_shown</string>
   <string name="prefkey_board_vibrate" translatable="false">mine.board.vibrate</string>
+  <string name="prefkey_board_animate" translatable="false">mine.board.animate</string>
+
   <string name="board_value_small" translatable="false">small</string>
   <string name="board_value_medium" translatable="false">medium</string>
   <string name="board_value_large" translatable="false">large</string>
   <string name="board_value_huge" translatable="false">huge</string>
   <string name="board_value_giant" translatable="false">giant</string>
+
   <string name="field_value_small" translatable="false">small</string>
   <string name="field_value_medium" translatable="false">medium</string>
   <string name="field_value_large" translatable="false">large</string>
+
   <string name="level_value_easy" translatable="false">easy</string>
   <string name="level_value_medium" translatable="false">medium</string>
   <string name="level_value_hard" translatable="false">hard</string>
   <string name="level_value_tricky" translatable="false">tricky</string>
   <string name="level_value_insane" translatable="false">insane</string>
+
   <string name="theme_value_simple" translatable="false">simple</string>
   <string name="theme_value_classic" translatable="false">classic</string>
   <string name="theme_value_dark" translatable="false">dark</string>
+
   <string name="faq_url" translatable="false">http://mines.devisnik.de/faq.html</string>
   <string name="notes_url" translatable="false">http://mines.devisnik.de/notes.txt</string>
   <string name="led_font" translatable="false">DIGITALDREAM.ttf</string>
