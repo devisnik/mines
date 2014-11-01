@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,20 +20,16 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Spinner;
 
-import com.thalmic.myo.AbstractDeviceListener;
-import com.thalmic.myo.DeviceListener;
-import com.thalmic.myo.Hub;
-import com.thalmic.myo.Myo;
-import com.thalmic.myo.Pose;
-
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.IDevice;
+import de.devisnik.android.mine.input.InputDevice;
+import de.devisnik.android.mine.input.RemoteMyoInputDevice;
 import de.devisnik.mine.IField;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.MinesGameAdapter;
 
-public class MineSweeper extends Activity {
+public class MineSweeper extends Activity implements InputDevice.Listener {
 
     private static final int HIGHSCORES_REQUEST = 42;
     private static final String SKIP_CACHE = "skip_cache";
@@ -42,8 +37,9 @@ public class MineSweeper extends Activity {
     private static final int DIALOG_INTRO = 4;
     private static final String GAME_CACHE_FILE = "game.cache";
     private static final Logger LOGGER = new Logger(MineSweeper.class);
-    private Hub hub;
-    private DeviceListener myoListener;
+
+    private BoardView boardView;
+    private RemoteMyoInputDevice inputDevice;
 
     private class NewGameDialogBuilder extends Builder {
 
@@ -130,7 +126,7 @@ public class MineSweeper extends Activity {
         debugLog("onCreate");
         super.onCreate(savedInstanceState);
 
-        hookMYO();
+        inputDevice = new RemoteMyoInputDevice();
 
         getWindow().setBackgroundDrawable(null);
         mDevice = ((MinesApplication) getApplication()).getDevice();
@@ -142,65 +138,51 @@ public class MineSweeper extends Activity {
         itsNotifier = new Notifier(this, gameInfo);
     }
 
-    private void hookMYO() {
-        hub = Hub.getInstance();
-        if (!hub.init(this)) {
-            Log.e("MYO", "Could not initialize the Hub.");
-            finish();
+
+    @Override
+    public void onLeft() {
+        View child = ((ViewGroup) boardView.getChildAt(0)).getFocusedChild();
+        moveFocus(child, View.FOCUS_LEFT);
+    }
+
+    @Override
+    public void onRight() {
+        View child = ((ViewGroup) boardView.getChildAt(0)).getFocusedChild();
+        moveFocus(child, View.FOCUS_RIGHT);
+    }
+
+    @Override
+    public void onUp() {
+        View child = ((ViewGroup) boardView.getChildAt(0)).getFocusedChild();
+        moveFocus(child, View.FOCUS_UP);
+    }
+
+    @Override
+    public void onDown() {
+        View child = ((ViewGroup) boardView.getChildAt(0)).getFocusedChild();
+        moveFocus(child, View.FOCUS_DOWN);
+    }
+
+    @Override
+    public void onClick() {
+        View child = ((ViewGroup) boardView.getChildAt(0)).getFocusedChild();
+        IField field = itsBoardController.getFieldController(child).getField();
+        if (itsGame.isStarted()) {
+            itsGame.onRequestFlag(field);
+        } else {
+            itsGame.onRequestOpen(field);
         }
-        hub.pairWithAnyMyo();
     }
 
-    private void hookInMYOFocusing(final BoardView view) {
-        myoListener = new AbstractDeviceListener() {
-            @Override
-            public void onConnect(Myo myo, long timestamp) {
-                debugLog("Myo Connected!");
-            }
+    @Override
+    public void onDoubleClick() {
 
-            @Override
-            public void onDisconnect(Myo myo, long timestamp) {
-                debugLog("Myo Disconnected!");
-            }
-
-            @Override
-            public void onPose(Myo myo, long timestamp, Pose pose) {
-                debugLog("Pose: " + pose);
-                View child = ((ViewGroup) view.getChildAt(0)).getFocusedChild();
-                switch (pose) {
-                    case WAVE_OUT:
-                        moveFocus(child, View.FOCUS_RIGHT);
-                        break;
-                    case WAVE_IN:
-                        moveFocus(child, View.FOCUS_LEFT);
-                        break;
-                    case FINGERS_SPREAD:
-                        moveFocus(child, View.FOCUS_UP);
-                        break;
-                    case FIST:
-                        moveFocus(child, View.FOCUS_DOWN);
-                        break;
-                    case THUMB_TO_PINKY:
-                        IField field = itsBoardController.getFieldController(child).getField();
-                        if (itsGame.isStarted()) {
-                            itsGame.onRequestFlag(field);
-                        } else {
-                            itsGame.onRequestOpen(field);
-                        }
-                    default:
-                }
-            }
-
-            private void moveFocus(View child, int direction) {
-                View focusedChild = child.focusSearch(direction);
-                focusedChild.requestFocus();
-            }
-        };
-        hub.addListener(myoListener);
     }
 
-    private void unhookMYO() {
-        hub.removeListener(myoListener);
+
+    private void moveFocus(View child, int direction) {
+        View focusedChild = child.focusSearch(direction);
+        focusedChild.requestFocus();
     }
 
     private void setFullScreenMode() {
@@ -236,7 +218,7 @@ public class MineSweeper extends Activity {
         }
         CounterView timerView = (CounterView) findViewById(R.id.time);
         CounterView bombsView = (CounterView) findViewById(R.id.count);
-        final BoardView boardView = (BoardView) findViewById(R.id.board);
+        boardView = (BoardView) findViewById(R.id.board);
         itsGame = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
         itsGameListener = new GameListener();
         itsGame.addListener(itsGameListener);
@@ -246,7 +228,6 @@ public class MineSweeper extends Activity {
         itsBoardController = new BoardController(itsGame, boardView, itsSettings);
         itsMessagesController = new MessagesController(itsGame, this, itsSettings);
         showIntroOnAppStart();
-        hookInMYOFocusing(boardView);
     }
 
     private IGame restoreOrCreateGame(final IGame lastKnownGame) {
@@ -272,6 +253,7 @@ public class MineSweeper extends Activity {
         debugLog("onResume");
         super.onResume();
         itsGameTimer.resume();
+        inputDevice.addListener(this);
     }
 
     private void showIntroOnAppStart() {
@@ -312,13 +294,13 @@ public class MineSweeper extends Activity {
     protected void onPause() {
         debugLog("onPause");
         itsGameTimer.pause();
+        inputDevice.removeListener(this);
         new SaveGameCommand(this, GAME_CACHE_FILE, itsGame).execute();
         super.onPause();
     }
 
     @Override
     protected void onStop() {
-        unhookMYO();
         debugLog("onStop");
         itsGameTimer.dispose();
         itsBoardController.dispose();
@@ -335,10 +317,6 @@ public class MineSweeper extends Activity {
     @Override
     protected void onDestroy() {
         debugLog("onDestroy");
-        if (isFinishing()) {
-            // The Activity is finishing, so shutdown the Hub. This will disconnect from the Myo.
-            Hub.getInstance().shutdown();
-        }
         super.onDestroy();
     }
 
