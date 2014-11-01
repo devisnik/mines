@@ -335,6 +335,10 @@ public class MineSweeper extends Activity {
     @Override
     protected void onDestroy() {
         debugLog("onDestroy");
+        if (isFinishing()) {
+            // The Activity is finishing, so shutdown the Hub. This will disconnect from the Myo.
+            Hub.getInstance().shutdown();
+        }
         super.onDestroy();
     }
 
