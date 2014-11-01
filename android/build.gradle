@@ -1,4 +1,4 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 dependencies {
     compile project(':model')
@@ -18,31 +18,17 @@ def today() {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 21
+    buildToolsVersion '20.0.0'
 
     defaultConfig {
         applicationId APP_NAME
         minSdkVersion 8
         targetSdkVersion 19
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        versionCode 2
+        versionName "2.0"
     }
-    signingConfigs {
-        release {
-            storeFile file(keystoreFile)
-            keyAlias keystoreKeyAlias
-            storePassword keystoreStorePassword
-            keyPassword keystoreKeyPassword
-        }
-    }
-    buildTypes {
-        release {
-            runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-    }
+
     lintOptions {
         abortOnError false;
         lintConfig file('lint_config.xml')
