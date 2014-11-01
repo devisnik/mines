@@ -2,6 +2,14 @@ apply plugin: 'android'
 
 dependencies {
     compile project(':model')
+    repositories {
+        maven {
+            url 'myorepository'
+        }
+    }
+
+    compile('com.thalmic:myosdk:0.6.+@aar')
+
 }
 
 ext {
@@ -23,17 +31,17 @@ android {
 
     defaultConfig {
         applicationId APP_NAME
-        minSdkVersion 8
+        minSdkVersion 16
         targetSdkVersion 19
         versionCode VERSION_CODE
         versionName VERSION_NAME
     }
     signingConfigs {
         release {
-            storeFile file(keystoreFile)
-            keyAlias keystoreKeyAlias
-            storePassword keystoreStorePassword
-            keyPassword keystoreKeyPassword
+//            storeFile file(keystoreFile)
+//            keyAlias keystoreKeyAlias
+//            storePassword keystoreStorePassword
+//            keyPassword keystoreKeyPassword
         }
     }
     buildTypes {
