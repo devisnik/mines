@@ -2,6 +2,14 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile project(':model')
+    repositories {
+        maven {
+            url 'myorepository'
+        }
+    }
+
+    compile('com.thalmic:myosdk:0.6.+@aar')
+
 }
 
 ext {
@@ -23,10 +31,25 @@ android {
 
     defaultConfig {
         applicationId APP_NAME
-        minSdkVersion 8
+        minSdkVersion 16
         targetSdkVersion 19
-        versionCode 2
-        versionName "2.0"
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
+    }
+    signingConfigs {
+        release {
+//            storeFile file(keystoreFile)
+//            keyAlias keystoreKeyAlias
+//            storePassword keystoreStorePassword
+//            keyPassword keystoreKeyPassword
+        }
+    }
+    buildTypes {
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
     }
 
     lintOptions {

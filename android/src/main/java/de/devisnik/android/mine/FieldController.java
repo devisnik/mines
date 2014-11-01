@@ -43,6 +43,7 @@ public class FieldController {
         itsField.addListener(itsFieldListener);
         view.setOnClickListener(viewListener);
         view.setOnLongClickListener(viewListener);
+        view.setFocusableInTouchMode(true);
     }
 
     public void updateField() {
