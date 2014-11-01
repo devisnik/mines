@@ -59,6 +59,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		Configuration configuration = getResources().getConfiguration();
 		itsIsLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
 		mScrollbarPadding = getContext().getResources().getDimensionPixelSize(R.dimen.board_panel_scrollbar_padding);
+        setFocusableInTouchMode(true);
 	}
 
 	@Override
