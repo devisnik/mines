@@ -11,7 +11,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -21,7 +20,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.thalmic.myo.AbstractDeviceListener;
 import com.thalmic.myo.DeviceListener;
@@ -32,115 +30,117 @@ import com.thalmic.myo.Pose;
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.IDevice;
+import de.devisnik.mine.IField;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.MinesGameAdapter;
 
 public class MineSweeper extends Activity {
 
-	private static final int HIGHSCORES_REQUEST = 42;
-	private static final String SKIP_CACHE = "skip_cache";
-	private static final int DIALOG_NEW_GAME = 1;
-	private static final int DIALOG_INTRO = 4;
-	private static final String GAME_CACHE_FILE = "game.cache";
-	private static final Logger LOGGER = new Logger(MineSweeper.class);
+    private static final int HIGHSCORES_REQUEST = 42;
+    private static final String SKIP_CACHE = "skip_cache";
+    private static final int DIALOG_NEW_GAME = 1;
+    private static final int DIALOG_INTRO = 4;
+    private static final String GAME_CACHE_FILE = "game.cache";
+    private static final Logger LOGGER = new Logger(MineSweeper.class);
     private Hub hub;
+    private DeviceListener myoListener;
 
     private class NewGameDialogBuilder extends Builder {
 
-		public NewGameDialogBuilder() {
-			super(MineSweeper.this);
-			// setTheme(android.R.style.Theme_Dialog);
-			ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.new_game, null);
-			final PreferenceSpinnerController boardSpinnerController = createSpinnerController(
-					R.string.prefkey_board_size, R.array.sizes_values, R.id.BoardSpinner, layout);
-			final PreferenceSpinnerController levelSpinnerController = createSpinnerController(
-					R.string.prefkey_game_level, R.array.levels_values, R.id.LevelSpinner, layout);
+        public NewGameDialogBuilder() {
+            super(MineSweeper.this);
+            // setTheme(android.R.style.Theme_Dialog);
+            ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.new_game, null);
+            final PreferenceSpinnerController boardSpinnerController = createSpinnerController(
+                    R.string.prefkey_board_size, R.array.sizes_values, R.id.BoardSpinner, layout);
+            final PreferenceSpinnerController levelSpinnerController = createSpinnerController(
+                    R.string.prefkey_game_level, R.array.levels_values, R.id.LevelSpinner, layout);
 
-			setView(layout);
-			setTitle(R.string.another_game);
-			setPositiveButton(R.string.another_game_yes, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(final DialogInterface dialog, final int id) {
-					boardSpinnerController.updatePreference();
-					levelSpinnerController.updatePreference();
-					restartWithNewGame();
-				}
-			});
-			setNegativeButton(R.string.another_game_no, new DialogInterface.OnClickListener() {
-				@Override
-				public void onClick(final DialogInterface dialog, final int id) {
-					boardSpinnerController.reset();
-					levelSpinnerController.reset();
-				}
-			});
-			setOnCancelListener(new OnCancelListener() {
+            setView(layout);
+            setTitle(R.string.another_game);
+            setPositiveButton(R.string.another_game_yes, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialog, final int id) {
+                    boardSpinnerController.updatePreference();
+                    levelSpinnerController.updatePreference();
+                    restartWithNewGame();
+                }
+            });
+            setNegativeButton(R.string.another_game_no, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialog, final int id) {
+                    boardSpinnerController.reset();
+                    levelSpinnerController.reset();
+                }
+            });
+            setOnCancelListener(new OnCancelListener() {
 
-				@Override
-				public void onCancel(final DialogInterface dialog) {
-					boardSpinnerController.reset();
-					levelSpinnerController.reset();
-				}
-			});
-		}
+                @Override
+                public void onCancel(final DialogInterface dialog) {
+                    boardSpinnerController.reset();
+                    levelSpinnerController.reset();
+                }
+            });
+        }
 
-		private PreferenceSpinnerController createSpinnerController(final int prefKeyId, final int valueArrayId,
-				final int viewId, final ViewGroup layout) {
-			Spinner spinner = (Spinner) layout.findViewById(viewId);
-			return new PreferenceSpinnerController(prefKeyId, valueArrayId, spinner);
-		}
-	}
+        private PreferenceSpinnerController createSpinnerController(final int prefKeyId, final int valueArrayId,
+                                                                    final int viewId, final ViewGroup layout) {
+            Spinner spinner = (Spinner) layout.findViewById(viewId);
+            return new PreferenceSpinnerController(prefKeyId, valueArrayId, spinner);
+        }
+    }
 
-	private BoardController itsBoardController;
-	private BombsController itsBombsController;
-	private MessagesController itsMessagesController;
-	private TimerController itsTimerController;
-	private Settings itsSettings;
-	private IGame itsGame;
-	private GameTimer itsGameTimer;
-	private GameListener itsGameListener;
-	private boolean itsSkipCache;
-	private Notifier itsNotifier;
-	private IDevice mDevice;
-	private MenuItem mZoomMenu;
+    private BoardController itsBoardController;
+    private BombsController itsBombsController;
+    private MessagesController itsMessagesController;
+    private TimerController itsTimerController;
+    private Settings itsSettings;
+    private IGame itsGame;
+    private GameTimer itsGameTimer;
+    private GameListener itsGameListener;
+    private boolean itsSkipCache;
+    private Notifier itsNotifier;
+    private IDevice mDevice;
+    private MenuItem mZoomMenu;
 
-	private class GameListener extends MinesGameAdapter {
-		@Override
-		public void onBusted() {
-			onGameLost();
-		}
+    private class GameListener extends MinesGameAdapter {
+        @Override
+        public void onBusted() {
+            onGameLost();
+        }
 
-		@Override
-		public void onDisarmed() {
-			onGameWon();
-		}
-	}
+        @Override
+        public void onDisarmed() {
+            onGameWon();
+        }
+    }
 
-	private int getBuildNumber() {
-		try {
-			PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
-			return pi.versionCode;
-		} catch (PackageManager.NameNotFoundException e) {
-			LOGGER.e("Package name not found", e);
-			return 0;
-		}
-	}
+    private int getBuildNumber() {
+        try {
+            PackageInfo pi = getPackageManager().getPackageInfo(getPackageName(), 0);
+            return pi.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            LOGGER.e("Package name not found", e);
+            return 0;
+        }
+    }
 
-	@Override
-	public void onCreate(final Bundle savedInstanceState) {
-		debugLog("onCreate");
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(final Bundle savedInstanceState) {
+        debugLog("onCreate");
+        super.onCreate(savedInstanceState);
 
-//        hookMYO();
+        hookMYO();
 
-		getWindow().setBackgroundDrawable(null);
-		mDevice = ((MinesApplication) getApplication()).getDevice();
-		setFullScreenMode();
-		handleIntentExtras();
-		itsSettings = new Settings(this);
-		GameInfo gameInfo = new GameInfo(itsSettings);
-		mDevice.setGameTitle(this, getTitle(), gameInfo.createTitle());
-		itsNotifier = new Notifier(this, gameInfo);
-	}
+        getWindow().setBackgroundDrawable(null);
+        mDevice = ((MinesApplication) getApplication()).getDevice();
+        setFullScreenMode();
+        handleIntentExtras();
+        itsSettings = new Settings(this);
+        GameInfo gameInfo = new GameInfo(itsSettings);
+        mDevice.setGameTitle(this, getTitle(), gameInfo.createTitle());
+        itsNotifier = new Notifier(this, gameInfo);
+    }
 
     private void hookMYO() {
         hub = Hub.getInstance();
@@ -152,320 +152,337 @@ public class MineSweeper extends Activity {
     }
 
     private void hookInMYOFocusing(final BoardView view) {
-        DeviceListener mListener = new AbstractDeviceListener() {
+        myoListener = new AbstractDeviceListener() {
             @Override
             public void onConnect(Myo myo, long timestamp) {
-                Toast.makeText(MineSweeper.this, "Myo Connected!", Toast.LENGTH_SHORT).show();
+                debugLog("Myo Connected!");
             }
 
             @Override
             public void onDisconnect(Myo myo, long timestamp) {
-                Toast.makeText(MineSweeper.this, "Myo Disconnected!", Toast.LENGTH_SHORT).show();
+                debugLog("Myo Disconnected!");
             }
 
             @Override
             public void onPose(Myo myo, long timestamp, Pose pose) {
-                Toast.makeText(MineSweeper.this, "Pose: " + pose, Toast.LENGTH_SHORT).show();
-//                if (pose == Pose.WAVE_OUT) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_RIGHT));
-                    }
-                });
-//                    dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-//                    dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_RIGHT));
-//                    itsGame.onRequestFlag(itsGame.getBoard().getField(0, 0));
-//                    View focusedChild = ((ViewGroup) view.getChildAt(0)).getFocusedChild();
-//                    FieldController fc = (FieldController) (focusedChild.getTag());
-//                    IField field = fc.getField();
-//                    boolean requestFocus = focusedChild.requestFocus(View.FOCUS_RIGHT);
-//                    System.out.println(requestFocus);
-//                }
+                debugLog("Pose: " + pose);
+                View child = ((ViewGroup) view.getChildAt(0)).getFocusedChild();
+                switch (pose) {
+                    case WAVE_OUT:
+                        moveFocus(child, View.FOCUS_RIGHT);
+                        break;
+                    case WAVE_IN:
+                        moveFocus(child, View.FOCUS_LEFT);
+                        break;
+                    case FINGERS_SPREAD:
+                        moveFocus(child, View.FOCUS_UP);
+                        break;
+                    case FIST:
+                        moveFocus(child, View.FOCUS_DOWN);
+                        break;
+                    case THUMB_TO_PINKY:
+                        IField field = itsBoardController.getFieldController(child).getField();
+                        if (itsGame.isStarted()) {
+                            itsGame.onRequestFlag(field);
+                        } else {
+                            itsGame.onRequestOpen(field);
+                        }
+                    default:
+                }
+            }
 
-                //TODO: Do something awesome.
+            private void moveFocus(View child, int direction) {
+                View focusedChild = child.focusSearch(direction);
+                focusedChild.requestFocus();
             }
         };
-        hub.addListener(mListener);
+        hub.addListener(myoListener);
+    }
 
+    private void unhookMYO() {
+        hub.removeListener(myoListener);
     }
 
     private void setFullScreenMode() {
-		mDevice.setFullScreen(this);
-	}
+        mDevice.setFullScreen(this);
+    }
 
-	private void handleIntentExtras() {
-		Intent intent = getIntent();
-		itsSkipCache = intent.getBooleanExtra(SKIP_CACHE, false);
-		intent.removeExtra(SKIP_CACHE);
-	}
+    private void handleIntentExtras() {
+        Intent intent = getIntent();
+        itsSkipCache = intent.getBooleanExtra(SKIP_CACHE, false);
+        intent.removeExtra(SKIP_CACHE);
+    }
 
-	private void debugLog(final String msg) {
-		LOGGER.d(msg);
-	}
+    private void debugLog(final String msg) {
+        LOGGER.d(msg);
+    }
 
-	@Override
-	public Object onRetainNonConfigurationInstance() {
-		debugLog("onRetainNonConfigurationInstance");
-		return itsGame;
-	}
+    @Override
+    public Object onRetainNonConfigurationInstance() {
+        debugLog("onRetainNonConfigurationInstance");
+        return itsGame;
+    }
 
-	@Override
-	protected void onStart() {
-		debugLog("onStart");
-		itsNotifier.clearRunningGame();
-		super.onStart();
-		setTheme(itsSettings.getTheme());
-		setContentView(R.layout.main);
-		GameInfoView levelView = (GameInfoView) findViewById(R.id.level);
-		if (levelView != null)
-			levelView.setText(new GameInfo(itsSettings).createTitle());
-		CounterView timerView = (CounterView) findViewById(R.id.time);
-		CounterView bombsView = (CounterView) findViewById(R.id.count);
-		final BoardView boardView = (BoardView) findViewById(R.id.board);
-		itsGame = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
-		itsGameListener = new GameListener();
-		itsGame.addListener(itsGameListener);
-		itsGameTimer = new GameTimer(itsGame);
-		itsTimerController = new TimerController(itsGame, timerView);
-		itsBombsController = new BombsController(itsGame, bombsView);
-		itsBoardController = new BoardController(itsGame, boardView, itsSettings);
-		itsMessagesController = new MessagesController(itsGame, this, itsSettings);
-		showIntroOnAppStart();
-        final Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                debugLog("post");
-                    itsGame.onRequestFlag(itsGame.getBoard().getField(0, 0));
-                    View focusedChild = ((ViewGroup)boardView.getChildAt(0)).getFocusedChild().focusSearch(View.FOCUS_RIGHT);
-                focusedChild.requestFocus();
-                handler.postDelayed(this, 1000);
+    @Override
+    protected void onStart() {
+        debugLog("onStart");
+        itsNotifier.clearRunningGame();
+        super.onStart();
+        setTheme(itsSettings.getTheme());
+        setContentView(R.layout.main);
+        GameInfoView levelView = (GameInfoView) findViewById(R.id.level);
+        if (levelView != null) {
+            levelView.setText(new GameInfo(itsSettings).createTitle());
+        }
+        CounterView timerView = (CounterView) findViewById(R.id.time);
+        CounterView bombsView = (CounterView) findViewById(R.id.count);
+        final BoardView boardView = (BoardView) findViewById(R.id.board);
+        itsGame = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
+        itsGameListener = new GameListener();
+        itsGame.addListener(itsGameListener);
+        itsGameTimer = new GameTimer(itsGame);
+        itsTimerController = new TimerController(itsGame, timerView);
+        itsBombsController = new BombsController(itsGame, bombsView);
+        itsBoardController = new BoardController(itsGame, boardView, itsSettings);
+        itsMessagesController = new MessagesController(itsGame, this, itsSettings);
+        showIntroOnAppStart();
+        hookInMYOFocusing(boardView);
+    }
+
+    private IGame restoreOrCreateGame(final IGame lastKnownGame) {
+        if (lastKnownGame != null) {
+            return lastKnownGame;
+        }
+        return readCachedGameOrCreateNew();
+    }
+
+    private IGame readCachedGameOrCreateNew() {
+        IGame game = null;
+        if (!itsSkipCache) {
+            game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
+        }
+        if (game == null) {
+            game = new GameCreator(itsSettings).create();
+        }
+        return game;
+    }
+
+    @Override
+    protected void onResume() {
+        debugLog("onResume");
+        super.onResume();
+        itsGameTimer.resume();
+    }
+
+    private void showIntroOnAppStart() {
+        int buildNumber = getBuildNumber();
+        if (buildNumber != itsSettings.getLastUsedBuild()) {
+            if (!itsGame.isStarted()) {
+                showDialog(DIALOG_INTRO);
             }
-        }, 1000);
-//        hookInMYOFocusing(boardView);
-	}
+            itsSettings.setLastUsedBuild(buildNumber);
+        }
+    }
 
-	private IGame restoreOrCreateGame(final IGame lastKnownGame) {
-		if (lastKnownGame != null)
-			return lastKnownGame;
-		return readCachedGameOrCreateNew();
-	}
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        new MenuInflater(this).inflate(R.menu.menu, menu);
+        mZoomMenu = menu.findItem(R.id.zoom);
+        adjustZoomIcon();
+        return super.onCreateOptionsMenu(menu);
+    }
 
-	private IGame readCachedGameOrCreateNew() {
-		IGame game = null;
-		if (!itsSkipCache)
-			game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
-		if (game == null)
-			game = new GameCreator(itsSettings).create();
-		return game;
-	}
+    @Override
+    public boolean onPrepareOptionsMenu(final Menu menu) {
+        adjustZoomMenuVisibility(menu);
+        return super.onPrepareOptionsMenu(menu);
+    }
 
-	@Override
-	protected void onResume() {
-		debugLog("onResume");
-		super.onResume();
-		itsGameTimer.resume();
-	}
+    private void adjustZoomMenuVisibility(final Menu menu) {
+        final MenuItem zoom = menu.findItem(R.id.zoom);
+        zoom.setVisible(!shouldHideZoomAction());
+    }
 
-	private void showIntroOnAppStart() {
-		int buildNumber = getBuildNumber();
-		if (buildNumber != itsSettings.getLastUsedBuild()) {
-			if (!itsGame.isStarted())
-				showDialog(DIALOG_INTRO);
-			itsSettings.setLastUsedBuild(buildNumber);
-		}
-	}
+    private boolean shouldHideZoomAction() {
+        // hide zoom/fit items if board is too small for zooming
+        return !itsBoardController.isZoomable(itsSettings.getZoomFieldSize()) || mDevice.isGoogleTv();
+    }
 
-	@Override
-	public boolean onCreateOptionsMenu(final Menu menu) {
-		new MenuInflater(this).inflate(R.menu.menu, menu);
-		mZoomMenu = menu.findItem(R.id.zoom);
-		adjustZoomIcon();
-		return super.onCreateOptionsMenu(menu);
-	}
+    @Override
+    protected void onPause() {
+        debugLog("onPause");
+        itsGameTimer.pause();
+        new SaveGameCommand(this, GAME_CACHE_FILE, itsGame).execute();
+        super.onPause();
+    }
 
-	@Override
-	public boolean onPrepareOptionsMenu(final Menu menu) {
-		adjustZoomMenuVisibility(menu);
-		return super.onPrepareOptionsMenu(menu);
-	}
+    @Override
+    protected void onStop() {
+        unhookMYO();
+        debugLog("onStop");
+        itsGameTimer.dispose();
+        itsBoardController.dispose();
+        itsBombsController.dispose();
+        itsTimerController.dispose();
+        itsMessagesController.dispose();
+        itsGame.removeListener(itsGameListener);
+        if (itsSettings.isNotify()) {
+            itsNotifier.notifyRunningGame(itsGame);
+        }
+        super.onStop();
+    }
 
-	private void adjustZoomMenuVisibility(final Menu menu) {
-		final MenuItem zoom = menu.findItem(R.id.zoom);
-		zoom.setVisible(!shouldHideZoomAction());
-	}
+    @Override
+    protected void onDestroy() {
+        debugLog("onDestroy");
+        if (isFinishing()) {
+            // The Activity is finishing, so shutdown the Hub. This will disconnect from the Myo.
+            Hub.getInstance().shutdown();
+        }
+        super.onDestroy();
+    }
 
-	private boolean shouldHideZoomAction() {
-		// hide zoom/fit items if board is too small for zooming
-		return !itsBoardController.isZoomable(itsSettings.getZoomFieldSize()) || mDevice.isGoogleTv();
-	}
+    @Override
+    protected void onRestart() {
+        debugLog("onRestart");
+        // make sure that cache is read on a restart
+        itsSkipCache = false;
+        super.onRestart();
+    }
 
-	@Override
-	protected void onPause() {
-		debugLog("onPause");
-		itsGameTimer.pause();
-		new SaveGameCommand(this, GAME_CACHE_FILE, itsGame).execute();
-		super.onPause();
-	}
+    /*
+     * (non-Javadoc)
+     *
+     * @see android.app.Activity#onSearchRequested()
+     *
+     * Prohibit searching when hitting search button. We handle this button
+     * ourselves.
+     */
+    @Override
+    public boolean onSearchRequested() {
+        return false;
+    }
 
-	@Override
-	protected void onStop() {
-		debugLog("onStop");
-		itsGameTimer.dispose();
-		itsBoardController.dispose();
-		itsBombsController.dispose();
-		itsTimerController.dispose();
-		itsMessagesController.dispose();
-		itsGame.removeListener(itsGameListener);
-		if (itsSettings.isNotify())
-			itsNotifier.notifyRunningGame(itsGame);
-		super.onStop();
-	}
+    @Override
+    public boolean onKeyUp(final int keyCode, final KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_SEARCH) {
+            if (itsBoardController.isZoomable(itsSettings.getZoomFieldSize())) {
+                itsSettings.toogleZoom();
+                itsBoardController.onZoomChange();
+            }
+            return true;
+        }
+        return super.onKeyUp(keyCode, event);
+    }
 
-	@Override
-	protected void onDestroy() {
-		debugLog("onDestroy");
-		super.onDestroy();
-	}
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                startActivity(new Intent(this, MinesPreferences.class));
+                break;
+            case R.id.scores:
+                startActivity(new Intent(this, HighScores.class));
+                break;
+            case R.id.new_game:
+                showDialog(DIALOG_NEW_GAME);
+                break;
+            case R.id.zoom:
+                itsSettings.toogleZoom();
+                adjustZoomIcon();
+                itsBoardController.onZoomChange();
+                break;
+            case R.id.help:
+                showDialog(DIALOG_INTRO);
+                break;
+        }
+        return true;
+    }
 
-	@Override
-	protected void onRestart() {
-		debugLog("onRestart");
-		// make sure that cache is read on a restart
-		itsSkipCache = false;
-		super.onRestart();
-	}
+    private void adjustZoomIcon() {
+        if (mZoomMenu == null) // menu not created yet
+        {
+            return;
+        }
+        if (!itsSettings.isZoom()) {
+            setZoomMenuIconAndText(R.drawable.ic_action_zoom_in, R.string.menu_zoom);
+        } else {
+            setZoomMenuIconAndText(R.drawable.ic_action_zoom_out, R.string.menu_fit);
+        }
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see android.app.Activity#onSearchRequested()
-	 * 
-	 * Prohibit searching when hitting search button. We handle this button
-	 * ourselves.
-	 */
-	@Override
-	public boolean onSearchRequested() {
-		return false;
-	}
+    private void setZoomMenuIconAndText(final int iconId, final int textId) {
+        mZoomMenu.setIcon(iconId);
+        mZoomMenu.setTitle(textId);
+    }
 
-	@Override
-	public boolean onKeyUp(final int keyCode, final KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_SEARCH) {
-			if (itsBoardController.isZoomable(itsSettings.getZoomFieldSize())) {
-				itsSettings.toogleZoom();
-				itsBoardController.onZoomChange();
-			}
-			return true;
-		}
-		return super.onKeyUp(keyCode, event);
-	}
+    @Override
+    public void onWindowFocusChanged(final boolean hasFocus) {
+        if (hasFocus) {
+            itsGameTimer.resume();
+        } else {
+            itsGameTimer.pause();
+        }
+        super.onWindowFocusChanged(hasFocus);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.settings:
-			startActivity(new Intent(this, MinesPreferences.class));
-			break;
-		case R.id.scores:
-			startActivity(new Intent(this, HighScores.class));
-			break;
-		case R.id.new_game:
-			showDialog(DIALOG_NEW_GAME);
-			break;
-		case R.id.zoom:
-			itsSettings.toogleZoom();
-			adjustZoomIcon();
-			itsBoardController.onZoomChange();
-			break;
-		case R.id.help:
-			showDialog(DIALOG_INTRO);
-			break;
-		}
-		return true;
-	}
+    private void restartWithNewGame() {
+        final Intent intent = new Intent(this, MineSweeper.class);
+        intent.putExtra(SKIP_CACHE, true);
+        itsNotifier.disable();
+        finish();
+        startActivity(intent);
+    }
 
-	private void adjustZoomIcon() {
-		if (mZoomMenu == null) // menu not created yet
-			return;
-		if (!itsSettings.isZoom())
-			setZoomMenuIconAndText(R.drawable.ic_action_zoom_in, R.string.menu_zoom);
-		else
-			setZoomMenuIconAndText(R.drawable.ic_action_zoom_out, R.string.menu_fit);
-	}
-
-	private void setZoomMenuIconAndText(final int iconId, final int textId) {
-		mZoomMenu.setIcon(iconId);
-		mZoomMenu.setTitle(textId);
-	}
-
-	@Override
-	public void onWindowFocusChanged(final boolean hasFocus) {
-		if (hasFocus)
-			itsGameTimer.resume();
-		else
-			itsGameTimer.pause();
-		super.onWindowFocusChanged(hasFocus);
-	}
-
-	private void restartWithNewGame() {
-		final Intent intent = new Intent(this, MineSweeper.class);
-		intent.putExtra(SKIP_CACHE, true);
-		itsNotifier.disable();
-		finish();
-		startActivity(intent);
-	}
-
-	@Override
-	protected Dialog onCreateDialog(final int id) {
-		switch (id) {
-		case DIALOG_NEW_GAME:
-			return new NewGameDialogBuilder().create();
-		case DIALOG_INTRO:
-			AlertDialog dialog = new IntroDialogBuilder(this).create();
+    @Override
+    protected Dialog onCreateDialog(final int id) {
+        switch (id) {
+            case DIALOG_NEW_GAME:
+                return new NewGameDialogBuilder().create();
+            case DIALOG_INTRO:
+                AlertDialog dialog = new IntroDialogBuilder(this).create();
 
 			/*
-			 * we need to manually adjust the dialog width.
+             * we need to manually adjust the dialog width.
 			 * 
 			 * see:
 			 * http://stackoverflow.com/questions/2306503/how-to-make-an-alert
 			 * -dialog-fill-90-of-screen-size
 			 */
-			dialog.setOnShowListener(new OnShowListener() {
+                dialog.setOnShowListener(new OnShowListener() {
 
-				@Override
-				public void onShow(final DialogInterface dialogInterface) {
-					WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-					Dialog dialogImpl = (Dialog) dialogInterface;
-					lp.copyFrom(dialogImpl.getWindow().getAttributes());
-					lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-					lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-					dialogImpl.getWindow().setAttributes(lp);
-				}
-			});
-			return dialog;
-		default:
-			return super.onCreateDialog(id);
-		}
-	}
+                    @Override
+                    public void onShow(final DialogInterface dialogInterface) {
+                        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                        Dialog dialogImpl = (Dialog) dialogInterface;
+                        lp.copyFrom(dialogImpl.getWindow().getAttributes());
+                        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                        dialogImpl.getWindow().setAttributes(lp);
+                    }
+                });
+                return dialog;
+            default:
+                return super.onCreateDialog(id);
+        }
+    }
 
-	private void onGameWon() {
-		Intent intent = new Intent(this, HighScores.class);
-		intent.putExtra(HighScores.EXTRA_TIME, itsGame.getWatch().getTime());
-		startActivityForResult(intent, HIGHSCORES_REQUEST);
-	}
+    private void onGameWon() {
+        Intent intent = new Intent(this, HighScores.class);
+        intent.putExtra(HighScores.EXTRA_TIME, itsGame.getWatch().getTime());
+        startActivityForResult(intent, HIGHSCORES_REQUEST);
+    }
 
-	@Override
-	protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-		debugLog("onActivityResult");
-		if (requestCode == HIGHSCORES_REQUEST)
-			showDialog(DIALOG_NEW_GAME);
-	}
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        debugLog("onActivityResult");
+        if (requestCode == HIGHSCORES_REQUEST) {
+            showDialog(DIALOG_NEW_GAME);
+        }
+    }
 
-	private void onGameLost() {
-		showDialog(DIALOG_NEW_GAME);
-	}
+    private void onGameLost() {
+        showDialog(DIALOG_NEW_GAME);
+    }
 
 }
