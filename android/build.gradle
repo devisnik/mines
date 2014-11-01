@@ -2,14 +2,7 @@ apply plugin: 'com.android.application'
 
 dependencies {
     compile project(':model')
-    repositories {
-        maven {
-            url 'myorepository'
-        }
-    }
-
-    compile('com.thalmic:myosdk:0.6.+@aar')
-
+    compile project(':input')
 }
 
 ext {

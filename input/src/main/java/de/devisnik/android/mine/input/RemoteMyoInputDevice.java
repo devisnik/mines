@@ -45,20 +45,21 @@ public class RemoteMyoInputDevice implements InputDevice {
         }
     };
 
-    private void handleEvent(int event) {
+    private void handleEvent(int eventCode) {
+        Event event = Event.from(eventCode);
         for (Listener listener : listeners) {
             switch (event) {
-                case 1: listener.onLeft();
+                case LEFT: listener.onLeft();
                     break;
-                case 2: listener.onRight();
+                case RIGHT: listener.onRight();
                     break;
-                case 3: listener.onUp();
+                case UP: listener.onUp();
                     break;
-                case 4: listener.onDown();
+                case DOWN: listener.onDown();
                     break;
-                case 5: listener.onClick();
+                case CLICK: listener.onClick();
                     break;
-                case 6: listener.onDoubleClick();
+                case DOUBLE_CLICK: listener.onDoubleClick();
             }
         }
     }

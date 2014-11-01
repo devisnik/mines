@@ -46,7 +46,7 @@ public class MyoInputActivity extends Activity implements View.OnClickListener, 
         @Override
         public void onPose(Myo myo, long timestamp, Pose pose) {
             Log.d(TAG, "pose received " + pose);
-            byte event = getEventFromPose(pose);
+            byte event = (byte) getEventFromPose(pose).getCode();
             if (event > 0) {
                 Message message = new Message();
                 message.obj = new byte[]{event};
@@ -56,37 +56,37 @@ public class MyoInputActivity extends Activity implements View.OnClickListener, 
     };
     private Pose lastEvent;
 
-    private byte getEventFromPose(Pose pose) {
-        byte event = 0;
+    private InputDevice.Event getEventFromPose(Pose pose) {
+        InputDevice.Event event = InputDevice.Event.UNKNOWN;
         switch (pose){
             case WAVE_IN:
-                event = 1;
+                event = InputDevice.Event.LEFT;
                 lastEvent = pose;
                 break;
             case WAVE_OUT:
-                event = 2;
+                event = InputDevice.Event.RIGHT;
                 lastEvent = pose;
                 break;
             case FINGERS_SPREAD:
-                event = 3;
+                event = InputDevice.Event.UP;
                 lastEvent = pose;
                 break;
             case FIST:
                 if (lastEvent == Pose.THUMB_TO_PINKY){
                     lastEvent = Pose.UNKNOWN;
-                    event = 6;
+                    event = InputDevice.Event.CLICK;
                 } else {
                     lastEvent = pose;
-                    event = 4;
+                    event = InputDevice.Event.DOWN;
                 }
                 break;
             case THUMB_TO_PINKY:
                 if (lastEvent == Pose.THUMB_TO_PINKY) {
                     lastEvent = Pose.UNKNOWN;
-                    event = 5;
+                    event = InputDevice.Event.CLICK;
                 } else {
                     lastEvent = pose;
-                    event = 0;
+                    event = InputDevice.Event.DOUBLE_CLICK;
                 }
                 break;
 
@@ -181,7 +181,7 @@ public class MyoInputActivity extends Activity implements View.OnClickListener, 
 
     private BluetoothDevice getBluetoothInputConsumer() {
         for (BluetoothDevice device : BluetoothAdapter.getDefaultAdapter().getBondedDevices()){
-            if (device.getName().contains("ALCATEL")){
+            if (device.getName().contains("BT-200")){
                 return device;
             }
         }

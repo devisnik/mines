@@ -1,1 +1,1 @@
-include 'model', 'android', 'robot', 'swt', 'input'
+include 'model', 'android', 'robot', 'swt', 'input', 'input-remote-myo'
