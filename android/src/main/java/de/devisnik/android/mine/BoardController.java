@@ -76,7 +76,7 @@ public class BoardController {
 		return getFieldController(itsBoardView.getField(fieldPosition.x, fieldPosition.y));
 	}
 
-	private FieldController getFieldController(final View view) {
+	public FieldController getFieldController(final View view) {
 		return (FieldController) view.getTag();
 	}
 
