@@ -11,13 +11,24 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.thalmic.myo.AbstractDeviceListener;
+import com.thalmic.myo.DeviceListener;
+import com.thalmic.myo.Hub;
+import com.thalmic.myo.Myo;
+import com.thalmic.myo.Pose;
+
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.IDevice;
@@ -32,8 +43,9 @@ public class MineSweeper extends Activity {
 	private static final int DIALOG_INTRO = 4;
 	private static final String GAME_CACHE_FILE = "game.cache";
 	private static final Logger LOGGER = new Logger(MineSweeper.class);
+    private Hub hub;
 
-	private class NewGameDialogBuilder extends Builder {
+    private class NewGameDialogBuilder extends Builder {
 
 		public NewGameDialogBuilder() {
 			super(MineSweeper.this);
@@ -117,6 +129,9 @@ public class MineSweeper extends Activity {
 	public void onCreate(final Bundle savedInstanceState) {
 		debugLog("onCreate");
 		super.onCreate(savedInstanceState);
+
+//        hookMYO();
+
 		getWindow().setBackgroundDrawable(null);
 		mDevice = ((MinesApplication) getApplication()).getDevice();
 		setFullScreenMode();
@@ -127,7 +142,56 @@ public class MineSweeper extends Activity {
 		itsNotifier = new Notifier(this, gameInfo);
 	}
 
-	private void setFullScreenMode() {
+    private void hookMYO() {
+        hub = Hub.getInstance();
+        if (!hub.init(this)) {
+            Log.e("MYO", "Could not initialize the Hub.");
+            finish();
+        }
+        hub.pairWithAnyMyo();
+    }
+
+    private void hookInMYOFocusing(final BoardView view) {
+        DeviceListener mListener = new AbstractDeviceListener() {
+            @Override
+            public void onConnect(Myo myo, long timestamp) {
+                Toast.makeText(MineSweeper.this, "Myo Connected!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDisconnect(Myo myo, long timestamp) {
+                Toast.makeText(MineSweeper.this, "Myo Disconnected!", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onPose(Myo myo, long timestamp, Pose pose) {
+                Toast.makeText(MineSweeper.this, "Pose: " + pose, Toast.LENGTH_SHORT).show();
+//                if (pose == Pose.WAVE_OUT) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+                        dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_RIGHT));
+                    }
+                });
+//                    dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+//                    dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_RIGHT));
+//                    itsGame.onRequestFlag(itsGame.getBoard().getField(0, 0));
+//                    View focusedChild = ((ViewGroup) view.getChildAt(0)).getFocusedChild();
+//                    FieldController fc = (FieldController) (focusedChild.getTag());
+//                    IField field = fc.getField();
+//                    boolean requestFocus = focusedChild.requestFocus(View.FOCUS_RIGHT);
+//                    System.out.println(requestFocus);
+//                }
+
+                //TODO: Do something awesome.
+            }
+        };
+        hub.addListener(mListener);
+
+    }
+
+    private void setFullScreenMode() {
 		mDevice.setFullScreen(this);
 	}
 
@@ -159,7 +223,7 @@ public class MineSweeper extends Activity {
 			levelView.setText(new GameInfo(itsSettings).createTitle());
 		CounterView timerView = (CounterView) findViewById(R.id.time);
 		CounterView bombsView = (CounterView) findViewById(R.id.count);
-		BoardView boardView = (BoardView) findViewById(R.id.board);
+		final BoardView boardView = (BoardView) findViewById(R.id.board);
 		itsGame = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
 		itsGameListener = new GameListener();
 		itsGame.addListener(itsGameListener);
@@ -169,6 +233,18 @@ public class MineSweeper extends Activity {
 		itsBoardController = new BoardController(itsGame, boardView, itsSettings);
 		itsMessagesController = new MessagesController(itsGame, this, itsSettings);
 		showIntroOnAppStart();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                debugLog("post");
+                    itsGame.onRequestFlag(itsGame.getBoard().getField(0, 0));
+                    View focusedChild = ((ViewGroup)boardView.getChildAt(0)).getFocusedChild().focusSearch(View.FOCUS_RIGHT);
+                focusedChild.requestFocus();
+                handler.postDelayed(this, 1000);
+            }
+        }, 1000);
+//        hookInMYOFocusing(boardView);
 	}
 
 	private IGame restoreOrCreateGame(final IGame lastKnownGame) {
