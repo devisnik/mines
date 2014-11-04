@@ -17,3 +17,11 @@ allprojects {
         mavenCentral()
     }
 }
+
+subprojects {
+    repositories {
+        maven {
+            url file('../myorepository').toURI().toString()
+        }
+    }
+}

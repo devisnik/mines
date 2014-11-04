@@ -1,15 +1,8 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
 
 dependencies {
     compile project(':model')
-    repositories {
-        maven {
-            url 'myorepository'
-        }
-    }
-
-    compile('com.thalmic:myosdk:0.6.+@aar')
-
+    compile project(':input')
 }
 
 ext {
@@ -26,12 +19,12 @@ def today() {
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 21
+    buildToolsVersion '20.0.0'
 
     defaultConfig {
         applicationId APP_NAME
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 19
         versionCode VERSION_CODE
         versionName VERSION_NAME
@@ -51,6 +44,7 @@ android {
             signingConfig signingConfigs.release
         }
     }
+
     lintOptions {
         abortOnError false;
         lintConfig file('lint_config.xml')
