@@ -1,5 +1,6 @@
 2014/11/25
 * fix crash on Lollipop
+* build version 53, 1.8.1
 
 2014/06/22
 * introduce setting for toggling field click animations
