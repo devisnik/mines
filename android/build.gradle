@@ -30,10 +30,12 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file(keystoreFile)
-            keyAlias keystoreKeyAlias
-            storePassword keystoreStorePassword
-            keyPassword keystoreKeyPassword
+            if (hasProperty('keystoreFile'))  {
+                storeFile file(keystoreFile)
+                keyAlias keystoreKeyAlias
+                storePassword keystoreStorePassword
+                keyPassword keystoreKeyPassword
+            }
         }
     }
     buildTypes {
