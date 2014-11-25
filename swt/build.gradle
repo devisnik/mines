@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'application'
 
 archivesBaseName = "de.devisnik.mine.swt"
 version = '1.0'
@@ -60,4 +60,9 @@ dependencies {
     compile project(':model')
     compile project(':robot')
     compile "org.eclipse.swt:${swtArtifactName}:${swtVersion}"
+}
+
+mainClassName = 'de.devisnik.mine.swt.MinesScreen'
+if (swtPlatform == 'macosx') {
+    applicationDefaultJvmArgs = ['-XstartOnFirstThread']
 }
