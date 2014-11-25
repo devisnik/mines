@@ -5,8 +5,8 @@ dependencies {
 }
 
 ext {
-    VERSION_CODE = 52
-    VERSION_NAME = '1.8.0'
+    VERSION_CODE = 53
+    VERSION_NAME = '1.8.1'
     APP_NAME     = 'de.devisnik.android.mine'
     BUILD_DATE   = today()
 }
@@ -30,7 +30,7 @@ android {
     }
     signingConfigs {
         release {
-            if (hasProperty('keystoreFile'))  {
+            if (rootProject.hasProperty('keystoreFile'))  {
                 storeFile file(keystoreFile)
                 keyAlias keystoreKeyAlias
                 storePassword keystoreStorePassword
