@@ -1,4 +1,6 @@
-apply plugin: 'android'
+apply plugin: 'com.android.application'
+
+sourceCompatibility = 1.7
 
 dependencies {
     compile project(':model')
@@ -12,19 +14,17 @@ ext {
 }
 
 def today() {
-    def date = new Date()
-    def formattedDate = date.format('yyyyMMdd')
-    return formattedDate
+    new Date().format('yyyyMMdd')
 }
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion '19.1.0'
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
 
     defaultConfig {
         applicationId APP_NAME
         minSdkVersion 8
-        targetSdkVersion 19
+        targetSdkVersion 21
         versionCode VERSION_CODE
         versionName VERSION_NAME
     }
@@ -40,7 +40,7 @@ android {
     }
     buildTypes {
         release {
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }

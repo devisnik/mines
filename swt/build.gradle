@@ -2,7 +2,7 @@ apply plugin: 'application'
 
 archivesBaseName = "de.devisnik.mine.swt"
 version = '1.0'
-sourceCompatibility = 1.6
+sourceCompatibility = 1.7
 
 repositories {
     maven {
