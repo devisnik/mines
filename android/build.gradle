@@ -7,8 +7,8 @@ dependencies {
 }
 
 ext {
-    VERSION_CODE = 53
-    VERSION_NAME = '1.8.1'
+    VERSION_CODE = 54
+    VERSION_NAME = '1.8.2'
     APP_NAME     = 'de.devisnik.android.mine'
     BUILD_DATE   = today()
 }
@@ -54,6 +54,6 @@ android {
 task archiveRelease(type: Copy) {
     from 'build/outputs/apk', 'build/outputs/'
     into "releases/${VERSION_CODE}"
-    include('android-release.apk', 'proguard/**')
+    include('android-release.apk', 'mapping/**')
     rename ('android-release.apk', "${APP_NAME}_${BUILD_DATE}_${VERSION_NAME}_${VERSION_CODE}.apk")
 }
