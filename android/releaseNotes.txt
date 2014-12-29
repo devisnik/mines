@@ -1,3 +1,7 @@
+2014/12/29
+* fix broken zooming in Kitkat
+* build version 54, 1.8.2
+
 2014/11/25
 * fix crash on Lollipop
 * build version 53, 1.8.1
