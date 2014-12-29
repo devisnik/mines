@@ -24,7 +24,7 @@ android {
     defaultConfig {
         applicationId APP_NAME
         minSdkVersion 8
-        targetSdkVersion 21
+        targetSdkVersion 18  // below KIT_KAT to ensure measure() is called, as zooming breaks otherwise
         versionCode VERSION_CODE
         versionName VERSION_NAME
     }
