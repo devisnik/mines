@@ -6,5 +6,6 @@ gradle.properties
 **/build
 android/releases
 android/sync_build.sh
+android/sync_releasenotes.sh
 *.iml
 *.keystore
