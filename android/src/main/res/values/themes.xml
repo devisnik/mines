@@ -124,6 +124,8 @@
         <item name="scoresColor">@android:color/black</item>
         <item name="scoresSelectorColor">@drawable/scores_selector_classic</item>
         <item name="scoresLine">@drawable/black_line_with_transparency</item>
+        <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_dark</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_dark</item>
     </style>
 
     <style name="Dark" parent="MinesTheme">
@@ -133,6 +135,8 @@
         <item name="scoresColor">#aaa</item>
         <item name="scoresSelectorColor">@drawable/scores_selector_dark</item>
         <item name="scoresLine">@drawable/grey_line_with_transparency</item>
+        <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_light</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_light</item>
     </style>
 
     <style name="Monochrome" parent="MinesTheme">
@@ -141,6 +145,8 @@
         <item name="scoresColor">@android:color/black</item>
         <item name="scoresSelectorColor">@drawable/scores_selector_monochrome</item>
         <item name="scoresLine">@drawable/black_line_with_transparency</item>
+        <item name="android:scrollbarThumbHorizontal">@drawable/scrollbar_dark</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_dark</item>
     </style>
 
 </resources>
