@@ -1,5 +1,10 @@
+2014/12/30
+* fix broken zooming
+* set target version back to 21
+* enable auto-fading scrollbars and fading edges
+
 2014/12/29
-* fix broken zooming in Kitkat
+* work around broken zooming in Kitkat (by setting target version to 18)
 * build version 54, 1.8.2
 
 2014/11/25
