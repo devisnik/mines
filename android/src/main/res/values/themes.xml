@@ -5,19 +5,19 @@
         <item name="android:textColor">?attr/scoresColor</item>
     </style>
 
-    <style name="Layout.Theme">
+    <style name="Background">
         <item name="android:background">@android:color/black</item>
     </style>
 
-    <style name="Layout.Theme.Dark">
+    <style name="Background.Dark">
         <item name="android:background">@drawable/ring_tiles_black</item>
     </style>
 
-    <style name="Layout.Theme.Classic">
+    <style name="Background.Classic">
         <item name="android:background">@drawable/ring_tiles_grey</item>
     </style>
 
-    <style name="Layout.Theme.White">
+    <style name="Background.White">
         <item name="android:background">@android:color/white</item>
     </style>
 
@@ -115,11 +115,11 @@
         <item name="boardViewStyle">@style/BoardView.Theme</item>
         <item name="boardPanelStyle">@style/BoardPanel.Theme.Classic</item>
         <item name="gameInfoViewStyle">@style/GameInfo.Theme</item>
-        <item name="layoutStyle">@style/Layout.Theme</item>
+        <item name="layoutStyle">@style/Background</item>
     </style>
 
     <style name="Classic" parent="MinesTheme">
-        <item name="layoutStyle">@style/Layout.Theme.Classic</item>
+        <item name="layoutStyle">@style/Background.Classic</item>
         <item name="counterViewStyle">@style/Counter.Theme.LED</item>
         <item name="scoresColor">@android:color/black</item>
         <item name="scoresSelectorColor">@drawable/scores_selector_classic</item>
@@ -130,7 +130,7 @@
 
     <style name="Dark" parent="MinesTheme">
         <item name="boardPanelStyle">@style/BoardPanel.Theme.Dark</item>
-        <item name="layoutStyle">@style/Layout.Theme.Dark</item>
+        <item name="layoutStyle">@style/Background.Dark</item>
         <item name="counterViewStyle">@style/Counter.Theme.LED.Red</item>
         <item name="scoresColor">#aaa</item>
         <item name="scoresSelectorColor">@drawable/scores_selector_dark</item>
@@ -141,7 +141,7 @@
 
     <style name="Monochrome" parent="MinesTheme">
         <item name="boardPanelStyle">@style/BoardPanel.Theme.Monochrome</item>
-        <item name="layoutStyle">@style/Layout.Theme.White</item>
+        <item name="layoutStyle">@style/Background.White</item>
         <item name="scoresColor">@android:color/black</item>
         <item name="scoresSelectorColor">@drawable/scores_selector_monochrome</item>
         <item name="scoresLine">@drawable/black_line_with_transparency</item>

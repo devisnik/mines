@@ -8,12 +8,16 @@
 	<de.devisnik.android.mine.CounterView
 		style="?attr/counterViewStyle"
 		android:id="@+id/time"
-		android:layout_alignParentLeft="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true" />
 	<de.devisnik.android.mine.CounterView
 		style="?attr/counterViewStyle"
 		android:id="@+id/count"
-		android:layout_alignParentBottom="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
 		android:layout_alignParentLeft="true" />
 
 	<!--

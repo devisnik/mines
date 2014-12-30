@@ -7,7 +7,9 @@
 
     <de.devisnik.android.mine.BoardPanel
         android:id="@+id/board_panel"
-        style="?attr/boardPanelStyle" />
+        style="?attr/boardPanelStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <requestFocus />
 
