@@ -108,7 +108,7 @@
         <item name="TOUCH_COLOR">#44888888</item>
     </style>
 
-    <style name="BaseTheme" parent="android:style/Theme"></style>
+    <style name="BaseTheme" parent="android:style/Theme"/>
 
     <style name="MinesTheme" parent="BaseTheme">
         <item name="counterViewStyle">@style/Counter.Theme.LED</item>
