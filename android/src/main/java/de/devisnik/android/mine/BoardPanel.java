@@ -65,6 +65,7 @@ public class BoardPanel extends ViewGroup {
 
 	public void setZoomModeFieldSize(final int size) {
 		itsZoomModeFieldSize = size;
+        requestLayout();
 	}
 
 	public int getFieldSize() {
