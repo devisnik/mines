@@ -59,6 +59,9 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		Configuration configuration = getResources().getConfiguration();
 		itsIsLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
 		mScrollbarPadding = getContext().getResources().getDimensionPixelSize(R.dimen.board_panel_scrollbar_padding);
+        setScrollbarFadingEnabled(true);
+        setHorizontalFadingEdgeEnabled(true);
+        setVerticalFadingEdgeEnabled(true);
 	}
 
 	@Override
@@ -150,7 +153,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 			if (!itsIsScrolling && !flingStopped)
 				// dispatch event so that click/long-press on fields get handled
 				return super.dispatchTouchEvent(event);
-		if (event.getAction() == MotionEvent.ACTION_MOVE)
+		if (event.getAction() == MotionEvent.ACTION_MOVE) {
 			if (!itsIsScrolling) {
 				// we scroll the board, dispatch a cancel event so that
 				// click/long-press get cancelled
@@ -160,6 +163,8 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 				cancelEvent.recycle();
 				itsIsScrolling = true;
 			}
+            awakenScrollBars();
+        }
 		if (event.getAction() == MotionEvent.ACTION_UP)
 			itsIsScrolling = false;
 		return true;
@@ -218,14 +223,8 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		int x = Math.max(0, (viewWidth - canvasWidth) / 2);
 		int y = Math.max(0, (viewHeight - canvasHeight) / 2);
 		getCanvas().layout(x, y, x + canvasWidth, y + canvasHeight);
-		boolean horizontalScrollBarEnabled = viewWidth < canvasWidth;
-		setHorizontalScrollBarEnabled(horizontalScrollBarEnabled);
-		int paddingBottom = horizontalScrollBarEnabled ? mScrollbarPadding : 0;
-		boolean verticalScrollBarEnabled = viewHeight < canvasHeight;
-		setVerticalScrollBarEnabled(verticalScrollBarEnabled);
-		int paddingRight = verticalScrollBarEnabled ? mScrollbarPadding : 0;
-		setPadding(0, 0, paddingRight, paddingBottom);
-		invalidate();
+        setHorizontalScrollBarEnabled(viewWidth < canvasWidth);
+        setVerticalScrollBarEnabled(viewHeight < canvasHeight);
 	}
 
 	/*
