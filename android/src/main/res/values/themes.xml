@@ -111,7 +111,7 @@
     <style name="BaseTheme" parent="android:style/Theme"></style>
 
     <style name="MinesTheme" parent="BaseTheme">
-        <item name="counterViewStyle">@style/Counter.Theme</item>
+        <item name="counterViewStyle">@style/Counter.Theme.LED</item>
         <item name="boardViewStyle">@style/BoardView.Theme</item>
         <item name="boardPanelStyle">@style/BoardPanel.Theme.Classic</item>
         <item name="gameInfoViewStyle">@style/GameInfo.Theme</item>
