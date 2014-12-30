@@ -96,7 +96,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		return getCanvas().fitsIntoParent();
 	}
 
-	public boolean fitsIntoView(final int width, final int height) {
+	public boolean fitsIntoArea(final int width, final int height) {
 		if (itsIsLandscape)
 			return getWidth() < height || getHeight() < width;
 		return getWidth() < width || getHeight() < height;

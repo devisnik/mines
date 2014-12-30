@@ -223,7 +223,7 @@ public class MineSweeper extends Activity {
 
 	private boolean shouldHideZoomAction() {
 		// hide zoom/fit items if board is too small for zooming
-		return !itsBoardController.isZoomable(itsSettings.getZoomFieldSize()) || mDevice.isGoogleTv();
+		return !itsBoardController.isBoardFullyVisibleForFieldSize(itsSettings.getZoomFieldSize()) || mDevice.isGoogleTv();
 	}
 
 	@Override
@@ -278,7 +278,7 @@ public class MineSweeper extends Activity {
 	@Override
 	public boolean onKeyUp(final int keyCode, final KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_SEARCH) {
-			if (itsBoardController.isZoomable(itsSettings.getZoomFieldSize())) {
+			if (itsBoardController.isBoardFullyVisibleForFieldSize(itsSettings.getZoomFieldSize())) {
 				itsSettings.toogleZoom();
 				itsBoardController.onZoomChange();
 			}

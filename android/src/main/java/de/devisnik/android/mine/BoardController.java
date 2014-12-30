@@ -94,9 +94,9 @@ public class BoardController {
 		fieldView.setTag(fieldController);
 	}
 
-	public boolean isZoomable(int fieldSize) {
+	public boolean isBoardFullyVisibleForFieldSize(int fieldSize) {
 		int width = itsBoard.getDimension().x * fieldSize;
 		int height = itsBoard.getDimension().y * fieldSize;
-		return itsBoardView.fitsIntoView(width, height);
+		return itsBoardView.fitsIntoArea(width, height);
 	}
 }
