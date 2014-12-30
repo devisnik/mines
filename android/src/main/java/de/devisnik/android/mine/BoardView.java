@@ -17,7 +17,6 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 	private boolean itsIsScrolling;
 	private boolean itsIsLandscape = false;
 	private final FlingRunnable itsFlinger;
-	private final int mScrollbarPadding;
 
 	private class FlingRunnable implements Runnable {
 
@@ -58,7 +57,6 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		itsFlinger = new FlingRunnable();
 		Configuration configuration = getResources().getConfiguration();
 		itsIsLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
-		mScrollbarPadding = getContext().getResources().getDimensionPixelSize(R.dimen.board_panel_scrollbar_padding);
         setScrollbarFadingEnabled(true);
         setHorizontalFadingEdgeEnabled(true);
         setVerticalFadingEdgeEnabled(true);
@@ -86,12 +84,12 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 
 	@Override
 	protected int computeHorizontalScrollRange() {
-		return getCanvas().getWidth() + getPaddingRight();
+		return getCanvas().getWidth();
 	}
 
 	@Override
 	protected int computeVerticalScrollRange() {
-		return getCanvas().getHeight() + getPaddingBottom();
+		return getCanvas().getHeight();
 	}
 
 	private boolean isBoardFittingOnScreen() {
