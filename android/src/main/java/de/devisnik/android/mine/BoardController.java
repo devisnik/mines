@@ -52,16 +52,14 @@ public class BoardController {
 		initFieldControllers();
 	}
 
-	private final void initBoardView() {
+	private void initBoardView() {
 		final Point dimension = itsBoard.getDimension();
 		itsBoardView.setSize(dimension.x, dimension.y);
 		itsBoardView.setFieldSizeAndTouchFocus(itsSettings.getFieldSize(), itsSettings.isTouchFocus());
-		itsBoardView.requestLayout();
 	}
 
 	public final void onZoomChange() {
 		itsBoardView.setFieldSizeAndTouchFocus(itsSettings.getFieldSize(), itsSettings.isTouchFocus());
-		itsBoardView.requestLayout();
 	}
 
 	public void dispose() {
