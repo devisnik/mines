@@ -10,7 +10,7 @@ import android.util.Log;
 
 public final class Settings {
 	private static final String DEFAULT_USER_NAME = "";
-	private static final int DEFAULT_BOARD = R.string.board_value_small;
+	private static final int DEFAULT_BOARD = R.string.board_value_medium;
 	private static final int DEFAULT_LEVEL = R.string.level_value_easy;
 	private static final boolean DEFAULT_BOARD_FIT = true;
 
