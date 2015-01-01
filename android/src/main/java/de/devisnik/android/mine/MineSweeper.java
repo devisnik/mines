@@ -78,18 +78,18 @@ public class MineSweeper extends Activity {
 		}
 	}
 
-	private BoardController itsBoardController;
-	private BombsController itsBombsController;
-	private MessagesController itsMessagesController;
-	private TimerController itsTimerController;
-	private Settings itsSettings;
-	private IGame itsGame;
-	private GameTimer itsGameTimer;
-	private GameListener itsGameListener;
-	private boolean itsSkipCache;
-	private Notifier itsNotifier;
-	private IDevice mDevice;
-	private MenuItem mZoomMenu;
+	private BoardController boardController;
+	private BombsController bombsController;
+	private MessagesController messagesController;
+	private TimerController timerController;
+	private Settings settings;
+	private IGame game;
+	private GameTimer gameTimer;
+	private GameListener gameListener;
+	private boolean skipCache;
+	private Notifier notifier;
+	private IDevice device;
+	private MenuItem zoomMenuItem;
 
 	private class GameListener extends MinesGameAdapter {
 		@Override
@@ -118,22 +118,22 @@ public class MineSweeper extends Activity {
 		debugLog("onCreate");
 		super.onCreate(savedInstanceState);
 		getWindow().setBackgroundDrawable(null);
-		mDevice = ((MinesApplication) getApplication()).getDevice();
+		device = ((MinesApplication) getApplication()).getDevice();
 		setFullScreenMode();
 		handleIntentExtras();
-		itsSettings = new Settings(this);
-		GameInfo gameInfo = new GameInfo(itsSettings);
-		mDevice.setGameTitle(this, getTitle(), gameInfo.createTitle());
-		itsNotifier = new Notifier(this, gameInfo);
+		settings = new Settings(this);
+		GameInfo gameInfo = new GameInfo(settings);
+		device.setGameTitle(this, getTitle(), gameInfo.createTitle());
+		notifier = new Notifier(this, gameInfo);
 	}
 
 	private void setFullScreenMode() {
-		mDevice.setFullScreen(this);
+		device.setFullScreen(this);
 	}
 
 	private void handleIntentExtras() {
 		Intent intent = getIntent();
-		itsSkipCache = intent.getBooleanExtra(SKIP_CACHE, false);
+		skipCache = intent.getBooleanExtra(SKIP_CACHE, false);
 		intent.removeExtra(SKIP_CACHE);
 	}
 
@@ -144,30 +144,30 @@ public class MineSweeper extends Activity {
 	@Override
 	public Object onRetainNonConfigurationInstance() {
 		debugLog("onRetainNonConfigurationInstance");
-		return itsGame;
+		return game;
 	}
 
 	@Override
 	protected void onStart() {
 		debugLog("onStart");
-		itsNotifier.clearRunningGame();
+		notifier.clearRunningGame();
 		super.onStart();
-		setTheme(itsSettings.getTheme());
+		setTheme(settings.getTheme());
 		setContentView(R.layout.main);
 		GameInfoView levelView = (GameInfoView) findViewById(R.id.level);
 		if (levelView != null)
-			levelView.setText(new GameInfo(itsSettings).createTitle());
+			levelView.setText(new GameInfo(settings).createTitle());
 		CounterView timerView = (CounterView) findViewById(R.id.time);
 		CounterView bombsView = (CounterView) findViewById(R.id.count);
 		BoardView boardView = (BoardView) findViewById(R.id.board);
-		itsGame = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
-		itsGameListener = new GameListener();
-		itsGame.addListener(itsGameListener);
-		itsGameTimer = new GameTimer(itsGame);
-		itsTimerController = new TimerController(itsGame, timerView);
-		itsBombsController = new BombsController(itsGame, bombsView);
-		itsBoardController = new BoardController(itsGame, boardView, itsSettings);
-		itsMessagesController = new MessagesController(itsGame, this, itsSettings);
+		game = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
+		gameListener = new GameListener();
+		game.addListener(gameListener);
+		gameTimer = new GameTimer(game);
+		timerController = new TimerController(game, timerView);
+		bombsController = new BombsController(game, bombsView);
+		boardController = new BoardController(game, boardView, settings);
+		messagesController = new MessagesController(game, this, settings);
 		showIntroOnAppStart();
 	}
 
@@ -179,10 +179,10 @@ public class MineSweeper extends Activity {
 
 	private IGame readCachedGameOrCreateNew() {
 		IGame game = null;
-		if (!itsSkipCache)
+		if (!skipCache)
 			game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
 		if (game == null)
-			game = new GameCreator(itsSettings).create();
+			game = new GameCreator(settings).create();
 		return game;
 	}
 
@@ -190,22 +190,22 @@ public class MineSweeper extends Activity {
 	protected void onResume() {
 		debugLog("onResume");
 		super.onResume();
-		itsGameTimer.resume();
+		gameTimer.resume();
 	}
 
 	private void showIntroOnAppStart() {
 		int buildNumber = getBuildNumber();
-		if (buildNumber != itsSettings.getLastUsedBuild()) {
-			if (!itsGame.isStarted())
+		if (buildNumber != settings.getLastUsedBuild()) {
+			if (!game.isStarted())
 				showDialog(DIALOG_INTRO);
-			itsSettings.setLastUsedBuild(buildNumber);
+			settings.setLastUsedBuild(buildNumber);
 		}
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
 		new MenuInflater(this).inflate(R.menu.menu, menu);
-		mZoomMenu = menu.findItem(R.id.zoom);
+		zoomMenuItem = menu.findItem(R.id.zoom);
 		adjustZoomIcon();
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -223,28 +223,28 @@ public class MineSweeper extends Activity {
 
 	private boolean shouldHideZoomAction() {
 		// hide zoom/fit items if board is too small for zooming
-		return !itsBoardController.isBoardFullyVisibleForFieldSize(itsSettings.getZoomFieldSize()) || mDevice.isGoogleTv();
+		return !boardController.isBoardFullyVisibleForFieldSize(settings.getZoomFieldSize()) || device.isGoogleTv();
 	}
 
 	@Override
 	protected void onPause() {
 		debugLog("onPause");
-		itsGameTimer.pause();
-		new SaveGameCommand(this, GAME_CACHE_FILE, itsGame).execute();
+		gameTimer.pause();
+		new SaveGameCommand(this, GAME_CACHE_FILE, game).execute();
 		super.onPause();
 	}
 
 	@Override
 	protected void onStop() {
 		debugLog("onStop");
-		itsGameTimer.dispose();
-		itsBoardController.dispose();
-		itsBombsController.dispose();
-		itsTimerController.dispose();
-		itsMessagesController.dispose();
-		itsGame.removeListener(itsGameListener);
-		if (itsSettings.isNotify())
-			itsNotifier.notifyRunningGame(itsGame);
+		gameTimer.dispose();
+		boardController.dispose();
+		bombsController.dispose();
+		timerController.dispose();
+		messagesController.dispose();
+		game.removeListener(gameListener);
+		if (settings.isNotify())
+			notifier.notifyRunningGame(game);
 		super.onStop();
 	}
 
@@ -258,7 +258,7 @@ public class MineSweeper extends Activity {
 	protected void onRestart() {
 		debugLog("onRestart");
 		// make sure that cache is read on a restart
-		itsSkipCache = false;
+		skipCache = false;
 		super.onRestart();
 	}
 
@@ -278,9 +278,9 @@ public class MineSweeper extends Activity {
 	@Override
 	public boolean onKeyUp(final int keyCode, final KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_SEARCH) {
-			if (itsBoardController.isBoardFullyVisibleForFieldSize(itsSettings.getZoomFieldSize())) {
-				itsSettings.toogleZoom();
-				itsBoardController.onZoomChange();
+			if (boardController.isBoardFullyVisibleForFieldSize(settings.getZoomFieldSize())) {
+				settings.toogleZoom();
+				boardController.onZoomChange();
 			}
 			return true;
 		}
@@ -300,9 +300,9 @@ public class MineSweeper extends Activity {
 			showDialog(DIALOG_NEW_GAME);
 			break;
 		case R.id.zoom:
-			itsSettings.toogleZoom();
+			settings.toogleZoom();
 			adjustZoomIcon();
-			itsBoardController.onZoomChange();
+			boardController.onZoomChange();
 			break;
 		case R.id.help:
 			showDialog(DIALOG_INTRO);
@@ -312,32 +312,32 @@ public class MineSweeper extends Activity {
 	}
 
 	private void adjustZoomIcon() {
-		if (mZoomMenu == null) // menu not created yet
+		if (zoomMenuItem == null) // menu not created yet
 			return;
-		if (!itsSettings.isZoom())
+		if (!settings.isZoom())
 			setZoomMenuIconAndText(R.drawable.ic_action_zoom_in, R.string.menu_zoom);
 		else
 			setZoomMenuIconAndText(R.drawable.ic_action_zoom_out, R.string.menu_fit);
 	}
 
 	private void setZoomMenuIconAndText(final int iconId, final int textId) {
-		mZoomMenu.setIcon(iconId);
-		mZoomMenu.setTitle(textId);
+		zoomMenuItem.setIcon(iconId);
+		zoomMenuItem.setTitle(textId);
 	}
 
 	@Override
 	public void onWindowFocusChanged(final boolean hasFocus) {
 		if (hasFocus)
-			itsGameTimer.resume();
+			gameTimer.resume();
 		else
-			itsGameTimer.pause();
+			gameTimer.pause();
 		super.onWindowFocusChanged(hasFocus);
 	}
 
 	private void restartWithNewGame() {
 		final Intent intent = new Intent(this, MineSweeper.class);
 		intent.putExtra(SKIP_CACHE, true);
-		itsNotifier.disable();
+		notifier.disable();
 		finish();
 		startActivity(intent);
 	}
@@ -376,7 +376,7 @@ public class MineSweeper extends Activity {
 	}
 
 	private void onGameWon() {
-        Intent intent = HighScores.withTime(this, itsGame.getWatch().getTime());
+        Intent intent = HighScores.withTime(this, game.getWatch().getTime());
         startActivityForResult(intent, HIGHSCORES_REQUEST);
 	}
 

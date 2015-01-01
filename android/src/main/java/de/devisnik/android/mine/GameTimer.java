@@ -1,90 +1,91 @@
 package de.devisnik.android.mine;
 
+import android.os.Handler;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.os.Handler;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.MinesGameAdapter;
 
 public class GameTimer {
 
-	private Handler itsHandler;
-	private Timer itsTimer;
-	private boolean itsIsPaused = true;
-	protected boolean itsIsGameRunning;
-	private final IGame itsGame;
-	private MinesGameAdapter itsGameListener;
+	private Handler handler;
+	private Timer timer;
+	private boolean isPaused = true;
+	protected boolean isGameRunning;
+	private final IGame game;
+	private MinesGameAdapter gameListener;
 
 	public GameTimer(IGame game) {
-		this.itsGame = game;
-		itsIsGameRunning = game.isRunning();
-		itsGameListener = new MinesGameAdapter() {
+		this.game = game;
+		isGameRunning = game.isRunning();
+		gameListener = new MinesGameAdapter() {
 			@Override
 			public void onStart() {
-				itsIsGameRunning = true;
+				isGameRunning = true;
 				startTimer();
 			}
 
 			@Override
 			public void onBusted() {
-				itsIsGameRunning = false;
+				isGameRunning = false;
 				stopTimer();
 			}
 
 			@Override
 			public void onDisarmed() {
-				itsIsGameRunning = false;
+				isGameRunning = false;
 				stopTimer();
 			}
 		};
-		game.addListener(itsGameListener);
+		game.addListener(gameListener);
 	}
 
 	public void pause() {
-		if (!itsIsGameRunning || itsIsPaused)
+		if (!isGameRunning || isPaused)
 			return;
-		itsIsPaused = true;
+		isPaused = true;
 		stopTimer();
 	}
 
 	public void resume() {
-		if (!itsIsGameRunning || !itsIsPaused)
+		if (!isGameRunning || !isPaused)
 			return;
-		itsIsPaused = false;
+		isPaused = false;
 		startTimer();
 	}
 
 	private void stopTimer() {
-		if (itsTimer == null)
+		if (timer == null)
 			return;
-		itsTimer.cancel();
-		itsTimer = null;
+		timer.cancel();
+		timer = null;
 	}
 
 	private void startTimer() {
-		if (itsTimer != null)
+		if (timer != null)
 			return;
-		itsTimer = new Timer();
-		itsHandler = new Handler();
-		itsTimer.schedule(new TimerTask() {
+		timer = new Timer();
+		handler = new Handler();
+		timer.schedule(new TimerTask() {
 
-			@Override
-			public void run() {
-				itsHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                handler.post(new Runnable() {
 
-					@Override
-					public void run() {
-						itsGame.tickWatch();
-					}
-				});
-			}
-		}, 1000, 1000);
+                    @Override
+                    public void run() {
+                        game.tickWatch();
+                    }
+                });
+            }
+        }, 1000, 1000);
 	}
 
 	public void dispose() {
 		stopTimer();
-		itsGame.removeListener(itsGameListener);
+		game.removeListener(gameListener);
 	}
 	
 }

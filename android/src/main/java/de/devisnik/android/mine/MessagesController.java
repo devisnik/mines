@@ -7,25 +7,25 @@ import de.devisnik.mine.IMinesGameListener;
 
 public class MessagesController implements IMinesGameListener {
 
-	private final IGame itsGame;
-	private boolean itsIsStarted;
-	private final MineSweeper itsContext;
-	private final Settings itsSettings;
+	private final IGame game;
+	private boolean isStarted;
+	private final MineSweeper context;
+	private final Settings settings;
 
 	public MessagesController(final IGame game, final MineSweeper context, Settings settings) {
-		itsGame = game;
-		itsContext = context;
-		itsSettings = settings;
-		itsIsStarted = itsGame.isStarted();
-		itsGame.addListener(this);
+		this.game = game;
+		this.context = context;
+		this.settings = settings;
+		isStarted = this.game.isStarted();
+		game.addListener(this);
 	}
  
 	public void dispose() {
-		itsGame.removeListener(this);
+		game.removeListener(this);
 	}
 
 	private void showToast(int messageId, int length) {
-		Toast.makeText(itsContext, messageId, length).show();
+		Toast.makeText(context, messageId, length).show();
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class MessagesController implements IMinesGameListener {
 
 	@Override
 	public void onChange(final int flags, final int mines) {
-		if (!itsIsStarted)
+		if (!isStarted)
 			showToast(R.string.toast_longpress, Toast.LENGTH_SHORT);
 	}
 
@@ -47,11 +47,11 @@ public class MessagesController implements IMinesGameListener {
 
 	@Override
 	public void onStart() {
-		itsIsStarted = true;
+		isStarted = true;
 	}
 
 	private void runExplodeVibration() {
-		final Vibrator vibrator = itsSettings.getVibrator();
+		final Vibrator vibrator = settings.getVibrator();
 		if (vibrator != null)
 			vibrator.vibrate(new long[] { 1, 50, 100, 150, 200, 300 }, -1);
 	}

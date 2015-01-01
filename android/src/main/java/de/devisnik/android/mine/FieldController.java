@@ -16,10 +16,10 @@ public class FieldController {
     private static final int ZOOM_DURATION = 150;
     private static final Animation CLICK_ZOOM_ANIMATION = createClickAnimation();
 
-    private final IField itsField;
-    private final IFieldListener itsFieldListener;
-    private final FieldView itsView;
-    private final Settings itsSettings;
+    private final IField field;
+    private final IFieldListener fieldListener;
+    private final FieldView view;
+    private final Settings settings;
 
     private static Animation createClickAnimation() {
         ScaleAnimation animation = new ScaleAnimation(1, TARGET_ZOOM, 1, TARGET_ZOOM, ScaleAnimation.RELATIVE_TO_SELF,
@@ -35,30 +35,30 @@ public class FieldController {
 
     public FieldController(final FieldView view, final IField field, final Settings settings,
                            final BoardController.FieldViewListener viewListener, final IFieldListener fieldListener) {
-        itsView = view;
-        this.itsField = field;
-        itsSettings = settings;
-        updateField();
-        itsFieldListener = fieldListener;
-        itsField.addListener(itsFieldListener);
+        this.view = view;
+        this.field = field;
+        this.settings = settings;
+        updateView();
+        this.fieldListener = fieldListener;
+        this.field.addListener(this.fieldListener);
         view.setOnClickListener(viewListener);
         view.setOnLongClickListener(viewListener);
     }
 
-    public void updateField() {
-        itsView.setImageId(itsField.getImage());
-        itsView.setTouched(itsSettings.isTouchHighlight() && itsField.isTouched());
+    public void updateView() {
+        view.setImageId(field.getImage());
+        view.setTouched(settings.isTouchHighlight() && field.isTouched());
     }
 
     @SuppressLint("NewApi")
     public void showClickFeedback() {
-        if (!itsSettings.isAnimate()) {
+        if (!settings.isAnimate()) {
             return;
         }
         // ensure view is drawn fully without being clipped
-        itsView.bringToFront();
+        view.bringToFront();
         if (Build.VERSION.SDK_INT >= 17) {
-            itsView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+            view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
             CLICK_ZOOM_ANIMATION.setAnimationListener(new AnimationListener() {
 
                 @Override
@@ -71,19 +71,19 @@ public class FieldController {
 
                 @Override
                 public void onAnimationEnd(final Animation animation) {
-                    itsView.setLayerType(View.LAYER_TYPE_NONE, null);
+                    view.setLayerType(View.LAYER_TYPE_NONE, null);
                 }
             });
         }
-        itsView.startAnimation(CLICK_ZOOM_ANIMATION);
+        view.startAnimation(CLICK_ZOOM_ANIMATION);
     }
 
     public IField getField() {
-        return itsField;
+        return field;
     }
 
     public void dispose() {
-        itsField.removeListener(itsFieldListener);
+        field.removeListener(fieldListener);
     }
 
 }

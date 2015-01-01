@@ -13,42 +13,41 @@ import de.devisnik.mine.Point;
 
 public class BoardPanel extends ViewGroup {
 	private static int theFieldId;
-	private int itsDimX;
-	private int itsDimY;
-	private CachingDrawer itsFieldDrawer;
-	private int itsZoomModeFieldSize = -1;
-	private int itsFieldSize;
-	private boolean itsFitInParent;
-	private final StyleColorProvider itsColorProvider;
-	private FieldView[][] itsFields;
+	private int dimX;
+	private int dimY;
+	private CachingDrawer fieldDrawer;
+	private int zoomModeFieldSize = -1;
+	private int fieldSize;
+	private boolean isFitInParent;
+    private FieldView[][] fieldViews;
 
 	public BoardPanel(final Context context, final AttributeSet attrs) {
 		super(context, attrs);
 		final TypedArray ar = context.obtainStyledAttributes(attrs, R.styleable.BoardPanel);
-		itsColorProvider = new StyleColorProvider(ar);
+        StyleColorProvider itsColorProvider = new StyleColorProvider(ar);
 		ar.recycle();
 		if (!isInEditMode())
-			itsFieldDrawer = new FieldDrawer(itsColorProvider, null);
+			fieldDrawer = new FieldDrawer(itsColorProvider, null);
 		else {
-			itsFieldDrawer = new PreviewFieldDrawer(itsColorProvider, null);
+			fieldDrawer = new PreviewFieldDrawer(itsColorProvider, null);
 			setDimension(10, 10);
-			itsZoomModeFieldSize = 20;
+			zoomModeFieldSize = 20;
 		}
 	}
 
 	public void setDimension(final int dimX, final int dimY) {
-		itsDimX = dimX;
-		itsDimY = dimY;
+		this.dimX = dimX;
+		this.dimY = dimY;
 		if (getChildCount() == 0)
 			createFields();
 	}
 
 	public int getDimensionX() {
-		return itsDimX;
+		return dimX;
 	}
 
 	public int getDimensionY() {
-		return itsDimY;
+		return dimY;
 	}
 
 	private void setFieldsFocusable(final boolean value) {
@@ -64,18 +63,18 @@ public class BoardPanel extends ViewGroup {
 	}
 
 	public void setZoomModeFieldSize(final int size) {
-		itsZoomModeFieldSize = size;
+		zoomModeFieldSize = size;
         requestLayout();
 	}
 
 	public int getFieldSize() {
-		return itsFieldSize;
+		return fieldSize;
 	}
 
 	private void createFields() {
-		itsFields = new FieldView[itsDimX][itsDimY];
-		for (int posY = 0; posY < itsDimY; posY++)
-			for (int posX = 0; posX < itsDimX; posX++) {
+		fieldViews = new FieldView[dimX][dimY];
+		for (int posY = 0; posY < dimY; posY++)
+			for (int posX = 0; posX < dimX; posX++) {
 				FieldView field = createField();
 				// we can not rely on the child view order for positioning since
 				// this may change due to
@@ -84,32 +83,32 @@ public class BoardPanel extends ViewGroup {
 				// So we put the target position into a tag on the field view
 				field.setTag(R.id.FIELD_POSITION, new Point(posX, posY));
 				addView(field);
-				itsFields[posX][posY] = field;
+				fieldViews[posX][posY] = field;
 			}
 		wireFocusBorders();
 	}
 
 	private void wireFocusBorders() {
-		for (int row = 0; row < itsDimY; row++) {
+		for (int row = 0; row < dimY; row++) {
 			final FieldView left = getField(0, row);
-			final FieldView right = getField(itsDimX - 1, row);
+			final FieldView right = getField(dimX - 1, row);
 			left.setNextFocusLeftId(right.getId());
 			right.setNextFocusRightId(left.getId());
 		}
-		for (int column = 0; column < itsDimX; column++) {
+		for (int column = 0; column < dimX; column++) {
 			final FieldView top = getField(column, 0);
-			final FieldView bottom = getField(column, itsDimY - 1);
+			final FieldView bottom = getField(column, dimY - 1);
 			top.setNextFocusUpId(bottom.getId());
 			bottom.setNextFocusDownId(top.getId());
 		}
 	}
 
 	public FieldView getField(final int posX, final int posY) {
-		return itsFields[posX][posY];
+		return fieldViews[posX][posY];
 	}
 
 	private FieldView createField() {
-		final FieldView fieldView = new FieldView(getContext(), itsFieldDrawer);
+		final FieldView fieldView = new FieldView(getContext(), fieldDrawer);
 		fieldView.setId(theFieldId);
 		theFieldId++;
 		return fieldView;
@@ -120,25 +119,25 @@ public class BoardPanel extends ViewGroup {
 		Log.i("Mines.render", "BoardPanel.onMeasure()");
 		int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
 		int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
-		int fitSizeX = measureWidth / itsDimX;
-		int fitSizeY = measureHeight / itsDimY;
+		int fitSizeX = measureWidth / dimX;
+		int fitSizeY = measureHeight / dimY;
 		int fieldSizeInFitMode = Math.min(fitSizeX, fitSizeY);
 		int fieldSizeInOneDimensionFitMode = Math.max(fitSizeX, fitSizeY);
 
 		// always fill at least the available screen
-		itsFieldSize = Math.max(itsZoomModeFieldSize, fieldSizeInFitMode);
-		itsFitInParent = itsFieldSize == fieldSizeInFitMode;
-		setFieldsFocusable(itsFitInParent);
+		fieldSize = Math.max(zoomModeFieldSize, fieldSizeInFitMode);
+		isFitInParent = fieldSize == fieldSizeInFitMode;
+		setFieldsFocusable(isFitInParent);
 
 		// if only one side needs scrollbar, fill the other side
-		if (!itsFitInParent && itsFieldSize < fieldSizeInOneDimensionFitMode)
-			itsFieldSize = fieldSizeInOneDimensionFitMode;
+		if (!isFitInParent && fieldSize < fieldSizeInOneDimensionFitMode)
+			fieldSize = fieldSizeInOneDimensionFitMode;
 
-		setMeasuredDimension(itsFieldSize * itsDimX, itsFieldSize * itsDimY);
+		setMeasuredDimension(fieldSize * dimX, fieldSize * dimY);
 	}
 
 	public boolean fitsIntoParent() {
-		return itsFitInParent;
+		return isFitInParent;
 	}
 
 	/*
@@ -148,10 +147,10 @@ public class BoardPanel extends ViewGroup {
 	@Override
 	protected void onLayout(final boolean changed, final int l, final int t, final int r, final int b) {
 		Log.i("Mines.render", "BoardPanel.onLayout()");
-		for (int posX = 0; posX < itsDimX; posX++)
-			for (int posY = 0; posY < itsDimY; posY++)
-				itsFields[posX][posY].layout(posX * itsFieldSize, posY * itsFieldSize, (posX + 1) * itsFieldSize,
-						(posY + 1) * itsFieldSize);
+		for (int posX = 0; posX < dimX; posX++)
+			for (int posY = 0; posY < dimY; posY++)
+				fieldViews[posX][posY].layout(posX * fieldSize, posY * fieldSize, (posX + 1) * fieldSize,
+						(posY + 1) * fieldSize);
 	}
 
 }

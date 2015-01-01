@@ -6,24 +6,24 @@ import de.devisnik.mine.IStopWatchListener;
 
 public class TimerController {
 
-	private final CounterView itsCounter;
-	private IStopWatchListener itsListener;
-	private final IStopWatch itsWatch;
+	private final CounterView counterView;
+	private IStopWatchListener stopWatchListener;
+	private final IStopWatch stopWatch;
 
 	public TimerController(IGame game, CounterView counter) {
-		itsWatch = game.getWatch();
-		this.itsCounter = counter;
-		itsCounter.setValue(itsWatch.getTime());
-		itsListener = new IStopWatchListener() {
+		stopWatch = game.getWatch();
+		this.counterView = counter;
+		counterView.setValue(stopWatch.getTime());
+		stopWatchListener = new IStopWatchListener() {
 			@Override
 			public void onTimeChange(int time) {
-				itsCounter.setValue(itsWatch.getTime());
+				counterView.setValue(stopWatch.getTime());
 			}
 		};
-		itsWatch.addListener(itsListener);
+		stopWatch.addListener(stopWatchListener);
 	}
 
 	public void dispose() {
-		itsWatch.removeListener(itsListener);
+		stopWatch.removeListener(stopWatchListener);
 	}
 }

@@ -7,9 +7,9 @@ import de.devisnik.android.mine.drawable.CachingDrawer;
 
 final class FieldView extends View {
 
-	private final CachingDrawer itsFieldDrawer;
-	private int itsImageId;
-	private boolean itsTouched;
+	private final CachingDrawer fieldDrawer;
+	private int imageId;
+	private boolean isTouched;
 
 	public FieldView(final Context context) {
 		this(context, null);
@@ -17,34 +17,34 @@ final class FieldView extends View {
 
 	FieldView(final Context context, final CachingDrawer fieldDrawer) {
 		super(context);
-		this.itsFieldDrawer = fieldDrawer;
+		this.fieldDrawer = fieldDrawer;
 		setHapticFeedbackEnabled(false);
 		setLongClickable(true);
 		if (isInEditMode())
-			itsImageId = 10;
+			imageId = 10;
 	}
 
 	@Override
 	protected void onDraw(final Canvas canvas) {
 		super.onDraw(canvas);
-		if (itsFieldDrawer == null)
+		if (fieldDrawer == null)
 			return;
-		itsFieldDrawer.draw(itsImageId, canvas);
+		fieldDrawer.draw(imageId, canvas);
 		if (isFocused())
-			itsFieldDrawer.drawFocus(canvas);
-		if (itsTouched)
-			itsFieldDrawer.drawTouched(canvas);
+			fieldDrawer.drawFocus(canvas);
+		if (isTouched)
+			fieldDrawer.drawTouched(canvas);
 	}
 
 	public void setImageId(final int id) {
-		itsImageId = id;
+		imageId = id;
 		invalidate();
 	}
 
 	@Override
 	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
 		super.onSizeChanged(w, h, oldw, oldh);
-		itsFieldDrawer.setSize(w, h);
+		fieldDrawer.setSize(w, h);
 	}
 
 	@Override
@@ -54,6 +54,6 @@ final class FieldView extends View {
 	}
 
 	public void setTouched(final boolean touched) {
-		itsTouched = touched;
+		isTouched = touched;
 	}
 }

@@ -12,11 +12,11 @@ import android.widget.Scroller;
 
 public class BoardView extends ViewGroup implements OnGestureListener {
 
-	private GestureDetector itsGestureDetector;
-	private BoardPanel itsCanvas;
-	private boolean itsIsScrolling;
-	private boolean itsIsLandscape = false;
-	private final FlingRunnable itsFlinger;
+	private final boolean isLandscape;
+	private final FlingRunnable flingRunnable;
+	private GestureDetector gestureDetector;
+	private BoardPanel canvas;
+	private boolean isScrolling;
 
 	private class FlingRunnable implements Runnable {
 
@@ -29,16 +29,16 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		@Override
 		public void run() {
 			if (itsScroller.computeScrollOffset()) {
-				itsCanvas.scrollTo(itsScroller.getCurrX(), itsScroller.getCurrY());
+				canvas.scrollTo(itsScroller.getCurrX(), itsScroller.getCurrY());
 				post(this);
 			}
 		}
 
 		public void start(final int velocityX, final int velocityY) {
 			removeCallbacks(this);
-			itsScroller.fling(itsCanvas.getScrollX(), itsCanvas.getScrollY(), velocityX, velocityY, 0,
-					itsCanvas.getWidth() - getWidth() + getPaddingRight(), 0, itsCanvas.getHeight() - getHeight()
-							+ getPaddingBottom());
+			itsScroller.fling(canvas.getScrollX(), canvas.getScrollY(), velocityX, velocityY, 0,
+                    canvas.getWidth() - getWidth() + getPaddingRight(), 0, canvas.getHeight() - getHeight()
+                            + getPaddingBottom());
 			post(this);
 		}
 
@@ -54,9 +54,9 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 
 	public BoardView(final Context context, final AttributeSet attrs) {
 		super(context, attrs);
-		itsFlinger = new FlingRunnable();
+		flingRunnable = new FlingRunnable();
 		Configuration configuration = getResources().getConfiguration();
-		itsIsLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
+		isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
         setScrollbarFadingEnabled(true);
         setHorizontalFadingEdgeEnabled(true);
         setVerticalFadingEdgeEnabled(true);
@@ -97,7 +97,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 	}
 
 	public boolean fitsIntoArea(final int width, final int height) {
-		if (itsIsLandscape)
+		if (isLandscape)
 			return getWidth() < height || getHeight() < width;
 		return getWidth() < width || getHeight() < height;
 	}
@@ -146,30 +146,30 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 			return super.dispatchTouchEvent(event);
 		boolean flingStopped = false;
 		if (event.getAction() == MotionEvent.ACTION_DOWN)
-			flingStopped = itsFlinger.stop();
-		if (!itsGestureDetector.onTouchEvent(event))
-			if (!itsIsScrolling && !flingStopped)
+			flingStopped = flingRunnable.stop();
+		if (!gestureDetector.onTouchEvent(event))
+			if (!isScrolling && !flingStopped)
 				// dispatch event so that click/long-press on fields get handled
 				return super.dispatchTouchEvent(event);
 		if (event.getAction() == MotionEvent.ACTION_MOVE) {
-			if (!itsIsScrolling) {
+			if (!isScrolling) {
 				// we scroll the board, dispatch a cancel event so that
 				// click/long-press get cancelled
 				MotionEvent cancelEvent = MotionEvent.obtain(event);
 				cancelEvent.setAction(MotionEvent.ACTION_CANCEL);
 				super.dispatchTouchEvent(cancelEvent);
 				cancelEvent.recycle();
-				itsIsScrolling = true;
+				isScrolling = true;
 			}
             awakenScrollBars();
         }
 		if (event.getAction() == MotionEvent.ACTION_UP)
-			itsIsScrolling = false;
+			isScrolling = false;
 		return true;
 	}
 
 	public FieldView getField(final int posX, final int posY) {
-		if (itsIsLandscape) {
+		if (isLandscape) {
 			int height = getCanvas().getDimensionY();
 			return getCanvas().getField(posY, -posX + height - 1);
 		}
@@ -190,7 +190,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 	 */
 	@Override
 	public boolean onFling(final MotionEvent e1, final MotionEvent e2, final float velocityX, final float velocityY) {
-		itsFlinger.start(-Math.round(velocityX), -Math.round(velocityY));
+		flingRunnable.start(-Math.round(velocityX), -Math.round(velocityY));
 		return true;
 	}
 
@@ -266,24 +266,24 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 	}
 
 	private BoardPanel getCanvas() {
-		if (itsCanvas == null)
-			itsCanvas = (BoardPanel) findViewById(R.id.board_panel);
-		return itsCanvas;
+		if (canvas == null)
+			canvas = (BoardPanel) findViewById(R.id.board_panel);
+		return canvas;
 	}
 
 	public void setSize(final int fieldsX, final int fieldsY) {
 
-		itsFlinger.stop();
-		if (itsGestureDetector == null)
-			itsGestureDetector = new GestureDetector(getContext(), this);
-		if (itsIsLandscape)
+		flingRunnable.stop();
+		if (gestureDetector == null)
+			gestureDetector = new GestureDetector(getContext(), this);
+		if (isLandscape)
 			getCanvas().setDimension(fieldsY, fieldsX);
 		else
 			getCanvas().setDimension(fieldsX, fieldsY);
 	}
 
 	public void setFieldSizeAndTouchFocus(final int fieldSize, final boolean touchFocus) {
-		itsFlinger.stop();
+		flingRunnable.stop();
 		getCanvas().setZoomModeFieldSize(fieldSize);
 		getCanvas().setFieldsFocusableInTouchMode(touchFocus);
 		getCanvas().scrollTo(0, 0);

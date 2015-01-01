@@ -7,15 +7,14 @@ import android.os.Build;
 import android.util.Log;
 
 public class MinesInfo {
-	private final Context itsContext;
+	private final Context context;
 
 	public MinesInfo(Context context) {
-		itsContext = context;
-
+		this.context = context;
 	}
 
 	private PackageInfo getPackageInfo() throws NameNotFoundException {
-		return itsContext.getPackageManager().getPackageInfo(itsContext.getPackageName(), 0);
+		return context.getPackageManager().getPackageInfo(context.getPackageName(), 0);
 	}
 
 	public String getQueryString() {

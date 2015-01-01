@@ -1,38 +1,38 @@
 package de.devisnik.android.mine;
 
-import java.util.Arrays;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.preference.PreferenceManager;
 import android.widget.Spinner;
 
+import java.util.Arrays;
+
 public class PreferenceSpinnerController {
-	private final String itsPrefKey;
-	private final Spinner itsSpinner;
-	private CharSequence[] itsValues;
+	private final String prefKey;
+	private final Spinner spinner;
+	private CharSequence[] values;
 
 	PreferenceSpinnerController(int prefKeyId, int valuesId, Spinner spinner) {
-		itsSpinner = spinner;
-		itsPrefKey = getContext().getString(prefKeyId);
-		itsValues = getValues(valuesId);
+		this.spinner = spinner;
+		prefKey = getContext().getString(prefKeyId);
+		values = getValues(valuesId);
 		reset();
 	}
 
 	void reset() {
 		SharedPreferences preferences = getPreferences();
-		String oldValue = preferences.getString(itsPrefKey, "");
-		int index = Arrays.asList(itsValues).indexOf(oldValue);
-		itsSpinner.setSelection(index);
+		String oldValue = preferences.getString(prefKey, "");
+		int index = Arrays.asList(values).indexOf(oldValue);
+		spinner.setSelection(index);
 	}
 
 	void updatePreference() {
-		writePreference(itsPrefKey, itsValues[itsSpinner.getSelectedItemPosition()].toString());
+		writePreference(prefKey, values[spinner.getSelectedItemPosition()].toString());
 	}
 
 	private Context getContext() {
-		return itsSpinner.getContext();
+		return spinner.getContext();
 	}
 
 	private void writePreference(String key, String value) {

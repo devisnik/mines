@@ -10,7 +10,7 @@ import de.devisnik.android.mine.device.IDevice;
 
 public class MinesPreferences extends PreferenceActivity {
 
-	private final SummaryUpdater itsSummaryUpdater = new SummaryUpdater();
+	private final SummaryUpdater summaryUpdater = new SummaryUpdater();
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
@@ -25,16 +25,16 @@ public class MinesPreferences extends PreferenceActivity {
 
 	private void adjustListPreference(final int key) {
 		final ListPreference preference = (ListPreference) findPreference(getString(key));
-		itsSummaryUpdater.onPreferenceChange(preference, preference.getValue());
-		preference.setOnPreferenceChangeListener(itsSummaryUpdater);
+		summaryUpdater.onPreferenceChange(preference, preference.getValue());
+		preference.setOnPreferenceChangeListener(summaryUpdater);
 	}
 
 	private void adjustStringPreference(final int key) {
 		final EditTextPreference preference = (EditTextPreference) findPreference(getString(key));
 		final String value = preference.getText();
-		itsSummaryUpdater
+		summaryUpdater
 				.onPreferenceChange(preference, value == null ? getString(R.string.pref_value_not_set) : value);
-		preference.setOnPreferenceChangeListener(itsSummaryUpdater);
+		preference.setOnPreferenceChangeListener(summaryUpdater);
 	}
 
 	@Override

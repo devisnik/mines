@@ -9,40 +9,40 @@ import de.devisnik.mine.IGame;
 
 public class Notifier {
 	private static final int GAME_INFO_ID = 1;
-	private final Context itsContext;
-	private final NotificationManager mNotificationManager;
-	private final Notification itsNotification;
-	private boolean itsIsDisabled;
-	private GameInfo itsGameInfo;
+	private final Context context;
+	private final NotificationManager notificationManager;
+	private final Notification notification;
+	private boolean isDisabled;
+	private GameInfo gameInfo;
 
 	public Notifier(MineSweeper context, GameInfo gameInfo) {
-		itsContext = context.getApplicationContext();
-		itsGameInfo = gameInfo;
-		mNotificationManager = (NotificationManager) context
+		this.context = context.getApplicationContext();
+		this.gameInfo = gameInfo;
+		notificationManager = (NotificationManager) context
 				.getSystemService(Context.NOTIFICATION_SERVICE);
-		itsNotification = new Notification(R.drawable.bomb_notification, null, System.currentTimeMillis());
-		itsNotification.flags |= Notification.FLAG_AUTO_CANCEL;
+		notification = new Notification(R.drawable.bomb_notification, null, System.currentTimeMillis());
+		notification.flags |= Notification.FLAG_AUTO_CANCEL;
 	}
 
 	public void notifyRunningGame(IGame game) {
-		if (itsIsDisabled || !game.isRunning())
+		if (isDisabled || !game.isRunning())
 			return;
-		CharSequence contentTitle = itsGameInfo.createTitle();
-		CharSequence contentText = itsGameInfo.createStatus(game);
-		Intent notificationIntent = new Intent(itsContext, MineSweeper.class);
+		CharSequence contentTitle = gameInfo.createTitle();
+		CharSequence contentText = gameInfo.createStatus(game);
+		Intent notificationIntent = new Intent(context, MineSweeper.class);
 		//make sure we open game activity if currently settings or highscores is active
 		notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		PendingIntent contentIntent = PendingIntent.getActivity(itsContext, 0, notificationIntent,
+		PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent,
 				0);
-		itsNotification.setLatestEventInfo(itsContext, contentTitle, contentText, contentIntent);
-		mNotificationManager.notify(GAME_INFO_ID, itsNotification);
+		notification.setLatestEventInfo(context, contentTitle, contentText, contentIntent);
+		notificationManager.notify(GAME_INFO_ID, notification);
 	}
 	
 	public void clearRunningGame() {
-		mNotificationManager.cancel(GAME_INFO_ID);
+		notificationManager.cancel(GAME_INFO_ID);
 	}
 	
 	public void disable() {
-		itsIsDisabled = true;
+		isDisabled = true;
 	}
 }

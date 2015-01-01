@@ -14,14 +14,14 @@ public final class Settings {
 	private static final int DEFAULT_LEVEL = R.string.level_value_easy;
 	private static final boolean DEFAULT_BOARD_FIT = true;
 
-	private final SharedPreferences itsPreferences;
-	private final Resources itsResources;
-	private final Context itsContext;
+	private final SharedPreferences preferences;
+	private final Resources resources;
+	private final Context context;
 
 	public Settings(final Context context) {
-		itsContext = context;
-		itsResources = context.getResources();
-		itsPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+		this.context = context;
+		resources = context.getResources();
+		preferences = PreferenceManager.getDefaultSharedPreferences(context);
 		ensureNonUiPreferenceDefaults();
 	}
 
@@ -35,33 +35,33 @@ public final class Settings {
 	}
 
 	public String getString(final int id) {
-		return itsResources.getString(id);
+		return resources.getString(id);
 	}
 
 	public String[] getStringArray(final int id) {
-		return itsResources.getStringArray(id);
+		return resources.getStringArray(id);
 	}
 
 	private String getStringPreference(final int id, final String defValue) {
-		return itsPreferences.getString(getString(id), defValue);
+		return preferences.getString(getString(id), defValue);
 	}
 
 	private int getIntPreference(final int id, final int defValue) {
-		return itsPreferences.getInt(getString(id), defValue);
+		return preferences.getInt(getString(id), defValue);
 	}
 
 	private boolean getBooleanPreference(final int id, final boolean defValue) {
-		return itsPreferences.getBoolean(getString(id), defValue);
+		return preferences.getBoolean(getString(id), defValue);
 	}
 
 	private void ensureIsInitializedBooleanPreference(final int id, final boolean defaultValue) {
-		if (itsPreferences.contains(getString(id)))
+		if (preferences.contains(getString(id)))
 			return;
 		writeBoolean(id, defaultValue);
 	}
 
 	private void ensureIsInitializedStringPreference(final int id, final int defaultValueId) {
-		if (itsPreferences.contains(getString(id)))
+		if (preferences.contains(getString(id)))
 			return;
 		writeString(id, getString(defaultValueId));
 	}
@@ -81,11 +81,11 @@ public final class Settings {
 	public int getZoomFieldSize() {
 		final String size = getFieldSizeString();
 		if (equals(size, R.string.field_value_small))
-			return itsResources.getDimensionPixelSize(R.dimen.field_size_small);
+			return resources.getDimensionPixelSize(R.dimen.field_size_small);
 		if (equals(size, R.string.field_value_medium))
-			return itsResources.getDimensionPixelSize(R.dimen.field_size_medium);
+			return resources.getDimensionPixelSize(R.dimen.field_size_medium);
 		if (equals(size, R.string.field_value_large))
-			return itsResources.getDimensionPixelSize(R.dimen.field_size_large);
+			return resources.getDimensionPixelSize(R.dimen.field_size_large);
 		throw new IllegalStateException("unknown field size: " + size);
 	}
 
@@ -100,22 +100,22 @@ public final class Settings {
 	public int[] getBoardDimension() {
 		String board = getBoard();
 		if (equals(R.string.board_value_small, board))
-			return itsResources.getIntArray(R.array.board_size_small);
+			return resources.getIntArray(R.array.board_size_small);
 		if (equals(R.string.board_value_medium, board))
-			return itsResources.getIntArray(R.array.board_size_medium);
+			return resources.getIntArray(R.array.board_size_medium);
 		if (equals(R.string.board_value_large, board))
-			return itsResources.getIntArray(R.array.board_size_large);
+			return resources.getIntArray(R.array.board_size_large);
 		if (equals(R.string.board_value_huge, board))
-			return itsResources.getIntArray(R.array.board_size_huge);
+			return resources.getIntArray(R.array.board_size_huge);
 		if (equals(R.string.board_value_giant, board))
-			return itsResources.getIntArray(R.array.board_size_giant);
+			return resources.getIntArray(R.array.board_size_giant);
 		throw new IllegalStateException("unknown board size: " + board);
 	}
 
 	public Vibrator getVibrator() {
 		Log.d("Settings", "vibration on? " + isVibrate());
 		if (isVibrate())
-			return (Vibrator) itsContext.getSystemService(Context.VIBRATOR_SERVICE);
+			return (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 		return null;
 	}
 
@@ -172,21 +172,21 @@ public final class Settings {
 
 	private void writeBoolean(final int id, final boolean value) {
 		String key = getString(id);
-		final Editor editor = itsPreferences.edit();
+		final Editor editor = preferences.edit();
 		editor.putBoolean(key, value);
 		editor.commit();
 	}
 
 	private void writeString(final int id, final String value) {
 		String key = getString(id);
-		final Editor editor = itsPreferences.edit();
+		final Editor editor = preferences.edit();
 		editor.putString(key, value);
 		editor.commit();
 	}
 
 	private void writeInt(final int id, final int value) {
 		String key = getString(id);
-		final Editor editor = itsPreferences.edit();
+		final Editor editor = preferences.edit();
 		editor.putInt(key, value);
 		editor.commit();
 	}
@@ -196,7 +196,7 @@ public final class Settings {
 	}
 
 	private boolean isSetUserName() {
-		return itsPreferences.contains(getString(R.string.prefkey_user_name));
+		return preferences.contains(getString(R.string.prefkey_user_name));
 	}
 
 	private boolean isInvalidUserName(final String value) {

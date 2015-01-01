@@ -15,7 +15,7 @@ public class BoardController {
 	class FieldListener extends SimpleFieldListener {
 		@Override
 		protected void onChange(IField field) {
-			getFieldController(field).updateField();
+			getFieldController(field).updateView();
 		}
 	}
 

@@ -5,18 +5,18 @@ import android.os.Bundle;
 
 public class Preview extends Activity {
 
-	private Settings itsSettings;
+	private Settings settings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		itsSettings = new Settings(this);
+		settings = new Settings(this);
 	}
 	
 	@Override
 	protected void onStart() {
 		super.onStart();
-		setTheme(itsSettings.getTheme());
+		setTheme(settings.getTheme());
 		setContentView(R.layout.main);
 		BoardView boardView = (BoardView) findViewById(R.id.board);
 		boardView.setSize(4, 4);
