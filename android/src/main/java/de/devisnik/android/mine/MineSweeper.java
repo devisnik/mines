@@ -376,9 +376,8 @@ public class MineSweeper extends Activity {
 	}
 
 	private void onGameWon() {
-		Intent intent = new Intent(this, HighScores.class);
-		intent.putExtra(HighScores.EXTRA_TIME, itsGame.getWatch().getTime());
-		startActivityForResult(intent, HIGHSCORES_REQUEST);
+        Intent intent = HighScores.withTime(this, itsGame.getWatch().getTime());
+        startActivityForResult(intent, HIGHSCORES_REQUEST);
 	}
 
 	@Override

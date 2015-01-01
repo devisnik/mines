@@ -1,7 +1,5 @@
 package de.devisnik.android.mine;
 
-import java.util.Date;
-
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -21,15 +19,17 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.CursorAdapter;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+
+import java.util.Date;
+
 import de.devisnik.android.mine.data.DBHelper;
 import de.devisnik.android.mine.data.Score;
 import de.devisnik.android.mine.device.IDevice;
 
 public class HighScores extends ListActivity {
 
-	public static final int RESULT_NO_HIGHSCORE = RESULT_FIRST_USER;
-	public static final String EXTRA_TIME = "time";
-
+	private static final int RESULT_NO_HIGHSCORE = RESULT_FIRST_USER;
+	private static final String EXTRA_TIME = "time";
 	private static final Logger LOGGER = new Logger(HighScores.class);
 	private static final int MAX_ENTRIES = 20;
 	private static final String BUNDLE_SCORE = "bundle_score";
@@ -67,7 +67,7 @@ public class HighScores extends ListActivity {
 
 				@Override
 				public void onClick(final DialogInterface dialog, final int which) {
-					itsDbHelper.delete(score);
+					dbHelper.delete(score);
 					updateList();
 				}
 			});
@@ -89,34 +89,40 @@ public class HighScores extends ListActivity {
 
 				private void updateName(final String inputName) {
 					score.name = inputName;
-					itsDbHelper.updateName(score);
-					itsSettings.setUserNameIfNotSet(inputName);
+					dbHelper.updateName(score);
+					settings.setUserNameIfNotSet(inputName);
 				}
 			});
 		}
 
 	}
 
-	private Settings itsSettings;
-	private DBHelper itsDbHelper;
-	private Score itsContextScore;
-	private int itsTime;
+	private Settings settings;
+	private DBHelper dbHelper;
+	private Score storedScore;
+	private int time;
+
+    public static Intent withTime(Context context, int time) {
+        Intent intent = new Intent(context, HighScores.class);
+        intent.putExtra(EXTRA_TIME, time);
+        return intent;
+    }
 
 	@Override
 	protected void onCreate(final Bundle savedInstanceState) {
 		debugLog("onCreate");
 		super.onCreate(savedInstanceState);
 		getDevice().enableHomeButton(this);
-		itsTime = getIntent().getIntExtra(EXTRA_TIME, -1);
+		time = getIntent().getIntExtra(EXTRA_TIME, -1);
 		getIntent().removeExtra(EXTRA_TIME);
 
-		itsSettings = new Settings(this);
-		itsDbHelper = new DBHelper(this);
-		setTheme(itsSettings.getTheme());
+		settings = new Settings(this);
+		dbHelper = new DBHelper(this);
+		setTheme(settings.getTheme());
 
 		setContentView(R.layout.scores);
 		((MinesApplication) getApplication()).getDevice().setHighScoresTitle(this, getTitle(),
-				new GameInfo(itsSettings).createTitle());
+				new GameInfo(settings).createTitle());
 		initScoresList();
 	}
 
@@ -127,7 +133,7 @@ public class HighScores extends ListActivity {
 	@Override
 	protected void onDestroy() {
 		debugLog("onDestroy");
-		itsDbHelper.close();
+		dbHelper.close();
 		super.onDestroy();
 	}
 
@@ -135,12 +141,12 @@ public class HighScores extends ListActivity {
 	protected void onStart() {
 		debugLog("onStart");
 		super.onStart();
-		if (itsTime < 0)
+		if (time < 0)
 			// just show list if no score info included in intent
 			return;
-		itsContextScore = storeIfHighScore(itsSettings.getUserName(), itsTime);
-		itsTime = -1; // make sure we don't store again on restart
-		if (itsContextScore == null) {
+		storedScore = storeIfHighScore(settings.getUserName(), time);
+		time = -1; // make sure we don't store again on restart
+		if (storedScore == null) {
 			setResult(RESULT_NO_HIGHSCORE);
 			finish();
 		} else
@@ -148,7 +154,7 @@ public class HighScores extends ListActivity {
 	}
 
 	private Cursor createCursor() {
-		return itsDbHelper.createCursor(itsSettings.getBoard(), itsSettings.getLevel());
+		return dbHelper.createCursor(settings.getBoard(), settings.getLevel());
 	}
 
 	public Score storeIfHighScore(final String name, final int seconds) {
@@ -166,7 +172,7 @@ public class HighScores extends ListActivity {
 		Cursor cursor = createCursor();
 		try {
 			while (cursor.moveToNext())
-				itsDbHelper.delete(cursor);
+				dbHelper.delete(cursor);
 			((CursorAdapter) getListAdapter()).getCursor().requery();
 		} finally {
 			cursor.close();
@@ -179,13 +185,13 @@ public class HighScores extends ListActivity {
 		if (!cursor.moveToPosition(MAX_ENTRIES - 1)) // adding entries
 			// possible
 			return true;
-		Score lastScore = itsDbHelper.readScore(cursor);
+		Score lastScore = dbHelper.readScore(cursor);
 		return lastScore.time > seconds;
 	}
 
 	private Score storeHighScore(final String name, final int seconds, final Cursor cursor) {
 		final Score score = createScore(name, seconds);
-		long insertId = itsDbHelper.insert(score);
+		long insertId = dbHelper.insert(score);
 		cursor.requery();
 		deleteObsoleteEntries(cursor);
 		Score insertedScore = findScore(insertId, cursor);
@@ -200,15 +206,15 @@ public class HighScores extends ListActivity {
 
 	private void deleteObsoleteEntries(final Cursor cursor) {
 		while (cursor.moveToPosition(MAX_ENTRIES)) {
-			itsDbHelper.delete(cursor);
+			dbHelper.delete(cursor);
 			cursor.requery();
 		}
 	}
 
 	private Score createScore(final String name, final int seconds) {
 		final Score score = new Score();
-		score.board = itsSettings.getBoard();
-		score.level = itsSettings.getLevel();
+		score.board = settings.getBoard();
+		score.level = settings.getLevel();
 		score.name = name;
 		score.time = seconds;
 		score.date = new Date().getTime();
@@ -218,7 +224,7 @@ public class HighScores extends ListActivity {
 	private Score findScore(final long scoreId, final Cursor cursor) {
 		cursor.move(Integer.MIN_VALUE);
 		while (cursor.moveToNext()) {
-			Score score = itsDbHelper.readScore(cursor);
+			Score score = dbHelper.readScore(cursor);
 			if (score.id == scoreId)
 				return score;
 		}
@@ -231,7 +237,7 @@ public class HighScores extends ListActivity {
 		ViewGroup title = (ViewGroup) getLayoutInflater().inflate(R.layout.score_plain, null);
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		Cursor cursor = (Cursor) getListView().getItemAtPosition(info.position);
-		Score score = itsDbHelper.readScore(cursor);
+		Score score = dbHelper.readScore(cursor);
 		ScoreBinder.bind(title, score);
 		menu.setHeaderView(title);
 		super.onCreateContextMenu(menu, v, menuInfo);
@@ -242,7 +248,7 @@ public class HighScores extends ListActivity {
 	public boolean onContextItemSelected(final MenuItem item) {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		Cursor cursor = (Cursor) getListView().getItemAtPosition(info.position);
-		itsContextScore = itsDbHelper.readScore(cursor);
+		storedScore = dbHelper.readScore(cursor);
 		switch (item.getItemId()) {
 		case R.id.edit_score:
 			showDialog(EDIT_SCORE_DIALOG);
@@ -256,8 +262,8 @@ public class HighScores extends ListActivity {
 			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.score_share_title));
 			shareIntent.putExtra(
 					android.content.Intent.EXTRA_TEXT,
-					getString(R.string.score_share_message, new GameInfo(itsSettings).createTitle(),
-							itsContextScore.time));
+					getString(R.string.score_share_message, new GameInfo(settings).createTitle(),
+							storedScore.time));
 			startActivity(Intent.createChooser(shareIntent, getString(R.string.score_menu_share)));
 
 		default:
@@ -267,13 +273,13 @@ public class HighScores extends ListActivity {
 
 	@Override
 	protected void onSaveInstanceState(final Bundle outState) {
-		outState.putSerializable(BUNDLE_SCORE, itsContextScore);
+		outState.putSerializable(BUNDLE_SCORE, storedScore);
 		super.onSaveInstanceState(outState);
 	}
 
 	@Override
 	protected void onRestoreInstanceState(final Bundle state) {
-		itsContextScore = (Score) state.getSerializable(BUNDLE_SCORE);
+		storedScore = (Score) state.getSerializable(BUNDLE_SCORE);
 		super.onRestoreInstanceState(state);
 	}
 
@@ -301,19 +307,19 @@ public class HighScores extends ListActivity {
 	}
 
 	private Dialog onCreateDeleteScoreDialog() {
-		AlertDialog dialog = new DeleteScoreDialogBuilder(itsContextScore).create();
+		AlertDialog dialog = new DeleteScoreDialogBuilder(storedScore).create();
 		addRemovingDismissListener(dialog, DELETE_SCORE_DIALOG);
 		return dialog;
 	}
 
 	private Dialog onCreateEditScoreDialog() {
-		AlertDialog dialog = new EditScoreDialogBuilder(itsContextScore).setTitle(R.string.score_edit_title).create();
+		AlertDialog dialog = new EditScoreDialogBuilder(storedScore).setTitle(R.string.score_edit_title).create();
 		addRemovingDismissListener(dialog, EDIT_SCORE_DIALOG);
 		return dialog;
 	}
 
 	private Dialog onCreateNewScoreDialog() {
-		AlertDialog dialog = new EditScoreDialogBuilder(itsContextScore).setTitle(R.string.score_new_title).create();
+		AlertDialog dialog = new EditScoreDialogBuilder(storedScore).setTitle(R.string.score_new_title).create();
 		addRemovingDismissListener(dialog, NEW_SCORE_DIALOG);
 		return dialog;
 	}
@@ -334,7 +340,7 @@ public class HighScores extends ListActivity {
 
 			@Override
 			public void bindView(final View view, final Context context, final Cursor cursor) {
-				ScoreBinder.bind(view, itsDbHelper.readScore(cursor));
+				ScoreBinder.bind(view, dbHelper.readScore(cursor));
 			}
 		};
 		setListAdapter(adapter);
