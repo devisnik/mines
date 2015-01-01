@@ -10,20 +10,20 @@ import android.graphics.Paint.Cap;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.Drawable;
 
-public class BombDrawable extends Drawable {
+public final class BombDrawable extends Drawable {
 
-	private Paint itsPaint;
-	private Path itsCross;
-	private Path itsX;
+	private final Paint paint;
+	private final Path cross;
+	private final Path itsX;
 
 	public BombDrawable(int innerColor, int outerColor) {
 		super();
-		itsPaint = new Paint();
-		itsPaint.setShader(new RadialGradient(60, 60, 40, innerColor, outerColor, TileMode.CLAMP));
-		itsPaint.setColor(innerColor);
-		itsPaint.setAntiAlias(true);
-		itsPaint.setStrokeCap(Cap.ROUND);
-		itsCross = createCross();
+		paint = new Paint();
+		paint.setShader(new RadialGradient(60, 60, 40, innerColor, outerColor, TileMode.CLAMP));
+		paint.setColor(innerColor);
+		paint.setAntiAlias(true);
+		paint.setStrokeCap(Cap.ROUND);
+		cross = createCross();
 		itsX = createX(28);
 	}
 
@@ -51,14 +51,14 @@ public class BombDrawable extends Drawable {
 		int height = getBounds().height();
 //		int min = Math.min(width, height);
 		canvas.scale(width/100f, height/100f);
-		itsPaint.setStyle(Paint.Style.STROKE);
-		itsPaint.setStrokeWidth(5f);
-		canvas.drawPath(itsCross, itsPaint);
-		itsPaint.setStyle(Paint.Style.STROKE);
-		itsPaint.setStrokeWidth(3.5f);
-		canvas.drawPath(itsX, itsPaint);
-		itsPaint.setStyle(Paint.Style.FILL);
-		canvas.drawOval(new RectF(30,30,70,70), itsPaint);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(5f);
+		canvas.drawPath(cross, paint);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(3.5f);
+		canvas.drawPath(itsX, paint);
+		paint.setStyle(Paint.Style.FILL);
+		canvas.drawOval(new RectF(30,30,70,70), paint);
 		canvas.restore();
 	}
 

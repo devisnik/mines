@@ -16,16 +16,16 @@ public class PreviewFieldDrawer extends CachingDrawer {
 		return new LayerDrawable(drawables);
 	}
 
-	private final StyleColorProvider itsColorProvider;
+	private final StyleColorProvider colorProvider;
 
 	public PreviewFieldDrawer(final StyleColorProvider colorProvider, final Typeface face) {
 		super(10, 10);
-		this.itsColorProvider = colorProvider;
+		this.colorProvider = colorProvider;
 		initDrawables(face);
 	}
 
 	private int getColor(final ColorId id) {
-		return itsColorProvider.getValue(id);
+		return colorProvider.getValue(id);
 	}
 
 	public void drawFocus(final Canvas canvas) {

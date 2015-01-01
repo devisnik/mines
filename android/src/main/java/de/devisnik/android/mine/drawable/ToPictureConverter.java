@@ -6,7 +6,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PictureDrawable;
 
-public final class ToPictureConverter implements IDrawableConverter {
+public final class ToPictureConverter implements DrawableConverter {
 
 	@Override
 	public Drawable convert(Drawable original) {

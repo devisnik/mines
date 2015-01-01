@@ -7,7 +7,7 @@ import android.graphics.Bitmap.Config;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 
-public final class ToBitmapConverter implements IDrawableConverter {
+public final class ToBitmapConverter implements DrawableConverter {
 
 	@Override
 	public Drawable convert(Drawable original) {

@@ -7,28 +7,26 @@ import android.graphics.Path;
 import android.graphics.Path.Direction;
 import android.graphics.drawable.Drawable;
 
-public class TouchDrawable extends Drawable {
+public final class TouchDrawable extends Drawable {
 
-	private Paint itsPaint;
-	private Path itsCircle;
-	private final int itsColor;
+	private final Paint paint;
+	private final Path circle;
+	private final int color;
 
 	public TouchDrawable(int color) {
-		this.itsColor = color;
-		itsPaint = new Paint();
-		itsPaint.setAntiAlias(true);
-		itsCircle = createCircle();
+		this.color = color;
+		paint = new Paint();
+		paint.setAntiAlias(true);
+		circle = createCircle();
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
 		canvas.save();
 		canvas.scale(getBounds().width() / 100f, getBounds().height() / 100f);
-		itsPaint.setStyle(Paint.Style.FILL);
-		itsPaint.setColor(itsColor);
-		canvas.drawPath(itsCircle, itsPaint);
-//		itsPaint.setStrokeWidth(5);
-//		canvas.drawPath(itsPost, itsPaint);
+		paint.setStyle(Paint.Style.FILL);
+		paint.setColor(color);
+		canvas.drawPath(circle, paint);
 		canvas.restore();
 	}
 

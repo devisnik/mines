@@ -7,31 +7,31 @@ import de.devisnik.mine.Point;
 
 public abstract class CachingDrawer {
 
-	private final SparseArray<Drawable> itsDrawables = new SparseArray<Drawable>();
-	private final DrawableStore itsStore = new DrawableStore(new ToBitmapConverter());
-	private Point itsSize;
+	private final SparseArray<Drawable> drawables = new SparseArray<Drawable>();
+	private final DrawableStore store = new DrawableStore(new ToBitmapConverter());
+	private Point size;
 
 	public CachingDrawer(final int width, final int height) {
-		itsSize = new Point(width, height);
+		size = new Point(width, height);
 	}
 
 	public Point getSize() {
-		return itsSize;
+		return size;
 	}
 
 	private Drawable get(final int id) {
-		Drawable stored = itsStore.get(id);
+		Drawable stored = store.get(id);
 		if (stored != null)
 			return stored;
-		stored = itsStore.put(id, prepareDrawable(id));
+		stored = store.put(id, prepareDrawable(id));
 		if (stored == null)
-			return itsDrawables.get(id);
+			return drawables.get(id);
 		return stored;
 	}
 
 	private Drawable prepareDrawable(final int id) {
-		Drawable drawable = itsDrawables.get(id);
-		drawable.setBounds(0, 0, itsSize.x, itsSize.y);
+		Drawable drawable = drawables.get(id);
+		drawable.setBounds(0, 0, size.x, size.y);
 		return drawable;
 	}
 
@@ -44,13 +44,13 @@ public abstract class CachingDrawer {
 	public abstract void drawTouched(final Canvas canvas);
 
 	protected void register(final int id, final Drawable drawable) {
-		itsDrawables.put(id, drawable);
+		drawables.put(id, drawable);
 	}
 
 	public void setSize(final int width, final int height) {
-		if (itsSize.x == width && itsSize.y == height)
+		if (size.x == width && size.y == height)
 			return;
-		itsSize = new Point(width, height);
-		itsStore.clear();
+		size = new Point(width, height);
+		store.clear();
 	}
 }

@@ -7,31 +7,31 @@ import android.graphics.Typeface;
 import android.graphics.Paint.Align;
 import android.graphics.drawable.Drawable;
 
-public class NumberDrawable extends Drawable {
+public final class NumberDrawable extends Drawable {
 
-	private String itsDigit;
-	private Paint itsPaint;
+	private final String digit;
+	private final Paint paint;
 
 	public NumberDrawable(int digit, int color) {
 		this(digit, color, null);
 	}
 
 	public NumberDrawable(int digit, int color, Typeface face) {
-		itsPaint = new Paint();
-		itsPaint.setAntiAlias(true);
-		itsPaint.setColor(color);
-		itsPaint.setTextAlign(Align.CENTER);
-		itsPaint.setTypeface(face);
-		itsDigit = Integer.toString(digit);
+		paint = new Paint();
+		paint.setAntiAlias(true);
+		paint.setColor(color);
+		paint.setTextAlign(Align.CENTER);
+		paint.setTypeface(face);
+		this.digit = Integer.toString(digit);
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
-		itsPaint.setTextSize(getBounds().height());
-		canvas.drawText(itsDigit, getBounds().exactCenterX(),
-				getBounds().bottom
-						- (getBounds().bottom + itsPaint.ascent() + itsPaint
-								.descent()) / 2, itsPaint);
+		paint.setTextSize(getBounds().height());
+		canvas.drawText(digit, getBounds().exactCenterX(),
+                getBounds().bottom
+                        - (getBounds().bottom + paint.ascent() + paint
+                        .descent()) / 2, paint);
 	}
 
 	@Override

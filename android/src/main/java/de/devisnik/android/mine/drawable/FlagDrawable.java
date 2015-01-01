@@ -8,38 +8,38 @@ import android.graphics.Path;
 import android.graphics.Shader.TileMode;
 import android.graphics.drawable.Drawable;
 
-public class FlagDrawable extends Drawable {
+public final class FlagDrawable extends Drawable {
 
-	private Paint itsPaint;
-	private Path itsFlag;
-	private Path itsPost;
-	private final int itsFlagColor;
-	private final int itsPoleColor;
-	private final int itsFlagColorDark;
+	private final Paint paint;
+	private final Path flag;
+	private final Path post;
+	private final int flagColor;
+	private final int poleColor;
+	private final int flagColorDark;
 
 	public FlagDrawable(int flagColorLight, int flagColorDark, int poleColor) {
-		this.itsFlagColor = flagColorLight;
-		itsFlagColorDark = flagColorDark;
-		this.itsPoleColor = poleColor;
-		itsPaint = new Paint();
-		itsPaint.setAntiAlias(true);
-		itsFlag = createFlagPath();
-		itsPost = createPath();
+		this.flagColor = flagColorLight;
+		this.flagColorDark = flagColorDark;
+		this.poleColor = poleColor;
+		paint = new Paint();
+		paint.setAntiAlias(true);
+		flag = createFlagPath();
+		post = createPath();
 	}
 
 	@Override
 	public void draw(Canvas canvas) {
 		canvas.save();
 		canvas.scale(getBounds().width() / 100f, getBounds().height() / 100f);
-		itsPaint.setStyle(Paint.Style.FILL);
-		itsPaint.setColor(itsFlagColor);
-		itsPaint.setShader(new LinearGradient(57, 45, 25, 45, itsFlagColorDark, itsFlagColor, TileMode.CLAMP));
-		canvas.drawPath(itsFlag, itsPaint);
-		itsPaint.setStyle(Paint.Style.STROKE);
-		itsPaint.setShader(null);
-		itsPaint.setColor(itsPoleColor);
-		itsPaint.setStrokeWidth(5);
-		canvas.drawPath(itsPost, itsPaint);
+		paint.setStyle(Paint.Style.FILL);
+		paint.setColor(flagColor);
+		paint.setShader(new LinearGradient(57, 45, 25, 45, flagColorDark, flagColor, TileMode.CLAMP));
+		canvas.drawPath(flag, paint);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setShader(null);
+		paint.setColor(poleColor);
+		paint.setStrokeWidth(5);
+		canvas.drawPath(post, paint);
 		canvas.restore();
 	}
 

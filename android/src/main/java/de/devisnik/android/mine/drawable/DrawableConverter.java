@@ -2,6 +2,6 @@ package de.devisnik.android.mine.drawable;
 
 import android.graphics.drawable.Drawable;
 
-public interface IDrawableConverter {
+public interface DrawableConverter {
 	Drawable convert(Drawable original);
 }
