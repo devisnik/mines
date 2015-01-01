@@ -4,11 +4,12 @@ import java.util.Arrays;
 
 import de.devisnik.mine.IGame;
 
-public class GameInfo {
-	private final Settings itsSettings;
+public final class GameInfo {
+
+	private final Settings settings;
 
 	public GameInfo(Settings settings) {
-		itsSettings = settings;
+		this.settings = settings;
 	}
 
 	private String getEntryForValue(int entryArrayId, int valueArrayId, String value) {
@@ -19,11 +20,9 @@ public class GameInfo {
 
 	public String createTitle() {
 		StringBuilder builder = new StringBuilder();
-		builder.append(getString(R.string.level) + ":"
-				+ getEntryForValue(R.array.levels, R.array.levels_values, itsSettings.getLevel()));
+		builder.append(getString(R.string.level)).append(":").append(getEntryForValue(R.array.levels, R.array.levels_values, settings.getLevel()));
 		builder.append(", ");
-		builder.append(getString(R.string.board) + ":"
-				+ getEntryForValue(R.array.sizes, R.array.sizes_values, itsSettings.getBoard()));
+		builder.append(getString(R.string.board)).append(":").append(getEntryForValue(R.array.sizes, R.array.sizes_values, settings.getBoard()));
 		return builder.toString();
 	}
 
@@ -34,11 +33,11 @@ public class GameInfo {
 	}
 
 	private String getString(int id) {
-		return itsSettings.getString(id);
+		return settings.getString(id);
 	}
 
 	private String[] getStringArray(int id) {
-		return itsSettings.getStringArray(id);
+		return settings.getStringArray(id);
 	}
 
 }
