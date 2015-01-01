@@ -6,46 +6,32 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
-public class CounterView extends TextView {
+public final class CounterView extends TextView {
 
-	private final int itsLength;
-	private final char[] itsDigits;
-	private int itsValue;
+    private final int numberOfDigits;
+    private final char[] digits;
 
-	public CounterView(Context context, AttributeSet attribs) {
-		super(context, attribs);
-		TypedArray a = context.obtainStyledAttributes(attribs, R.styleable.CounterView);
-		itsLength = a.getInt(R.styleable.CounterView_digits, 3);
-		String font = a.getString(R.styleable.CounterView_typeface);
-		a.recycle();
-		itsDigits = new char[itsLength];
-		if (!isInEditMode())
-			setTypeface(createTypeFace(context, font));
-		setValue(0);
-	}
+    public CounterView(Context context, AttributeSet attribs) {
+        super(context, attribs);
+        TypedArray a = context.obtainStyledAttributes(attribs, R.styleable.CounterView);
+        numberOfDigits = a.getInt(R.styleable.CounterView_digits, 3);
+        String font = a.getString(R.styleable.CounterView_typeface);
+        a.recycle();
+        digits = new char[numberOfDigits];
+        if (!isInEditMode())
+            setTypeface(createTypeFace(context, font));
+        setValue(0);
+    }
 
-	private Typeface createTypeFace(Context context, String font) {
-		if (font == null)
-			return Typeface.DEFAULT;
-		return Typeface.createFromAsset(context.getAssets(), font);
-	}
+    private Typeface createTypeFace(Context context, String font) {
+        if (font == null)
+            return Typeface.DEFAULT;
+        return Typeface.createFromAsset(context.getAssets(), font);
+    }
 
-	public void setValue(final int value) {
-		itsValue = value;
-		int internalValue = value;
-		for (int i = 0; i < itsLength; i++) {
-			itsDigits[itsLength - 1 - i] = Character.forDigit(internalValue % 10, 10);
-			internalValue /= 10;
-		}
-		setText(new String(itsDigits));
-	}
-
-	/**
-	 * For testing only!
-	 * 
-	 * @return the value currently displayed
-	 */
-	public int getValue() {
-		return itsValue;
-	}
+    public void setValue(final int value) {
+        for (int i = numberOfDigits - 1, remainder = value; i >= 0; i -= 1, remainder /= 10)
+            digits[i] = Character.forDigit(remainder % 10, 10);
+        setText(new String(digits));
+    }
 }
