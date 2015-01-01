@@ -1,12 +1,9 @@
-/**
- * 
- */
 package de.devisnik.android.mine;
-
-import java.util.Arrays;
 
 import android.preference.ListPreference;
 import android.preference.Preference;
+
+import java.util.Arrays;
 
 class SummaryUpdater implements Preference.OnPreferenceChangeListener {
 

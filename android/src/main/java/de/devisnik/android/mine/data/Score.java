@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.devisnik.android.mine.data;
 
 import java.io.Serializable;
