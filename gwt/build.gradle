@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        maven {
+            url file('repo').toURI()
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.7-SNAPSHOT'
+    }    
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'gwt'
+apply plugin: 'eclipse'
+
+dependencies {
+	compile project(':robot')
+	compile project(':model')
+}
+
+gwt {
+	gwtVersion='2.7.0'
+	modules 'de.devisnik.web.Mines'
+	src += files(project(':model').sourceSets.main.allJava.srcDirs) \
+   	    + files(project(':model').sourceSets.main.output.resourcesDir)
+}
