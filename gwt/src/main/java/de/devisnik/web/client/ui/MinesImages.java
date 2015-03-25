@@ -2,7 +2,7 @@ package de.devisnik.web.client.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ImageResource;
-import com.google.gwt.user.client.ui.AbstractImagePrototype;
+import de.devisnik.web.client.ui.image.MinesImageBundle;
 
 public class MinesImages {
     private static final MinesImageBundle imageBundle = GWT.create(MinesImageBundle.class);
@@ -13,37 +13,37 @@ public class MinesImages {
     public static ImageResource getFieldImagePrototype(int index) {
         switch (index) {
             case 0:
-                return imageBundle.image_0();
+                return imageBundle.classic_image_0();
             case 1:
-                return imageBundle.image_1();
+                return imageBundle.classic_image_1();
             case 2:
-                return imageBundle.image_2();
+                return imageBundle.classic_image_2();
             case 3:
-                return imageBundle.image_3();
+                return imageBundle.classic_image_3();
             case 4:
-                return imageBundle.image_4();
+                return imageBundle.classic_image_4();
             case 5:
-                return imageBundle.image_5();
+                return imageBundle.classic_image_5();
             case 6:
-                return imageBundle.image_6();
+                return imageBundle.classic_image_6();
             case 7:
-                return imageBundle.image_7();
+                return imageBundle.classic_image_7();
             case 8:
-                return imageBundle.image_8();
+                return imageBundle.classic_image_8();
             case 9:
-                return imageBundle.image_9();
+                return imageBundle.classic_image_9();
             case 10:
-                return imageBundle.image_10();
+                return imageBundle.classic_image_10();
             case 11:
-                return imageBundle.image_11();
+                return imageBundle.classic_image_11();
             case 12:
-                return imageBundle.image_12();
+                return imageBundle.classic_image_12();
             case 13:
-                return imageBundle.image_13();
+                return imageBundle.classic_image_13();
             case 14:
-                return imageBundle.image_14();
+                return imageBundle.classic_image_14();
             case 15:
-                return imageBundle.image_15();
+                return imageBundle.classic_image_15();
             default:
                 break;
         }
