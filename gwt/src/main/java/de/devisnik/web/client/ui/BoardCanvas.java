@@ -1,5 +1,6 @@
 package de.devisnik.web.client.ui;
 
+import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
@@ -29,11 +30,11 @@ public class BoardCanvas extends Composite {
 
 	protected void onLoad() {
 		super.onLoad();
-		DeferredCommand.addCommand(new Command() {
-
-			public void execute() {
-				initFields();
-			}});
+		Scheduler.get().scheduleDeferred(new Command() {
+            public void execute() {
+                initFields();
+            }
+        });
 	}
 	private void initFields() {
 		final Point gameDimension = itsBoard.getDimension();
