@@ -8,6 +8,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 import de.devisnik.mine.GameFactory;
 import de.devisnik.mine.IGame;
+import de.devisnik.mine.SimpleGameFactory;
 
 /**
  * Entry point classes define <code>onModuleLoad()</code>.
@@ -25,9 +26,9 @@ public class Mines implements EntryPoint {
 	}
 
 	private void initButtonBar() {
-		RootPanel.get("ButtonBar").add(createGameButton(10,	10, 10));
+//		RootPanel.get("ButtonBar").add(createGameButton(10,	10, 10));
 		RootPanel.get("ButtonBar").add(createGameButton(15, 15, 35));
-		RootPanel.get("ButtonBar").add(createGameButton(20, 20, 80));
+//		RootPanel.get("ButtonBar").add(createGameButton(20, 20, 80));
 	}
 
 	private Button createGameButton(final int dimX, final int dimY,
@@ -43,7 +44,7 @@ public class Mines implements EntryPoint {
 				if (gamePanel != null) {
 					gamePanel.dispose();
 				}
-				IGame game = GameFactory.create(dimX, dimY, bombs);
+				IGame game = SimpleGameFactory.create(dimX, dimY, bombs);
 				gamePanel = createGamePanel(game);
 				minesPanel.add(gamePanel);
 			}

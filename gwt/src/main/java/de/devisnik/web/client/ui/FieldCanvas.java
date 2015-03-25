@@ -7,31 +7,27 @@ import com.google.gwt.user.client.ui.Image;
 
 import de.devisnik.mine.IField;
 import de.devisnik.mine.IFieldListener;
+import de.devisnik.mine.SimpleFieldListener;
 
 public class FieldCanvas extends Image {
 
-	private static final Map<IField, FieldCanvas> theFieldMap = new HashMap<IField, FieldCanvas>();
-	private static final IFieldListener theFieldListener = new IFieldListener() {
+    public static final class CanvasUpdatingFieldListener extends SimpleFieldListener {
 
-		public void onFieldFlagChange(final IField field, boolean value) {
-			getCanvas(field).paintControl();
-		}
+        private final FieldCanvas canvas;
 
-		public void onFieldOpenChange(final IField field, boolean value) {
-			getCanvas(field).paintControl();
-		}
+        public CanvasUpdatingFieldListener(FieldCanvas canvas) {
+            this.canvas = canvas;
+        }
 
-		public void onFieldExplodedChange(IField field, boolean value) {
-			getCanvas(field).paintControl();
-		}
-		
-		public void onFieldTouchedChange(IField field, boolean value) {
-			getCanvas(field).paintControl();
-		};
-	};
+        @Override
+        protected void onChange(IField field) {
+            canvas.paintControl();
+        }
+    }
 	private final IField itsField;
 	private final int itsPositionX;
 	private final int itsPositionY;
+    private final CanvasUpdatingFieldListener fieldListener;
 
 	public FieldCanvas(final IField field, int positionX, int positionY) {
 		super();
@@ -39,16 +35,8 @@ public class FieldCanvas extends Image {
 		this.itsPositionX = positionX;
 		this.itsPositionY = positionY;
 		paintControl();
-		addCanvas(itsField, this);
-		itsField.addListener(theFieldListener);
-	}
-
-	private static void addCanvas(IField field, FieldCanvas canvas) {
-		theFieldMap.put(field, canvas);
-	}
-
-	private static FieldCanvas getCanvas(IField field) {
-		return theFieldMap.get(field);
+        fieldListener = new CanvasUpdatingFieldListener(this);
+        itsField.addListener(fieldListener);
 	}
 
 	private void paintControl() {
@@ -78,7 +66,7 @@ public class FieldCanvas extends Image {
 	}
 
 	public void dispose() {
-		itsField.removeListener(theFieldListener);
+		itsField.removeListener(fieldListener);
 	}
 
 	public IField getField() {

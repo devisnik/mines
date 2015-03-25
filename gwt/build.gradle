@@ -25,4 +25,8 @@ gwt {
 	modules 'de.devisnik.web.Mines'
 	src += files(project(':model').sourceSets.main.allJava.srcDirs) \
    	    + files(project(':model').sourceSets.main.output.resourcesDir)
+
+    dev {
+        startupUrl='de.devisnik.web.Mines/Mines.html'
+    }
 }

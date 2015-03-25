@@ -1,5 +1,6 @@
 package de.devisnik.web.client.ui;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
@@ -20,7 +21,7 @@ public class GamePanel extends VerticalPanel {
 	private final IGame game;
 	private IMinesGameListener gameListener;
 	private boolean isGameFinished;
-	private Timer itsAutoPlayTimer;
+//	private Timer itsAutoPlayTimer;
 
 	public GamePanel(final IGame game) {
 		this.game = game;
@@ -76,22 +77,22 @@ public class GamePanel extends VerticalPanel {
 			public void onClick(Widget sender) {
 				Event currentEvent = DOM.eventGetCurrentEvent();
 				boolean shiftKey = DOM.eventGetShiftKey(currentEvent);
-				FieldCanvas canvas = (FieldCanvas) sender;
-				if (shiftKey) {
-					if (clickOpenButton.isChecked()) {
-						game.onRequestFlag(canvas.getField());
-					} else {
-						game.onRequestOpen(canvas.getField());
-					}
-				} else {
-					if (clickOpenButton.isChecked()) {
-						game.onRequestOpen(canvas.getField());
-					} else {
-						game.onRequestFlag(canvas.getField());
-					}
-				}
-			}
-		};
+                FieldCanvas canvas = (FieldCanvas) sender;
+                if (shiftKey) {
+                    if (clickOpenButton.isChecked()) {
+                        game.onRequestFlag(canvas.getField());
+                    } else {
+                        game.onRequestOpen(canvas.getField());
+                    }
+                } else {
+                    if (clickOpenButton.isChecked()) {
+                        game.onRequestOpen(canvas.getField());
+                    } else {
+                        game.onRequestFlag(canvas.getField());
+                    }
+                }
+            }
+        };
 
 		gameCanvas = new BoardCanvas(game.getBoard(), clickListener);
 		add(gameCanvas);
@@ -153,7 +154,11 @@ public class GamePanel extends VerticalPanel {
 		add(autoPlay);
 	}
 
-	private boolean isGameFinished() {
+    public static native void alert(String msg) /*-{
+      $wnd.alert(msg);
+    }-*/;
+
+    private boolean isGameFinished() {
 		return isGameFinished;
 	}
 

@@ -16,13 +16,13 @@ import de.devisnik.mine.impl.StatePersistence;
  */
 public final class GameFactory {
 
-	private static ExcludeNeighborsBoardMiner BOARDMINER = new ExcludeNeighborsBoardMiner();
+	private static final ExcludeNeighborsBoardMiner BOARD_MINER = new ExcludeNeighborsBoardMiner();
 
 	private GameFactory() {
 	}
 
 	public static IGame create(int width, int height, int bombs) {
-		return new Game(width, height, bombs, BOARDMINER);
+		return new Game(width, height, bombs, BOARD_MINER);
 	}
 
 	public static void writeToStream(IGame game, OutputStream stream) throws IOException {
@@ -32,11 +32,11 @@ public final class GameFactory {
 
 	public static IGame readFromStream(InputStream stream) throws IOException {
 		GameState state = StatePersistence.readGameState(stream);
-		return Game.createFromState(state, BOARDMINER);
+		return Game.createFromState(state, BOARD_MINER);
 	}
 
 	public static IGame clone(IGame game) {
 		GameState state = ((Game) game).getState();
-		return Game.createFromState(state, BOARDMINER);
+		return Game.createFromState(state, BOARD_MINER);
 	}
 }
