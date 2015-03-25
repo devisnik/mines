@@ -30,7 +30,6 @@ public class GamePanel extends VerticalPanel {
 
     public GamePanel(final IGame game) {
         this.game = game;
-        setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 
         initClickModeSelectionUI();
         initCountersUI(game);
@@ -147,7 +146,7 @@ public class GamePanel extends VerticalPanel {
         minesCounter.setValue(game.getBombCount());
         counterPanel.add(minesCounter, DockPanel.WEST);
         final Counter timeCounter = new Counter(3);
-        counterPanel.setHorizontalAlignment(ALIGN_RIGHT);
+        counterPanel.setHorizontalAlignment(DockPanel.ALIGN_RIGHT);
         counterPanel.add(timeCounter, DockPanel.EAST);
         counterPanel.setWidth(Integer.toString(15 * game.getBoard().getDimension().x) + "px");
         stopWatch = new StopWatch() {
@@ -161,7 +160,7 @@ public class GamePanel extends VerticalPanel {
     private void initClickModeSelectionUI() {
         DockPanel clickModePanel = new DockPanel();
         add(clickModePanel);
-        clickModePanel.setHorizontalAlignment(ALIGN_JUSTIFY);
+        clickModePanel.setHorizontalAlignment(DockPanel.ALIGN_JUSTIFY);
         clickOpenButton = new RadioButton("ClickOpens", "click opens");
         clickOpenButton.setValue(true);
         final CheckBox clickFlagButton = new RadioButton("ClickFlags", "click flags");
@@ -180,7 +179,7 @@ public class GamePanel extends VerticalPanel {
         clickFlagButton.addValueChangeHandler(checkBoxToggler);
         clickModePanel.add(clickFlagButton, DockPanel.WEST);
         clickModePanel.add(clickOpenButton, DockPanel.EAST);
-        clickModePanel.setCellHorizontalAlignment(clickOpenButton, ALIGN_RIGHT);
+        clickModePanel.setCellHorizontalAlignment(clickOpenButton, DockPanel.ALIGN_RIGHT);
     }
 
     public static native void alert(String msg) /*-{
