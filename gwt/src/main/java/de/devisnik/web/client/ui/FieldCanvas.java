@@ -40,29 +40,7 @@ public class FieldCanvas extends Image {
 	}
 
 	private void paintControl() {
-		int imgnr = 0;
-		if (itsField.isOpen()) {
-			if (itsField.isBomb()) {
-				if (itsField.isExploded()) {
-					imgnr = 13;
-				} else {
-					imgnr = 9;
-				}
-			} else {
-				if (itsField.isFlagged()) {
-					imgnr = 12;
-				} else {
-					imgnr = itsField.getNeighborBombs();
-				}
-			}
-		} else {
-			if (itsField.isFlagged()) {
-				imgnr = 11;
-			} else {
-				imgnr = 10;
-			}
-		}
-		MinesImages.getFieldImagePrototype(imgnr).applyTo(this);
+		MinesImages.getFieldImagePrototype(itsField.getImage()).applyTo(this);
 	}
 
 	public void dispose() {
