@@ -135,7 +135,7 @@ public class GamePanel extends VerticalPanel {
     private void initClickModeSelectionUI(IGame game) {
         DockPanel clickModePanel = new DockPanel();
         add(clickModePanel);
-//        clickModePanel.setWidth(Integer.toString(FieldCanvas.SIZE * game.getBoard().getDimension().x) + "px");
+        clickModePanel.setWidth(Integer.toString(FieldCanvas.SIZE * game.getBoard().getDimension().x) + "px");
         clickModePanel.setHorizontalAlignment(DockPanel.ALIGN_CENTER);
         clickOpenButton = new RadioButton("ClickOpens", "click opens");
         clickOpenButton.setValue(true);
@@ -155,7 +155,8 @@ public class GamePanel extends VerticalPanel {
         clickFlagButton.addValueChangeHandler(checkBoxToggler);
         clickModePanel.add(clickFlagButton, DockPanel.WEST);
         clickModePanel.add(clickOpenButton, DockPanel.EAST);
-        clickModePanel.setCellHorizontalAlignment(clickOpenButton, DockPanel.ALIGN_RIGHT);
+        clickModePanel.setCellHorizontalAlignment(clickOpenButton, DockPanel.ALIGN_LEFT);
+        clickModePanel.setCellHorizontalAlignment(clickFlagButton, DockPanel.ALIGN_RIGHT);
     }
 
     public static native void alert(String msg) /*-{
