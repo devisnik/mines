@@ -23,6 +23,6 @@ public class Digit extends Image {
 	}
 
 	private void paintControl() {
-		MinesImages.getCounterImagePrototype(itsValue).applyTo(this);
+		setResource(MinesImages.getCounterImagePrototype(itsValue));
 	}
 }

@@ -1,6 +1,7 @@
 package de.devisnik.web.client.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.AbstractImagePrototype;
 
 public class MinesImages {
@@ -9,7 +10,7 @@ public class MinesImages {
     private MinesImages() {
     }
 
-    public static AbstractImagePrototype getFieldImagePrototype(int index) {
+    public static ImageResource getFieldImagePrototype(int index) {
         switch (index) {
             case 0:
                 return imageBundle.image_0();
@@ -45,7 +46,7 @@ public class MinesImages {
         throw new IllegalArgumentException("no field image for index: " + index);
     }
 
-    public static AbstractImagePrototype getCounterImagePrototype(int index) {
+    public static ImageResource getCounterImagePrototype(int index) {
         switch (index) {
             case 0:
                 return imageBundle.counter_0();
