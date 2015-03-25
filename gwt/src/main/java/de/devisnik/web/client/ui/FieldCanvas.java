@@ -1,15 +1,12 @@
 package de.devisnik.web.client.ui;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.gwt.user.client.ui.Image;
-
 import de.devisnik.mine.IField;
-import de.devisnik.mine.IFieldListener;
 import de.devisnik.mine.SimpleFieldListener;
 
 public class FieldCanvas extends Image {
+
+    public static final int SIZE = 25;
 
     public static final class CanvasUpdatingFieldListener extends SimpleFieldListener {
 
@@ -24,39 +21,40 @@ public class FieldCanvas extends Image {
             canvas.paintControl();
         }
     }
-	private final IField itsField;
-	private final int itsPositionX;
-	private final int itsPositionY;
+
+    private final IField itsField;
+    private final int itsPositionX;
+    private final int itsPositionY;
     private final CanvasUpdatingFieldListener fieldListener;
 
-	public FieldCanvas(final IField field, int positionX, int positionY) {
-		super();
-		this.itsField = field;
-		this.itsPositionX = positionX;
-		this.itsPositionY = positionY;
-        setSize("15px", "15px");
-		paintControl();
+    public FieldCanvas(final IField field, int positionX, int positionY) {
+        super();
+        this.itsField = field;
+        this.itsPositionX = positionX;
+        this.itsPositionY = positionY;
+        setSize(SIZE + "px", SIZE + "px");
+        paintControl();
         fieldListener = new CanvasUpdatingFieldListener(this);
         itsField.addListener(fieldListener);
-	}
+    }
 
-	private void paintControl() {
-		setResource(MinesImages.getFieldImagePrototype(itsField.getImage()));
-	}
+    private void paintControl() {
+        setResource(MinesImages.getFieldImagePrototype(itsField.getImage()));
+    }
 
-	public void dispose() {
-		itsField.removeListener(fieldListener);
-	}
+    public void dispose() {
+        itsField.removeListener(fieldListener);
+    }
 
-	public IField getField() {
-		return itsField;
-	}
+    public IField getField() {
+        return itsField;
+    }
 
-	public int getX() {
-		return itsPositionX;
-	}
+    public int getX() {
+        return itsPositionX;
+    }
 
-	public int getY() {
-		return itsPositionY;
-	}
+    public int getY() {
+        return itsPositionY;
+    }
 }

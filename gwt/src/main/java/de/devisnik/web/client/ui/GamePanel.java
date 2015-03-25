@@ -25,7 +25,7 @@ public class GamePanel extends VerticalPanel {
     public GamePanel(final IGame game) {
         this.game = game;
 
-        initClickModeSelectionUI();
+        initClickModeSelectionUI(game);
         initCountersUI(game);
         initBoardUI(game);
         initMessageUI(game);
@@ -108,7 +108,7 @@ public class GamePanel extends VerticalPanel {
         messageBox = new TextBox();
         messageBox.setReadOnly(true);
         messageBox.setWidth(Integer
-                .toString(15 * game.getBoard().getDimension().x)
+                .toString(FieldCanvas.SIZE * game.getBoard().getDimension().x)
                 + "px");
         messageBox.setText("Click field to start game.");
         add(messageBox);
@@ -123,7 +123,7 @@ public class GamePanel extends VerticalPanel {
         final Counter timeCounter = new Counter(3);
         counterPanel.setHorizontalAlignment(DockPanel.ALIGN_RIGHT);
         counterPanel.add(timeCounter, DockPanel.EAST);
-        counterPanel.setWidth(Integer.toString(15 * game.getBoard().getDimension().x) + "px");
+        counterPanel.setWidth(Integer.toString(FieldCanvas.SIZE * game.getBoard().getDimension().x) + "px");
         stopWatch = new StopWatch() {
             @Override
             public void setTime(int value) {
@@ -132,10 +132,11 @@ public class GamePanel extends VerticalPanel {
         };
     }
 
-    private void initClickModeSelectionUI() {
+    private void initClickModeSelectionUI(IGame game) {
         DockPanel clickModePanel = new DockPanel();
         add(clickModePanel);
-        clickModePanel.setHorizontalAlignment(DockPanel.ALIGN_JUSTIFY);
+//        clickModePanel.setWidth(Integer.toString(FieldCanvas.SIZE * game.getBoard().getDimension().x) + "px");
+        clickModePanel.setHorizontalAlignment(DockPanel.ALIGN_CENTER);
         clickOpenButton = new RadioButton("ClickOpens", "click opens");
         clickOpenButton.setValue(true);
         final CheckBox clickFlagButton = new RadioButton("ClickFlags", "click flags");
