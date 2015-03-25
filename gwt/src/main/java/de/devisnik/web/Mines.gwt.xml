@@ -1,11 +1,12 @@
 <module>
       <inherits name='com.google.gwt.user.User'/>
-      <!-- <inherits name='com.google.gwt.user.theme.standard.Standard'/> -->
-      <!-- <inherits name='com.google.gwt.user.theme.chrome.Chrome'/> -->
-      <inherits name='com.google.gwt.user.theme.dark.Dark'/>     
+      <!--
+      <inherits name='com.google.gwt.user.theme.chrome.Chrome'/>
+      <inherits name='com.google.gwt.user.theme.dark.Dark'/>
+      -->
+      <inherits name='com.google.gwt.user.theme.standard.Standard'/>
       <inherits name='java.io.InputStream'/>
       <inherits name='de.devisnik.mine.MinesModel'/>
       <entry-point class='de.devisnik.web.client.ui.Mines'/>
       <stylesheet src='Mines.css' />
-      <extend-configuration-property name="document.compatMode" value="BackCompat"/>
 </module>
