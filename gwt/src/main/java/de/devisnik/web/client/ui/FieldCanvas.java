@@ -34,6 +34,7 @@ public class FieldCanvas extends Image {
 		this.itsField = field;
 		this.itsPositionX = positionX;
 		this.itsPositionY = positionY;
+        setSize("15px", "15px");
 		paintControl();
         fieldListener = new CanvasUpdatingFieldListener(this);
         itsField.addListener(fieldListener);

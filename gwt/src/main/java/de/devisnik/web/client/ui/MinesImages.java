@@ -40,6 +40,10 @@ public class MinesImages {
                 return imageBundle.image_12();
             case 13:
                 return imageBundle.image_13();
+            case 14:
+                return imageBundle.image_14();
+            case 15:
+                return imageBundle.image_15();
             default:
                 break;
         }

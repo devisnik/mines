@@ -34,6 +34,7 @@
       android:name=".HighScores"
       android:label="@string/app_name" />
     <!--
+     -->
     <activity
         android:name=".Preview"
         android:label="Preview"
@@ -47,7 +48,6 @@
             </category>
         </intent-filter>
     </activity>
-     -->
   </application>
 
 </manifest>

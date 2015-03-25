@@ -25,7 +25,6 @@ public class BoardCanvas extends Composite {
         itsPanel = new LayoutPanel();
         Point boardSize = itsBoard.getDimension();
         initWidget(itsPanel);
-        itsPanel.setSize(Integer.toString(SIZE * boardSize.x), Integer.toString(SIZE * boardSize.y));
         setSize(Integer.toString(SIZE * boardSize.x), Integer.toString(SIZE * boardSize.y));
     }
 

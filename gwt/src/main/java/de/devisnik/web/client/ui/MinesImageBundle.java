@@ -5,34 +5,38 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface MinesImageBundle extends ClientBundle {
     
-    @Source("image_0.gif")
+    @Source("image_00.png")
     ImageResource image_0();
-    @Source("image_1.gif")
+    @Source("image_01.png")
 	ImageResource image_1();
-    @Source("image_2.gif")
+    @Source("image_02.png")
 	ImageResource image_2();
-    @Source("image_3.gif")
+    @Source("image_03.png")
 	ImageResource image_3();
-    @Source("image_4.gif")
+    @Source("image_04.png")
 	ImageResource image_4();
-    @Source("image_5.gif")
+    @Source("image_05.png")
 	ImageResource image_5();
-    @Source("image_6.gif")
+    @Source("image_06.png")
 	ImageResource image_6();
-    @Source("image_7.gif")
+    @Source("image_07.png")
 	ImageResource image_7();
-    @Source("image_8.gif")
+    @Source("image_08.png")
 	ImageResource image_8();
-    @Source("image_9.gif")
+    @Source("image_09.png")
 	ImageResource image_9();
-    @Source("image_10.gif")
+    @Source("image_10.png")
 	ImageResource image_10();
-    @Source("image_11.gif")
+    @Source("image_11.png")
 	ImageResource image_11();
-    @Source("image_12.gif")
+    @Source("image_12.png")
 	ImageResource image_12();
-    @Source("image_13.gif")
+    @Source("image_13.png")
 	ImageResource image_13();
+    @Source("image_14.png")
+	ImageResource image_14();
+    @Source("image_15.png")
+	ImageResource image_15();
 
     @Source("counter_0.gif")
 	ImageResource counter_0();
