@@ -16,6 +16,9 @@ apply plugin: 'gwt'
 apply plugin: 'eclipse'
 
 dependencies {
+    compile 'com.google.gwt:gwt-servlet:2.7.0'
+    compile 'com.google.gwt:gwt-user:2.7.0'
+
 	compile project(':robot')
 	compile project(':model')
 }
