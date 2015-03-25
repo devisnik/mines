@@ -1,20 +1,14 @@
 package de.devisnik.web.client.ui;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.user.client.DOM;
-import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.*;
-
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.IMinesGameListener;
-
-import java.awt.*;
-//import de.devisnik.mine.robot.AutoPlayer;
+import de.devisnik.web.client.robot.AutoPlayer;
 
 public class GamePanel extends VerticalPanel {
     private final IGame game;
@@ -26,7 +20,7 @@ public class GamePanel extends VerticalPanel {
     private StopWatch stopWatch;
     private CheckBox clickOpenButton;
     private TextBox messageBox;
-    //	private Timer itsAutoPlayTimer;
+    private Timer itsAutoPlayTimer;
 
     public GamePanel(final IGame game) {
         this.game = game;
@@ -36,17 +30,17 @@ public class GamePanel extends VerticalPanel {
         initBoardUI(game);
         initMessageUI(game);
 
-//		final AutoPlayer autoPlayer = new AutoPlayer(game, false);
-//		itsAutoPlayTimer = new Timer() {
-//			public void run() {
-//				autoPlayer.doNextMove();
-//			}
-//		};
+        final AutoPlayer autoPlayer = new AutoPlayer(game, false);
+        itsAutoPlayTimer = new Timer() {
+            public void run() {
+                autoPlayer.doNextMove();
+            }
+        };
         gameListener = new IMinesGameListener() {
             public void onBusted() {
                 stopWatch.stop();
                 messageBox.setText("Exploded!");
-//				itsAutoPlayTimer.cancel();
+				itsAutoPlayTimer.cancel();
                 setGameFinished(true);
             }
 
@@ -60,7 +54,7 @@ public class GamePanel extends VerticalPanel {
             public void onDisarmed() {
                 stopWatch.stop();
                 messageBox.setText("Mines cleared!");
-//				itsAutoPlayTimer.cancel();
+				itsAutoPlayTimer.cancel();
                 setGameFinished(true);
             }
 
@@ -72,16 +66,16 @@ public class GamePanel extends VerticalPanel {
         };
         game.addListener(gameListener);
         final CheckBox autoPlay = new CheckBox("Let the browser play.");
-//		autoPlay.addClickListener(new ClickListener() {
-//
-//			public void onClick(Widget sender) {
-//				if (autoPlay.isChecked() && !isGameFinished()) {
-//					itsAutoPlayTimer.scheduleRepeating(1000);
-//				} else {
-//					itsAutoPlayTimer.cancel();
-//				}
-//			}
-//		});
+		autoPlay.addClickListener(new ClickListener() {
+
+			public void onClick(Widget sender) {
+				if (autoPlay.isChecked() && !isGameFinished()) {
+					itsAutoPlayTimer.scheduleRepeating(1000);
+				} else {
+					itsAutoPlayTimer.cancel();
+				}
+			}
+		});
         add(autoPlay);
     }
 
@@ -91,25 +85,6 @@ public class GamePanel extends VerticalPanel {
             public void onClick(ClickEvent event) {
                 boolean shiftKey = event.isShiftKeyDown();
                 FieldCanvas canvas = (FieldCanvas) event.getSource();
-                if (shiftKey) {
-                    if (clickOpenButton.getValue()) {
-                        game.onRequestFlag(canvas.getField());
-                    } else {
-                        game.onRequestOpen(canvas.getField());
-                    }
-                } else {
-                    if (clickOpenButton.getValue()) {
-                        game.onRequestOpen(canvas.getField());
-                    } else {
-                        game.onRequestFlag(canvas.getField());
-                    }
-                }
-            }
-
-            public void onClick(Widget sender) {
-                Event currentEvent = DOM.eventGetCurrentEvent();
-                boolean shiftKey = DOM.eventGetShiftKey(currentEvent);
-                FieldCanvas canvas = (FieldCanvas) sender;
                 if (shiftKey) {
                     if (clickOpenButton.getValue()) {
                         game.onRequestFlag(canvas.getField());
@@ -195,7 +170,7 @@ public class GamePanel extends VerticalPanel {
     }
 
     public void dispose() {
-//		itsAutoPlayTimer.cancel();
+		itsAutoPlayTimer.cancel();
         game.removeListener(gameListener);
         gameCanvas.dispose();
 
