@@ -87,7 +87,26 @@ public class GamePanel extends VerticalPanel {
     }
 
     private void initBoardUI(final IGame game) {
-        final ClickListener clickListener = new ClickListener() {
+        final ClickHandler clickListener = new ClickHandler() {
+            @Override
+            public void onClick(ClickEvent event) {
+                boolean shiftKey = event.isShiftKeyDown();
+                FieldCanvas canvas = (FieldCanvas) event.getSource();
+                if (shiftKey) {
+                    if (clickOpenButton.getValue()) {
+                        game.onRequestFlag(canvas.getField());
+                    } else {
+                        game.onRequestOpen(canvas.getField());
+                    }
+                } else {
+                    if (clickOpenButton.getValue()) {
+                        game.onRequestOpen(canvas.getField());
+                    } else {
+                        game.onRequestFlag(canvas.getField());
+                    }
+                }
+            }
+
             public void onClick(Widget sender) {
                 Event currentEvent = DOM.eventGetCurrentEvent();
                 boolean shiftKey = DOM.eventGetShiftKey(currentEvent);

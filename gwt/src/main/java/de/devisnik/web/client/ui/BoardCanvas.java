@@ -1,5 +1,6 @@
 package de.devisnik.web.client.ui;
 
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.DeferredCommand;
 import com.google.gwt.user.client.ui.AbsolutePanel;
@@ -14,10 +15,10 @@ public class BoardCanvas extends Composite {
 
 	private final IBoard itsBoard;
 	private AbsolutePanel itsPanel;
-	private final ClickListener itsClickListener;
+	private final ClickHandler itsClickListener;
 
 
-	public BoardCanvas(final IBoard board, ClickListener clickListener) {
+	public BoardCanvas(final IBoard board, ClickHandler clickListener) {
 		super();
 		itsBoard = board;
 		itsClickListener = clickListener;
@@ -41,7 +42,7 @@ public class BoardCanvas extends Composite {
 				final FieldCanvas fieldCanvas = new FieldCanvas(itsBoard
 						.getField(j,i), j, i);
 				itsPanel.add(fieldCanvas, 15 * j, 15 * i);
-				fieldCanvas.addClickListener(itsClickListener);
+				fieldCanvas.addClickHandler(itsClickListener);
 			}
 		}
 	}
@@ -49,7 +50,6 @@ public class BoardCanvas extends Composite {
 	public void dispose() {
 		for (Widget child : itsPanel) {
 			FieldCanvas fieldCanvas = (FieldCanvas)child;
-			fieldCanvas.removeClickListener(itsClickListener);
 			fieldCanvas.dispose();
 		}
 	}
