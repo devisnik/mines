@@ -66,16 +66,16 @@ public class GamePanel extends VerticalPanel {
         };
         game.addListener(gameListener);
         final CheckBox autoPlay = new CheckBox("Let the browser play.");
-		autoPlay.addClickListener(new ClickListener() {
-
-			public void onClick(Widget sender) {
-				if (autoPlay.isChecked() && !isGameFinished()) {
-					itsAutoPlayTimer.scheduleRepeating(1000);
-				} else {
-					itsAutoPlayTimer.cancel();
-				}
-			}
-		});
+        autoPlay.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
+            @Override
+            public void onValueChange(ValueChangeEvent<Boolean> event) {
+                if (event.getValue() && !isGameFinished()) {
+                    itsAutoPlayTimer.scheduleRepeating(1000);
+                } else {
+                    itsAutoPlayTimer.cancel();
+                }
+            }
+        });
         add(autoPlay);
     }
 
