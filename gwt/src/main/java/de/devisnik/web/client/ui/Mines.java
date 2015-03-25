@@ -1,12 +1,10 @@
 package de.devisnik.web.client.ui;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Button;
-import com.google.gwt.user.client.ui.ClickListener;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.Widget;
-
-import de.devisnik.mine.GameFactory;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.SimpleGameFactory;
 
@@ -15,47 +13,48 @@ import de.devisnik.mine.SimpleGameFactory;
  */
 public class Mines implements EntryPoint {
 
-	private RootPanel minesPanel;
+    private RootPanel minesPanel;
 
-	/**
-	 * This is the entry point method.
-	 */
-	public void onModuleLoad() {
-		minesPanel = RootPanel.get("Mines");
-		initButtonBar();
-	}
+    /**
+     * This is the entry point method.
+     */
+    public void onModuleLoad() {
+        minesPanel = RootPanel.get("Mines");
+        initButtonBar();
+    }
 
-	private void initButtonBar() {
-//		RootPanel.get("ButtonBar").add(createGameButton(10,	10, 10));
-		RootPanel.get("ButtonBar").add(createGameButton(15, 15, 35));
-//		RootPanel.get("ButtonBar").add(createGameButton(20, 20, 80));
-	}
+    private void initButtonBar() {
+        RootPanel buttonBar = RootPanel.get("ButtonBar");
+        buttonBar.add(createGameButton(10, 10, 10));
+        buttonBar.add(createGameButton(15, 15, 35));
+        buttonBar.add(createGameButton(20, 20, 80));
+    }
 
-	private Button createGameButton(final int dimX, final int dimY,
-			final int bombs) {
-		Button button = new Button(Integer.toString(dimX) + " * "
-				+ Integer.toString(dimY));
-		button.addClickListener(new ClickListener() {
+    private Button createGameButton(final int dimX, final int dimY,
+                                    final int bombs) {
+        Button button = new Button(Integer.toString(dimX) + " * " + Integer.toString(dimY));
+        button.addClickHandler(new ClickHandler() {
 
-			private GamePanel gamePanel;
+            private GamePanel gamePanel;
 
-			public void onClick(Widget sender) {
-				minesPanel.clear();
-				if (gamePanel != null) {
-					gamePanel.dispose();
-				}
-				IGame game = SimpleGameFactory.create(dimX, dimY, bombs);
-				gamePanel = createGamePanel(game);
-				minesPanel.add(gamePanel);
-			}
-		});
-		return button;
-	}
+            @Override
+            public void onClick(ClickEvent event) {
+                minesPanel.clear();
+                if (gamePanel != null) {
+                    gamePanel.dispose();
+                }
+                IGame game = SimpleGameFactory.create(dimX, dimY, bombs);
+                gamePanel = createGamePanel(game);
+                minesPanel.add(gamePanel);
+            }
+        });
+        return button;
+    }
 
-	private GamePanel createGamePanel(final IGame game) {
-		GamePanel vPanel = new GamePanel(game);
-		vPanel.setWidth("100%");
-		vPanel.setHeight("100%");
-		return vPanel;
-	}
+    private GamePanel createGamePanel(final IGame game) {
+        GamePanel vPanel = new GamePanel(game);
+        vPanel.setWidth("100%");
+        vPanel.setHeight("100%");
+        return vPanel;
+    }
 }
