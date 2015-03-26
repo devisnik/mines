@@ -6,44 +6,61 @@ import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.ui.*;
+import de.devisnik.mine.IField;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.IMinesGameListener;
+import de.devisnik.mine.IStopWatchListener;
 import de.devisnik.web.client.robot.AutoPlayer;
 
 public class GamePanel extends VerticalPanel {
+    private static final int ONE_SECOND_IN_MILLIS = 1000;
+
     private final IGame game;
     private IMinesGameListener gameListener;
     private boolean isGameFinished;
 
+    private final Timer timeTicker;
     private BoardCanvas gameCanvas;
     private Counter minesCounter;
-    private StopWatch stopWatch;
     private CheckBox clickOpenButton;
     private TextBox messageBox;
-    private Timer itsAutoPlayTimer;
+    private Timer autoPlayTimer;
+    private CheckBox clickFlagButton;
 
     public GamePanel(final IGame game) {
         this.game = game;
 
         initClickModeSelectionUI(game);
-        initCountersUI(game);
-        initBoardUI(game);
-        initMessageUI(game);
+        initCountersUI();
+        initBoardUI();
+        initMessageUI();
+        initAutoPlay();
 
-        final AutoPlayer autoPlayer = new AutoPlayer(game, false);
-        itsAutoPlayTimer = new Timer() {
+        initGameListener();
+        timeTicker = new Timer() {
+            @Override
             public void run() {
-                autoPlayer.doNextMove();
+                GamePanel.this.game.tickWatch();
             }
         };
+        if (game.isRunning())
+            startWatch();
+    }
+
+    private void startWatch() {
+        timeTicker.scheduleRepeating(ONE_SECOND_IN_MILLIS);
+    }
+
+    private void initGameListener() {
         gameListener = new IMinesGameListener() {
+            @Override
             public void onBusted() {
-                stopWatch.stop();
                 messageBox.setText("Exploded!");
-				itsAutoPlayTimer.cancel();
+                autoPlayTimer.cancel();
                 setGameFinished(true);
             }
 
+            @Override
             public void onChange(int flags, int mines) {
                 int bombsToFind = mines - flags;
                 messageBox.setText(Integer.toString(bombsToFind)
@@ -51,70 +68,70 @@ public class GamePanel extends VerticalPanel {
                 minesCounter.setValue(bombsToFind);
             }
 
+            @Override
             public void onDisarmed() {
-                stopWatch.stop();
                 messageBox.setText("Mines cleared!");
-				itsAutoPlayTimer.cancel();
+                autoPlayTimer.cancel();
                 setGameFinished(true);
             }
 
+            @Override
             public void onStart() {
-                stopWatch.start();
-                messageBox.setText(Integer.toString(game.getBombCount())
-                        + " mines left to find.");
+                startWatch();
+                messageBox.setText(game.getBombCount() + " mines left to find.");
+                if (clickOpenButton.getValue()) //switch to Flag Mode
+                    clickFlagButton.setValue(true, true);
             }
         };
         game.addListener(gameListener);
+    }
+
+    private void initAutoPlay() {
+        final AutoPlayer autoPlayer = new AutoPlayer(game, false);
+        autoPlayTimer = new Timer() {
+            public void run() {
+                autoPlayer.doNextMove();
+            }
+        };
         final CheckBox autoPlay = new CheckBox("Let the browser play.");
         autoPlay.addValueChangeHandler(new ValueChangeHandler<Boolean>() {
             @Override
             public void onValueChange(ValueChangeEvent<Boolean> event) {
-                if (event.getValue() && !isGameFinished()) {
-                    itsAutoPlayTimer.scheduleRepeating(1000);
-                } else {
-                    itsAutoPlayTimer.cancel();
-                }
+                if (event.getValue() && !isGameFinished())
+                    autoPlayTimer.scheduleRepeating(1000);
+                else
+                    autoPlayTimer.cancel();
             }
         });
         add(autoPlay);
     }
 
-    private void initBoardUI(final IGame game) {
+    private void initBoardUI() {
         final ClickHandler clickListener = new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
                 boolean shiftKey = event.isShiftKeyDown();
                 FieldCanvas canvas = (FieldCanvas) event.getSource();
-                if (shiftKey) {
-                    if (clickOpenButton.getValue()) {
-                        game.onRequestFlag(canvas.getField());
-                    } else {
-                        game.onRequestOpen(canvas.getField());
-                    }
-                } else {
-                    if (clickOpenButton.getValue()) {
-                        game.onRequestOpen(canvas.getField());
-                    } else {
-                        game.onRequestFlag(canvas.getField());
-                    }
-                }
+                IField field = canvas.getField();
+                if (clickOpenButton.getValue() != shiftKey) //logical XOR
+                    game.onRequestOpen(field);
+                else
+                    game.onRequestFlag(field);
             }
         };
         gameCanvas = new BoardCanvas(game.getBoard(), clickListener);
         add(gameCanvas);
     }
 
-    private void initMessageUI(IGame game) {
+    private void initMessageUI() {
         messageBox = new TextBox();
         messageBox.setReadOnly(true);
-        messageBox.setWidth(Integer
-                .toString(FieldCanvas.SIZE * game.getBoard().getDimension().x)
-                + "px");
+        messageBox.setWidth(FieldCanvas.SIZE * game.getBoard().getDimension().x + "px");
         messageBox.setText("Click field to start game.");
         add(messageBox);
     }
 
-    private void initCountersUI(IGame game) {
+    private void initCountersUI() {
         DockPanel counterPanel = new DockPanel();
         add(counterPanel);
         minesCounter = new Counter(3);
@@ -124,12 +141,13 @@ public class GamePanel extends VerticalPanel {
         counterPanel.setHorizontalAlignment(DockPanel.ALIGN_RIGHT);
         counterPanel.add(timeCounter, DockPanel.EAST);
         counterPanel.setWidth(Integer.toString(FieldCanvas.SIZE * game.getBoard().getDimension().x) + "px");
-        stopWatch = new StopWatch() {
+        game.getWatch().addListener(new IStopWatchListener() {
             @Override
-            public void setTime(int value) {
-                timeCounter.setValue(value);
+            public void onTimeChange(int currentTime) {
+                timeCounter.setValue(currentTime);
             }
-        };
+        });
+
     }
 
     private void initClickModeSelectionUI(IGame game) {
@@ -139,7 +157,7 @@ public class GamePanel extends VerticalPanel {
         clickModePanel.setHorizontalAlignment(DockPanel.ALIGN_CENTER);
         clickOpenButton = new RadioButton("ClickOpens", "click opens");
         clickOpenButton.setValue(true);
-        final CheckBox clickFlagButton = new RadioButton("ClickFlags", "click flags");
+        clickFlagButton = new RadioButton("ClickFlags", "click flags");
         clickFlagButton.setValue(false);
         ValueChangeHandler<Boolean> checkBoxToggler = new ValueChangeHandler<Boolean>() {
             @Override
@@ -172,9 +190,9 @@ public class GamePanel extends VerticalPanel {
     }
 
     public void dispose() {
-		itsAutoPlayTimer.cancel();
+        timeTicker.cancel();
+        autoPlayTimer.cancel();
         game.removeListener(gameListener);
         gameCanvas.dispose();
-
     }
 }
