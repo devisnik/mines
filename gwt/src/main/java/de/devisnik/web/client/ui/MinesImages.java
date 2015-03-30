@@ -10,7 +10,47 @@ public class MinesImages {
     private MinesImages() {
     }
 
-    public static ImageResource getFieldImagePrototype(int index) {
+    public static ImageResource getDarkFieldImageFor(int index) {
+        switch (index) {
+            case 0:
+                return imageBundle.dark_image_0();
+            case 1:
+                return imageBundle.dark_image_1();
+            case 2:
+                return imageBundle.dark_image_2();
+            case 3:
+                return imageBundle.dark_image_3();
+            case 4:
+                return imageBundle.dark_image_4();
+            case 5:
+                return imageBundle.dark_image_5();
+            case 6:
+                return imageBundle.dark_image_6();
+            case 7:
+                return imageBundle.dark_image_7();
+            case 8:
+                return imageBundle.dark_image_8();
+            case 9:
+                return imageBundle.dark_image_9();
+            case 10:
+                return imageBundle.dark_image_10();
+            case 11:
+                return imageBundle.dark_image_11();
+            case 12:
+                return imageBundle.dark_image_12();
+            case 13:
+                return imageBundle.dark_image_13();
+            case 14:
+                return imageBundle.dark_image_14();
+            case 15:
+                return imageBundle.dark_image_15();
+            default:
+                break;
+        }
+        throw new IllegalArgumentException("no field image for index: " + index);
+    }
+
+    public static ImageResource getClassicFieldImageFor(int index) {
         switch (index) {
             case 0:
                 return imageBundle.classic_image_0();
@@ -50,7 +90,47 @@ public class MinesImages {
         throw new IllegalArgumentException("no field image for index: " + index);
     }
 
-    public static ImageResource getCounterImagePrototype(int index) {
+    public static ImageResource getLightFieldImageFor(int index) {
+        switch (index) {
+            case 0:
+                return imageBundle.light_image_0();
+            case 1:
+                return imageBundle.light_image_1();
+            case 2:
+                return imageBundle.light_image_2();
+            case 3:
+                return imageBundle.light_image_3();
+            case 4:
+                return imageBundle.light_image_4();
+            case 5:
+                return imageBundle.light_image_5();
+            case 6:
+                return imageBundle.light_image_6();
+            case 7:
+                return imageBundle.light_image_7();
+            case 8:
+                return imageBundle.light_image_8();
+            case 9:
+                return imageBundle.light_image_9();
+            case 10:
+                return imageBundle.light_image_10();
+            case 11:
+                return imageBundle.light_image_11();
+            case 12:
+                return imageBundle.light_image_12();
+            case 13:
+                return imageBundle.light_image_13();
+            case 14:
+                return imageBundle.light_image_14();
+            case 15:
+                return imageBundle.light_image_15();
+            default:
+                break;
+        }
+        throw new IllegalArgumentException("no field image for index: " + index);
+    }
+
+    public static ImageResource getCounterImageFor(int index) {
         switch (index) {
             case 0:
                 return imageBundle.counter_0();
