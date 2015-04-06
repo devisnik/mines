@@ -68,7 +68,7 @@ public class MinesScreen {
         IGame game = GameFactory.create(40, 20, 150);
         game.addListener(itsMinesGameListener);
         GameCanvas gameCanvas = setupGameUI(parent, game);
-        autoPlayer = new AutoPlayer(gameCanvas.getGame(), true);
+        autoPlayer = new AutoPlayer(game, true);
         gameCanvas.getDisplay().timerExec((int) SECONDS.toMillis(1), new Runnable() {
 
             public void run() {
@@ -93,9 +93,9 @@ public class MinesScreen {
         final GridData timerGridData = new GridData();
         timerGridData.horizontalAlignment = SWT.END;
         timeCounter.setLayoutData(timerGridData);
-        GameCanvas itsGameCanvas = new GameCanvas(gameComposite, SWT.NONE, game);
-        itsGameCanvas.setLayoutData(createGameCanvasGridData());
-        return itsGameCanvas;
+        GameCanvas canvas = new GameCanvas(gameComposite, SWT.NONE, game);
+        canvas.setLayoutData(createGameCanvasGridData());
+        return canvas;
     }
 
     private GridData createGameCanvasGridData() {

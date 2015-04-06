@@ -15,30 +15,30 @@ import org.eclipse.swt.widgets.Composite;
 public class FieldCanvas extends Canvas {
 
     private static final Point SIZE = new Point(24, 24);
-    private final IField itsField;
-    private final IFieldListener itsPropertyChangeListener;
+    private final IField field;
+    private final IFieldListener redrawingListener;
 
     public FieldCanvas(final Composite parent, final IField field, final MinesImages images) {
         super(parent, SWT.NO_BACKGROUND & SWT.NO_REDRAW_RESIZE);
-        this.itsField = field;
+        this.field = field;
         addPaintListener(new PaintListener() {
             public void paintControl(final PaintEvent e) {
-                int imageId = itsField.getImage();
+                int imageId = field.getImage();
                 Image image = images.getFieldImages()[imageId];
                 Rectangle bounds = image.getBounds();
                 e.gc.drawImage(image, 0, 0, bounds.width, bounds.height, 0, 0, SIZE.x, SIZE.y);
-                if (itsField.isTouched())
+                if (FieldCanvas.this.field.isTouched())
                     e.gc.drawRoundRectangle(1, 1, SIZE.x - 3, SIZE.y - 3, 3, 3);
             }
         });
-        itsPropertyChangeListener = new SimpleFieldListener() {
+        redrawingListener = new SimpleFieldListener() {
             @Override
             protected void onChange(IField field) {
                 if (!isDisposed())
                     redraw();
             }
         };
-        itsField.addListener(itsPropertyChangeListener);
+        this.field.addListener(redrawingListener);
 
     }
 
@@ -48,6 +48,6 @@ public class FieldCanvas extends Canvas {
     }
 
     public void dispose() {
-        itsField.removeListener(itsPropertyChangeListener);
+        field.removeListener(redrawingListener);
     }
 }
