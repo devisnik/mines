@@ -86,9 +86,10 @@ public class MinesScreen {
         gameComposite.setLayout(createLayout(2));
         gameComposite.setLayoutData(createFillGridData());
         gameComposite.setBackground(black);
+        MinesImages images = new MinesImages(parent.getDisplay());
         flagCountDown = new Counter(gameComposite, SWT.NONE, 3, game
-                .getBombCount(), null);
-        timeCounter = new Counter(gameComposite, SWT.NONE, 3, 0, null);
+                .getBombCount(), images);
+        timeCounter = new Counter(gameComposite, SWT.NONE, 3, 0, images);
         final GridData timerGridData = new GridData();
         timerGridData.horizontalAlignment = SWT.END;
         timeCounter.setLayoutData(timerGridData);

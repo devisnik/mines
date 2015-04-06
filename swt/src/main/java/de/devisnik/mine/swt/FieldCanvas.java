@@ -18,7 +18,6 @@ public class FieldCanvas extends Canvas {
     private final IField itsField;
     private final IFieldListener itsPropertyChangeListener;
 
-
     public FieldCanvas(final Composite parent, final IField field, final MinesImages images) {
         super(parent, SWT.NO_BACKGROUND & SWT.NO_REDRAW_RESIZE);
         this.itsField = field;
