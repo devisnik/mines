@@ -1,8 +1,9 @@
 package de.devisnik.mine.swt;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
+import de.devisnik.mine.GameFactory;
+import de.devisnik.mine.IGame;
+import de.devisnik.mine.IMinesGameListener;
+import de.devisnik.mine.robot.AutoPlayer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
@@ -11,10 +12,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import de.devisnik.mine.GameFactory;
-import de.devisnik.mine.IGame;
-import de.devisnik.mine.IMinesGameListener;
-import de.devisnik.mine.robot.AutoPlayer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -66,7 +65,7 @@ public class MinesScreen {
     }
 
     public void createControl(final Composite parent) {
-        IGame game = GameFactory.create(50, 30, 200);
+        IGame game = GameFactory.create(40, 20, 150);
         game.addListener(itsMinesGameListener);
         GameCanvas gameCanvas = setupGameUI(parent, game);
         autoPlayer = new AutoPlayer(gameCanvas.getGame(), true);

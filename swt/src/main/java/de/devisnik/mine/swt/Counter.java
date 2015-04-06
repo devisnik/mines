@@ -1,13 +1,13 @@
 package de.devisnik.mine.swt;
 
-import java.util.HashMap;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
+
+import java.util.HashMap;
 
 public class Counter extends Composite {
     private int value = 0;
@@ -42,7 +42,7 @@ public class Counter extends Composite {
         this.setLayout(counterLayout);
 
         itsImageMap = new HashMap();
-        final MinesImages minesImages = new MinesImages();
+        final MinesImages minesImages = new MinesImages(parent.getDisplay());
         for (int i = 0; i < 10; i++) {
             itsImageMap.put("" + i, minesImages.getCounterImages()[i]);
         }
