@@ -58,10 +58,11 @@ public class GameCanvas extends Composite {
                 }
             }
         };
+        MinesImages minesImages = new MinesImages(getDisplay());
         for (int i = 0; i < gameDimension.y; i++) {
             for (int j = 0; j < gameDimension.x; j++) {
                 IField field = itsGame.getBoard().getField(j, i);
-                final FieldCanvas fieldCanvas = new FieldCanvas(this, field);
+                final FieldCanvas fieldCanvas = new FieldCanvas(this, field, minesImages);
                 fieldCanvas.setData(field);
                 fieldCanvas.addMouseListener(mouseAdapter);
             }
