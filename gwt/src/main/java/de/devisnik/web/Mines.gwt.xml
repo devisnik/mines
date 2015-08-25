@@ -7,6 +7,7 @@
       <inherits name='com.google.gwt.user.theme.standard.Standard'/>
       <inherits name='java.io.InputStream'/>
       <inherits name='de.devisnik.mine.MinesModel'/>
+      <inherits name='de.devisnik.mine.robot.MinesAutoPlay'/>
       <entry-point class='de.devisnik.web.client.ui.Mines'/>
       <stylesheet src='Mines.css' />
 </module>

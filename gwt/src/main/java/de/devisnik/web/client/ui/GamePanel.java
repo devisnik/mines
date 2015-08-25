@@ -10,7 +10,7 @@ import de.devisnik.mine.IField;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.IMinesGameListener;
 import de.devisnik.mine.IStopWatchListener;
-import de.devisnik.web.client.robot.AutoPlayer;
+import de.devisnik.mine.robot.AutoPlayer;
 
 public class GamePanel extends VerticalPanel {
     private static final int ONE_SECOND_IN_MILLIS = 1000;

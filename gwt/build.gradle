@@ -15,6 +15,9 @@ apply plugin: 'war'
 apply plugin: 'gwt'
 apply plugin: 'eclipse'
 
+// needed to avoid crash in gwt-closure below due to project not resolved
+evaluationDependsOn(':robot')
+
 dependencies {
     compile 'com.google.gwt:gwt-servlet:2.7.0'
     compile 'com.google.gwt:gwt-user:2.7.0'
@@ -26,8 +29,10 @@ dependencies {
 gwt {
 	gwtVersion='2.7.0'
 	modules 'de.devisnik.web.Mines'
-	src += files(project(':model').sourceSets.main.allJava.srcDirs) \
-   	    + files(project(':model').sourceSets.main.output.resourcesDir)
+	src += files(project(':model').sourceSets.main.allJava.srcDirs)
+    src += files(project(':model').sourceSets.main.output.resourcesDir)
+    src += files(project(':robot').sourceSets.main.allJava.srcDirs)
+   	src += files(project(':robot').sourceSets.main.output.resourcesDir)
 
     dev {
         startupUrl='de.devisnik.web.Mines/Mines.html'
