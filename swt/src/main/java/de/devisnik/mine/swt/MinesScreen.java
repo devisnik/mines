@@ -1,8 +1,9 @@
 package de.devisnik.mine.swt;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
+import de.devisnik.mine.GameFactory;
+import de.devisnik.mine.IGame;
+import de.devisnik.mine.IMinesGameListener;
+import de.devisnik.mine.robot.AutoPlayer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
@@ -11,10 +12,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
-import de.devisnik.mine.GameFactory;
-import de.devisnik.mine.IGame;
-import de.devisnik.mine.IMinesGameListener;
-import de.devisnik.mine.robot.AutoPlayer;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static java.util.concurrent.TimeUnit.SECONDS;
 
@@ -66,10 +65,10 @@ public class MinesScreen {
     }
 
     public void createControl(final Composite parent) {
-        IGame game = GameFactory.create(50, 30, 200);
+        IGame game = GameFactory.create(40, 20, 150);
         game.addListener(itsMinesGameListener);
         GameCanvas gameCanvas = setupGameUI(parent, game);
-        autoPlayer = new AutoPlayer(gameCanvas.getGame(), true);
+        autoPlayer = new AutoPlayer(game, true);
         gameCanvas.getDisplay().timerExec((int) SECONDS.toMillis(1), new Runnable() {
 
             public void run() {
@@ -87,15 +86,16 @@ public class MinesScreen {
         gameComposite.setLayout(createLayout(2));
         gameComposite.setLayoutData(createFillGridData());
         gameComposite.setBackground(black);
+        MinesImages images = new MinesImages(parent.getDisplay());
         flagCountDown = new Counter(gameComposite, SWT.NONE, 3, game
-                .getBombCount(), null);
-        timeCounter = new Counter(gameComposite, SWT.NONE, 3, 0, null);
+                .getBombCount(), images);
+        timeCounter = new Counter(gameComposite, SWT.NONE, 3, 0, images);
         final GridData timerGridData = new GridData();
         timerGridData.horizontalAlignment = SWT.END;
         timeCounter.setLayoutData(timerGridData);
-        GameCanvas itsGameCanvas = new GameCanvas(gameComposite, SWT.NONE, game);
-        itsGameCanvas.setLayoutData(createGameCanvasGridData());
-        return itsGameCanvas;
+        GameCanvas canvas = new GameCanvas(gameComposite, SWT.NONE, game);
+        canvas.setLayoutData(createGameCanvasGridData());
+        return canvas;
     }
 
     private GridData createGameCanvasGridData() {
