@@ -39,7 +39,7 @@ public class FieldCanvas extends Image {
     }
 
     private void paintControl() {
-        setResource(MinesImages.getLightFieldImageFor(itsField.getImage()));
+        setResource(MinesImages.getDarkFieldImageFor(itsField.getImage()));
     }
 
     public void dispose() {
