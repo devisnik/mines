@@ -1,5 +1,6 @@
 package de.devisnik.mine.impl;
 
+import de.devisnik.mine.IMinesGameListener;
 import junit.framework.TestCase;
 import de.devisnik.mine.IBoard;
 import de.devisnik.mine.IField;
@@ -308,5 +309,24 @@ public class GameTest extends TestCase {
 		game.onRequestFlag(field);
 		return field;
 	}
-	
+
+	public static class FailingMinesListener implements IMinesGameListener {
+
+        public void onBusted() {
+            fail();
+        }
+
+        public void onChange(int flags, int mines) {
+            fail();
+        }
+
+        public void onDisarmed() {
+            fail();
+        }
+
+        public void onStart() {
+            fail();
+        }
+
+    }
 }
