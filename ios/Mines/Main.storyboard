@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2RP-Wv-LOC">
+    <dependencies>
+        <development version="5000" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="Ugb-Eu-7W2">
+            <objects>
+                <viewController id="2RP-Wv-LOC" customClass="ViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yuz-Um-e8p">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sfb-D1-hrH">
+                                <rect key="frame" x="20" y="20" width="280" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                                <state key="normal" title="New Game">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="UOp-f7-cFz" appends="YES" id="e9F-fx-rXw"/>
+                                </connections>
+                            </button>
+                            <containerView clipsSubviews="YES" contentMode="scaleToFill" id="gMx-51-dVN" userLabel="Board Container">
+                                <rect key="frame" x="20" y="58" width="280" height="503"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="CHn-G7-mB4" kind="embed" id="Ut4-lw-ZBU"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="prD-cC-Gwm"/>
+                    <connections>
+                        <outlet property="gameContainer" destination="gMx-51-dVN" id="pT1-7B-80G"/>
+                        <outlet property="reloadButton" destination="Sfb-D1-hrH" id="iFs-xf-4rZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pew-t9-zBY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="UOp-f7-cFz">
+                    <connections>
+                        <action selector="reloadPressed:" destination="2RP-Wv-LOC" id="HoT-di-ZtE"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-52" y="60"/>
+        </scene>
+        <!--My Game View Controller-->
+        <scene sceneID="sPN-QD-HaF">
+            <objects>
+                <viewController id="CHn-G7-mB4" customClass="MyGameViewController" sceneMemberID="viewController">
+                    <scrollView key="view" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="-2" maximumZoomScale="3" id="yfQ-dV-lSQ">
+                        <rect key="frame" x="0.0" y="0.0" width="280" height="503"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <view autoresizesSubviews="NO" contentMode="scaleToFill" id="Msa-eh-5Kr" customClass="UIBoard">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="280"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </view>
+                        </subviews>
+                        <connections>
+                            <outlet property="delegate" destination="CHn-G7-mB4" id="lke-Yb-qHw"/>
+                        </connections>
+                    </scrollView>
+                    <toolbarItems/>
+                    <connections>
+                        <outlet property="boardUI" destination="Msa-eh-5Kr" id="Bz2-bE-UOE"/>
+                        <outlet property="scrollContainer" destination="yfQ-dV-lSQ" id="aw0-PC-eye"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yiU-p6-H1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <scrollView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" id="ffF-Hf-Hxn">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </scrollView>
+            </objects>
+            <point key="canvasLocation" x="396" y="249"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

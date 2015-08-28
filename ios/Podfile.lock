@@ -1,0 +1,19 @@
+PODS:
+  - j2objc-model-debug (1.0)
+  - j2objc-model-release (1.0)
+
+DEPENDENCIES:
+  - j2objc-model-debug (from `/Users/leck/projects/devisnik/mines/model/build`)
+  - j2objc-model-release (from `/Users/leck/projects/devisnik/mines/model/build`)
+
+EXTERNAL SOURCES:
+  j2objc-model-debug:
+    :path: /Users/leck/projects/devisnik/mines/model/build
+  j2objc-model-release:
+    :path: /Users/leck/projects/devisnik/mines/model/build
+
+SPEC CHECKSUMS:
+  j2objc-model-debug: dd60b28cff0c2032a35ba12397d826cda144ada1
+  j2objc-model-release: 3ba75d0771022f98b5af3e1c9ea03255b3869571
+
+COCOAPODS: 0.38.2
