@@ -12,12 +12,14 @@
 #import "IBoard.h"
 #import "UIBoard.h"
 
-@interface MyGameViewController : UIViewController<DeDevisnikMineIFieldListener, UIScrollViewDelegate>
+@interface MyGameViewController : UIViewController<UIScrollViewDelegate>
 
 @property(nonatomic, retain) id<DeDevisnikMineIGame> minesGame;
 @property(nonatomic, retain) id<DeDevisnikMineIBoard> minesBoard;
+
 @property (weak, nonatomic) IBOutlet UIBoard *boardUI;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollContainer;
 
 -(void) startNewGame;
+-(void) updateUIForField:(id<DeDevisnikMineIField>)field;
 @end

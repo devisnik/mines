@@ -13,12 +13,34 @@
 #import "GameFactory.h"
 #import "Point.h"
 #import "UIBoard.h"
+#import "SimpleFieldListener.h"
 
-@interface MyGameViewController ()
+@interface FieldListener : DeDevisnikMineSimpleFieldListener
+@end
+
+@implementation FieldListener
+
+MyGameViewController *delegate;
+
+-(id) initWithController: (MyGameViewController *) controller
+{
+    self = [super init];
+    if (self) {
+        delegate = controller;
+    }
+    return self;
+}
+
+-(void) onChangeWithDeDevisnikMineIField:(id<DeDevisnikMineIField>)field
+{
+    [delegate updateUIForField: field];
+}
 
 @end
 
 @implementation MyGameViewController
+
+FieldListener *fieldListener;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +79,7 @@
         [self unlistenForFieldChanges];
         firstTime = NO;
     }
+    fieldListener = [[FieldListener alloc] initWithController: self];
     self.minesGame = [DeDevisnikMineGameFactory createWithInt:10 withInt:15 withInt:15];
     self.minesBoard = [self.minesGame getBoard];
     if (firstTime)
@@ -108,7 +131,7 @@
     DeDevisnikMinePoint *dimension = [self.minesBoard getDimension];
     for (int x = 0; x < dimension->x_; x++) {
         for (int y = 0; y< dimension->y_; y++) {
-            [[self.minesBoard getFieldWithInt:x withInt:y] addListenerWithDeDevisnikMineIFieldListener:(id<DeDevisnikMineIFieldListener>)self];
+            [[self.minesBoard getFieldWithInt:x withInt:y] addListenerWithDeDevisnikMineIFieldListener: fieldListener];
         }
     }
 }
@@ -118,7 +141,7 @@
     DeDevisnikMinePoint *dimension = [self.minesBoard getDimension];
     for (int x = 0; x < dimension->x_; x++) {
         for (int y = 0; y< dimension->y_; y++) {
-            [[self.minesBoard getFieldWithInt:x withInt:y] removeListenerWithDeDevisnikMineIFieldListener:(id<DeDevisnikMineIFieldListener>)self];
+            [[self.minesBoard getFieldWithInt:x withInt:y] removeListenerWithDeDevisnikMineIFieldListener:fieldListener];
         }
     }
 }
@@ -164,26 +187,6 @@
     [fieldUI setImage: [UIImage imageNamed:imageId]];
 }
 
-
-- (void)onFieldOpenChangeWithDeDevisnikMineIField:(id<DeDevisnikMineIField>)field
-                                         withBoolean:(jboolean)value {
-    [self updateUIForField:field];
-}
-
-- (void)onFieldFlagChangeWithDeDevisnikMineIField:(id<DeDevisnikMineIField>)field
-                                         withBoolean:(jboolean)value {
-    [self updateUIForField:field];
-}
-
-- (void)onFieldExplodedChangeWithDeDevisnikMineIField:(id<DeDevisnikMineIField>)field
-                                             withBoolean:(jboolean)value {
-    [self updateUIForField:field];
-}
-
-- (void)onFieldTouchedChangeWithDeDevisnikMineIField:(id<DeDevisnikMineIField>)field
-                                            withBoolean:(jboolean)value {
-    [self updateUIForField:field];
-}
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.boardUI;
