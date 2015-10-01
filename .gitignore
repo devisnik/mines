@@ -9,4 +9,5 @@ android/sync_build.sh
 android/sync_releasenotes.sh
 *.iml
 *.keystore
+*.p12
 **/war
