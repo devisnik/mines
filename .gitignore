@@ -11,3 +11,9 @@ android/sync_releasenotes.sh
 *.keystore
 *.p12
 **/war
+bin/
+
+# eclipse
+.project
+.settings/
+.classpath
