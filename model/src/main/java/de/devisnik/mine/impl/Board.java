@@ -149,6 +149,7 @@ public class Board implements IBoard {
 		if (field.isOpen())
 			return false;
 		field.setOpen(true);
+		field.setFlagged(false);
 		if (field.isBomb()) {
 			field.setExploded(true);
 			isExploded = true;
