@@ -9,8 +9,8 @@ dependencies {
 }
 
 ext {
-    VERSION_CODE = 55
-    VERSION_NAME = '1.9.0'
+    VERSION_CODE = 57
+    VERSION_NAME = '1.9.1'
     APP_NAME     = 'de.devisnik.android.mine'
     BUILD_DATE   = today()
 }
