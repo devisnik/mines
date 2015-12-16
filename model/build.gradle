@@ -1,11 +1,12 @@
 plugins {
     id 'java'
-    id 'com.github.j2objccontrib.j2objcgradle' version '0.4.2-alpha'
+    id 'com.github.j2objccontrib.j2objcgradle' version '0.5.0-alpha'
 }
 
 j2objcConfig {
+    supportedArchs += 'ios_i386'
     xcodeProjectDir '../ios'  // Xcode workspace directory (suggested directory name)
-    xcodeTarget 'Mines'     // iOS app target name (replace with existing app name)
+    xcodeTargetsIos 'Mines', 'MinesTests'     // iOS app target name (replace with existing app name)
     translateArgs "--no-package-directories"
     testPattern {
         exclude '*Tests.java'
