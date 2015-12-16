@@ -16,4 +16,4 @@ SPEC CHECKSUMS:
   j2objc-model-debug: cdec998c87261b2fd4404b9a7d0728765298f4e5
   j2objc-model-release: e6c2b28642ff1236fef4ada51c9bba231e84d2a6
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0
