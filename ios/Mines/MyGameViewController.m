@@ -7,13 +7,13 @@
 //
 
 #import "MyGameViewController.h"
-#import "IGame.h"
-#import "IBoard.h"
-#import "IField.h"
-#import "GameFactory.h"
-#import "Point.h"
+#import "de/devisnik/mine/IGame.h"
+#import "de/devisnik/mine/IBoard.h"
+#import "de/devisnik/mine/IField.h"
+#import "de/devisnik/mine/GameFactory.h"
+#import "de/devisnik/mine/Point.h"
+#import "de/devisnik/mine/SimpleFieldListener.h"
 #import "UIBoard.h"
-#import "SimpleFieldListener.h"
 
 @interface FieldListener : DeDevisnikMineSimpleFieldListener
 @end
@@ -183,7 +183,7 @@ FieldListener *fieldListener;
 }
 
 -(void) updateView:(UIImageView*)fieldUI ForField:(id<DeDevisnikMineIField>)field {
-    NSString *imageId = [NSString stringWithFormat:@"dark_image_%02d", [field getImage]];
+    NSString *imageId = [NSString stringWithFormat:@"light_image_%02d", [field getImage]];
     [fieldUI setImage: [UIImage imageNamed:imageId]];
 }
 
