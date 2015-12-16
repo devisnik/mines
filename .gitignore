@@ -10,3 +10,8 @@ android/sync_releasenotes.sh
 *.iml
 *.keystore
 **/war
+**/bin
+.classpath
+.project
+.settings/
+
