@@ -293,8 +293,27 @@ public class GameTest extends TestCase {
 		itsGame2by1.tickWatch();
 		assertEquals(0, itsGame2by1.getWatch().getTime());
 	}
-	
-	private IField getFieldAt(final int x, final int y, final Game game) {
+
+	/*
+	There was a bug where a flagged field in an empty area was marked as invalidly flagged
+	when a neighbor was opened within a running game.
+	We now just open it, removing the (invalid) flag.
+	 */
+	public void testOpenRemovesInvalidFlagOnEmptyNeighborFieldAndOpens() {
+		TestBoardMiner miner = new TestBoardMiner(new boolean[][]{
+				{false, false, false},
+				{false, false, false},
+				{true, false, false}
+		});
+		Game game = new Game(3, 3, 1, miner);
+		game.onRequestFlag(getFieldAt(0,0,game));
+		game.onRequestOpen(getFieldAt(0,1,game));
+
+		assertEquals(false, game.getBoard().getField(0,0).isFlagged());
+		assertEquals(true, game.getBoard().getField(0,0).isOpen());
+	}
+
+    private IField getFieldAt(final int x, final int y, final Game game) {
 		return game.getBoard().getField(x, y);
 	}
 

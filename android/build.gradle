@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-command'
+apply plugin: 'com.github.triplet.play'
 
 sourceCompatibility = 1.7
 
@@ -8,8 +9,8 @@ dependencies {
 }
 
 ext {
-    VERSION_CODE = 55
-    VERSION_NAME = '1.9.0'
+    VERSION_CODE = 58
+    VERSION_NAME = '1.9.2'
     APP_NAME     = 'de.devisnik.android.mine'
     BUILD_DATE   = today()
 }
@@ -56,9 +57,18 @@ android {
     }
 }
 
+if (rootProject.hasProperty('playstoreServiceAccount')) {
+    play {
+        serviceAccountEmail = playstoreServiceAccount
+        pk12File = rootProject.file(playstorePk12File)
+        track = 'production'
+    }
+}
+
 task archiveRelease(type: Copy) {
     from 'build/outputs/apk', 'build/outputs/'
     into "releases/${VERSION_CODE}"
     include('android-release.apk', 'mapping/**')
     rename ('android-release.apk', "${APP_NAME}_${BUILD_DATE}_${VERSION_NAME}_${VERSION_CODE}.apk")
 }
+
