@@ -1,11 +1,3 @@
-//
-//  UIBoard.m
-//  CollectionView
-//
-//  Created by Volker on 11/19/12.
-//  Copyright (c) 2012 Volker. All rights reserved.
-//
-
 #import "UIBoard.h"
 
 @implementation UIBoard
@@ -30,15 +22,5 @@
     [self addSubview:myView];
     return myView;
 }
-
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

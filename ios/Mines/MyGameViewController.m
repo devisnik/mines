@@ -1,11 +1,3 @@
-//
-//  MyGameViewController.m
-//  CollectionView
-//
-//  Created by Volker on 11/15/12.
-//  Copyright (c) 2012 Volker. All rights reserved.
-//
-
 #import "MyGameViewController.h"
 #import "de/devisnik/mine/IGame.h"
 #import "de/devisnik/mine/IBoard.h"
@@ -173,7 +165,6 @@ FieldListener *fieldListener;
 }
 
 - (void) updateUIForField:(id<DeDevisnikMineIField>)field {
-//    DeDevisnikMinePoint *fpoint = [self.minesBoard getPositionWithDeDevisnikMineIField:field];
 //    NSLog(@"%i, %i", fpoint.x, fpoint.y);
     DeDevisnikMinePoint *dimension = self.minesBoard.getDimension;
     DeDevisnikMinePoint *point = [self.minesBoard getPositionWithDeDevisnikMineIField:field];

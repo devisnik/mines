@@ -1,11 +1,3 @@
-//
-//  MyGameViewController.h
-//  CollectionView
-//
-//  Created by Volker on 11/15/12.
-//  Copyright (c) 2012 Volker. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import "de/devisnik/mine/IFieldListener.h"
 #import "de/devisnik/mine/IGame.h"
