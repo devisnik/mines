@@ -12,6 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIBoard *boardUI;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollContainer;
 
--(void) startNewGame;
+-(void) startNewGame:(id<DeDevisnikMineIGame>) game;
 -(void) updateUIForField:(id<DeDevisnikMineIField>)field;
 @end

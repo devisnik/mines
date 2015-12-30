@@ -2,7 +2,6 @@
 #import "de/devisnik/mine/IGame.h"
 #import "de/devisnik/mine/IBoard.h"
 #import "de/devisnik/mine/IField.h"
-#import "de/devisnik/mine/GameFactory.h"
 #import "de/devisnik/mine/Point.h"
 #import "de/devisnik/mine/SimpleFieldListener.h"
 #import "UIBoard.h"
@@ -62,17 +61,16 @@ FieldListener *fieldListener;
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self logSize];
-    [self startNewGame];
 }
 
-- (void) startNewGame {
+- (void) startNewGame: (id<DeDevisnikMineIGame>) game {
     BOOL firstTime = YES;
     if (self.minesBoard != nil) {
         [self unlistenForFieldChanges];
         firstTime = NO;
     }
     fieldListener = [[FieldListener alloc] initWithController: self];
-    self.minesGame = [DeDevisnikMineGameFactory createWithInt:10 withInt:15 withInt:15];
+    self.minesGame = game;
     self.minesBoard = [self.minesGame getBoard];
     if (firstTime)
         [self createUI];
