@@ -95,11 +95,11 @@
 }
 
 - (void)displayTime:(int)time {
-    [self.timeDisplay setText:[NSString stringWithFormat:@"%d", time]];
+    [self.timeDisplay setText:[NSString stringWithFormat:@"%.3d", time]];
 }
 
 - (void)displayFlags:(int)flags {
-    [self.bombsDisplay setText:[NSString stringWithFormat:@"%d", flags]];
+    [self.bombsDisplay setText:[NSString stringWithFormat:@"%.3d", flags]];
 }
 
 

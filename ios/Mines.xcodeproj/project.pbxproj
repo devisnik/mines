@@ -17,6 +17,7 @@
 		86582DF91B90CCB200DE0D2F /* MyGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DF81B90CCB200DE0D2F /* MyGameViewController.m */; };
 		86582DFC1B90CCC400DE0D2F /* UIBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DFB1B90CCC400DE0D2F /* UIBoard.m */; };
 		86582DFE1B90CDB900DE0D2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86582DFD1B90CDB900DE0D2F /* Main.storyboard */; };
+		868751BB1C372F0D00D5FE91 /* DIGITALDREAM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */; };
 		B71921E9CD5D672AF1CCB2C5 /* libPods-Mines.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 912458F0BC9F57B4088F8036 /* libPods-Mines.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		86582DFA1B90CCC400DE0D2F /* UIBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBoard.h; sourceTree = "<group>"; };
 		86582DFB1B90CCC400DE0D2F /* UIBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBoard.m; sourceTree = "<group>"; };
 		86582DFD1B90CDB900DE0D2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DIGITALDREAM.ttf; path = Mines/DIGITALDREAM.ttf; sourceTree = "<group>"; };
 		912458F0BC9F57B4088F8036 /* libPods-Mines.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D785AADC71AAC44EB261C5A7 /* libPods-MinesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MinesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02260F4E5C686BF3CD9102A /* Pods-Mines.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mines.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mines/Pods-Mines.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		86582DC51B8FB54E00DE0D2F = {
 			isa = PBXGroup;
 			children = (
+				868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */,
 				86582DD01B8FB54E00DE0D2F /* Mines */,
 				86582DEA1B8FB54E00DE0D2F /* MinesTests */,
 				86582DCF1B8FB54E00DE0D2F /* Products */,
@@ -251,6 +254,7 @@
 				86582DFE1B90CDB900DE0D2F /* Main.storyboard in Resources */,
 				86582DE21B8FB54E00DE0D2F /* LaunchScreen.xib in Resources */,
 				86582DDF1B8FB54E00DE0D2F /* Images.xcassets in Resources */,
+				868751BB1C372F0D00D5FE91 /* DIGITALDREAM.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
