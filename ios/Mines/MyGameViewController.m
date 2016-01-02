@@ -46,7 +46,6 @@ FieldListener *fieldListener;
 {
     [super viewDidLoad];
     [self logSize];
-//    [self startNewGame];
 }
 
 -(void)logSize {

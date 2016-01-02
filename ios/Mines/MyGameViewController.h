@@ -14,4 +14,5 @@
 
 -(void) startNewGame:(id<DeDevisnikMineIGame>) game;
 -(void) updateUIForField:(id<DeDevisnikMineIField>)field;
+
 @end
