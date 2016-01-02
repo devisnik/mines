@@ -3,14 +3,38 @@
 #import "de/devisnik/mine/GameFactory.h"
 #import "de/devisnik/mine/IStopWatch.h"
 
-@interface ViewController ()
-
-@end
 
 @implementation ViewController
 
+NSTimer *gameTimer;
+id<DeDevisnikMineIGame> minesGame;
+
 - (void) loadView {
     [super loadView];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillResignActive:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive:) name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
+}
+
+-(void)appDidBecomeActive:(NSNotification*)note
+{
+    gameTimer = [NSTimer scheduledTimerWithTimeInterval:1.0
+                                                 target:self selector:@selector(timerTick:)
+                                               userInfo:[self userInfo]
+                                                repeats:YES];
+}
+
+-(void)appWillResignActive:(NSNotification*)note
+{
+    [gameTimer invalidate];
+    gameTimer = nil;
+}
+
+-(void)appWillTerminate:(NSNotification*)note
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
 }
 
 - (void)viewDidLoad
@@ -21,13 +45,13 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [NSTimer scheduledTimerWithTimeInterval:1.0
-                                     target:self selector:@selector(timerTick:)
-                                   userInfo:[self userInfo] repeats:YES];
-
     [self createNewGame];
     [self startNewGame];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
 }
 
 - (NSDictionary *)userInfo {
@@ -35,16 +59,15 @@
 }
 
 - (void) createNewGame {
-    if (self.minesGame != nil) {
-        [self.minesGame removeListenerWithDeDevisnikMineIMinesGameListener:self];
-        [[self.minesGame getWatch] removeListenerWithDeDevisnikMineIStopWatchListener:self];
-    }
-    self.minesGame = [DeDevisnikMineGameFactory createWithInt:10 withInt:15 withInt:15];
-    [self.minesGame addListenerWithDeDevisnikMineIMinesGameListener:self];
-    [[self.minesGame getWatch] addListenerWithDeDevisnikMineIStopWatchListener:self];
+    [minesGame removeListenerWithDeDevisnikMineIMinesGameListener:self];
+    [[minesGame getWatch] removeListenerWithDeDevisnikMineIStopWatchListener:self];
 
-    [self displayFlags: [self.minesGame getBombCount]];
-    [self displayTime: [[self.minesGame getWatch] getTime]];
+    minesGame = [DeDevisnikMineGameFactory createWithInt:10 withInt:15 withInt:15];
+    [minesGame addListenerWithDeDevisnikMineIMinesGameListener:self];
+    [[minesGame getWatch] addListenerWithDeDevisnikMineIStopWatchListener:self];
+
+    [self displayFlags: [minesGame getBombCount]];
+    [self displayTime: [[minesGame getWatch] getTime]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,12 +88,12 @@
     for (UIViewController *controller in childControllers) {
         NSLog(@"%@", [controller description]);
         if ([controller isKindOfClass:[MyGameViewController class]])
-            [(MyGameViewController*)controller startNewGame:self.minesGame];
+            [(MyGameViewController*)controller startNewGame:minesGame];
     }
 }
 
 - (void)timerTick:(NSTimer*)theTimer {
-    [self.minesGame tickWatch];
+    [minesGame tickWatch];
 }
 
 - (void)onDisarmed {
@@ -101,6 +124,5 @@
 - (void)displayFlags:(int)flags {
     [self.bombsDisplay setText:[NSString stringWithFormat:@"%.3d", flags]];
 }
-
 
 @end

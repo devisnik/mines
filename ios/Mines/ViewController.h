@@ -8,8 +8,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *bombsDisplay;
 @property (weak, nonatomic) IBOutlet UILabel *timeDisplay;
 @property (weak, nonatomic) IBOutlet UIButton *reloadButton;
-- (IBAction)reloadPressed:(id)sender;
 
-@property(nonatomic, retain) id<DeDevisnikMineIGame> minesGame;
+- (IBAction)reloadPressed:(id)sender;
 
 @end
