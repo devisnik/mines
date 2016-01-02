@@ -33,7 +33,7 @@
                                 </connections>
                             </button>
                             <containerView clipsSubviews="YES" contentMode="scaleToFill" id="gMx-51-dVN" userLabel="Board Container">
-                                <rect key="frame" x="20" y="58" width="280" height="420"/>
+                                <rect key="frame" x="0.0" y="53" width="320" height="425"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -41,14 +41,14 @@
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seconds" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="8O1-hg-skm" userLabel="Time Display">
-                                <rect key="frame" x="219" y="24" width="81" height="21"/>
+                                <rect key="frame" x="219" y="24" width="101" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Digitaldream" family="Digital dream" pointSize="15"/>
                                 <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="vQ8-ci-kqo" userLabel="Bombs Display">
-                                <rect key="frame" x="17" y="24" width="81" height="21"/>
+                                <rect key="frame" x="0.0" y="24" width="98" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Digitaldream" family="Digital dream" pointSize="15"/>
                                 <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -77,13 +77,13 @@
         <scene sceneID="sPN-QD-HaF">
             <objects>
                 <viewController id="CHn-G7-mB4" customClass="MyGameViewController" sceneMemberID="viewController">
-                    <scrollView key="view" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" minimumZoomScale="0.69999999999999996" maximumZoomScale="2" id="yfQ-dV-lSQ">
-                        <rect key="frame" x="0.0" y="0.0" width="280" height="420"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <scrollView key="view" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" minimumZoomScale="0.69999999999999996" maximumZoomScale="2" id="yfQ-dV-lSQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="425"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" contentMode="scaleAspectFill" id="Msa-eh-5Kr" customClass="UIBoard">
+                            <view autoresizesSubviews="NO" contentMode="center" id="Msa-eh-5Kr" customClass="UIBoard">
                                 <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </view>
                         </subviews>
                         <connections>
@@ -97,9 +97,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yiU-p6-H1g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <scrollView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" id="ffF-Hf-Hxn">
+                <scrollView autoresizesSubviews="NO" multipleTouchEnabled="YES" contentMode="center" alwaysBounceVertical="YES" alwaysBounceHorizontal="YES" id="ffF-Hf-Hxn">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="360"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                 </scrollView>
             </objects>
             <point key="canvasLocation" x="396" y="249"/>
