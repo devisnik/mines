@@ -67,7 +67,7 @@ FieldListener *fieldListener;
     if (self.minesBoard != nil) {
         [self unlistenForFieldChanges];
         firstTime = NO;
-    }
+    }    
     fieldListener = [[FieldListener alloc] initWithController: self];
     self.minesGame = game;
     self.minesBoard = [self.minesGame getBoard];
@@ -146,8 +146,8 @@ FieldListener *fieldListener;
 //    NSLog(@"Tap");
     if (gesture.state == UIGestureRecognizerStateEnded) {
 //        NSLog(@"Click");
-        long index = gesture.view.tag;
-        id<DeDevisnikMineIField>field = [self getFieldForIndex:(int)index];
+        int index = gesture.view.tag;
+        id<DeDevisnikMineIField>field = [self getFieldForIndex:index];
         [self.minesGame onRequestFlagWithDeDevisnikMineIField: field];
     }
 }
@@ -174,7 +174,6 @@ FieldListener *fieldListener;
     NSString *imageId = [NSString stringWithFormat:@"light_image_%02d", [field getImage]];
     [fieldUI setImage: [UIImage imageNamed:imageId]];
 }
-
 
 - (UIView*)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.boardUI;
