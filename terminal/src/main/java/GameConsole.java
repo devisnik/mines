@@ -41,7 +41,6 @@ public final class GameConsole {
                 }, 1000, 1000);
             }
         });
-        print(game);
     }
 
     public void open(int x, int y) {

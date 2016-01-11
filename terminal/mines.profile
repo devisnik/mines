@@ -1,9 +1,8 @@
-:set interpreterMode
-
-def c = new GameConsole()
+c = new GameConsole()
 
 def n = { width, height, bombs ->
     c.newGame(width, height, bombs)
+    c.status()
 }
 
 def o = { x, y ->
@@ -19,3 +18,5 @@ def f = { x, y ->
 def s = {
     c.status()
 }
+
+s()
