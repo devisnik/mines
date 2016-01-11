@@ -4,6 +4,8 @@ import de.devisnik.mine.Point;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
+import static org.fusesource.jansi.Ansi.Color.*;
+
 public class BoardPrinter {
 
     public BoardPrinter() {
@@ -27,7 +29,7 @@ public class BoardPrinter {
             sb.append(i).append("| ");
             for (int j = 0; j < dimension.x; j++) {
                 IField field = board.getField(j, i);
-                sb.append(Ansi.ansi().fg(Ansi.Color.GREEN).a(print(field)).reset());
+                sb.append(print(field));
                 sb.append(" ");
             }
             sb.append("|").append(i).append("\n");
@@ -49,8 +51,27 @@ public class BoardPrinter {
         return IMAGE_CHARS[field.getImage()];
     }
 
-    private static final String[] IMAGE_CHARS = {
-            " ", "1", "2", "3", "4", "5", "6", "7", "8"
-            , "b", "#", "f", "F", "B"};
+    private static final String FLAG = "\u26F3";
+    private static final String BOMB = "\uD83D\uDCA3";
 
+    private static final String[] IMAGE_CHARS = {
+            " ",
+            fg(BLUE, "1"),
+            fg(GREEN, "2"),
+            fg(RED, "3"),
+            fg(CYAN, "4"),
+            fg(MAGENTA, "5"),
+            fg(WHITE, "6"),
+            fg(WHITE, "7"),
+            fg(WHITE, "8"),
+            BOMB,
+            "\u25FD",
+            FLAG,
+            fg(RED, "\u26D4"),
+            "\uD83D\uDD25"
+    };
+
+    private static String fg(Ansi.Color color, String character) {
+        return Ansi.ansi().fg(color).a(character).reset().toString();
+    }
 }
