@@ -1,22 +1,27 @@
 c = new GameConsole()
 
-def n = { width, height, bombs ->
+def newGame = { width, height, bombs ->
     c.newGame(width, height, bombs)
     c.status()
 }
 
-def o = { x, y ->
+def open = { x, y ->
     c.open x, y
     c.status()
 }
 
-def f = { x, y ->
+def flag = { x, y ->
     c.flag x, y
     c.status()
 }
 
-def s = {
+def status = {
     c.status()
 }
 
-s()
+n = newGame
+o = open
+f = flag
+s = status
+
+status()
