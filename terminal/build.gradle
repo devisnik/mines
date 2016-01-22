@@ -6,3 +6,8 @@ dependencies {
     compile 'org.fusesource.jansi:jansi:1.11'
 }
 
+groovysh {
+    shell {
+        args = ['-e', '. mines.dsl']
+    }
+}
