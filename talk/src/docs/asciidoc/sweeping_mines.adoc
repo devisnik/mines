@@ -77,23 +77,24 @@ since August 2009
 * ...
 
 == Project layout
-----
-├──  model      (1161,937)
-├──  robot      (529,198)
+[listing,indent=8]
+....
+├──  model      (1161, 937)
+├──  robot      ( 529, 198)
 ├──  android    (2907)
-├──  gwt        (701)
-├──  swt        (479)
-├──  ios        (289)
-├──  terminal   (158)
+├──  gwt        ( 701)
+├──  swt        ( 479)
+├──  ios        ( 289)
+├──  terminal   ( 158)
 └──  talk
-----
+....
 
 == Learnings
 [%step]
-* components, boundaries
-* different platforms
+* components
+* platforms
 * build tooling
-* a bit of algorithms and graphics
+* algorithms and graphics
 * App stores
 * (people)
 
