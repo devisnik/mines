@@ -1,0 +1,13 @@
+apply plugin: 'java'
+apply plugin: 'com.github.tkruse.groovysh'
+
+dependencies {
+    compile project(':model')
+    compile 'org.fusesource.jansi:jansi:1.11'
+}
+
+groovysh {
+    shell {
+        args = ['-e', '. mines.dsl']
+    }
+}
