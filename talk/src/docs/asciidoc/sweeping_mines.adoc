@@ -1,19 +1,35 @@
 = A minesweeper's journey
 @devisnik <volker.leck@gmail.com>
-2016-01-21
+2016-01-27
 :revealjs_theme: beige
 :revnumber: {project-version}
 :example-caption!:
 ifndef::imagesdir[:imagesdir: images]
 ifndef::sourcedir[:sourcedir: ../java]
 
-== Take aways
+== about://blank
+[%step]
+* playground code
+* history
+* evolution
+
+== about://meta
 [%step]
 * value of playground projects
 * code evolution and re-use
 * frameworks and tooling
 
 == What is link:https://en.wikipedia.org/wiki/Minesweeper_(video_game)[Minesweeper]?
+
+=== Wikipedia
+____
+Minesweeper is a single-player puzzle video game.
+The objective of the game is to clear a rectangular board containing hidden "mines"
+without detonating any of them, with help from clues about the number
+of neighboring mines in each field.
+____
+
+=== DEMO
 * link:http://devisnik.de/mines/de.devisnik.web.Mines/Mines.html[Play It]
 
 == Implementations
@@ -24,22 +40,32 @@ ifndef::sourcedir[:sourcedir: ../java]
 * ASCII / UTF-16
 * link:https://en.wikipedia.org/wiki/Turbo_Pascal[Turbo Pascal]
 
-== Java (2001)
+== Demo - Terminal Client
+
+== Java (2002)
 [%step]
 * link:https://en.wikipedia.org/wiki/PersonalJava[PersonalJava]
 * link:https://en.wikipedia.org/wiki/IPAQ[Compaq iPaq]
 * link:https://en.wikipedia.org/wiki/Pocket_PC[Windows PocketPC]
+* link:https://en.wikipedia.org/wiki/Sony_Ericsson_P900[Sony Ericsson P900]
+* link:https://en.wikipedia.org/wiki/S60_(software_platform)[Symbian S60]
 
-== Eclipse RCP (2005)
+== link:http://wiki.eclipse.org/index.php/Rich_Client_Platform[Eclipse RCP] (2005)
 [%step]
 * link:https://code.google.com/p/eidle/[eidle - a screensaver framework]
+(link:https://code.google.com/archive/p/eidle/wikis/StateReport.wiki[Screenshots])
 * split model and UI (different link:https://en.wikipedia.org/wiki/OSGi[OSGi] bundles)
 * link:https://www.eclipse.org/swt/[StandardWidgetToolkit (SWT)]
 * a robot is born
 
+== Demo - SWT client
+
 == To the Web (2007)
+[%step]
 * link:http://www.gwtproject.org/[Google Web Toolkit (GWT)]
 * link:http://devisnik.de/mines/de.devisnik.web.Mines/Mines.html[Sample version]
+
+== Demo - GWT client
 
 == Android (2009)
 [%step]
@@ -52,10 +78,14 @@ since August 2009
 * link:https://www.myo.com/[MYO] input (Droidcon London 2014 Hackathon)
 * Novoda Demo (Droidcon London 2015)
 
+== Demo - Android client
+
 == Objective-C (2012 / 2015)
 [%step]
 * link:http://j2objc.org/[j2objc]
 * rudimentary iPhone version
+
+== Demo - iOS client
 
 == Gradle (since 2014)
 [%step]
