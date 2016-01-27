@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2RP-Wv-LOC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2RP-Wv-LOC">
     <dependencies>
         <deployment identifier="iOS"/>
         <development version="5000" identifier="xcode"/>
@@ -16,13 +16,16 @@
         <scene sceneID="Ugb-Eu-7W2">
             <objects>
                 <viewController id="2RP-Wv-LOC" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="uVy-w4-KIw"/>
+                        <viewControllerLayoutGuide type="bottom" id="KQg-GB-Mb7"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Yuz-Um-e8p">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Sfb-D1-hrH">
-                                <rect key="frame" x="109" y="20" width="102" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sfb-D1-hrH">
+                                <rect key="frame" x="122" y="20" width="75" height="30"/>
                                 <gestureRecognizers/>
                                 <state key="normal" title="New Game">
                                     <color key="titleColor" red="0.091871082410796112" green="0.048011608844118925" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -32,32 +35,38 @@
                                     <outletCollection property="gestureRecognizers" destination="UOp-f7-cFz" appends="YES" id="e9F-fx-rXw"/>
                                 </connections>
                             </button>
-                            <containerView clipsSubviews="YES" contentMode="scaleToFill" id="gMx-51-dVN" userLabel="Board Container">
-                                <rect key="frame" x="0.0" y="53" width="320" height="425"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Seconds" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8O1-hg-skm" userLabel="Time Display">
+                                <rect key="frame" x="219" y="24" width="101" height="21"/>
+                                <fontDescription key="fontDescription" name="Digitaldream" family="Digital dream" pointSize="15"/>
+                                <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Flags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" useAutomaticPreferredMaxLayoutWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vQ8-ci-kqo" userLabel="Bombs Display">
+                                <rect key="frame" x="0.0" y="24" width="98" height="21"/>
+                                <fontDescription key="fontDescription" name="Digitaldream" family="Digital dream" pointSize="15"/>
+                                <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMx-51-dVN" userLabel="Board Container">
+                                <rect key="frame" x="0.0" y="80" width="320" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="CHn-G7-mB4" kind="embed" id="Ut4-lw-ZBU"/>
                                 </connections>
                             </containerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Seconds" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="8O1-hg-skm" userLabel="Time Display">
-                                <rect key="frame" x="219" y="24" width="101" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Digitaldream" family="Digital dream" pointSize="15"/>
-                                <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flags" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" id="vQ8-ci-kqo" userLabel="Bombs Display">
-                                <rect key="frame" x="0.0" y="24" width="98" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Digitaldream" family="Digital dream" pointSize="15"/>
-                                <color key="textColor" red="0.78431372549019607" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gMx-51-dVN" firstAttribute="top" secondItem="uVy-w4-KIw" secondAttribute="bottom" constant="60" id="CUQ-BP-wkE"/>
+                            <constraint firstAttribute="trailing" secondItem="gMx-51-dVN" secondAttribute="trailing" id="OxK-Xg-bmz"/>
+                            <constraint firstItem="gMx-51-dVN" firstAttribute="leading" secondItem="Yuz-Um-e8p" secondAttribute="leading" id="TNc-6x-Lqh"/>
+                            <constraint firstItem="gMx-51-dVN" firstAttribute="top" secondItem="Sfb-D1-hrH" secondAttribute="bottom" constant="30" id="c0U-IN-Kuk"/>
+                            <constraint firstItem="Sfb-D1-hrH" firstAttribute="centerX" secondItem="Yuz-Um-e8p" secondAttribute="centerX" id="dwA-0P-d1z"/>
+                            <constraint firstItem="KQg-GB-Mb7" firstAttribute="top" secondItem="gMx-51-dVN" secondAttribute="bottom" id="pDk-q3-4Cz"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="prD-cC-Gwm"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bombsDisplay" destination="vQ8-ci-kqo" id="iCQ-mU-Sbs"/>
                         <outlet property="reloadButton" destination="Sfb-D1-hrH" id="iFs-xf-4rZ"/>
@@ -77,15 +86,26 @@
         <scene sceneID="sPN-QD-HaF">
             <objects>
                 <viewController id="CHn-G7-mB4" customClass="MyGameViewController" sceneMemberID="viewController">
-                    <scrollView key="view" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" minimumZoomScale="0.69999999999999996" maximumZoomScale="2" id="yfQ-dV-lSQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="425"/>
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pKM-4u-KNI"/>
+                        <viewControllerLayoutGuide type="bottom" id="uzO-rX-x01"/>
+                    </layoutGuides>
+                    <scrollView key="view" autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" maximumZoomScale="2" id="yfQ-dV-lSQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view autoresizesSubviews="NO" contentMode="center" id="Msa-eh-5Kr" customClass="UIBoard">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <view autoresizesSubviews="NO" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="Msa-eh-5Kr" customClass="UIBoard">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="488"/>
                             </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="Msa-eh-5Kr" firstAttribute="leading" secondItem="yfQ-dV-lSQ" secondAttribute="leading" id="BuS-yV-h2P"/>
+                            <constraint firstItem="Msa-eh-5Kr" firstAttribute="top" secondItem="pKM-4u-KNI" secondAttribute="bottom" id="GQV-nq-1k3"/>
+                            <constraint firstAttribute="bottom" secondItem="Msa-eh-5Kr" secondAttribute="bottom" id="IeX-Ib-aDm"/>
+                            <constraint firstItem="Msa-eh-5Kr" firstAttribute="centerX" secondItem="yfQ-dV-lSQ" secondAttribute="centerX" id="ghD-28-Ovz"/>
+                            <constraint firstAttribute="trailing" secondItem="Msa-eh-5Kr" secondAttribute="trailing" id="gyQ-Ve-YLf"/>
+                            <constraint firstItem="Msa-eh-5Kr" firstAttribute="centerY" secondItem="yfQ-dV-lSQ" secondAttribute="centerY" id="ldL-dp-08n"/>
+                        </constraints>
                         <connections>
                             <outlet property="delegate" destination="CHn-G7-mB4" id="lke-Yb-qHw"/>
                         </connections>
