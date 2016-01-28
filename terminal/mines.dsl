@@ -19,6 +19,18 @@ def status = {
     c.status()
 }
 
+def auto = {
+    c.auto()
+    c.status()
+}
+
+def robot = { delayInMs=400 ->
+    while (c.game.isRunning()) {
+        auto()
+        sleep(delayInMs)
+    }
+}
+
 n = newGame
 o = open
 f = flag

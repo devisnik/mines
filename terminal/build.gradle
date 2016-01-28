@@ -3,6 +3,7 @@ apply plugin: 'com.github.tkruse.groovysh'
 
 dependencies {
     compile project(':model')
+    compile project(':robot')
     compile 'org.fusesource.jansi:jansi:1.11'
 }
 

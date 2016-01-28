@@ -76,4 +76,11 @@ public final class GameConsole {
         return BOARD_PRINTER.print(game.getBoard());
     }
 
+    public void auto() {
+        new de.devisnik.mine.robot.AutoPlayer(game, false).doNextMove();
+    }
+
+    public IGame getGame() {
+        return game;
+    }
 }
