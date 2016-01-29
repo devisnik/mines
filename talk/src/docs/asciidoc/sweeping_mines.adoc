@@ -149,7 +149,7 @@ ____
 == What next?
 [%step]
 * better graphics and ux
-* full Android TV support, Live Wallpaper
+* full Android TV support, Live Wallpaper, Day Dream, ...
 * syncing backend for high scores (across platforms)
 * fully functioning iOS app, use swift for UI, MacOS app
 * link:https://robovm.com/[RoboVM] port,
