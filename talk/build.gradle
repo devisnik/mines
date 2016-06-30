@@ -6,8 +6,8 @@ buildscript {
 }
 
 plugins {
-    id 'org.asciidoctor.convert' version '1.5.2'
-    id 'com.github.jruby-gradle.base' version '0.1.5'
+    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'com.github.jruby-gradle.base' version '1.2.0'
 }
 
 apply plugin: 'com.github.jruby-gradle.base'
@@ -18,7 +18,7 @@ apply plugin: 'org.asciidoctor.convert'
 version = '1.0.0-SNAPSHOT'
 
 ext {
-    revealjsVersion = '3.1.0'
+    revealjsVersion = '3.2.0'
     asciidoctorBackendVersion = 'master'
     downloadDir = new File(buildDir, 'download')
     templateDir = new File(downloadDir, 'templates')
@@ -52,10 +52,11 @@ download {
 
 asciidoctor {
 
-    dependsOn jrubyPrepareGems
+    dependsOn jrubyPrepare
 
     sources {
         include 'sweeping_mines.adoc'
+        include 'flag_em.adoc'
     }
 
     resources {
@@ -70,8 +71,6 @@ asciidoctor {
     backends 'revealjs'
 
     attributes 'build-gradle': file('build.gradle'),
-            'sourcedir': project.sourceSets.main.java.srcDirs[0],
-            'endpoint-url': 'http://example.org',
             'source-highlighter': 'coderay',
             'imagesdir': './images',
             'toc': 'left',
