@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-command'
 apply plugin: 'com.github.triplet.play'
+apply plugin: 'com.getkeepsafe.dexcount'
 
 sourceCompatibility = 1.7
 
