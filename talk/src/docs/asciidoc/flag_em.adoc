@@ -1,0 +1,166 @@
+= Flag 'em - +++<br/>+++ Lessons from playing Minesweeper
+@devisnik <volker.leck@gmail.com>
+2016-06-29
+:revealjs_theme: beige
+:revnumber: {project-version}
+:example-caption!:
+ifndef::imagesdir[:imagesdir: images]
+ifndef::sourcedir[:sourcedir: ../java]
+
+== about://blank
+
+* playground
+* history
+* evolution
+
+== about://meta
+
+* value of playground projects
+* code evolution and re-use
+* frameworks and tooling
+
+== History repeating
+
+link:https://sites.google.com/site/androidinberlin/stammtische/stammtisch4[Android Stammtisch 2009]
+
+== What is link:https://en.wikipedia.org/wiki/Minesweeper_(video_game)[Minesweeper]?
+
+=== Wikipedia
+____
+Minesweeper is a single-player puzzle video game.
+The objective of the game is to clear a rectangular board containing hidden "mines"
+without detonating any of them, with help from clues about the number
+of neighboring mines in each field.
+____
+
+=== Demo
+* link:http://devisnik.de/mines/de.devisnik.web.Mines/Mines.html[Play It]
+
+== Evolution
+
+=== Implementations
+* https://github.com/devisnik/mines
+
+== Terminal gaming (ca. 1992 / 2016)
+* ASCII, UTF-8
+* link:https://en.wikipedia.org/wiki/Turbo_Pascal[Turbo Pascal] 
+
+== Demo - Terminal Client
+
+== Mobile Java (2002)
+* link:https://en.wikipedia.org/wiki/PersonalJava[PersonalJava]
+* link:https://en.wikipedia.org/wiki/IPAQ[Compaq iPaq]
+* link:https://en.wikipedia.org/wiki/Pocket_PC[Windows PocketPC]
+* link:https://en.wikipedia.org/wiki/Sony_Ericsson_P900[Sony Ericsson P900]
+* link:https://en.wikipedia.org/wiki/S60_(software_platform)[Symbian S60]
+
+== link:http://wiki.eclipse.org/index.php/Rich_Client_Platform[Eclipse RCP] (2005)
+* link:https://code.google.com/p/eidle/[eidle - a screensaver framework]
+* split model and UI (different link:https://en.wikipedia.org/wiki/OSGi[OSGi] bundles)
+* link:https://www.eclipse.org/swt/[StandardWidgetToolkit (SWT)]
+* a robot is born
+
+== Demo - SWT client
+
+== To the Web (2007)
+* link:http://www.gwtproject.org/[Google Web Toolkit (GWT)]
+* link:http://devisnik.de/mines/de.devisnik.web.Mines/Mines.html[Sample version]
+
+== Demo - GWT client
+
+== Android (2009)
+* Core module since 2009 (TM)
+* Vector Graphics since 2009 (TM)
+* in link:https://play.google.com/store/apps/details?id=de.devisnik.android.mine[PlayStore]
+since August 2009
+* link:https://en.wikipedia.org/wiki/Google_TV[GoogleTV]
+(somewhat link:https://en.wikipedia.org/wiki/Android_TV[AndroidTV])
+* I’m watch
+* link:https://www.myo.com/[MYO] input (Droidcon London 2014 Hackathon)
+* Novoda Demo (Droidcon London 2015)
+
+== Demo - Android client
+
+== Objective-C (2012 / 2015)
+* link:http://j2objc.org/[j2objc]
+* rudimentary iPhone version
+
+== Demo - iOS client
+
+== Gradle (since 2014)
+* the missing link
+* dependent projects
+* one build (almost)
+
+== Plugins
+* link:https://docs.gradle.org/current/userguide/java_plugin.html[java]
+, link:https://docs.gradle.org/current/userguide/groovy_plugin.html[groovy]
+, link:https://docs.gradle.org/current/userguide/application_plugin.html[application]
+* link:https://github.com/tkruse/gradle-groovysh-plugin[gradle-groovysh]
+* link:https://github.com/steffenschaefer/gwt-gradle-plugin[gradle-gwt]
+* link:https://github.com/j2objc-contrib/j2objc-gradle[gradle-j2objc]
+* link:http://developer.android.com/tools/building/plugin-for-gradle.html[android]
+//* link:https://github.com/Triple-T/gradle-play-publisher[play-publisher]
+* link:https://github.com/asciidoctor/asciidoctor-gradle-plugin[asciidoctor]
+* ...
+
+== Project layout
+[listing,indent=8]
+....
+├──  model      (1161, 937)
+├──  robot      ( 529, 198)
+├──  android    (2907)
+├──  gwt        ( 701)
+├──  swt        ( 479)
+├──  ios        ( 289)
+├──  terminal   ( 158)
+└──  talk
+....
+
+== Learnings
+* components
+* platforms
+* build tooling
+* algorithms and graphics
+* App stores
+
+== Earnings
+* Nexus One
+* help (translations)
+* ratings
+
+=== Feedback
+____
+The only ad free one on the market I'm not being paid or endorsed in any way,
+GET THIS APP!!!
+____
+
+=== Feedback 2
+____
+Awsome! A truely great app by a skilled developer. Hat's off! The latest update shows it.
+It was already a good app & now its even better and smaller in size! Other developers take note.
+This is the way it should be done!!! ★★★★★
+____
+
+=== Feedback 3
+____
+Poo!
+____
+
+== Loose Ends
+* better artwork and ux
+* full Android TV support, Live Wallpaper, Day Dream, ...
+* syncing backend for high scores (across platforms)
+* fully functioning iOS app, use swift for UI, MacOS app
+* link:https://libgdx.badlogicgames.com/[libGDX] graphics
+* Chrome extension, Firefox plugin
+* link:https://facebook.github.io/react-native/[React Native] clients (based on GWT generated code)
+* improve robot
+
+== Conclusion
+* focus on domain modelling
+* clear boundaries
+* build different clients
+* share across platforms
+
+== Thank you!
