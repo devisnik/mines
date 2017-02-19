@@ -1,0 +1,53 @@
+buildscript {
+    repositories {
+        maven {
+            url file('repo').toURI()
+        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.7-SNAPSHOT'
+    }    
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'gwt'
+apply plugin: 'eclipse'
+
+// needed to avoid crash in gwt-closure below due to project not resolved
+evaluationDependsOn(':robot')
+
+dependencies {
+    compile 'com.google.gwt:gwt-servlet:2.8.0'
+    compile 'com.google.gwt:gwt-user:2.8.0'
+
+	compile project(':robot')
+	compile project(':model')
+}
+
+gwt {
+    gwtVersion='2.8.0'
+    minHeapSize = '512M'
+    maxHeapSize = '4096M'
+
+    modules 'de.devisnik.web.Mines'
+    src += files(project(':model').sourceSets.main.allJava.srcDirs)
+    src += files(project(':model').sourceSets.main.output.resourcesDir)
+    src += files(project(':robot').sourceSets.main.allJava.srcDirs)
+    src += files(project(':robot').sourceSets.main.output.resourcesDir)
+
+    compiler {
+        disableClassMetadata = true
+        disableCastChecking = true
+    }
+
+    dev {
+        startupUrl='de.devisnik.web.Mines/Mines.html'
+    }
+}
+
+tasks.withType(de.richsource.gradle.plugins.gwt.AbstractGwtActionTask) {
+    args '-generateJsInteropExports'
+}
+

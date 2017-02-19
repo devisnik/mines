@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>de.richsource.gradle.plugins</groupId>
+  <artifactId>gwt-gradle-plugin</artifactId>
+  <version>0.7-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20150324.075119</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20150324075119</lastUpdated>
+  </versioning>
+</metadata>
