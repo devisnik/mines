@@ -1,19 +1,18 @@
 buildscript {
     repositories {
-        maven {
-            url file('repo').toURI()
-        }
-        mavenCentral()
+        jcenter()
     }
     dependencies {
-        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.7-SNAPSHOT'
+        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.6'
     }    
 }
 
-apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'war'
 apply plugin: 'gwt'
 apply plugin: 'eclipse'
+
+mainClassName = 'de.devisnik.web.client.Model'
 
 // needed to avoid crash in gwt-closure below due to project not resolved
 evaluationDependsOn(':robot')

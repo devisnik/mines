@@ -1,15 +1,7 @@
-<module>
-      <inherits name='com.google.gwt.user.User'/>
-      <!--
-      <inherits name='com.google.gwt.user.theme.chrome.Chrome'/>
-      <inherits name='com.google.gwt.user.theme.dark.Dark'/>
-      -->
-      <inherits name='com.google.gwt.user.theme.standard.Standard'/>
-      <inherits name='java.io.InputStream'/>
+<module rename-to='Mines'>
+      <inherits name='com.google.gwt.core.Core'/>
       <inherits name='de.devisnik.mine.MinesModel'/>
       <inherits name='de.devisnik.mine.robot.MinesAutoPlay'/>
-      <entry-point class='de.devisnik.web.client.ui.Mines'/>
-      <stylesheet src='Mines.css' />
+      <entry-point class='de.devisnik.web.client.Entry'/>
       <add-linker name="sso" />
-      <set-property name="user.agent" value="safari" />
 </module>
