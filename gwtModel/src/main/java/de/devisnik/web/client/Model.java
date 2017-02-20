@@ -21,7 +21,12 @@ public class Model {
 
     public void flag(int x, int y) {
         IField field = game.getBoard().getField(x,y);
-        game.onRequestFlag(field);
+        if (!game.isRunning()) {
+            game.onRequestOpen(field);
+        }
+        else {
+            game.onRequestFlag(field);
+        }
     }
 
     public String state() {
@@ -47,7 +52,7 @@ public class Model {
 
     public static void main(String[] args) {
         Model model = new Model(5,5,5);
-        model.open(0,0);
+        model.flag(0,0);
         System.out.println(model.board());
         System.out.println(model.state());
     }
