@@ -46,6 +46,10 @@ public class Model {
         return board;
     }
 
+    public int bombCount() {
+        return game.getBombCount() - game.getBoard().getFlagCount();
+    }
+
     public int[] numbers() {
         return new int[] {1, 2, 3, 4, 5};
     }
@@ -55,5 +59,6 @@ public class Model {
         model.flag(0,0);
         System.out.println(model.board());
         System.out.println(model.state());
+        System.out.println(model.bombCount());
     }
 }
