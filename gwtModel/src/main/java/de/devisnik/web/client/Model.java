@@ -4,14 +4,17 @@ import de.devisnik.mine.SimpleGameFactory;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.IField;
 import de.devisnik.mine.Point;
+import de.devisnik.mine.robot.AutoPlayer;
 
 @JsType(namespace="mines")
 public class Model {
 
     private final IGame game;
+    private final AutoPlayer robot;
 
     public Model(int width, int height, int bombs) {
        game = SimpleGameFactory.create(width, height, bombs);
+       robot = new AutoPlayer(game, true);
     }
 
     public void open(int x, int y) {
@@ -27,6 +30,22 @@ public class Model {
         else {
             game.onRequestFlag(field);
         }
+    }
+
+    public boolean isRunning() {
+        return game.isRunning();
+    }
+
+    public boolean isExploded() {
+        return game.getBoard().isExploded();
+    }
+
+    public void clockTick() {
+        game.tickWatch();
+    }
+
+    public void robotMove() {
+        robot.doNextMove();
     }
 
     public String state() {
@@ -50,13 +69,14 @@ public class Model {
         return game.getBombCount() - game.getBoard().getFlagCount();
     }
 
-    public int[] numbers() {
-        return new int[] {1, 2, 3, 4, 5};
+    public int time() {
+        return game.getWatch().getTime();
     }
 
     public static void main(String[] args) {
         Model model = new Model(5,5,5);
         model.flag(0,0);
+        model.robotMove();
         System.out.println(model.board());
         System.out.println(model.state());
         System.out.println(model.bombCount());
