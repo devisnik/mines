@@ -18,4 +18,6 @@ public interface IBoard {
 	Point getPosition(IField field);
 
 	boolean isOverflagged();
+
+    boolean isExploded();
 }
