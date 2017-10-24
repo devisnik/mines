@@ -39,6 +39,7 @@ gwt {
     compiler {
         disableClassMetadata = true
         disableCastChecking = true
+        style = 'PRETTY'
     }
 
     dev {
