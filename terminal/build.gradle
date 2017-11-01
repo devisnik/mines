@@ -1,14 +1,20 @@
-apply plugin: 'java'
-apply plugin: 'com.github.tkruse.groovysh'
+apply plugin: 'groovy'
+apply plugin: 'application'
+//apply plugin: 'com.github.tkruse.groovysh'
+
+mainClassName = 'Shell'
 
 dependencies {
     compile project(':model')
     compile project(':robot')
-    compile 'org.fusesource.jansi:jansi:1.11'
+    compile localGroovy()
+    compile 'commons-cli:commons-cli:1.3.1'
+    compile 'jline:jline:2.14.2'
+//    compile 'org.fusesource.jansi:jansi:1.11'
 }
 
-groovysh {
-    shell {
-        args = ['-e', '. mines.dsl']
-    }
-}
+//groovysh {
+//    shell {
+//        args = ['-e', '. mines.dsl']
+//    }
+//}
