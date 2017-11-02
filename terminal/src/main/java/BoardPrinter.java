@@ -1,10 +1,16 @@
-import de.devisnik.mine.IBoard;
-import de.devisnik.mine.IField;
-import de.devisnik.mine.Point;
 import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
-import static org.fusesource.jansi.Ansi.Color.*;
+import de.devisnik.mine.IBoard;
+import de.devisnik.mine.IField;
+import de.devisnik.mine.Point;
+
+import static org.fusesource.jansi.Ansi.Color.BLUE;
+import static org.fusesource.jansi.Ansi.Color.CYAN;
+import static org.fusesource.jansi.Ansi.Color.GREEN;
+import static org.fusesource.jansi.Ansi.Color.MAGENTA;
+import static org.fusesource.jansi.Ansi.Color.RED;
+import static org.fusesource.jansi.Ansi.Color.WHITE;
 
 public class BoardPrinter {
 
@@ -15,36 +21,60 @@ public class BoardPrinter {
     public String print(IBoard board) {
         Point dimension = board.getDimension();
         final StringBuilder sb = new StringBuilder("\n");
-        sb.append("  ");
-        for (int j = 0; j < dimension.x; j++) {
-            sb.append(" ").append(j);
-        }
-        sb.append("\n");
-        sb.append("  ");
-        for (int j = 0; j < dimension.x; j++) {
-            sb.append("--");
-        }
-        sb.append("-\n");
+
+        printColumnNumbers(dimension, sb);
+        printLineSeparator(dimension, sb);
+
         for (int i = 0; i < dimension.y; i++) {
-            sb.append(i).append("| ");
+            if (dimension.y > 10)
+                sb.append(i / 10).append(i % 10).append(" | ");
+            else
+                sb.append(i).append(" | ");
             for (int j = 0; j < dimension.x; j++) {
                 IField field = board.getField(j, i);
                 sb.append(print(field));
                 sb.append(" ");
             }
-            sb.append("|").append(i).append("\n");
+            if (dimension.y > 10)
+                sb.append("| ").append(i / 10).append(i % 10).append("\n");
+            else
+                sb.append("| ").append(i).append("\n");
         }
-        sb.append("  ");
+
+        printLineSeparator(dimension, sb);
+        printColumnNumbers(dimension, sb);
+
+        return sb.toString();
+    }
+
+    private void printLineSeparator(Point dimension, StringBuilder sb) {
+        printNumberIndent(dimension, sb);
         for (int j = 0; j < dimension.x; j++) {
             sb.append("--");
         }
         sb.append("-\n");
-        sb.append("  ");
+    }
+
+    private void printNumberIndent(Point dimension, StringBuilder sb) {
+        if (dimension.y > 10)
+            sb.append("    ");
+        else
+            sb.append("   ");
+    }
+
+    private void printColumnNumbers(Point dimension, StringBuilder sb) {
+        if (dimension.x > 10) {
+            printNumberIndent(dimension, sb);
+            for (int j = 0; j < dimension.x; j++) {
+                sb.append(" ").append(j / 10);
+            }
+            sb.append("\n");
+        }
+        printNumberIndent(dimension, sb);
         for (int j = 0; j < dimension.x; j++) {
-            sb.append(" ").append(j);
+            sb.append(" ").append(j % 10);
         }
         sb.append("\n");
-        return sb.toString();
     }
 
     private String print(IField field) {
