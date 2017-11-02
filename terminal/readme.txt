@@ -1,10 +1,10 @@
 - run via:
-groovysh -cp build/classes/main:../model/build/libs/de.devisnik.mine.model-1.3.4.jar:../robot/build/libs/de.devisnik.mine.robot-1.0.0.jar
+groovysh -cp build/classes/main:../model/build/libs/*:../robot/build/libs/*
 
 - load DSL via: . 'mines.dsl'
 
 OR
 - build distribution via: ./gradlew build
-- unzip distribution and run via shell via start script (terminal)
+- unzip distribution (under build/distributions), cd into it and run shell via start script (./bin/terminal)
 - load DSL via: . ../../../mines.dsl
 
