@@ -17,6 +17,7 @@ apply plugin: 'eclipse'
 
 // needed to avoid crash in gwt-closure below due to project not resolved
 evaluationDependsOn(':robot')
+evaluationDependsOn(':model')
 
 dependencies {
     compile 'com.google.gwt:gwt-servlet:2.8.0'

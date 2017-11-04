@@ -1,21 +1,4 @@
-plugins {
-    id 'java'
-    id 'com.github.j2objccontrib.j2objcgradle' version '0.5.0-alpha'
-}
-
-j2objcConfig {
-    supportedArchs += 'ios_i386'
-    xcodeProjectDir '../ios'  // Xcode workspace directory (suggested directory name)
-    xcodeTargetsIos 'Mines', 'MinesTests'     // iOS app target name (replace with existing app name)
-    testPattern {
-        exclude '**/TestBoardMiner.java'
-        exclude '**/TestStopWatchListener.java'
-        exclude '**/TrackingFieldListener.java'
-        exclude '**/TrackingMinesListener.java'
-    }
-
-    finalConfigure()          // Must be last call to configuration
-}
+apply plugin: 'java'
 
 sourceCompatibility = 1.7
 
