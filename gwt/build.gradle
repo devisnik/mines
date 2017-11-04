@@ -20,15 +20,15 @@ evaluationDependsOn(':robot')
 evaluationDependsOn(':model')
 
 dependencies {
-    compile 'com.google.gwt:gwt-servlet:2.8.0'
-    compile 'com.google.gwt:gwt-user:2.8.0'
+    compile 'com.google.gwt:gwt-servlet:2.8.2'
+    compile 'com.google.gwt:gwt-user:2.8.2'
 
 	compile project(':robot')
 	compile project(':model')
 }
 
 gwt {
-    gwtVersion='2.8.0'
+    gwtVersion='2.8.2'
     minHeapSize = '512M'
     maxHeapSize = '4096M'
 
