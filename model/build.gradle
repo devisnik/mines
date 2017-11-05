@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 sourceCompatibility = 1.7
 
@@ -6,7 +6,7 @@ archivesBaseName = "de.devisnik.mine.model"
 version = '1.3.4'
 
 dependencies {
-    testCompile 'junit:junit:4.11'
+    testImplementation 'junit:junit:4.11'
 }
 
 jar {

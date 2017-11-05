@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'java-library'
 
 sourceCompatibility = 1.7
 
@@ -6,8 +6,8 @@ archivesBaseName = "de.devisnik.mine.robot"
 version = '1.0.0'
 
 dependencies {
-    compile project(':model')
-    testCompile 'junit:junit:4.11'
+    api project(':model')
+    testImplementation 'junit:junit:4.11'
 }
 
 jar {
