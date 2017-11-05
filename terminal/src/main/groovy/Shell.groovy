@@ -19,7 +19,7 @@ class Shell extends Main {
 
   static main(def args) {
 //    setTerminalType('unix' , true /* suppress colors as we get weird char codes in terminal on autocompletion */)
-    setSystemProperty 'groovysh.prompt=is24'
+    setSystemProperty 'groovysh.prompt=prompt'
     new Shell(new IO()).start()
   }
 }

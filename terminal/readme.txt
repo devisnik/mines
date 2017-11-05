@@ -1,5 +1,5 @@
 - run via:
-groovysh -cp build/classes/main:../model/build/libs/*:../robot/build/libs/*
+groovysh -cp build/libs/*:../model/build/libs/*:../robot/build/libs/*
 
 - load DSL via: . 'mines.dsl'
 
