@@ -43,7 +43,6 @@
 		86582DFC1B90CCC400DE0D2F /* UIBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DFB1B90CCC400DE0D2F /* UIBoard.m */; };
 		86582DFE1B90CDB900DE0D2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86582DFD1B90CDB900DE0D2F /* Main.storyboard */; };
 		868751BB1C372F0D00D5FE91 /* DIGITALDREAM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */; };
-		B71921E9CD5D672AF1CCB2C5 /* libPods-Mines.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 912458F0BC9F57B4088F8036 /* libPods-Mines.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -115,9 +114,6 @@
 		86582DFB1B90CCC400DE0D2F /* UIBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBoard.m; sourceTree = "<group>"; };
 		86582DFD1B90CDB900DE0D2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DIGITALDREAM.ttf; path = Mines/DIGITALDREAM.ttf; sourceTree = "<group>"; };
-		912458F0BC9F57B4088F8036 /* libPods-Mines.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Mines.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D785AADC71AAC44EB261C5A7 /* libPods-MinesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MinesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F02260F4E5C686BF3CD9102A /* Pods-Mines.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mines.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mines/Pods-Mines.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +145,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		86582DC51B8FB54E00DE0D2F = {
+		7972911E1FDC11690095847A /* Java */ = {
 			isa = PBXGroup;
 			children = (
 				7972910C1FDB3EEB0095847A /* Board.java */,
@@ -176,6 +172,14 @@
 				797290F51FDB3EC40095847A /* Point.java */,
 				797290EE1FDB3EC30095847A /* SimpleFieldListener.java */,
 				797290EC1FDB3EC30095847A /* SimpleGameFactory.java */,
+			);
+			name = Java;
+			sourceTree = "<group>";
+		};
+		86582DC51B8FB54E00DE0D2F = {
+			isa = PBXGroup;
+			children = (
+				7972911E1FDC11690095847A /* Java */,
 				868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */,
 				86582DD01B8FB54E00DE0D2F /* Mines */,
 				86582DEA1B8FB54E00DE0D2F /* MinesTests */,
@@ -504,9 +508,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks/JRE.framework/Headers";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Mines/Info.plist;
 				J2OBJC_HOME = "/Users/urso/Downloads/j2objc-2.0.5";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -524,9 +528,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks/JRE.framework/Headers";
-				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Mines/Info.plist;
 				J2OBJC_HOME = "/Users/urso/Downloads/j2objc-2.0.5";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
