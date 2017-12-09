@@ -113,7 +113,7 @@
 		86582DFA1B90CCC400DE0D2F /* UIBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBoard.h; sourceTree = "<group>"; };
 		86582DFB1B90CCC400DE0D2F /* UIBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBoard.m; sourceTree = "<group>"; };
 		86582DFD1B90CDB900DE0D2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = DIGITALDREAM.ttf; path = Mines/DIGITALDREAM.ttf; sourceTree = "<group>"; };
+		868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIGITALDREAM.ttf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				7972911E1FDC11690095847A /* Java */,
-				868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */,
 				86582DD01B8FB54E00DE0D2F /* Mines */,
 				86582DEA1B8FB54E00DE0D2F /* MinesTests */,
 				86582DCF1B8FB54E00DE0D2F /* Products */,
@@ -219,6 +218,7 @@
 		86582DD11B8FB54E00DE0D2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */,
 				86582DD21B8FB54E00DE0D2F /* Info.plist */,
 				86582DD31B8FB54E00DE0D2F /* main.m */,
 			);
