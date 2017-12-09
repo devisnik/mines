@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
-#import "de/devisnik/mine/IGame.h"
-#import "de/devisnik/mine/IMinesGameListener.h"
-#import "de/devisnik/mine/IStopWatchlistener.h"
+#import "IGame.h"
+#import "IMinesGameListener.h"
+#import "IStopWatchlistener.h"
 
 @interface ViewController : UIViewController<DeDevisnikMineIMinesGameListener, DeDevisnikMineIStopWatchListener>
 

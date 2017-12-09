@@ -1,7 +1,7 @@
 #import "ViewController.h"
 #import "MyGameViewController.h"
-#import "de/devisnik/mine/GameFactory.h"
-#import "de/devisnik/mine/IStopWatch.h"
+#import "GameFactory.h"
+#import "IStopWatch.h"
 
 
 @implementation ViewController

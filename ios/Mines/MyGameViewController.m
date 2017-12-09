@@ -1,9 +1,10 @@
 #import "MyGameViewController.h"
-#import "de/devisnik/mine/IGame.h"
-#import "de/devisnik/mine/IBoard.h"
-#import "de/devisnik/mine/IField.h"
-#import "de/devisnik/mine/Point.h"
-#import "de/devisnik/mine/SimpleFieldListener.h"
+#import "IGame.h"
+#import "IBoard.h"
+#import "IField.h"
+#import "GameFactory.h"
+#import "Point.h"
+#import "SimpleFieldListener.h"
 #import "UIBoard.h"
 
 @interface FieldListener : DeDevisnikMineSimpleFieldListener

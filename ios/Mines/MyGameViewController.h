@@ -1,7 +1,7 @@
 #import <UIKit/UIKit.h>
-#import "de/devisnik/mine/IFieldListener.h"
-#import "de/devisnik/mine/IGame.h"
-#import "de/devisnik/mine/IBoard.h"
+#import "IFieldListener.h"
+#import "IGame.h"
+#import "IBoard.h"
 #import "UIBoard.h"
 
 @interface MyGameViewController : UIViewController<UIScrollViewDelegate>
