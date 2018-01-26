@@ -55,7 +55,7 @@
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.h",
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m",
 			);
-			script = "if [ ! -f \"${J2OBJC_HOME}/j2objc\" ]; then echo \"J2OBJC_HOME is not correctly defined, currently set to '${J2OBJC_HOME}'\"; exit 1; fi;\n\"${J2OBJC_HOME}/j2objc\" -d ${DERIVED_FILES_DIR} -sourcepath /Users/tobiasheine/Documents/repos/mines/model/src/main/java --no-package-directories -use-arc -g ${INPUT_FILE_PATH};\n";
+			script = "if [ ! -f \"${J2OBJC_HOME}/j2objc\" ]; then echo \"J2OBJC_HOME is not correctly defined, currently set to '${J2OBJC_HOME}'\"; exit 1; fi;\n\"${J2OBJC_HOME}/j2objc\" -d ${DERIVED_FILES_DIR} -sourcepath ${SRCROOT}/../model/src/main/java --no-package-directories -use-arc -g ${INPUT_FILE_PATH};\n";
 		};
 /* End PBXBuildRule section */
 
@@ -292,7 +292,6 @@
 				TargetAttributes = {
 					86582DCD1B8FB54E00DE0D2F = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 5GXMCBVRWY;
 						LastSwiftMigration = 0920;
 					};
 					86582DE61B8FB54E00DE0D2F = {
@@ -510,6 +509,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks/JRE.framework/Headers";
@@ -534,6 +534,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks/JRE.framework/Headers";
