@@ -41,6 +41,9 @@
 		86582DEE1B8FB54E00DE0D2F /* MinesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DED1B8FB54E00DE0D2F /* MinesTests.m */; };
 		86582DF91B90CCB200DE0D2F /* MyGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DF81B90CCB200DE0D2F /* MyGameViewController.m */; };
 		86582DFE1B90CDB900DE0D2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86582DFD1B90CDB900DE0D2F /* Main.storyboard */; };
+		8681E552201B94C50094B6A2 /* UIView+PinToSuperviewEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8681E54F201B94C40094B6A2 /* UIView+PinToSuperviewEdges.swift */; };
+		8681E553201B94C50094B6A2 /* UIView+PinToViewEdge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8681E550201B94C50094B6A2 /* UIView+PinToViewEdge.swift */; };
+		8681E554201B94C50094B6A2 /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8681E551201B94C50094B6A2 /* Edge.swift */; };
 		868751BB1C372F0D00D5FE91 /* DIGITALDREAM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */; };
 		AE3234B2201B7E5B00FFF1BE /* UIBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3234B1201B7E5B00FFF1BE /* UIBoard.swift */; };
 /* End PBXBuildFile section */
@@ -111,6 +114,9 @@
 		86582DF71B90CCB200DE0D2F /* MyGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGameViewController.h; sourceTree = "<group>"; };
 		86582DF81B90CCB200DE0D2F /* MyGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGameViewController.m; sourceTree = "<group>"; };
 		86582DFD1B90CDB900DE0D2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		8681E54F201B94C40094B6A2 /* UIView+PinToSuperviewEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinToSuperviewEdges.swift"; sourceTree = "<group>"; };
+		8681E550201B94C50094B6A2 /* UIView+PinToViewEdge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+PinToViewEdge.swift"; sourceTree = "<group>"; };
+		8681E551201B94C50094B6A2 /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
 		868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIGITALDREAM.ttf; sourceTree = "<group>"; };
 		AE3234B0201B7E5B00FFF1BE /* Mines-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mines-Bridging-Header.h"; sourceTree = "<group>"; };
 		AE3234B1201B7E5B00FFF1BE /* UIBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBoard.swift; sourceTree = "<group>"; };
@@ -179,6 +185,7 @@
 		86582DC51B8FB54E00DE0D2F = {
 			isa = PBXGroup;
 			children = (
+				8681E54E201B94540094B6A2 /* UIViewExtensions */,
 				7972911E1FDC11690095847A /* Java */,
 				86582DD01B8FB54E00DE0D2F /* Mines */,
 				86582DEA1B8FB54E00DE0D2F /* MinesTests */,
@@ -240,6 +247,16 @@
 				86582DEC1B8FB54E00DE0D2F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8681E54E201B94540094B6A2 /* UIViewExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				8681E551201B94C50094B6A2 /* Edge.swift */,
+				8681E54F201B94C40094B6A2 /* UIView+PinToSuperviewEdges.swift */,
+				8681E550201B94C50094B6A2 /* UIView+PinToViewEdge.swift */,
+			);
+			path = UIViewExtensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,12 +380,15 @@
 				797290FB1FDB3EC40095847A /* IMinesGameListener.java in Sources */,
 				797290FC1FDB3EC40095847A /* IBoard.java in Sources */,
 				797290FD1FDB3EC40095847A /* IStopWatchListener.java in Sources */,
+				8681E553201B94C50094B6A2 /* UIView+PinToViewEdge.swift in Sources */,
+				8681E552201B94C50094B6A2 /* UIView+PinToSuperviewEdges.swift in Sources */,
 				797290FE1FDB3EC40095847A /* IStopWatch.java in Sources */,
 				797290FF1FDB3EC40095847A /* MinesGameAdapter.java in Sources */,
 				797291001FDB3EC40095847A /* IGame.java in Sources */,
 				797291011FDB3EC40095847A /* Point.java in Sources */,
 				AE3234B2201B7E5B00FFF1BE /* UIBoard.swift in Sources */,
 				797291021FDB3EC40095847A /* IFieldListener.java in Sources */,
+				8681E554201B94C50094B6A2 /* Edge.swift in Sources */,
 				797291031FDB3EC40095847A /* IField.java in Sources */,
 				86582DF91B90CCB200DE0D2F /* MyGameViewController.m in Sources */,
 				86582DDA1B8FB54E00DE0D2F /* ViewController.m in Sources */,
