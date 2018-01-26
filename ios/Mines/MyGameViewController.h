@@ -2,7 +2,7 @@
 #import "IFieldListener.h"
 #import "IGame.h"
 #import "IBoard.h"
-#import "UIBoard.h"
+#import <Mines-Swift.h>
 
 @interface MyGameViewController : UIViewController<UIScrollViewDelegate>
 

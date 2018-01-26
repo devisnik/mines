@@ -5,7 +5,7 @@
 #import "GameFactory.h"
 #import "Point.h"
 #import "SimpleFieldListener.h"
-#import "UIBoard.h"
+#import <Mines-Swift.h>
 
 @interface FieldListener : DeDevisnikMineSimpleFieldListener
 @end
@@ -94,7 +94,7 @@ FieldListener *fieldListener;
     
     for (int x = 0; x < dimension->x_; x++) {
         for (int y = 0; y< dimension->y_; y++) {
-            UIView* fieldUI =[[self boardUI] createFieldUIWithTag:x*dimension->y_+y ForX:x AndY:y WithSize:size AndBorder:border];
+            UIView* fieldUI =[[self boardUI] createFieldUIWithTag:x*dimension->y_+y for:x and:y with:size and:border];
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressTap:)];
             UITapGestureRecognizer *press = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pressTap:)];
             [fieldUI addGestureRecognizer:longPress];

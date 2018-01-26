@@ -40,9 +40,9 @@
 		86582DE21B8FB54E00DE0D2F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86582DE01B8FB54E00DE0D2F /* LaunchScreen.xib */; };
 		86582DEE1B8FB54E00DE0D2F /* MinesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DED1B8FB54E00DE0D2F /* MinesTests.m */; };
 		86582DF91B90CCB200DE0D2F /* MyGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DF81B90CCB200DE0D2F /* MyGameViewController.m */; };
-		86582DFC1B90CCC400DE0D2F /* UIBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 86582DFB1B90CCC400DE0D2F /* UIBoard.m */; };
 		86582DFE1B90CDB900DE0D2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86582DFD1B90CDB900DE0D2F /* Main.storyboard */; };
 		868751BB1C372F0D00D5FE91 /* DIGITALDREAM.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */; };
+		AE3234B2201B7E5B00FFF1BE /* UIBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE3234B1201B7E5B00FFF1BE /* UIBoard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -55,7 +55,7 @@
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.h",
 				"${DERIVED_FILES_DIR}/${INPUT_FILE_BASE}.m",
 			);
-			script = "if [ ! -f \"${J2OBJC_HOME}/j2objc\" ]; then echo \"J2OBJC_HOME is not correctly defined, currently set to '${J2OBJC_HOME}'\"; exit 1; fi;\n\"${J2OBJC_HOME}/j2objc\" -d ${DERIVED_FILES_DIR} -sourcepath /Users/urso/Projects/Novoda/mines/model/src/main/java --no-package-directories -use-arc -g ${INPUT_FILE_PATH};\n";
+			script = "if [ ! -f \"${J2OBJC_HOME}/j2objc\" ]; then echo \"J2OBJC_HOME is not correctly defined, currently set to '${J2OBJC_HOME}'\"; exit 1; fi;\n\"${J2OBJC_HOME}/j2objc\" -d ${DERIVED_FILES_DIR} -sourcepath /Users/tobiasheine/Documents/repos/mines/model/src/main/java --no-package-directories -use-arc -g ${INPUT_FILE_PATH};\n";
 		};
 /* End PBXBuildRule section */
 
@@ -110,10 +110,10 @@
 		86582DED1B8FB54E00DE0D2F /* MinesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MinesTests.m; sourceTree = "<group>"; };
 		86582DF71B90CCB200DE0D2F /* MyGameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyGameViewController.h; sourceTree = "<group>"; };
 		86582DF81B90CCB200DE0D2F /* MyGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyGameViewController.m; sourceTree = "<group>"; };
-		86582DFA1B90CCC400DE0D2F /* UIBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBoard.h; sourceTree = "<group>"; };
-		86582DFB1B90CCC400DE0D2F /* UIBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBoard.m; sourceTree = "<group>"; };
 		86582DFD1B90CDB900DE0D2F /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		868751BA1C372F0D00D5FE91 /* DIGITALDREAM.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DIGITALDREAM.ttf; sourceTree = "<group>"; };
+		AE3234B0201B7E5B00FFF1BE /* Mines-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mines-Bridging-Header.h"; sourceTree = "<group>"; };
+		AE3234B1201B7E5B00FFF1BE /* UIBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIBoard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,8 +200,6 @@
 			isa = PBXGroup;
 			children = (
 				86582DFD1B90CDB900DE0D2F /* Main.storyboard */,
-				86582DFA1B90CCC400DE0D2F /* UIBoard.h */,
-				86582DFB1B90CCC400DE0D2F /* UIBoard.m */,
 				86582DF71B90CCB200DE0D2F /* MyGameViewController.h */,
 				86582DF81B90CCB200DE0D2F /* MyGameViewController.m */,
 				86582DD51B8FB54E00DE0D2F /* AppDelegate.h */,
@@ -211,6 +209,8 @@
 				86582DDE1B8FB54E00DE0D2F /* Images.xcassets */,
 				86582DE01B8FB54E00DE0D2F /* LaunchScreen.xib */,
 				86582DD11B8FB54E00DE0D2F /* Supporting Files */,
+				AE3234B1201B7E5B00FFF1BE /* UIBoard.swift */,
+				AE3234B0201B7E5B00FFF1BE /* Mines-Bridging-Header.h */,
 			);
 			path = Mines;
 			sourceTree = "<group>";
@@ -293,6 +293,7 @@
 					86582DCD1B8FB54E00DE0D2F = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 5GXMCBVRWY;
+						LastSwiftMigration = 0920;
 					};
 					86582DE61B8FB54E00DE0D2F = {
 						CreatedOnToolsVersion = 6.4;
@@ -367,13 +368,13 @@
 				797290FF1FDB3EC40095847A /* MinesGameAdapter.java in Sources */,
 				797291001FDB3EC40095847A /* IGame.java in Sources */,
 				797291011FDB3EC40095847A /* Point.java in Sources */,
+				AE3234B2201B7E5B00FFF1BE /* UIBoard.swift in Sources */,
 				797291021FDB3EC40095847A /* IFieldListener.java in Sources */,
 				797291031FDB3EC40095847A /* IField.java in Sources */,
 				86582DF91B90CCB200DE0D2F /* MyGameViewController.m in Sources */,
 				86582DDA1B8FB54E00DE0D2F /* ViewController.m in Sources */,
 				86582DD71B8FB54E00DE0D2F /* AppDelegate.m in Sources */,
 				86582DD41B8FB54E00DE0D2F /* main.m in Sources */,
-				86582DFC1B90CCC400DE0D2F /* UIBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,17 +509,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks/JRE.framework/Headers";
 				INFOPLIST_FILE = Mines/Info.plist;
-				J2OBJC_HOME = "/Users/urso/Downloads/j2objc-2.0.5";
+				J2OBJC_HOME = "$(SRCROOT)/../../j2objc-2.0.5";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "${J2OBJC_HOME}/lib";
 				OTHER_LDFLAGS = "-ljre_emul";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.devisnik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mines/Mines-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 			};
@@ -528,17 +533,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks";
 				HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/frameworks/JRE.framework/Headers";
 				INFOPLIST_FILE = Mines/Info.plist;
-				J2OBJC_HOME = "/Users/urso/Downloads/j2objc-2.0.5";
+				J2OBJC_HOME = "$(SRCROOT)/../../j2objc-2.0.5";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "${J2OBJC_HOME}/lib";
 				OTHER_LDFLAGS = "-ljre_emul";
 				PRODUCT_BUNDLE_IDENTIFIER = "de.devisnik.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Mines/Mines-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "${J2OBJC_HOME}/include";
 			};
@@ -547,6 +555,7 @@
 		86582DF51B8FB54E00DE0D2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -567,6 +576,7 @@
 		86582DF61B8FB54E00DE0D2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
