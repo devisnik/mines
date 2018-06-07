@@ -1,2 +1,2 @@
-include ':model', ':android:base', ':robot', ':swt', ':gwt', ':terminal'
+include ':model', ':android:base', ':android:installed', ':robot', ':swt', ':gwt', ':terminal'
 

@@ -5,7 +5,7 @@ import android.content.res.TypedArray;
 import java.util.HashMap;
 import java.util.Map;
 
-import de.devisnik.android.mine.R;
+import de.devisnik.android.mine.base.R;
 
 public final class StyleColorProvider {
 

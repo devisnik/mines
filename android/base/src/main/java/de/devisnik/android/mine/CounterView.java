@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.widget.TextView;
 
+import de.devisnik.android.mine.base.R;
+
 public final class CounterView extends TextView {
 
     private final int numberOfDigits;

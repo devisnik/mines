@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="de.devisnik.android.mine"
+  package="de.devisnik.android.mine.base"
   android:installLocation="auto">
 
   <uses-permission android:name="android.permission.VIBRATE" />
@@ -12,12 +12,12 @@
   <supports-screens android:anyDensity="true" />
 
   <application
-    android:name=".MinesApplication"
+    android:name="de.devisnik.android.mine.MinesApplication"
     android:allowClearUserData="true"
     android:icon="@drawable/ic_launcher"
     android:label="@string/app_name">
     <activity
-      android:name=".MineSweeper"
+      android:name="de.devisnik.android.mine.MineSweeper"
       android:label="@string/app_name"
       android:launchMode="singleTask"
       android:taskAffinity="de.devisnik.android.mine.main">
@@ -28,10 +28,10 @@
       </intent-filter>
     </activity>
     <activity
-      android:name=".MinesPreferences"
+      android:name="de.devisnik.android.mine.MinesPreferences"
       android:label="@string/app_name" />
     <activity
-      android:name=".HighScores"
+      android:name="de.devisnik.android.mine.HighScores"
       android:label="@string/app_name" />
     <!--
     <activity

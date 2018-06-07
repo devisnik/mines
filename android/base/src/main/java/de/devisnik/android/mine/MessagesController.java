@@ -2,6 +2,8 @@ package de.devisnik.android.mine;
 
 import android.os.Vibrator;
 import android.widget.Toast;
+
+import de.devisnik.android.mine.base.R;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.IMinesGameListener;
 

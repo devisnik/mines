@@ -14,7 +14,7 @@
 		android:divider="?attr/scoresLine" 
 		android:listSelector="?attr/scoresSelectorColor"/>
 	<TextView
-		android:id="@id/android:empty"
+		android:id="@android:id/empty"
 		android:text="@string/scores_no_entries"
 		android:textSize="@dimen/score_rank_size"
 		android:textColor="?attr/scoresColor"

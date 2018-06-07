@@ -6,6 +6,8 @@ import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.TextView;
 
+import de.devisnik.android.mine.base.R;
+
 class IntroDialogBuilder extends Builder {
 	private final MineSweeper mineSweeper;
 

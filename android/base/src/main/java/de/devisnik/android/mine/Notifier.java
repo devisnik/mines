@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import de.devisnik.android.mine.base.R;
 import de.devisnik.mine.IGame;
 
 public class Notifier {

@@ -4,7 +4,7 @@
     style="?attr/layoutStyle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MineSweeper"
+    tools:context="de.devisnik.android.mine.MineSweeper"
     tools:ignore="HardcodedText" >
 
     <de.devisnik.android.mine.CounterView

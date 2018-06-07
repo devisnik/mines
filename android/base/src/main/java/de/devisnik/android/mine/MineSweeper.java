@@ -18,6 +18,8 @@ import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Spinner;
+
+import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.IDevice;
@@ -289,24 +291,24 @@ public class MineSweeper extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(final MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.settings:
+		int i = item.getItemId();
+		if (i == R.id.settings) {
 			startActivity(new Intent(this, MinesPreferences.class));
-			break;
-		case R.id.scores:
+
+		} else if (i == R.id.scores) {
 			startActivity(new Intent(this, HighScores.class));
-			break;
-		case R.id.new_game:
+
+		} else if (i == R.id.new_game) {
 			showDialog(DIALOG_NEW_GAME);
-			break;
-		case R.id.zoom:
+
+		} else if (i == R.id.zoom) {
 			settings.toogleZoom();
 			adjustZoomIcon();
 			boardController.onZoomChange();
-			break;
-		case R.id.help:
+
+		} else if (i == R.id.help) {
 			showDialog(DIALOG_INTRO);
-			break;
+
 		}
 		return true;
 	}

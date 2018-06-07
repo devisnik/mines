@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import java.util.Date;
 
+import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.data.DBHelper;
 import de.devisnik.android.mine.data.Score;
 import de.devisnik.android.mine.device.IDevice;
@@ -249,24 +250,25 @@ public class HighScores extends ListActivity {
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) item.getMenuInfo();
 		Cursor cursor = (Cursor) getListView().getItemAtPosition(info.position);
 		storedScore = dbHelper.readScore(cursor);
-		switch (item.getItemId()) {
-		case R.id.edit_score:
+		int i = item.getItemId();
+		if (i == R.id.edit_score) {
 			showDialog(EDIT_SCORE_DIALOG);
 			return true;
-		case R.id.delete_score:
+		} else if (i == R.id.delete_score) {
 			showDialog(DELETE_SCORE_DIALOG);
 			return true;
-		case R.id.share_score:
-			Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+		} else if (i == R.id.share_score) {
+			Intent shareIntent = new Intent(Intent.ACTION_SEND);
 			shareIntent.setType("text/plain");
-			shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, getString(R.string.score_share_title));
+			shareIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.score_share_title));
 			shareIntent.putExtra(
-					android.content.Intent.EXTRA_TEXT,
+					Intent.EXTRA_TEXT,
 					getString(R.string.score_share_message, new GameInfo(settings).createTitle(),
 							storedScore.time));
 			startActivity(Intent.createChooser(shareIntent, getString(R.string.score_menu_share)));
 
-		default:
+			return super.onContextItemSelected(item);
+		} else {
 			return super.onContextItemSelected(item);
 		}
 	}

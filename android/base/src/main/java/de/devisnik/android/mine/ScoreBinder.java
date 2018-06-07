@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.format.DateUtils;
 import android.view.View;
 import android.widget.TextView;
+
+import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.data.Score;
 
 public class ScoreBinder {
