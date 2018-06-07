@@ -30,7 +30,7 @@ android {
     defaultConfig {
         applicationId APP_NAME
         minSdkVersion 11
-        targetSdkVersion 21
+        targetSdkVersion 25
         versionCode VERSION_CODE
         versionName VERSION_NAME
     }
