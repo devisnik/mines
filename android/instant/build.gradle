@@ -1,13 +1,21 @@
-apply plugin: 'com.android.feature'
-
-sourceCompatibility = 1.7
+apply plugin: 'com.android.instantapp'
 
 dependencies {
-    implementation project(':model')
+    implementation project(':android:base')
+}
+
+ext {
+    VERSION_CODE = 58
+    VERSION_NAME = '1.9.2'
+    APP_NAME     = 'de.devisnik.android.mine'
+    BUILD_DATE   = today()
+}
+
+def today() {
+    new Date().format('yyyyMMdd')
 }
 
 android {
-    baseFeature true
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
     compileOptions {
@@ -15,8 +23,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
     defaultConfig {
+        applicationId APP_NAME
         minSdkVersion 11
         targetSdkVersion 25
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
     }
     signingConfigs {
         release {
@@ -31,14 +42,9 @@ android {
     buildTypes {
         release {
             minifyEnabled true
-            shrinkResources false
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
-    }
-
-    lintOptions {
-        abortOnError false
-        lintConfig file('lint_config.xml')
     }
 }
