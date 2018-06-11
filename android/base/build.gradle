@@ -1,7 +1,5 @@
 apply plugin: 'com.android.feature'
 
-sourceCompatibility = 1.7
-
 dependencies {
     implementation project(':model')
 }
@@ -40,6 +38,7 @@ android {
     }
 
     lintOptions {
+        checkReleaseBuilds false
         abortOnError false
         lintConfig file('lint_config.xml')
     }
