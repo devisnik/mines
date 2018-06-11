@@ -9,17 +9,6 @@ dependencies {
     implementation project(':android:base')
 }
 
-ext {
-    VERSION_CODE = 58
-    VERSION_NAME = '1.9.2'
-    APP_NAME     = 'de.devisnik.android.mine'
-    BUILD_DATE   = today()
-}
-
-def today() {
-    new Date().format('yyyyMMdd')
-}
-
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
@@ -36,7 +25,7 @@ android {
     }
     signingConfigs {
         release {
-            if (rootProject.hasProperty('keystoreFile'))  {
+            if (rootProject.hasProperty('keystoreFile')) {
                 storeFile file(keystoreFile)
                 keyAlias keystoreKeyAlias
                 storePassword keystoreStorePassword
@@ -66,5 +55,5 @@ task archiveRelease(type: Copy) {
     from 'build/outputs/apk', 'build/outputs/'
     into "releases/${VERSION_CODE}"
     include('android-release.apk', 'mapping/**')
-    rename ('android-release.apk', "${APP_NAME}_${BUILD_DATE}_${VERSION_NAME}_${VERSION_CODE}.apk")
+    rename ('android-release.apk', "${APP_NAME}_${new Date().format('yyyyMMdd')}_${VERSION_NAME}_${VERSION_CODE}.apk")
 }

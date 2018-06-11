@@ -32,11 +32,14 @@
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
 
-        <data
-          android:scheme="http"
-          android:host="mines.devisnik.de"
-          android:pathPrefix="/game" />
+        <data android:scheme="http" />
+        <data android:scheme="https" />
+        <data android:host="mines.devisnik.de" />
+        <data android:pathPrefix="/game" />
       </intent-filter>
+      <meta-data
+        android:name="default-url"
+        android:value="https://mines.devisnik.de/game" />
     </activity>
     <activity
       android:name="de.devisnik.android.mine.MinesPreferences"

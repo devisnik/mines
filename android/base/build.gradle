@@ -16,11 +16,13 @@ android {
     }
     defaultConfig {
         minSdkVersion 11
-        targetSdkVersion 25
+        targetSdkVersion 27
+        versionCode VERSION_CODE
+        versionName VERSION_NAME
     }
     signingConfigs {
         release {
-            if (rootProject.hasProperty('keystoreFile'))  {
+            if (rootProject.hasProperty('keystoreFile')) {
                 storeFile file(keystoreFile)
                 keyAlias keystoreKeyAlias
                 storePassword keystoreStorePassword

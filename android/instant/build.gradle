@@ -4,17 +4,6 @@ dependencies {
     implementation project(':android:base')
 }
 
-ext {
-    VERSION_CODE = 58
-    VERSION_NAME = '1.9.2'
-    APP_NAME     = 'de.devisnik.android.mine'
-    BUILD_DATE   = today()
-}
-
-def today() {
-    new Date().format('yyyyMMdd')
-}
-
 android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
@@ -23,15 +12,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
     defaultConfig {
-        applicationId APP_NAME
         minSdkVersion 11
         targetSdkVersion 25
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
     }
     signingConfigs {
         release {
-            if (rootProject.hasProperty('keystoreFile'))  {
+            if (rootProject.hasProperty('keystoreFile')) {
                 storeFile file(keystoreFile)
                 keyAlias keystoreKeyAlias
                 storePassword keystoreStorePassword

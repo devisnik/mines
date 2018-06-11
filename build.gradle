@@ -21,3 +21,9 @@ allprojects {
     }
     apply plugin: 'com.github.ben-manes.versions'
 }
+
+ext {
+    VERSION_CODE = 58
+    VERSION_NAME = '1.9.2'
+    APP_NAME     = 'de.devisnik.android.mine'
+}
