@@ -184,4 +184,7 @@
   <string name="pref_board_animate_title">Animate Touch</string>
   <string name="pref_board_animate_summary">Pulse when a field is touched</string>
 
+  <string name="notification_channel_name">Running Game</string>
+  <string name="notification_channel_description">reminds of an interrupted game in progress</string>
+
 </resources>
