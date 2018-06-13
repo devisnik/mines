@@ -8,6 +8,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.google.android.instantapps.InstantApps;
+
 import de.devisnik.android.mine.base.R;
 import de.devisnik.mine.IGame;
 
@@ -40,7 +42,7 @@ public class Notifier {
     }
 
     public void notifyRunningGame(IGame game) {
-        if (isDisabled || !game.isRunning())
+        if (isDisabled || !game.isRunning() || InstantApps.isInstantApp(context))
             return;
         CharSequence contentTitle = gameInfo.createTitle();
         CharSequence contentText = gameInfo.createStatus(game);
