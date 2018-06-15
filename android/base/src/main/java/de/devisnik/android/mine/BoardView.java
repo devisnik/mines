@@ -10,8 +10,6 @@ import android.view.MotionEvent;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import de.devisnik.android.mine.base.R;
-
 public class BoardView extends ViewGroup implements OnGestureListener {
 
 	private final boolean isLandscape;

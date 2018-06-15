@@ -1,10 +1,10 @@
 package de.devisnik.android.mine;
 
-import de.devisnik.android.mine.base.R;
-import de.devisnik.android.mine.device.DeviceFactory;
-import de.devisnik.android.mine.device.IDevice;
 import android.app.Application;
 import android.preference.PreferenceManager;
+
+import de.devisnik.android.mine.device.DeviceFactory;
+import de.devisnik.android.mine.device.IDevice;
 
 public class MinesApplication extends Application {
 

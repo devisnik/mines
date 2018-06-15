@@ -3,8 +3,6 @@ package de.devisnik.android.mine;
 import android.app.Activity;
 import android.os.Bundle;
 
-import de.devisnik.android.mine.base.R;
-
 public class Preview extends Activity {
 
 	private Settings settings;

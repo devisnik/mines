@@ -2,7 +2,6 @@ package de.devisnik.android.mine;
 
 import java.util.Arrays;
 
-import de.devisnik.android.mine.base.R;
 import de.devisnik.mine.IGame;
 
 public final class GameInfo {

@@ -7,7 +7,6 @@ import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
-import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.device.IDevice;
 
 public class MinesPreferences extends PreferenceActivity {

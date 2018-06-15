@@ -10,16 +10,16 @@ dependencies {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion COMPILE_SDK
+    buildToolsVersion BUILD_TOOLS
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
     defaultConfig {
         applicationId APP_NAME
-        minSdkVersion 11
-        targetSdkVersion 27
+        minSdkVersion MIN_SDK
+        targetSdkVersion TARGET_SDK
         versionCode VERSION_CODE
         versionName VERSION_NAME
     }

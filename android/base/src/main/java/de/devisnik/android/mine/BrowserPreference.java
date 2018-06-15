@@ -7,8 +7,6 @@ import android.net.Uri;
 import android.preference.Preference;
 import android.util.AttributeSet;
 
-import de.devisnik.android.mine.base.R;
-
 public class BrowserPreference extends Preference {
 
 	private final Uri url;

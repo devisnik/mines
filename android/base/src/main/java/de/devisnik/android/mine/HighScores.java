@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 import java.util.Date;
 
-import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.data.DBHelper;
 import de.devisnik.android.mine.data.Score;
 import de.devisnik.android.mine.device.IDevice;

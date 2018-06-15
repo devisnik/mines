@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
 
-import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.drawable.CachingDrawer;
 import de.devisnik.android.mine.drawable.FieldDrawer;
 import de.devisnik.android.mine.drawable.PreviewFieldDrawer;

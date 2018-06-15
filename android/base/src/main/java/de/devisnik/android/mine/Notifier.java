@@ -10,7 +10,6 @@ import android.os.Build;
 
 import com.google.android.instantapps.InstantApps;
 
-import de.devisnik.android.mine.base.R;
 import de.devisnik.mine.IGame;
 
 public class Notifier {

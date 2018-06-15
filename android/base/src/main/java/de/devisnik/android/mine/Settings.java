@@ -8,8 +8,6 @@ import android.os.Vibrator;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import de.devisnik.android.mine.base.R;
-
 public final class Settings {
 	private static final String DEFAULT_USER_NAME = "";
 	private static final int DEFAULT_BOARD = R.string.board_value_medium;

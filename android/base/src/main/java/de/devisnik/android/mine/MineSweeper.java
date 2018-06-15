@@ -22,7 +22,6 @@ import android.widget.Spinner;
 
 import com.google.android.instantapps.InstantApps;
 
-import de.devisnik.android.mine.base.R;
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.IDevice;
