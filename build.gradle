@@ -10,7 +10,6 @@ buildscript {
         classpath 'com.novoda:gradle-android-command-plugin:1.7.1'
         classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
         classpath 'com.github.triplet.gradle:play-publisher:1.2.0'
-        classpath 'com.tkruse.gradle:gradle-groovysh-plugin:1.0.7'
         classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2'
     }
 }
