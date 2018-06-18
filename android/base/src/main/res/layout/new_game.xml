@@ -15,7 +15,7 @@
 		/>
 	<Spinner
 		android:id="@+id/BoardSpinner"
-		android:layout_width="fill_parent"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:entries="@array/sizes"
 		/>
@@ -30,7 +30,7 @@
 		/>
 	<Spinner
 		android:id="@+id/LevelSpinner"
-		android:layout_width="fill_parent"
+		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:entries="@array/levels"
 		/>
