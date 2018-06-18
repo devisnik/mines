@@ -4,8 +4,7 @@
     android:id="@+id/score_layout"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingBottom="5dip"
-    android:paddingTop="5dip"
+    android:padding="16dp"
     tools:ignore="HardcodedText" >
 
     <TextView
