@@ -233,7 +233,7 @@ public class HighScores extends ListActivity {
 
 	@Override
 	public void onCreateContextMenu(final ContextMenu menu, final View v, final ContextMenuInfo menuInfo) {
-		new MenuInflater(this).inflate(R.menu.scores_context, menu);
+		getMenuInflater().inflate(R.menu.scores_context, menu);
 		ViewGroup title = (ViewGroup) getLayoutInflater().inflate(R.layout.score_plain, null);
 		AdapterContextMenuInfo info = (AdapterContextMenuInfo) menuInfo;
 		Cursor cursor = (Cursor) getListView().getItemAtPosition(info.position);

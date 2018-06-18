@@ -5,13 +5,12 @@
 	android:layout_width="wrap_content"
 	android:layout_height="wrap_content"
 	android:orientation="vertical"
-	android:padding="8dp"
+	android:padding="24dp"
 	>
 	<TextView
 		android:id="@+id/TextView01"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:paddingStart="8dp"
 		android:text="@string/board"
 		/>
 	<Spinner
@@ -19,20 +18,20 @@
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:entries="@array/sizes"
-		android:paddingBottom="8dp"
 		/>
+  <Space
+    android:layout_width="match_parent"
+    android:layout_height="16dp" />
 	<TextView
 		android:id="@+id/TextView02"
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"
 		android:text="@string/level"
-		android:paddingStart="8dp"
 		/>
 	<Spinner
 		android:id="@+id/LevelSpinner"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
 		android:entries="@array/levels"
-		android:paddingBottom="8dp"
 		/>
 </LinearLayout>

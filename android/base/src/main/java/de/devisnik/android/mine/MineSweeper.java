@@ -42,7 +42,6 @@ public class MineSweeper extends Activity {
 
         public NewGameDialogBuilder() {
             super(MineSweeper.this);
-            setTheme(android.R.style.Theme_Material_Dialog);
             ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.new_game, null);
             final PreferenceSpinnerController boardSpinnerController = createSpinnerController(
                     R.string.prefkey_board_size, R.array.sizes_values, R.id.BoardSpinner, layout);

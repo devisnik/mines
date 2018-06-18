@@ -12,6 +12,7 @@
   <supports-screens android:anyDensity="true" />
 
   <application
+    android:theme="@android:style/Theme.Material"
     android:name="de.devisnik.android.mine.MinesApplication"
     android:allowClearUserData="true"
     android:icon="@drawable/ic_launcher"
