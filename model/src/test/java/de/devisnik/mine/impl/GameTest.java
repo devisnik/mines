@@ -14,7 +14,7 @@ public class GameTest extends TestCase {
 	private TestBoardMiner itsGame2by2miner;
 
 	@Override
-	protected void setUp() throws Exception {
+	protected void setUp() {
 		itsGame2by1 = new Game(2, 1, 1, new SimpleBoardMiner());
 		itsGame2by2miner = new TestBoardMiner(new boolean[][] {
 				{ false, false }, { true, false } });
@@ -30,6 +30,12 @@ public class GameTest extends TestCase {
 	public void testIsStarted() {
 		assertEquals(false, itsGame2by1.isStarted());
 		openAt(0, 0, itsGame2by1);
+		assertEquals(true, itsGame2by1.isStarted());
+	}
+
+	public void testFlaggingStartsGame() {
+		assertEquals(false, itsGame2by1.isStarted());
+		flagAt(0, 0, itsGame2by1);
 		assertEquals(true, itsGame2by1.isStarted());
 	}
 
@@ -50,8 +56,10 @@ public class GameTest extends TestCase {
 	 * Open on a flagged field should result in flag removal.
 	 */
 	public void testOpenFlaggedField() {
-		IField field = flagAt(0, 0, itsGame2by1);
-		itsGame2by1.onRequestOpen(field);
+		Game game = new Game(2, 2, 2, new TestBoardMiner(new boolean[][]{{false, false}, {true, true}}));
+		openAt(0, 0, game);
+		IField field = flagAt(1, 1, game);
+		game.onRequestOpen(field);
 		assertEquals(false, field.isOpen());
 		assertEquals(false, field.isFlagged());
 	}
@@ -60,7 +68,9 @@ public class GameTest extends TestCase {
 	 * Flagging a closed field should set the FLAG property.
 	 */
 	public void testFlagClosedField() {
-		IField field = flagAt(0, 0, itsGame2by1);
+		Game game = new Game(2, 2, 2, new TestBoardMiner(new boolean[][]{{false, false}, {true, true}}));
+		openAt(0, 0, game);
+		IField field = flagAt(1, 1, game);
 		assertEquals(true, field.isFlagged());
 	}
 
@@ -68,8 +78,10 @@ public class GameTest extends TestCase {
 	 * Flagging an already flagged field should remove the flag.
 	 */
 	public void testFlagFlaggedField() {
-		IField field = flagAt(0, 0, itsGame2by1);
-		itsGame2by1.onRequestFlag(field);
+        Game game = new Game(2, 2, 2, new TestBoardMiner(new boolean[][]{{false, false}, {true, true}}));
+        openAt(0, 0, game);
+		IField field = flagAt(1, 1, game);
+		game.onRequestFlag(field);
 		assertEquals(false, field.isFlagged());
 	}
 
@@ -114,16 +126,18 @@ public class GameTest extends TestCase {
 	}
 
 	public void testFlaggedNotification() {
+		Game game = new Game(2, 2, 2, new TestBoardMiner(new boolean[][]{{false, false}, {true, true}}));
+		openAt(0, 0, game);
 		TrackingMinesListener listener = new TrackingMinesListener() {
 			@Override
 			public void onChange(final int flags, final int mines) {
 				assertEquals(1, flags);
-				assertEquals(1, mines);
+				assertEquals(2, mines);
 				super.onChange(flags, mines);
 			}
 		};
-		itsGame2by1.addListener(listener);
-		flagAt(0, 0, itsGame2by1);
+		game.addListener(listener);
+		flagAt(1, 1, game);
 		assertEquals(0, listener.getStart());
 		assertEquals(1, listener.getChange());
 		assertEquals(0, listener.getDisarmed());

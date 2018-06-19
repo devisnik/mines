@@ -9,7 +9,6 @@ import de.devisnik.mine.IMinesGameListener;
 public class MessagesController implements IMinesGameListener {
 
 	private final IGame game;
-	private boolean isStarted;
 	private final MineSweeper context;
 	private final Settings settings;
 
@@ -17,7 +16,6 @@ public class MessagesController implements IMinesGameListener {
 		this.game = game;
 		this.context = context;
 		this.settings = settings;
-		isStarted = this.game.isStarted();
 		game.addListener(this);
 	}
  
@@ -32,23 +30,21 @@ public class MessagesController implements IMinesGameListener {
 	@Override
 	public void onBusted() {
 		runExplodeVibration();
-		showToast(R.string.toast_lose, Toast.LENGTH_LONG);
+		showToast(R.string.toast_lose, Toast.LENGTH_SHORT);
 	}
 
 	@Override
 	public void onChange(final int flags, final int mines) {
-		if (!isStarted)
-			showToast(R.string.toast_longpress, Toast.LENGTH_SHORT);
 	}
 
 	@Override
 	public void onDisarmed() {
-		showToast(R.string.toast_win, Toast.LENGTH_LONG);
+		showToast(R.string.toast_win, Toast.LENGTH_SHORT);
 	}
 
 	@Override
 	public void onStart() {
-		isStarted = true;
+		showToast(R.string.toast_longpress, Toast.LENGTH_SHORT);
 	}
 
 	private void runExplodeVibration() {

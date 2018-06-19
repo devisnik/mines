@@ -3,7 +3,7 @@ apply plugin: 'java-library'
 sourceCompatibility = 1.7
 
 archivesBaseName = "de.devisnik.mine.model"
-version = '1.3.4'
+version = '1.4.0'
 
 dependencies {
     testImplementation 'junit:junit:4.11'

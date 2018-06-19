@@ -104,6 +104,10 @@ public class Game implements IGame {
 
 	@Override
 	public void onRequestFlag(final IField fieldInterface) {
+		if (!isMined()) {
+			onRequestOpen(fieldInterface);
+			return;
+		}
 		Field field = (Field) fieldInterface;
 		if (isFinished())
 			return;
