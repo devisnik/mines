@@ -24,11 +24,11 @@ allprojects {
 }
 
 ext {
-    VERSION_CODE = 61
-    VERSION_NAME = '1.11.0'
+    VERSION_CODE = 62
+    VERSION_NAME = '1.11.1'
     APP_NAME     = 'de.devisnik.android.mine'
     MIN_SDK      = 21
-    TARGET_SDK   = 28
+    TARGET_SDK   = 27
     COMPILE_SDK  = 28
     BUILD_TOOLS  = '28.0.0'
 }
