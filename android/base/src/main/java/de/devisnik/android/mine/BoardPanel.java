@@ -117,7 +117,6 @@ public class BoardPanel extends ViewGroup {
 
 	@Override
 	protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
-		Log.i("Mines.render", "BoardPanel.onMeasure()");
 		int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
 		int measureHeight = MeasureSpec.getSize(heightMeasureSpec);
 		int fitSizeX = measureWidth / dimX;
@@ -147,7 +146,6 @@ public class BoardPanel extends ViewGroup {
 	 */
 	@Override
 	protected void onLayout(final boolean changed, final int l, final int t, final int r, final int b) {
-		Log.i("Mines.render", "BoardPanel.onLayout()");
 		for (int posX = 0; posX < dimX; posX++)
 			for (int posY = 0; posY < dimY; posY++)
 				fieldViews[posX][posY].layout(posX * fieldSize, posY * fieldSize, (posX + 1) * fieldSize,
