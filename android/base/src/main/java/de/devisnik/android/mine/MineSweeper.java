@@ -22,6 +22,8 @@ import android.widget.Spinner;
 
 import com.google.android.instantapps.InstantApps;
 
+import java.io.File;
+
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.IDevice;
@@ -31,7 +33,6 @@ import de.devisnik.mine.MinesGameAdapter;
 public class MineSweeper extends Activity {
 
     private static final int HIGHSCORES_REQUEST = 42;
-    private static final String SKIP_CACHE = "skip_cache";
     private static final int DIALOG_NEW_GAME = 1;
     private static final int DIALOG_INTRO = 4;
     private static final int DIALOG_INSTALL = 8;
@@ -90,10 +91,10 @@ public class MineSweeper extends Activity {
     private IGame game;
     private GameTimer gameTimer;
     private GameListener gameListener;
-    private boolean skipCache;
     private Notifier notifier;
     private IDevice device;
     private MenuItem zoomMenuItem;
+    private boolean restartingWithNewGame = false;
 
     private class GameListener extends MinesGameAdapter {
         @Override
@@ -124,7 +125,6 @@ public class MineSweeper extends Activity {
         getWindow().setBackgroundDrawable(null);
         device = ((MinesApplication) getApplication()).getDevice();
         setFullScreenMode();
-        handleIntentExtras();
         settings = new Settings(this);
         GameInfo gameInfo = new GameInfo(settings);
         device.setGameTitle(this, getTitle(), gameInfo.createTitle());
@@ -133,12 +133,6 @@ public class MineSweeper extends Activity {
 
     private void setFullScreenMode() {
         device.setFullScreen(this);
-    }
-
-    private void handleIntentExtras() {
-        Intent intent = getIntent();
-        skipCache = intent.getBooleanExtra(SKIP_CACHE, false);
-        intent.removeExtra(SKIP_CACHE);
     }
 
     private void debugLog(final String msg) {
@@ -185,9 +179,7 @@ public class MineSweeper extends Activity {
 
     private IGame readCachedGameOrCreateNew() {
         IGame game = null;
-        if (!skipCache) {
-            game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
-        }
+        game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
         if (game == null) {
             game = new GameCreator(settings).create();
         }
@@ -245,7 +237,13 @@ public class MineSweeper extends Activity {
     protected void onPause() {
         debugLog("onPause");
         gameTimer.pause();
-        new SaveGameCommand(this, GAME_CACHE_FILE, game).execute();
+        if (restartingWithNewGame) {
+            if (!new File(getCacheDir(), GAME_CACHE_FILE).delete()) {
+                LOGGER.w("failed to delete current game: " + GAME_CACHE_FILE);
+            }
+        } else {
+            new SaveGameCommand(this, GAME_CACHE_FILE, game).execute();
+        }
         super.onPause();
     }
 
@@ -268,14 +266,6 @@ public class MineSweeper extends Activity {
     protected void onDestroy() {
         debugLog("onDestroy");
         super.onDestroy();
-    }
-
-    @Override
-    protected void onRestart() {
-        debugLog("onRestart");
-        // make sure that cache is read on a restart
-        skipCache = false;
-        super.onRestart();
     }
 
     /*
@@ -365,11 +355,10 @@ public class MineSweeper extends Activity {
     }
 
     private void restartWithNewGame() {
-        final Intent intent = new Intent(this, MineSweeper.class);
-        intent.putExtra(SKIP_CACHE, true);
         notifier.disable();
+        restartingWithNewGame = true;
         finish();
-        startActivity(intent);
+        startActivity(new Intent(this, MineSweeper.class));
     }
 
     @Override
