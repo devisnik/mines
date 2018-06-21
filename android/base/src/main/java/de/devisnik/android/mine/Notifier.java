@@ -55,7 +55,7 @@ public class Notifier {
                 .setContentIntent(contentIntent)
                 .setContentText(contentText)
                 .setContentTitle(contentTitle)
-                .setSmallIcon(R.drawable.bomb_notification)
+                .setSmallIcon(R.drawable.ic_notification)
                 .setAutoCancel(true);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             builder.setChannelId(MINES_CHANNEL);
