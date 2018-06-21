@@ -27,7 +27,7 @@
   <item
     android:id="@+id/scores"
     android:alphabeticShortcut="@string/menu_shortcut_scores"
-    android:icon="@drawable/ic_menu_star"
+    android:icon="@drawable/ic_menu_scores"
     android:title="@string/menu_scores" />
   <item
     android:id="@+id/help"
