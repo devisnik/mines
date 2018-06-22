@@ -57,12 +57,6 @@ public class BoardPanel extends ViewGroup {
 			getChildAt(index).setFocusable(value);
 	}
 
-	public void setFieldsFocusableInTouchMode(final boolean value) {
-		int childCount = getChildCount();
-		for (int index = 0; index < childCount; index++)
-			getChildAt(index).setFocusableInTouchMode(value);
-	}
-
 	public void setZoomModeFieldSize(final int size) {
 		zoomModeFieldSize = size;
         requestLayout();

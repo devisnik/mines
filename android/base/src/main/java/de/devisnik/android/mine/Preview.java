@@ -20,7 +20,7 @@ public class Preview extends Activity {
 		setContentView(R.layout.main);
 		BoardView boardView = (BoardView) findViewById(R.id.board);
 		boardView.setSize(4, 4);
-		boardView.setFieldSizeAndTouchFocus(-1, false);
+		boardView.setFieldSizeAndTouchFocus(-1);
 		for (int i = 0; i < 4; i++)
 			for (int j = 0; j < 4; j++)
 				boardView.getField(i, j).setImageId(4*i+j);

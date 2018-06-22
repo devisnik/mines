@@ -158,10 +158,6 @@ public final class Settings {
 		return getBooleanPreference(R.string.prefkey_board_highlight, true);
 	}
 
-	public boolean isTouchFocus() {
-		return getBooleanPreference(R.string.prefkey_board_touch_focus, false);
-	}
-
 	public boolean isZoom() {
 		return !getBooleanPreference(R.string.prefkey_board_fit, true);
 	}

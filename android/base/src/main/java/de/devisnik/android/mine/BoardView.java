@@ -282,10 +282,9 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 			getCanvas().setDimension(fieldsX, fieldsY);
 	}
 
-	public void setFieldSizeAndTouchFocus(final int fieldSize, final boolean touchFocus) {
+	public void setFieldSizeAndTouchFocus(final int fieldSize) {
 		flingRunnable.stop();
 		getCanvas().setZoomModeFieldSize(fieldSize);
-		getCanvas().setFieldsFocusableInTouchMode(touchFocus);
 		getCanvas().scrollTo(0, 0);
 	}
 }

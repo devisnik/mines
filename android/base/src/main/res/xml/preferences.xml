@@ -33,20 +33,15 @@
       android:title="@string/pref_highlight"
       android:defaultValue="true" />
     <CheckBoxPreference
-      android:key="@string/prefkey_board_touch_focus"
-      android:title="@string/pref_touchfocus"
-      android:defaultValue="false"
-      android:summary="@string/pref_touchfocus_summary" />
+      android:key="@string/prefkey_board_animate"
+      android:title="@string/pref_board_animate_title"
+      android:summary="@string/pref_board_animate_summary"
+      android:defaultValue="true" />
     <CheckBoxPreference
       android:key="@string/prefkey_game_notification"
       android:summary="@string/pref_notification_summary"
       android:title="@string/pref_notification_title"
       android:defaultValue="false" />
-    <CheckBoxPreference
-      android:key="@string/prefkey_board_animate"
-      android:title="@string/pref_board_animate_title"
-      android:summary="@string/pref_board_animate_summary"
-      android:defaultValue="true" />
   </PreferenceCategory>
   <PreferenceCategory android:title="@string/pref_category_online">
     <de.devisnik.android.mine.BrowserPreference
