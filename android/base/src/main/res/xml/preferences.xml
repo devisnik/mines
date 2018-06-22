@@ -4,6 +4,7 @@
   <EditTextPreference
     android:inputType="textPersonName"
     android:maxLength="15"
+    android:paddingStart="24dp"
     android:title="@string/pref_user"
     android:key="@string/prefkey_user_name"
     android:dialogTitle="@string/pref_user_dialog" />
@@ -22,22 +23,22 @@
       android:entryValues="@array/field_sizes_values"
       android:entries="@array/field_sizes"
       android:defaultValue="@string/field_value_large" />
-    <CheckBoxPreference
+    <SwitchPreference
       android:key="@string/prefkey_board_vibrate"
       android:title="@string/pref_vibrate"
       android:defaultValue="true"
       android:summary="@string/pref_vibrate_summary" />
-    <CheckBoxPreference
+    <SwitchPreference
       android:key="@string/prefkey_board_highlight"
       android:summary="@string/pref_highlight_summary"
       android:title="@string/pref_highlight"
       android:defaultValue="true" />
-    <CheckBoxPreference
+    <SwitchPreference
       android:key="@string/prefkey_board_animate"
       android:title="@string/pref_board_animate_title"
       android:summary="@string/pref_board_animate_summary"
       android:defaultValue="true" />
-    <CheckBoxPreference
+    <SwitchPreference
       android:key="@string/prefkey_game_notification"
       android:summary="@string/pref_notification_summary"
       android:title="@string/pref_notification_title"
