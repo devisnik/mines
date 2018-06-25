@@ -118,7 +118,6 @@ public class HighScores extends ListActivity {
 
 		settings = new Settings(this);
 		dbHelper = new DBHelper(this);
-		setTheme(settings.getTheme());
 
 		setContentView(R.layout.scores);
 		((MinesApplication) getApplication()).getDevice().setHighScoresTitle(this, getTitle(),

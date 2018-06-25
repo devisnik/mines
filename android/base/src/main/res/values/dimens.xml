@@ -2,7 +2,7 @@
 <resources>
 	<dimen name="score_rank_size">24sp</dimen>
 	<dimen name="score_time_size">24sp</dimen>
-	<dimen name="score_date_size">10sp</dimen>
+	<dimen name="score_date_size">14sp</dimen>
 	<dimen name="score_name_size">24sp</dimen>
 	<dimen name="game_info_size">16sp</dimen>
 	<dimen name="counter_size">20sp</dimen>

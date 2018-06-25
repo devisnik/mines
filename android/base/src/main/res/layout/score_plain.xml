@@ -18,18 +18,18 @@
         android:text="1243" />
 
     <TextView
-        android:id="@+id/score_name"
+        android:id="@+id/score_date"
         style="@style/Score.Name"
         android:layout_alignBottom="@+id/score_rank"
-        android:layout_alignRight="@+id/score_date"
+        android:layout_alignRight="@+id/score_name"
         android:layout_alignTop="@+id/score_rank"
         android:layout_toRightOf="@+id/score_rank"
         android:text="@+id/score_name" />
 
     <TextView
-        android:id="@+id/score_date"
+        android:id="@+id/score_name"
         style="@style/Score.Date"
-        android:layout_below="@id/score_name"
+        android:layout_below="@id/score_date"
         android:layout_toLeftOf="@id/score_time"
         android:layout_toRightOf="@id/score_rank"
         android:text="@+id/score_date" />
