@@ -32,7 +32,7 @@ public abstract class CacheFileCommand<RESULT, STREAM extends Closeable> {
 			stream = createStream(createCacheFile());
 			return execute(stream);
 		} catch (IOException e) {
-			Log.e(TAG, e.getMessage(), e);
+			Log.d(TAG, e.getMessage());
 			return itsErrorResult;
 		} finally {
 			if (stream != null)
