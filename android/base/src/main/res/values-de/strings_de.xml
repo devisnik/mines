@@ -31,12 +31,12 @@
 	<string name="field_small">Klein</string>
 	<string name="field_medium">Mittel</string>
 	<string name="field_large">Groß</string>
-	<string name="level">Stärke</string>
+	<string name="level">Level</string>
 	<string name="level_easy">Einfach</string>
 	<string name="level_medium">Mittel</string>
 	<string name="level_hard">Schwierig</string>
 	<string name="level_tricky">Schwer</string>
-	<string name="level_insane">Sehr Schwer</string>
+	<string name="level_insane">Profi</string>
 	<string name="theme_simple">Monochrome</string>
 	<string name="theme_classic">Classic</string>
 	<string name="theme_dark">Dark</string>
