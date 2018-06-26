@@ -178,8 +178,7 @@ public class MineSweeper extends Activity {
     }
 
     private IGame readCachedGameOrCreateNew() {
-        IGame game = null;
-        game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
+        IGame game = new ReadGameCommand(this, GAME_CACHE_FILE).execute();
         if (game == null) {
             game = new GameCreator(settings).create();
         }
@@ -309,7 +308,6 @@ public class MineSweeper extends Activity {
             settings.toogleZoom();
             adjustZoomIcon();
             boardController.onZoomChange();
-
         } else if (i == R.id.help) {
             showDialog(DIALOG_INTRO);
 
@@ -395,6 +393,7 @@ public class MineSweeper extends Activity {
     }
 
     private void onGameWon() {
+        ensureNonZoomedBoard();
         Intent intent = HighScores.withTime(this, game.getWatch().getTime());
         startActivityForResult(intent, HIGHSCORES_REQUEST);
     }
@@ -408,7 +407,16 @@ public class MineSweeper extends Activity {
     }
 
     private void onGameLost() {
+        ensureNonZoomedBoard();
         showDialog(DIALOG_NEW_GAME);
+    }
+
+    private void ensureNonZoomedBoard() {
+        if (settings.isZoom()) {
+            settings.toogleZoom();
+            adjustZoomIcon();
+            boardController.onZoomChange();
+        }
     }
 
 }
