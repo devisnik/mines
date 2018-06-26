@@ -12,7 +12,18 @@
         style="?attr/counterViewStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingRight="5dip" />
+        android:paddingRight="2dp" />
+
+    <ImageView
+      android:id="@+id/count_icon"
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:layout_toEndOf="@id/count"
+      android:layout_alignBottom="@id/count"
+      android:src="@drawable/ic_flag"
+      android:tint="?attr/scoresColor"
+      android:scaleType="center"
+      />
 
     <de.devisnik.android.mine.CounterView
         android:id="@+id/time"
@@ -22,7 +33,18 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:gravity="right"
-        android:paddingLeft="5dip" />
+        android:paddingLeft="2dp" />
+
+  <ImageView
+    android:id="@+id/time_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_toStartOf="@id/time"
+    android:layout_alignBottom="@id/count"
+    android:src="@drawable/ic_timer"
+    android:tint="?attr/scoresColor"
+    android:scaleType="center"
+    />
 
     <de.devisnik.android.mine.GameInfoView
         android:id="@+id/level"
@@ -31,8 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@id/count"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@id/time"
-        android:layout_toRightOf="@id/count"
+        android:layout_toStartOf="@id/time_icon"
+        android:layout_toEndOf="@id/count_icon"
         android:text="MineSweeper" />
 
     <include
