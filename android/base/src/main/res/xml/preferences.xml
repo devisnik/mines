@@ -16,13 +16,6 @@
       android:entryValues="@array/themes_values"
       android:entries="@array/themes"
       android:defaultValue="@string/theme_value_classic" />
-    <ListPreference
-      android:key="@string/prefkey_field_size"
-      android:title="@string/pref_zoom"
-      android:dialogTitle="@string/pref_zoom_dialog"
-      android:entryValues="@array/field_sizes_values"
-      android:entries="@array/field_sizes"
-      android:defaultValue="@string/field_value_large" />
     <SwitchPreference
       android:key="@string/prefkey_board_vibrate"
       android:title="@string/pref_vibrate"

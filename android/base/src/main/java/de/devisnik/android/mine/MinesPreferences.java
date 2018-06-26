@@ -20,7 +20,6 @@ public class MinesPreferences extends PreferenceActivity {
 		addPreferencesFromResource(R.xml.preferences);
 
 		adjustListPreference(R.string.prefkey_board_theme);
-		adjustListPreference(R.string.prefkey_field_size);
 		adjustStringPreference(R.string.prefkey_user_name);
 	}
 
