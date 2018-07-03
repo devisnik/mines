@@ -3,8 +3,6 @@ apply plugin: 'android-command'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'com.getkeepsafe.dexcount'
 
-sourceCompatibility = 1.7
-
 dependencies {
     implementation project(':android:base')
 }
@@ -12,10 +10,6 @@ dependencies {
 android {
     compileSdkVersion COMPILE_SDK
     buildToolsVersion BUILD_TOOLS
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
-    }
     defaultConfig {
         applicationId APP_NAME
         minSdkVersion MIN_SDK
