@@ -1,18 +1,15 @@
 package de.devisnik.mine.impl;
 
+import org.junit.Test;
+
 import de.devisnik.mine.Point;
 import junit.framework.TestCase;
 
-public class SimpleBoardMinerTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-	protected void setUp() throws Exception {
-		super.setUp();
-	}
+public class SimpleBoardMinerTest {
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
-
+	@Test
 	public void testMine() {
 		Board board = new Board(5, 5);
 		int bombs = 10;
@@ -21,6 +18,7 @@ public class SimpleBoardMinerTest extends TestCase {
 		assertEquals(false, board.getField(1, 1).isBomb());
 	}
 
+	@Test
 	public void testTooManyBombs() {
 		Board board = new Board(5, 5);
 		int bombs = 25;

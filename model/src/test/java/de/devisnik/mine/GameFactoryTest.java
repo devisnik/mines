@@ -5,16 +5,22 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.junit.Test;
+
 import junit.framework.TestCase;
 
-public class GameFactoryTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
+public class GameFactoryTest {
+
+	@Test
 	public void testCreate() {
 		IGame game = GameFactory.create(4, 6, 8);
 		assertEquals(8, game.getBombCount());
 		assertEquals(new Point(4, 6), game.getBoard().getDimension());
 	}
 
+	@Test
 	public void testPersistence() throws IOException {
 		IGame originalGame = GameFactory.create(4, 6, 8);
 		File file = File.createTempFile("gamefactory", "persist");

@@ -4,44 +4,51 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import junit.framework.TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 
-public class BoardStateTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-	private BoardState itsBoardState;
-	private Board itsBoard;
+public class BoardStateTest {
 
-	@Override
-	protected void setUp() throws Exception {
-		itsBoard = new Board(2, 3);
-		itsBoardState = itsBoard.getState();
-	}
+    private BoardState itsBoardState;
+    private Board itsBoard;
 
-	@Override
-	protected void tearDown() throws Exception {
-		itsBoard = null;
-		itsBoardState = null;
-	}
+    @Before
+    public void setUp() {
+        itsBoard = new Board(2, 3);
+        itsBoardState = itsBoard.getState();
+    }
 
-	public void testGetDimensions() {
-		assertEquals(2, itsBoardState.getDimX());
-		assertEquals(3, itsBoardState.getDimY());
-	}
+    @After
+    public void tearDown() {
+        itsBoard = null;
+        itsBoardState = null;
+    }
 
-	public void testGetFieldState() {
-		assertEquals(0, itsBoardState.getFieldState(0, 0));
-	}
+    @Test
+    public void testGetDimensions() {
+        assertEquals(2, itsBoardState.getDimX());
+        assertEquals(3, itsBoardState.getDimY());
+    }
 
-	public void testWrite() throws IOException {
-		itsBoard.toggleFlagged((Field) itsBoard.getField(0, 0));
-		BoardState boardState = itsBoard.getState();
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-		StatePersistence.writeBoardState(boardState, outputStream);
-		outputStream.flush();
-		byte[] byteArray = outputStream.toByteArray();
-		outputStream.close();
-		BoardState restoredState = StatePersistence.readBoardState(new ByteArrayInputStream(byteArray));
-		assertEquals(boardState, restoredState);
-	}
+    @Test
+    public void testGetFieldState() {
+        assertEquals(0, itsBoardState.getFieldState(0, 0));
+    }
+
+    @Test
+    public void testWrite() throws IOException {
+        itsBoard.toggleFlagged((Field) itsBoard.getField(0, 0));
+        BoardState boardState = itsBoard.getState();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        StatePersistence.writeBoardState(boardState, outputStream);
+        outputStream.flush();
+        byte[] byteArray = outputStream.toByteArray();
+        outputStream.close();
+        BoardState restoredState = StatePersistence.readBoardState(new ByteArrayInputStream(byteArray));
+        assertEquals(boardState, restoredState);
+    }
 
 }

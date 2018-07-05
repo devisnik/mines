@@ -6,7 +6,7 @@ archivesBaseName = "de.devisnik.mine.model"
 version = '1.4.0'
 
 dependencies {
-    testImplementation 'junit:junit:4.11'
+    testImplementation 'junit:junit:4.12'
 }
 
 jar {

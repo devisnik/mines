@@ -4,35 +4,39 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+import org.junit.Before;
+import org.junit.Test;
+
 import de.devisnik.mine.GameFactory;
-import junit.framework.TestCase;
 
-public class GameStateTest extends TestCase {
+import static org.junit.Assert.assertEquals;
 
-	private GameState itsState;
+public class GameStateTest {
 
-	protected void setUp() throws Exception {
-		itsState = new GameState((Game) GameFactory.create(2, 3, 1));
-	}
+    private GameState itsState;
 
-	protected void tearDown() throws Exception {
-		super.tearDown();
-	}
+    @Before
+    public void setUp() {
+        itsState = new GameState((Game) GameFactory.create(2, 3, 1));
+    }
 
-	public void testGetBombsCount() {
-		assertEquals(1, itsState.getBombsCount());
-	}
+    @Test
+    public void testGetBombsCount() {
+        assertEquals(1, itsState.getBombsCount());
+    }
 
-	public void testIsMined() {
-		assertEquals(false, itsState.isMined());		
-	}
+    @Test
+    public void testIsMined() {
+        assertEquals(false, itsState.isMined());
+    }
 
-	public void testWriteRead() throws IOException {
-		ByteArrayOutputStream stream = new ByteArrayOutputStream();
-		StatePersistence.writeGameState(itsState, stream);
-		byte[] byteArray = stream.toByteArray();
-		stream.close();
-		GameState restoredState = (GameState) StatePersistence.readGameState(new ByteArrayInputStream(byteArray));
-		assertEquals(itsState, restoredState);
-	}
+    @Test
+    public void testWriteRead() throws IOException {
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        StatePersistence.writeGameState(itsState, stream);
+        byte[] byteArray = stream.toByteArray();
+        stream.close();
+        GameState restoredState = (GameState) StatePersistence.readGameState(new ByteArrayInputStream(byteArray));
+        assertEquals(itsState, restoredState);
+    }
 }
