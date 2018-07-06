@@ -4,6 +4,10 @@ Mines is a Minesweeper game for Android.
 
 It's available for free from the [Google Play Store](https://play.google.com/store/apps/details?id=de.devisnik.android.mine).
 
+### Presentation
+
+You can learn about the project's roots and history from this talk: https://www.youtube.com/watch?v=q-W08SDz59Q
+
 ### License
 
     (c) Copyright 2014 
