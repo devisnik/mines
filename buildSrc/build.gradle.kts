@@ -1,3 +1,8 @@
 plugins {
-   `kotlin-dsl`
+    `kotlin-dsl`
+    `java-gradle-plugin`
+}
+
+repositories {
+    jcenter()
 }

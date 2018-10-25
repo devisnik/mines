@@ -8,14 +8,14 @@ dependencies {
 }
 
 android {
-    compileSdkVersion COMPILE_SDK
-    buildToolsVersion BUILD_TOOLS
+    compileSdkVersion Android.COMPILE_SDK
+    buildToolsVersion Android.BUILD_TOOLS
     defaultConfig {
-        applicationId APP_NAME
-        minSdkVersion MIN_SDK
-        targetSdkVersion TARGET_SDK
-        versionCode VERSION_CODE
-        versionName VERSION_NAME
+        applicationId Android.APP_NAME
+        minSdkVersion Android.MIN_SDK
+        targetSdkVersion Android.TARGET_SDK
+        versionCode Android.VERSION_CODE
+        versionName Android.VERSION_NAME
     }
     signingConfigs {
         release {
@@ -47,7 +47,7 @@ if (rootProject.hasProperty('playstoreServiceAccount')) {
 
 task archiveRelease(type: Copy) {
     from 'build/outputs/apk', 'build/outputs/'
-    into "releases/${VERSION_CODE}"
+    into "releases/${Android.VERSION_CODE}"
     include('android-release.apk', 'mapping/**')
-    rename ('android-release.apk', "${APP_NAME}_${new Date().format('yyyyMMdd')}_${VERSION_NAME}_${VERSION_CODE}.apk")
+    rename ('android-release.apk', "${Android.APP_NAME}_${new Date().format('yyyyMMdd')}_${Android.VERSION_NAME}_${Android.VERSION_CODE}.apk")
 }

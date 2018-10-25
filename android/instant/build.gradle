@@ -5,11 +5,11 @@ dependencies {
 }
 
 android {
-    compileSdkVersion COMPILE_SDK
-    buildToolsVersion BUILD_TOOLS
+    compileSdkVersion Android.COMPILE_SDK
+    buildToolsVersion Android.BUILD_TOOLS
     defaultConfig {
-        minSdkVersion MIN_SDK
-        targetSdkVersion TARGET_SDK
+        minSdkVersion Android.MIN_SDK
+        targetSdkVersion Android.TARGET_SDK
     }
     signingConfigs {
         release {

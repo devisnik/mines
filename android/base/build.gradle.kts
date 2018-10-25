@@ -9,13 +9,14 @@ dependencies {
 
 android {
     baseFeature = true
-    compileSdkVersion(rootProject.extra["COMPILE_SDK"] as Int)
-    buildToolsVersion(rootProject.extra["BUILD_TOOLS"] as String)
+    compileSdkVersion(Android.COMPILE_SDK)
+    buildToolsVersion(Android.BUILD_TOOLS)
+
     defaultConfig {
-        minSdkVersion(rootProject.extra["MIN_SDK"] as Int)
-        targetSdkVersion(rootProject.extra["TARGET_SDK"] as Int)
-        versionCode = rootProject.extra["VERSION_CODE"] as Int
-        versionName = rootProject.extra["VERSION_NAME"] as String
+        minSdkVersion(Android.MIN_SDK)
+        targetSdkVersion(Android.TARGET_SDK)
+        versionCode = Android.VERSION_CODE
+        versionName = Android.VERSION_NAME
     }
 
     lintOptions {
