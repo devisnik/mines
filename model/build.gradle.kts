@@ -28,14 +28,14 @@ val jarTask = tasks.named<Jar>("jar") {
     }
 }
 
-val sourcesJarTask = tasks.register<Jar>("sources_jar") {
+val sourcesJarTask by tasks.registering(Jar::class) {
     description = "Assembles a jar archive containing the sources."
     group = "build"
     classifier = "sources"
     from(sourceSets["main"].allSource)
 }
 
-val linkJarsTask = tasks.register<Task>("link_jars") {
+val linkJarsTask by tasks.registering(Task::class) {
     val jarProperties = "${jarTask.get().archivePath}.properties"
     inputs.files(jarTask, sourcesJarTask)
     outputs.file(jarProperties)
