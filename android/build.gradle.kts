@@ -8,5 +8,5 @@ mapOf(
         "BUILD_TOOLS" to "28.0.3"
 )
         .forEach { e ->
-            project.extra.set(e.key, e.value)
+            rootProject.extra.set(e.key, e.value)
         }
