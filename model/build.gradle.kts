@@ -36,18 +36,11 @@ val sourcesJarTask by tasks.registering(Jar::class) {
 }
 
 val linkJarsTask by tasks.registering(Task::class) {
-    val jarProperties = "${jarTask.get().archivePath}.properties"
+    val jarProperties = jarTask.map { "${it.archivePath}.properties" }
     inputs.files(jarTask, sourcesJarTask)
     outputs.file(jarProperties)
     doLast {
-        file(jarProperties).appendText("src=${sourcesJarTask.get().archiveName}\n")
-    }
-}
-
-artifacts {
-    add("archives", sourcesJarTask)
-    add("archives", linkJarsTask.get().outputs.files.single()) {
-        type = "jar.properties" // ensure correct file extension
+        file(jarProperties).appendText("src=${sourcesJarTask.map { it.archiveName }.get()}\n")
     }
 }
 
