@@ -47,6 +47,9 @@ if (rootProject.hasProperty("playstoreServiceAccount")) {
     }
 }
 
+tasks.withType(com.android.build.gradle.tasks.AndroidJavaCompile::class) {
+    options.compilerArgs.add("-verbose")
+}
 //task archiveRelease(type: Copy) {
 //    from "build/outputs/apk", "build/outputs/"
 //    into "releases/${Android.VERSION_CODE}"
