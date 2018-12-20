@@ -12,6 +12,17 @@ buildscript {
     }
 }
 
+plugins {
+  id("com.gradle.build-scan") version "2.1"
+}
+
+buildScan {
+    setTermsOfServiceUrl("https://gradle.com/terms-of-service")
+    setTermsOfServiceAgree("yes")
+    publishAlways()
+    isCaptureTaskInputFiles = true
+}
+
 allprojects {
     repositories {
         google()
