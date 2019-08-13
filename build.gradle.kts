@@ -9,6 +9,8 @@ buildscript {
         classpath("com.github.ben-manes:gradle-versions-plugin:0.20.0")
         classpath("com.github.triplet.gradle:play-publisher:1.2.2")
         classpath("com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.4")
+        classpath("com.greenebeans.gwt:gwt-gradle-plugin:0.1")
+
     }
 }
 

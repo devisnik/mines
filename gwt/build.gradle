@@ -1,18 +1,6 @@
-buildscript {
-    repositories {
-        maven {
-            url file('repo').toURI()
-        }
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'de.richsource.gradle.plugins:gwt-gradle-plugin:0.7-SNAPSHOT'
-    }    
-}
-
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'gwt'
+apply plugin: 'com.greenebeans.gwt-gradle-plugin'
 apply plugin: 'eclipse'
 
 // needed to avoid crash in gwt-closure below due to project not resolved
