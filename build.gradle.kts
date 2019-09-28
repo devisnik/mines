@@ -4,7 +4,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:3.4.2")
+        classpath("com.android.tools.build:gradle:3.5.0")
         classpath("com.novoda:gradle-android-command-plugin:2.0.1")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.20.0")
         classpath("com.github.triplet.gradle:play-publisher:1.2.2")
