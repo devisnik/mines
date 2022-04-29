@@ -12,5 +12,5 @@ dependencies {
     implementation(project(":robot"))
     implementation(localGroovy())
     implementation("commons-cli:commons-cli:1.3.1")
-    implementation("jline:jline:2.14.2")
+    implementation("jline:jline:2.14.6")
 }
