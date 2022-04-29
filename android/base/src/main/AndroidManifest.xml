@@ -19,6 +19,7 @@
     android:label="@string/app_name">
     <activity
       android:name="de.devisnik.android.mine.MineSweeper"
+      android:exported="true"
       android:label="@string/app_name"
       android:launchMode="singleTask"
       android:taskAffinity="de.devisnik.android.mine.main">

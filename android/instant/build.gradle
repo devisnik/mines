@@ -1,4 +1,5 @@
-apply plugin: 'com.android.instantapp'
+apply plugin: 'com.android.library'
+//apply plugin: 'com.android.instantapp'
 
 dependencies {
     implementation project(':android:base')
@@ -21,12 +22,12 @@ android {
             }
         }
     }
-    buildTypes {
-        release {
-            minifyEnabled true
-            shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
-        }
-    }
+//    buildTypes {
+//        release {
+//            minifyEnabled true
+//            shrinkResources true
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            signingConfig signingConfigs.release
+//        }
+//    }
 }

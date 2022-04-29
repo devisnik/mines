@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'war'
-apply plugin: 'com.greenebeans.gwt-gradle-plugin'
+apply plugin: 'gwt'
 apply plugin: 'eclipse'
 
 // needed to avoid crash in gwt-closure below due to project not resolved
@@ -8,11 +8,11 @@ evaluationDependsOn(':robot')
 evaluationDependsOn(':model')
 
 dependencies {
-    compile 'com.google.gwt:gwt-servlet:2.8.2'
-    compile 'com.google.gwt:gwt-user:2.8.2'
+    implementation 'com.google.gwt:gwt-servlet:2.8.2'
+    implementation 'com.google.gwt:gwt-user:2.8.2'
 
-	compile project(':robot')
-	compile project(':model')
+	implementation project(':robot')
+	implementation project(':model')
 }
 
 gwt {
@@ -29,4 +29,9 @@ gwt {
     dev {
         startupUrl='de.devisnik.web.Mines/Mines.html'
     }
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }

@@ -2,25 +2,34 @@ apply plugin: 'application'
 
 archivesBaseName = "de.devisnik.mine.swt"
 version = '1.0'
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
-repositories {
-    maven {
-        url "https://swt-repo.googlecode.com/svn/repo/"
+def windowingLibrary = getSWTWindowingLibrary(System.properties['os.name'])
+def platform = getSWTPlatform(System.properties['os.name'])
+def architecture = getSWTArch(System.properties['os.arch'])
+def version = '3.119.0'
+def swtArtifactName = "org.eclipse.swt.${windowingLibrary}.${platform}.${architecture}:${version}"
+
+dependencies {
+    implementation project(':model')
+    implementation project(':robot')
+    implementation "org.eclipse.platform:${swtArtifactName}"
+}
+
+mainClassName = 'de.devisnik.mine.swt.MinesScreen'
+if (platform == 'macosx') {
+    applicationDefaultJvmArgs = ['-XstartOnFirstThread']
+}
+
+configurations.all {
+    resolutionStrategy {
+        dependencySubstitution {
+            substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module("org.eclipse.platform:${swtArtifactName}")
+        }
     }
 }
 
-String getPlatform(String platform) {
-    switch (platform.replaceAll(' ', '').toLowerCase()) {
-        case ~/.*linux.*/: return 'linux'
-        case ~/.*darwin.*/: return 'darwin'
-        case ~/.*osx.*/: return 'darwin'
-        case ~/.*win.*/: return 'windows'
-        default: return null
-    }
-}
-
-String getSWTWindowingLibrary(String platform) {
+static String getSWTWindowingLibrary(String platform) {
     switch (platform.replaceAll(' ', '').toLowerCase()) {
         case ~/.*linux.*/: return 'gtk'
         case ~/.*darwin.*/: return 'cocoa'
@@ -30,14 +39,15 @@ String getSWTWindowingLibrary(String platform) {
     }
 }
 
-String getSWTArch(String arch) {
+static String getSWTArch(String arch) {
     switch (arch) {
+        case 'aarch64': return arch
         case ~/.*64.*/: return 'x86_64'
         default: return 'x86'
     }
 }
 
-String getSWTPlatform(String platform) {
+static String getSWTPlatform(String platform) {
     switch (platform.replaceAll(' ', '').toLowerCase()) {
         case ~/.*linux.*/: return 'linux'
         case ~/.*darwin.*/: return 'macosx'
@@ -47,22 +57,4 @@ String getSWTPlatform(String platform) {
     }
 }
 
-ext {
-    swtWindowingLibrary = getSWTWindowingLibrary(System.properties['os.name'])
-    swtArch = getSWTArch(System.properties['os.arch'])
-    swtPlatform = getSWTPlatform(System.properties['os.name'])
-    swtVersion = '4.3'
-    swtArtifactName = "org.eclipse.swt.${swtWindowingLibrary}.${swtPlatform}.${swtArch}"
-    platform = getPlatform(System.properties['os.name'])
-}
-
-dependencies {
-    implementation project(':model')
-    implementation project(':robot')
-    implementation "org.eclipse.swt:${swtArtifactName}:${swtVersion}"
-}
-
-mainClassName = 'de.devisnik.mine.swt.MinesScreen'
-if (swtPlatform == 'macosx') {
-    applicationDefaultJvmArgs = ['-XstartOnFirstThread']
-}
+java.targetCompatibility = JavaVersion.VERSION_1_8

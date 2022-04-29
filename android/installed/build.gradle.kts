@@ -1,8 +1,5 @@
 plugins {
     id("com.android.application")
-    id("android-command")
-    id("com.github.triplet.play")
-    id("com.getkeepsafe.dexcount")
 }
 
 dependencies {
@@ -10,12 +7,12 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(Android.COMPILE_SDK)
-    buildToolsVersion(Android.BUILD_TOOLS)
+    compileSdk = Android.COMPILE_SDK
+    buildToolsVersion = Android.BUILD_TOOLS
     defaultConfig {
         applicationId = Android.APP_NAME
-        minSdkVersion(Android.MIN_SDK)
-        targetSdkVersion(Android.TARGET_SDK)
+        minSdk = Android.MIN_SDK
+        targetSdk = Android.TARGET_SDK
         versionCode = Android.VERSION_CODE
         versionName = Android.VERSION_NAME
     }
@@ -38,21 +35,3 @@ android {
         }
     }
 }
-
-if (rootProject.hasProperty("playstoreServiceAccount")) {
-    play {
-        serviceAccountEmail = rootProject.property("playstoreServiceAccount") as String
-        pk12File = rootProject.file(rootProject.property("playstorePk12File") as String)
-        setTrack("production")
-    }
-}
-
-tasks.withType(com.android.build.gradle.tasks.AndroidJavaCompile::class) {
-    options.compilerArgs.add("-verbose")
-}
-//task archiveRelease(type: Copy) {
-//    from "build/outputs/apk", "build/outputs/"
-//    into "releases/${Android.VERSION_CODE}"
-//    include("android-release.apk", "mapping/**")
-//    rename("android-release.apk", "${Android.APP_NAME}_${new Date().format("yyyyMMdd")}_${Android.VERSION_NAME}_${Android.VERSION_CODE}.apk")
-//}

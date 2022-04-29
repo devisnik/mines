@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.feature")
+    id("com.android.library")
 }
 
 dependencies {
@@ -8,20 +8,17 @@ dependencies {
 }
 
 android {
-    baseFeature = true
-    compileSdkVersion(Android.COMPILE_SDK)
-    buildToolsVersion(Android.BUILD_TOOLS)
+    compileSdk = Android.COMPILE_SDK
+    buildToolsVersion = Android.BUILD_TOOLS
 
     defaultConfig {
-        minSdkVersion(Android.MIN_SDK)
-        targetSdkVersion(Android.TARGET_SDK)
-        versionCode = Android.VERSION_CODE
-        versionName = Android.VERSION_NAME
+        minSdk = Android.MIN_SDK
+        targetSdk = Android.TARGET_SDK
     }
 
-    lintOptions {
-        isCheckReleaseBuilds = false
-        isAbortOnError = false
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
 
         lintConfig = file("lint_config.xml")
     }
