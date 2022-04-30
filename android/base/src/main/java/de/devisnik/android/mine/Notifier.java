@@ -16,9 +16,9 @@ public class Notifier {
     private static final int GAME_INFO_ID = 1;
     private static final String MINES_CHANNEL = "mines-channel";
     private final Context context;
+    private final GameInfo gameInfo;
     private final NotificationManager notificationManager;
     private boolean isDisabled;
-    private GameInfo gameInfo;
 
     public Notifier(MineSweeper context, GameInfo gameInfo) {
         this.context = context.getApplicationContext();
@@ -61,7 +61,7 @@ public class Notifier {
             builder.setChannelId(MINES_CHANNEL);
         }
 
-        notificationManager.notify(GAME_INFO_ID, builder.getNotification());
+        notificationManager.notify(GAME_INFO_ID, builder.build());
     }
 
     public void clearRunningGame() {
