@@ -1,6 +1,6 @@
 object Android {
-    const val VERSION_CODE = 63
-    const val VERSION_NAME = "1.11.2"
+    const val VERSION_CODE = 64
+    const val VERSION_NAME = "1.12"
     const val APP_NAME = "de.devisnik.android.mine"
 
     const val MIN_SDK = 23
