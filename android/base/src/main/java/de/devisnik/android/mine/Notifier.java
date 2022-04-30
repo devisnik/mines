@@ -49,7 +49,7 @@ public class Notifier {
         //make sure we open game activity if currently settings or highscores is active
         notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, notificationIntent,
-                0);
+                PendingIntent.FLAG_IMMUTABLE);
 
         Notification.Builder builder = new Notification.Builder(context)
                 .setContentIntent(contentIntent)
