@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnCancelListener;
-import android.content.DialogInterface.OnShowListener;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -54,28 +51,18 @@ public class MineSweeper extends Activity {
 
             setView(layout);
             setTitle(R.string.another_game);
-            setPositiveButton(R.string.another_game_yes, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(final DialogInterface dialog, final int id) {
-                    boardSpinnerController.updatePreference();
-                    levelSpinnerController.updatePreference();
-                    restartWithNewGame();
-                }
+            setPositiveButton(R.string.another_game_yes, (dialog, id) -> {
+                boardSpinnerController.updatePreference();
+                levelSpinnerController.updatePreference();
+                restartWithNewGame();
             });
-            setNegativeButton(R.string.another_game_no, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(final DialogInterface dialog, final int id) {
-                    boardSpinnerController.reset();
-                    levelSpinnerController.reset();
-                }
+            setNegativeButton(R.string.another_game_no, (dialog, id) -> {
+                boardSpinnerController.reset();
+                levelSpinnerController.reset();
             });
-            setOnCancelListener(new OnCancelListener() {
-
-                @Override
-                public void onCancel(final DialogInterface dialog) {
-                    boardSpinnerController.reset();
-                    levelSpinnerController.reset();
-                }
+            setOnCancelListener(dialog -> {
+                boardSpinnerController.reset();
+                levelSpinnerController.reset();
             });
         }
 
@@ -377,17 +364,13 @@ public class MineSweeper extends Activity {
                  * http://stackoverflow.com/questions/2306503/how-to-make-an-alert
                  * -dialog-fill-90-of-screen-size
                  */
-                dialog.setOnShowListener(new OnShowListener() {
-
-                    @Override
-                    public void onShow(final DialogInterface dialogInterface) {
-                        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-                        Dialog dialogImpl = (Dialog) dialogInterface;
-                        lp.copyFrom(dialogImpl.getWindow().getAttributes());
-                        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                        dialogImpl.getWindow().setAttributes(lp);
-                    }
+                dialog.setOnShowListener(dialogInterface -> {
+                    WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                    Dialog dialogImpl = (Dialog) dialogInterface;
+                    lp.copyFrom(dialogImpl.getWindow().getAttributes());
+                    lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                    lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                    dialogImpl.getWindow().setAttributes(lp);
                 });
                 return dialog;
             default:
