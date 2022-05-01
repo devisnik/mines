@@ -15,6 +15,6 @@ public class MinesApplication extends Application {
 	}
 
 	public IDevice getDevice() {
-		return DeviceFactory.get(this);
+		return DeviceFactory.create(this);
 	}
 }

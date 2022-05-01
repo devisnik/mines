@@ -26,6 +26,7 @@ import java.io.File;
 
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
+import de.devisnik.android.mine.device.DeviceFactory;
 import de.devisnik.android.mine.device.IDevice;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.MinesGameAdapter;
@@ -123,7 +124,7 @@ public class MineSweeper extends Activity {
         debugLog("onCreate");
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawable(null);
-        device = ((MinesApplication) getApplication()).getDevice();
+        device = DeviceFactory.create(this);
         setFullScreenMode();
         settings = new Settings(this);
         GameInfo gameInfo = new GameInfo(settings);

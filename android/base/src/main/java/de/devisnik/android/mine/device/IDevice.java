@@ -10,7 +10,7 @@ public interface IDevice {
 
 	void setFullScreen(Activity activity);
 
-	public void enableHomeButton(Activity activity);
+	void enableHomeButton(Activity activity);
 
 	void setHighScoresTitle(Activity activity, CharSequence title, CharSequence subtitle);
 
