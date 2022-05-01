@@ -46,8 +46,8 @@ public final class Settings {
         return preferences.getString(getString(id), defValue);
     }
 
-    private int getIntPreference(final int id, final int defValue) {
-        return preferences.getInt(getString(id), defValue);
+    private int getIntPreference(final int id) {
+        return preferences.getInt(getString(id), 0);
     }
 
     private boolean getBooleanPreference(final int id, final boolean defValue) {
@@ -167,7 +167,7 @@ public final class Settings {
         return !getBooleanPreference(R.string.prefkey_board_fit, true);
     }
 
-    public void toogleZoom() {
+    public void toggleZoom() {
         writeBoolean(R.string.prefkey_board_fit, isZoom());
     }
 
@@ -175,21 +175,21 @@ public final class Settings {
         String key = getString(id);
         final Editor editor = preferences.edit();
         editor.putBoolean(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     private void writeString(final int id, final String value) {
         String key = getString(id);
         final Editor editor = preferences.edit();
         editor.putString(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     private void writeInt(final int id, final int value) {
         String key = getString(id);
         final Editor editor = preferences.edit();
         editor.putInt(key, value);
-        editor.commit();
+        editor.apply();
     }
 
     public String getUserName() {
@@ -205,7 +205,7 @@ public final class Settings {
     }
 
     public int getLastUsedBuild() {
-        return getIntPreference(R.string.prefkey_game_intro_shown, 0);
+        return getIntPreference(R.string.prefkey_game_intro_shown);
     }
 
     public void setLastUsedBuild(final int buildNumber) {

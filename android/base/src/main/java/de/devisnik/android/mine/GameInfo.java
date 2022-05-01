@@ -19,11 +19,9 @@ public final class GameInfo {
 	}
 
 	public String createTitle() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(getString(R.string.level)).append(":").append(getEntryForValue(R.array.levels, R.array.levels_values, settings.getLevel()));
-		builder.append(", ");
-		builder.append(getString(R.string.board)).append(":").append(getEntryForValue(R.array.sizes, R.array.sizes_values, settings.getBoard()));
-		return builder.toString();
+		return getString(R.string.level) + ":" + getEntryForValue(R.array.levels, R.array.levels_values, settings.getLevel())
+				+ ", "
+				+ getString(R.string.board) + ":" + getEntryForValue(R.array.sizes, R.array.sizes_values, settings.getBoard());
 	}
 
 	public String createStatus(IGame game) {

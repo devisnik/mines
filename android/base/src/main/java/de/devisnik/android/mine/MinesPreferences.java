@@ -7,7 +7,7 @@ import android.preference.ListPreference;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 
-import de.devisnik.android.mine.device.IDevice;
+import de.devisnik.android.mine.device.Device;
 
 public class MinesPreferences extends PreferenceActivity {
 
@@ -46,7 +46,7 @@ public class MinesPreferences extends PreferenceActivity {
 		return super.onOptionsItemSelected(item);
 	}
 
-	private IDevice getDevice() {
+	private Device getDevice() {
 		return ((MinesApplication) getApplication()).getDevice();
 	}
 }

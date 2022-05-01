@@ -34,7 +34,7 @@ public class ScoreBinder {
 	}
 
 	private static String getRank(final Score score) {
-		return Integer.toString(score.rank) + ".";
+		return score.rank + ".";
 	}
 
 }

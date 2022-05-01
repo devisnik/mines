@@ -15,7 +15,7 @@ public class GameTimer {
 	private boolean isPaused = true;
 	protected boolean isGameRunning;
 	private final IGame game;
-	private MinesGameAdapter gameListener;
+	private final MinesGameAdapter gameListener;
 
 	public GameTimer(IGame game) {
 		this.game = game;
@@ -72,13 +72,7 @@ public class GameTimer {
 
             @Override
             public void run() {
-                handler.post(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        game.tickWatch();
-                    }
-                });
+                handler.post(game::tickWatch);
             }
         }, 1000, 1000);
 	}

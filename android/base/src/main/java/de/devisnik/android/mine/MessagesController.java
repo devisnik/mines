@@ -23,14 +23,14 @@ public class MessagesController implements IMinesGameListener {
 		game.removeListener(this);
 	}
 
-	private void showToast(int messageId, int length) {
-		Toast.makeText(context, messageId, length).show();
+	private void showToast(int messageId) {
+		Toast.makeText(context, messageId, Toast.LENGTH_SHORT).show();
 	}
 	
 	@Override
 	public void onBusted() {
 		runExplodeVibration();
-		showToast(R.string.toast_lose, Toast.LENGTH_SHORT);
+		showToast(R.string.toast_lose);
 	}
 
 	@Override
@@ -39,12 +39,12 @@ public class MessagesController implements IMinesGameListener {
 
 	@Override
 	public void onDisarmed() {
-		showToast(R.string.toast_win, Toast.LENGTH_SHORT);
+		showToast(R.string.toast_win);
 	}
 
 	@Override
 	public void onStart() {
-		showToast(R.string.toast_longpress, Toast.LENGTH_SHORT);
+		showToast(R.string.toast_longpress);
 	}
 
 	private void runExplodeVibration() {

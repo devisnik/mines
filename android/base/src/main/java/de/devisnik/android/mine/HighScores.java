@@ -11,7 +11,6 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +23,7 @@ import java.util.Date;
 
 import de.devisnik.android.mine.data.DBHelper;
 import de.devisnik.android.mine.data.Score;
-import de.devisnik.android.mine.device.IDevice;
+import de.devisnik.android.mine.device.Device;
 
 public class HighScores extends ListActivity {
 
@@ -63,13 +62,9 @@ public class HighScores extends ListActivity {
 			super(R.layout.score_plain, score);
 			setTitle(R.string.score_delete_title);
 			setNegativeButton(R.string.another_game_no, null);
-			setPositiveButton(R.string.another_game_yes, new DialogInterface.OnClickListener() {
-
-				@Override
-				public void onClick(final DialogInterface dialog, final int which) {
-					dbHelper.delete(score);
-					updateList();
-				}
+			setPositiveButton(R.string.another_game_yes, (dialog, which) -> {
+				dbHelper.delete(score);
+				updateList();
 			});
 		}
 	}
@@ -157,24 +152,18 @@ public class HighScores extends ListActivity {
 	}
 
 	public Score storeIfHighScore(final String name, final int seconds) {
-		Cursor cursor = createCursor();
-		try {
+		try (Cursor cursor = createCursor()) {
 			if (!isHighScore(seconds, cursor))
 				return null;
 			return storeHighScore(name, seconds, cursor);
-		} finally {
-			cursor.close();
 		}
 	}
 
 	public void clearAll() {
-		Cursor cursor = createCursor();
-		try {
+		try (Cursor cursor = createCursor()) {
 			while (cursor.moveToNext())
 				dbHelper.delete(cursor);
 			((CursorAdapter) getListAdapter()).getCursor().requery();
-		} finally {
-			cursor.close();
 		}
 	}
 
@@ -325,12 +314,7 @@ public class HighScores extends ListActivity {
 	}
 
 	private void addRemovingDismissListener(final AlertDialog dialog, final int dialogId) {
-		dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-			@Override
-			public void onDismiss(final DialogInterface dialog) {
-				removeDialog(dialogId);
-			}
-		});
+		dialog.setOnDismissListener(d -> removeDialog(dialogId));
 	}
 
 	private void initScoresList() {
@@ -347,7 +331,7 @@ public class HighScores extends ListActivity {
 		registerForContextMenu(getListView());
 	}
 
-	private IDevice getDevice() {
+	private Device getDevice() {
 		return ((MinesApplication) getApplication()).getDevice();
 	}
 

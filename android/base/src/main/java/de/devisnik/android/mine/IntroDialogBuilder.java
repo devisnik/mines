@@ -4,6 +4,7 @@ import android.app.AlertDialog.Builder;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 class IntroDialogBuilder extends Builder {
@@ -12,7 +13,8 @@ class IntroDialogBuilder extends Builder {
 	public IntroDialogBuilder(final MineSweeper mineSweeper) {
 		super(mineSweeper);
 		this.mineSweeper = mineSweeper;
-		View view = mineSweeper.getLayoutInflater().inflate(R.layout.help, null);
+		FrameLayout root = (FrameLayout) mineSweeper.findViewById(android.R.id.custom);
+		View view = mineSweeper.getLayoutInflater().inflate(R.layout.help, root);
 		setView(view);
 		bind(view, R.id.help_text, convertNewlineToBr(R.string.intro_message));
 		bind(view, R.id.help_faq, createFaqLink()).setMovementMethod(LinkMovementMethod.getInstance());
@@ -22,26 +24,22 @@ class IntroDialogBuilder extends Builder {
 	}
 
 	private String createAboutHtml() {
-		StringBuilder builder = new StringBuilder();
-		builder.append(mineSweeper.getString(R.string.intro_version) + ": " + getAppVersion());
-		builder.append("<br/>");
-		builder.append("<br/>");
-		builder.append(mineSweeper.getString(R.string.intro_thanx));
-		builder.append("<br/>");
-		builder.append("<br/>");
-		builder.append(convertNewlineToBr(R.string.intro_translations));
-		return builder.toString();
+		return mineSweeper.getString(R.string.intro_version) + ": " + getAppVersion() +
+				"<br/>" +
+				"<br/>" +
+				mineSweeper.getString(R.string.intro_thanx) +
+				"<br/>" +
+				"<br/>" +
+				convertNewlineToBr(R.string.intro_translations);
 	}
 
 	private String createFaqLink() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("<a href=\"");
-		builder.append(mineSweeper.getString(R.string.faq_url));
-		builder.append(new MinesInfo(mineSweeper).getQueryString());
-		builder.append("\">");
-		builder.append(mineSweeper.getString(R.string.pref_faq));
-		builder.append("</a>");
-		return builder.toString();
+		return "<a href=\"" +
+				mineSweeper.getString(R.string.faq_url) +
+				new MinesInfo(mineSweeper).getQueryString() +
+				"\">" +
+				mineSweeper.getString(R.string.pref_faq) +
+				"</a>";
 	}
 
 	private TextView bind(final View parent, final int viewId, final String htmlText) {

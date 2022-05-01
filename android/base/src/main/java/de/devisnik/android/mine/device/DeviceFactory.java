@@ -4,7 +4,7 @@ import android.content.Context;
 
 public final class DeviceFactory {
 
-	public static IDevice create(final Context context) {
+	public static Device create(final Context context) {
 		return new PostHoneycombDevice(context.getApplicationContext());
 	}
 }

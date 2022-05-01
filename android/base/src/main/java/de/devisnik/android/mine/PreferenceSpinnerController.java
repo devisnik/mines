@@ -42,7 +42,7 @@ public class PreferenceSpinnerController {
 			return;
 		Editor editor = preferences.edit();
 		editor.putString(key, value);
-		editor.commit();
+		editor.apply();
 	}
 
 	private CharSequence[] getValues(int resId) {

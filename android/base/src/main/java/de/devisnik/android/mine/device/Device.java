@@ -2,7 +2,7 @@ package de.devisnik.android.mine.device;
 
 import android.app.Activity;
 
-public interface IDevice {
+public interface Device {
 
 	boolean isGoogleTv();
 

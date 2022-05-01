@@ -16,7 +16,7 @@ public class BoardPanel extends ViewGroup {
 	private static int theFieldId;
 	private int dimX;
 	private int dimY;
-	private CachingDrawer fieldDrawer;
+	private final CachingDrawer fieldDrawer;
 	private int zoomModeFieldSize = -1;
 	private int fieldSize;
 	private boolean isFitInParent;

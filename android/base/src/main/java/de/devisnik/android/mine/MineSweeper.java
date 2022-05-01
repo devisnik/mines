@@ -25,7 +25,7 @@ import java.io.File;
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
 import de.devisnik.android.mine.device.DeviceFactory;
-import de.devisnik.android.mine.device.IDevice;
+import de.devisnik.android.mine.device.Device;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.MinesGameAdapter;
 
@@ -82,7 +82,7 @@ public class MineSweeper extends Activity {
     private GameTimer gameTimer;
     private GameListener gameListener;
     private Notifier notifier;
-    private IDevice device;
+    private Device device;
     private MenuItem zoomMenuItem;
     private boolean restartingWithNewGame = false;
 
@@ -274,7 +274,7 @@ public class MineSweeper extends Activity {
     public boolean onKeyUp(final int keyCode, final KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_SEARCH) {
             if (boardController.isBoardFullyVisibleForFieldSize(settings.getZoomFieldSize())) {
-                settings.toogleZoom();
+                settings.toggleZoom();
                 boardController.onZoomChange();
             }
             return true;
@@ -295,7 +295,7 @@ public class MineSweeper extends Activity {
             showDialog(DIALOG_NEW_GAME);
 
         } else if (i == R.id.zoom) {
-            settings.toogleZoom();
+            settings.toggleZoom();
             adjustZoomIcon();
             boardController.onZoomChange();
         } else if (i == R.id.help) {
@@ -399,7 +399,7 @@ public class MineSweeper extends Activity {
 
     private void ensureNonZoomedBoard() {
         if (settings.isZoom()) {
-            settings.toogleZoom();
+            settings.toggleZoom();
             adjustZoomIcon();
             boardController.onZoomChange();
         }

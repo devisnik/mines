@@ -4,7 +4,7 @@ import android.app.Application;
 import android.preference.PreferenceManager;
 
 import de.devisnik.android.mine.device.DeviceFactory;
-import de.devisnik.android.mine.device.IDevice;
+import de.devisnik.android.mine.device.Device;
 
 public class MinesApplication extends Application {
 
@@ -14,7 +14,7 @@ public class MinesApplication extends Application {
 		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 	}
 
-	public IDevice getDevice() {
+	public Device getDevice() {
 		return DeviceFactory.create(this);
 	}
 }

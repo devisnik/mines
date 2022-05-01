@@ -4,58 +4,50 @@ import android.util.Log;
 
 public class Logger {
 
-	private static boolean ENABLED = false;
-	private String itsTag;
+    private static final boolean ENABLED = false;
+    private final String tag;
 
-	public Logger(Class<?> clazz) {
-		itsTag = clazz.getSimpleName();
-	}
+    public Logger(Class<?> clazz) {
+        tag = clazz.getSimpleName();
+    }
 
-	public int d(String msg) {
-		if (ENABLED)
-			return Log.d(itsTag, msg);
-		return 0;
-	}
+    public void d(String msg) {
+        if (ENABLED)
+            Log.d(tag, msg);
+    }
 
-	public int d(String msg, Throwable tr) {
-		if (ENABLED)
-			return Log.d(itsTag, msg, tr);
-		return 0;
-	}
+    public void d(String msg, Throwable tr) {
+        if (ENABLED)
+            Log.d(tag, msg, tr);
+    }
 
-	public int i(String msg) {
-		if (ENABLED)
-			return Log.i(itsTag, msg);
-		return 0;
-	}
+    public void i(String msg) {
+        if (ENABLED)
+            Log.i(tag, msg);
+    }
 
-	public int i(String msg, Throwable tr) {
-		if (ENABLED)
-			return Log.i(itsTag, msg, tr);
-		return 0;
-	}
+    public void i(String msg, Throwable tr) {
+        if (ENABLED)
+            Log.i(tag, msg, tr);
+    }
 
-	public int w(String msg) {
-		if (ENABLED)
-			return Log.w(itsTag, msg);
-		return 0;
-	}
+    public void w(String msg) {
+        if (ENABLED)
+            Log.w(tag, msg);
+    }
 
-	public int w(String msg, Throwable tr) {
-		if (ENABLED)
-			return Log.w(itsTag, msg, tr);
-		return 0;
-	}
+    public void w(String msg, Throwable tr) {
+        if (ENABLED)
+            Log.w(tag, msg, tr);
+    }
 
-	public int e(String msg) {
-		if (ENABLED)
-			return Log.e(itsTag, msg);
-		return 0;
-	}
+    public void e(String msg) {
+        if (ENABLED)
+            Log.e(tag, msg);
+    }
 
-	public int e(String msg, Throwable tr) {
-		if (ENABLED)
-			return Log.e(itsTag, msg, tr);
-		return 0;
-	}
+    public void e(String msg, Throwable tr) {
+        if (ENABLED)
+            Log.e(tag, msg, tr);
+    }
 }
