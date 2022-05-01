@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.Spinner;
 
 import com.google.android.instantapps.InstantApps;
@@ -44,7 +45,8 @@ public class MineSweeper extends Activity {
 
         public NewGameDialogBuilder() {
             super(MineSweeper.this);
-            ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.new_game, null);
+            FrameLayout root = (FrameLayout) findViewById(android.R.id.custom);
+            ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.new_game, root);
             final PreferenceSpinnerController boardSpinnerController = createSpinnerController(
                     R.string.prefkey_board_size, R.array.sizes_values, R.id.BoardSpinner, layout);
             final PreferenceSpinnerController levelSpinnerController = createSpinnerController(
