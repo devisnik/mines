@@ -1,5 +1,8 @@
 package de.devisnik.android.mine;
 
+import static com.google.android.gms.common.wrappers.InstantApps.isInstantApp;
+import static com.google.android.gms.instantapps.InstantApps.showInstallPrompt;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -18,14 +21,12 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
 
-import com.google.android.instantapps.InstantApps;
-
 import java.io.File;
 
 import de.devisnik.android.mine.data.ReadGameCommand;
 import de.devisnik.android.mine.data.SaveGameCommand;
-import de.devisnik.android.mine.device.DeviceFactory;
 import de.devisnik.android.mine.device.Device;
+import de.devisnik.android.mine.device.DeviceFactory;
 import de.devisnik.mine.IGame;
 import de.devisnik.mine.MinesGameAdapter;
 
@@ -209,7 +210,7 @@ public class MineSweeper extends Activity {
 
     private void adjustInstallMenuVisibility(final Menu menu) {
         MenuItem install = menu.findItem(R.id.install);
-        install.setVisible(InstantApps.isInstantApp(this));
+        install.setVisible(isInstantApp(this));
     }
 
     private void adjustZoomMenuVisibility(final Menu menu) {
@@ -302,7 +303,7 @@ public class MineSweeper extends Activity {
             showDialog(DIALOG_INTRO);
 
         } else if (i == R.id.install) {
-            InstantApps.showInstallPrompt(
+            showInstallPrompt(
                     this,
                     new Intent(
                             Intent.ACTION_VIEW,
