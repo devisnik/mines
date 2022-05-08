@@ -1,5 +1,5 @@
 include(":model")
-include(":android:base")
+include(":android:app")
 include(":robot")
 include(":swt")
 include(":gwt")
