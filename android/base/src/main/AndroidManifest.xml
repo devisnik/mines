@@ -1,69 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="de.devisnik.android.mine"
-  android:installLocation="auto">
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="de.devisnik.android.mine"
+    android:installLocation="auto">
 
-  <uses-permission android:name="android.permission.VIBRATE" />
+    <dist:module dist:instant="true" />
 
-  <uses-feature
-    android:name="android.hardware.touchscreen"
-    android:required="false" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
-  <supports-screens android:anyDensity="true" />
+    <uses-feature
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
-  <application
-    android:theme="@android:style/Theme.Material"
-    android:name="de.devisnik.android.mine.MinesApplication"
-    android:allowClearUserData="true"
-    android:icon="@drawable/ic_launcher"
-    android:label="@string/app_name">
-    <activity
-      android:name="de.devisnik.android.mine.MineSweeper"
-      android:exported="true"
-      android:label="@string/app_name"
-      android:launchMode="singleTask"
-      android:taskAffinity="de.devisnik.android.mine.main">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN" />
+    <supports-screens android:anyDensity="true" />
 
-        <category android:name="android.intent.category.LAUNCHER" />
-      </intent-filter>
-      <intent-filter android:autoVerify="true">
-        <action android:name="android.intent.action.VIEW" />
+    <application
+        android:name="de.devisnik.android.mine.MinesApplication"
+        android:allowClearUserData="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.Material">
+        <activity
+            android:name="de.devisnik.android.mine.MineSweeper"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:taskAffinity="de.devisnik.android.mine.main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
 
-        <data android:scheme="http" />
-        <data android:scheme="https" />
-        <data android:host="mines.devisnik.de" />
-        <data android:pathPrefix="/game" />
-      </intent-filter>
-      <meta-data
-        android:name="default-url"
-        android:value="https://mines.devisnik.de/game" />
-    </activity>
-    <activity
-      android:name="de.devisnik.android.mine.MinesPreferences"
-      android:label="@string/app_name" />
-    <activity
-      android:name="de.devisnik.android.mine.HighScores"
-      android:label="@string/app_name" />
-    <!--
-    <activity
-        android:name=".Preview"
-        android:label="Preview"
-        android:taskAffinity="de.devisnik.android.mine.preview"
-        android:theme="@style/MinesTheme" >
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" >
-            </action>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
 
-            <category android:name="android.intent.category.LAUNCHER" >
-            </category>
-        </intent-filter>
-    </activity>
-     -->
-  </application>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+                <data android:host="mines.devisnik.de" />
+                <data android:pathPrefix="/game" />
+            </intent-filter>
+
+            <meta-data
+                android:name="default-url"
+                android:value="https://mines.devisnik.de/game" />
+        </activity>
+        <activity
+            android:name="de.devisnik.android.mine.MinesPreferences"
+            android:label="@string/app_name" />
+        <activity
+            android:name="de.devisnik.android.mine.HighScores"
+            android:label="@string/app_name" />
+        <!--
+        <activity
+            android:name=".Preview"
+            android:label="Preview"
+            android:taskAffinity="de.devisnik.android.mine.preview"
+            android:theme="@style/MinesTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" >
+                </action>
+
+                <category android:name="android.intent.category.LAUNCHER" >
+                </category>
+            </intent-filter>
+        </activity>
+         -->
+    </application>
 
 </manifest>

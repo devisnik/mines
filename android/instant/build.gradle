@@ -1,5 +1,6 @@
-apply plugin: 'com.android.library'
-//apply plugin: 'com.android.instantapp'
+plugins {
+    id("com.android.dynamic-feature")
+}
 
 dependencies {
     implementation project(':android:base')
@@ -22,6 +23,7 @@ android {
             }
         }
     }
+
 //    buildTypes {
 //        release {
 //            minifyEnabled true
