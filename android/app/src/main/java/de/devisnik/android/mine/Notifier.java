@@ -8,7 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
-import com.google.android.gms.common.wrappers.InstantApps;
+import com.google.android.instantapps.InstantApps;
 
 import de.devisnik.mine.IGame;
 

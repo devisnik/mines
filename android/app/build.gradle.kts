@@ -4,7 +4,7 @@ plugins {
 
 dependencies {
     implementation(project(":model"))
-    implementation("com.google.android.gms:play-services-instantapps:18.0.1")
+    implementation("com.google.android.instantapps:instantapps:1.1.0")
 }
 
 android {
