@@ -4,10 +4,11 @@
   <EditTextPreference
     android:inputType="textPersonName"
     android:maxLength="15"
-    android:paddingStart="24dp"
+    android:paddingStart="12dp"
     android:title="@string/pref_user"
+    android:padding="12dp"
     android:key="@string/prefkey_user_name"
-    android:dialogTitle="@string/pref_user_dialog" />
+    android:hint="@string/pref_user_dialog" />
   <PreferenceCategory android:title="@string/pref_category_effects">
     <ListPreference
       android:key="@string/prefkey_board_theme"
