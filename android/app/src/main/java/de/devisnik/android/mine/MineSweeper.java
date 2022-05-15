@@ -379,7 +379,7 @@ public class MineSweeper extends Activity {
     }
 
     private void onGameWon() {
-        ensureNonZoomedBoard();
+//        ensureNonZoomedBoard();
         Intent intent = HighScores.withTime(this, game.getWatch().getTime());
         startActivityForResult(intent, HIGHSCORES_REQUEST);
     }
@@ -393,7 +393,7 @@ public class MineSweeper extends Activity {
     }
 
     private void onGameLost() {
-        ensureNonZoomedBoard();
+//        ensureNonZoomedBoard();
         showDialog(DIALOG_NEW_GAME);
     }
 
