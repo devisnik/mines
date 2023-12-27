@@ -58,6 +58,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		Configuration configuration = getResources().getConfiguration();
 		isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
         setScrollbarFadingEnabled(true);
+		setScrollBarDefaultDelayBeforeFade(0);
         setHorizontalFadingEdgeEnabled(true);
         setVerticalFadingEdgeEnabled(true);
 	}
