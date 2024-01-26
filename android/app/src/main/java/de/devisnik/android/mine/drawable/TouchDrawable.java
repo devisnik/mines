@@ -24,7 +24,8 @@ public final class TouchDrawable extends Drawable {
 	public void draw(Canvas canvas) {
 		canvas.save();
 		canvas.scale(getBounds().width() / 100f, getBounds().height() / 100f);
-		paint.setStyle(Paint.Style.FILL);
+		paint.setStyle(Paint.Style.STROKE);
+		paint.setStrokeWidth(4);
 		paint.setColor(color);
 		canvas.drawPath(circle, paint);
 		canvas.restore();
@@ -32,7 +33,7 @@ public final class TouchDrawable extends Drawable {
 
 	private static Path createCircle() {
 		Path path = new Path();
-		path.addCircle(50f, 50f, 40, Direction.CW);
+		path.addRect(5f, 5f, 95, 95, Direction.CW);
 		return path;
 	}
 

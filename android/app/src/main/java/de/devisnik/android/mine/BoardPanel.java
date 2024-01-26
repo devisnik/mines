@@ -109,6 +109,10 @@ public class BoardPanel extends ViewGroup {
 		return fieldView;
 	}
 
+
+	int fieldSizeX = 0;
+	int fieldSizeY = 0;
+
 	@Override
 	protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
 		int measureWidth = MeasureSpec.getSize(widthMeasureSpec);
@@ -120,6 +124,8 @@ public class BoardPanel extends ViewGroup {
 
 		// always fill at least the available screen
 		fieldSize = Math.max(zoomModeFieldSize, fieldSizeInFitMode);
+		fieldSizeX = Math.max(zoomModeFieldSize, fitSizeX);
+		fieldSizeY = Math.max(zoomModeFieldSize, fitSizeY);
 		isFitInParent = fieldSize == fieldSizeInFitMode;
 		setFieldsFocusable(isFitInParent);
 
@@ -127,7 +133,7 @@ public class BoardPanel extends ViewGroup {
 		if (!isFitInParent && fieldSize < fieldSizeInOneDimensionFitMode)
 			fieldSize = fieldSizeInOneDimensionFitMode;
 
-		setMeasuredDimension(fieldSize * dimX, fieldSize * dimY);
+		setMeasuredDimension(fieldSizeX * dimX, fieldSizeY * dimY);
 	}
 
 	public boolean fitsIntoParent() {
@@ -142,8 +148,8 @@ public class BoardPanel extends ViewGroup {
 	protected void onLayout(final boolean changed, final int l, final int t, final int r, final int b) {
 		for (int posX = 0; posX < dimX; posX++)
 			for (int posY = 0; posY < dimY; posY++)
-				fieldViews[posX][posY].layout(posX * fieldSize, posY * fieldSize, (posX + 1) * fieldSize,
-						(posY + 1) * fieldSize);
+				fieldViews[posX][posY].layout(posX * fieldSizeX, posY * fieldSizeY, (posX + 1) * fieldSizeX,
+						(posY + 1) * fieldSizeY);
 	}
 
 }
