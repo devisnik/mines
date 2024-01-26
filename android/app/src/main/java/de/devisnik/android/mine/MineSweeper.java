@@ -64,6 +64,12 @@ public class MineSweeper extends Activity {
                 boardSpinnerController.reset();
                 levelSpinnerController.reset();
             });
+
+            setNeutralButton(R.string.menu_settings, (dialog, id) -> {
+                Intent intent = new Intent();
+                intent.setClass(MineSweeper.this, MinesPreferences.class);
+                startActivity(intent);
+            });
         }
 
         private PreferenceSpinnerController createSpinnerController(final int prefKeyId, final int valueArrayId,
