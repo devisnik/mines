@@ -12,4 +12,6 @@ public interface IMinesGameListener {
 	public void onChange(int flags, int mines);
 
 	public void onStart();
+
+	public void onClickAfterFinished();
 }

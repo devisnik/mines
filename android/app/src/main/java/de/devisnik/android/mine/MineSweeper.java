@@ -96,6 +96,11 @@ public class MineSweeper extends Activity {
         public void onDisarmed() {
             onGameWon();
         }
+
+        @Override
+        public void onClickAfterFinished() {
+            showDialog(DIALOG_NEW_GAME);
+        }
     }
 
     private int getBuildNumber() {
@@ -387,14 +392,14 @@ public class MineSweeper extends Activity {
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         debugLog("onActivityResult");
-        if (requestCode == HIGHSCORES_REQUEST) {
-            showDialog(DIALOG_NEW_GAME);
-        }
+//        if (requestCode == HIGHSCORES_REQUEST) {
+//            showDialog(DIALOG_NEW_GAME);
+//        }
     }
 
     private void onGameLost() {
 //        ensureNonZoomedBoard();
-        showDialog(DIALOG_NEW_GAME);
+//        showDialog(DIALOG_NEW_GAME);
     }
 
     private void ensureNonZoomedBoard() {

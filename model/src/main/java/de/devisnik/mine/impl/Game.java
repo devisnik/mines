@@ -57,6 +57,11 @@ public class Game implements IGame {
 			listener.onStart();
 	}
 
+	private void fireClickedAfterFinished() {
+		for (IMinesGameListener listener : itsListeners)
+			listener.onClickAfterFinished();
+	}
+
 	@Override
 	public IBoard getBoard() {
 		return itsBoard;
@@ -109,8 +114,10 @@ public class Game implements IGame {
 			return;
 		}
 		Field field = (Field) fieldInterface;
-		if (isFinished())
-			return;
+		if (isFinished()) {
+			fireClickedAfterFinished();
+            return;
+        }
 		itsBoard.updateLastTouched(field);
 		if (!field.isOpen()) {
 			if (!isAllFlagsUsed() || field.isFlagged()) {
@@ -132,8 +139,10 @@ public class Game implements IGame {
 	@Override
 	public void onRequestOpen(final IField fieldInterface) {
 		Field field = (Field) fieldInterface;
-		if (isFinished())
-			return;
+		if (isFinished()) {
+			fireClickedAfterFinished();
+            return;
+        }
 		// treat open on a flagged field as an unflag operation
 		if (field.isFlagged()) {
 			onRequestFlag(field);

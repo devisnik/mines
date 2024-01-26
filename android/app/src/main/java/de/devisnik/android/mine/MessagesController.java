@@ -47,6 +47,10 @@ public class MessagesController implements IMinesGameListener {
 		showToast(R.string.toast_longpress);
 	}
 
+	@Override
+	public void onClickAfterFinished() {
+	}
+
 	private void runExplodeVibration() {
 		final Vibrator vibrator = settings.getVibrator();
 		if (vibrator != null)

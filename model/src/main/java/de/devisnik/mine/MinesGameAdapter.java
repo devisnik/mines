@@ -17,4 +17,7 @@ public class MinesGameAdapter implements IMinesGameListener {
 	public void onStart() {
 	}
 
+	@Override
+	public void onClickAfterFinished() {
+	}
 }
