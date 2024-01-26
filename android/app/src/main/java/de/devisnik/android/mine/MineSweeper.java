@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -379,9 +380,12 @@ public class MineSweeper extends Activity {
                     WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
                     Dialog dialogImpl = (Dialog) dialogInterface;
                     lp.copyFrom(dialogImpl.getWindow().getAttributes());
-                    lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-                    lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-                    dialogImpl.getWindow().setAttributes(lp);
+                    if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+                        dialogImpl.getWindow().setAttributes(lp);
+                    }
+//                    lp.width = dialogImpl.getWindow().getDecorView().getWidth();
                 });
                 return dialog;
             default:
