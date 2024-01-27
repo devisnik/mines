@@ -82,6 +82,10 @@ public class GamePanel extends VerticalPanel {
                 if (clickOpenButton.getValue()) //switch to Flag Mode
                     clickFlagButton.setValue(true, true);
             }
+
+            @Override
+            public void onClickAfterFinished() {
+            }
         };
         game.addListener(gameListener);
     }
