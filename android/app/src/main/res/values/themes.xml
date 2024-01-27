@@ -84,7 +84,7 @@
         <item name="FLAGPOLE_COLOR">#ff808080</item>
         <item name="BUTTON_COLOR_UP_LEFT">#ff404040</item>
         <item name="BUTTON_COLOR_LOW_RIGHT">#ff101010</item>
-        <item name="FOCUS_COLOR">#66ffffff</item>
+        <item name="FOCUS_COLOR">#22ffffff</item>
         <item name="TOUCH_COLOR">#77888888</item>
     </style>
 
