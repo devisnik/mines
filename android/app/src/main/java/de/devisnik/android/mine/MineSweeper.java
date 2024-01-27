@@ -43,7 +43,7 @@ public class MineSweeper extends Activity {
 
         public NewGameDialogBuilder() {
             super(MineSweeper.this);
-            FrameLayout root = (FrameLayout) findViewById(android.R.id.custom);
+            FrameLayout root = findViewById(android.R.id.custom);
             ViewGroup layout = (ViewGroup) getLayoutInflater().inflate(R.layout.new_game, root);
             final PreferenceSpinnerController boardSpinnerController = createSpinnerController(
                     R.string.prefkey_board_size, R.array.sizes_values, R.id.BoardSpinner, layout);
@@ -75,7 +75,7 @@ public class MineSweeper extends Activity {
 
         private PreferenceSpinnerController createSpinnerController(final int prefKeyId, final int valueArrayId,
                                                                     final int viewId, final ViewGroup layout) {
-            Spinner spinner = (Spinner) layout.findViewById(viewId);
+            Spinner spinner = layout.findViewById(viewId);
             return new PreferenceSpinnerController(prefKeyId, valueArrayId, spinner);
         }
     }
@@ -94,10 +94,6 @@ public class MineSweeper extends Activity {
     private boolean restartingWithNewGame = false;
 
     private class GameListener extends MinesGameAdapter {
-        @Override
-        public void onBusted() {
-            onGameLost();
-        }
 
         @Override
         public void onDisarmed() {
@@ -154,13 +150,13 @@ public class MineSweeper extends Activity {
         super.onStart();
         setTheme(settings.getTheme());
         setContentView(R.layout.main);
-        GameInfoView levelView = (GameInfoView) findViewById(R.id.level);
+        GameInfoView levelView = findViewById(R.id.level);
         if (levelView != null) {
             levelView.setText(new GameInfo(settings).createTitle());
         }
-        CounterView timerView = (CounterView) findViewById(R.id.time);
-        CounterView bombsView = (CounterView) findViewById(R.id.count);
-        BoardView boardView = (BoardView) findViewById(R.id.board);
+        CounterView timerView = findViewById(R.id.time);
+        CounterView bombsView = findViewById(R.id.count);
+        BoardView boardView = findViewById(R.id.board);
         game = restoreOrCreateGame((IGame) getLastNonConfigurationInstance());
         gameListener = new GameListener();
         game.addListener(gameListener);
@@ -385,7 +381,6 @@ public class MineSweeper extends Activity {
                         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
                         dialogImpl.getWindow().setAttributes(lp);
                     }
-//                    lp.width = dialogImpl.getWindow().getDecorView().getWidth();
                 });
                 return dialog;
             default:
@@ -394,7 +389,6 @@ public class MineSweeper extends Activity {
     }
 
     private void onGameWon() {
-//        ensureNonZoomedBoard();
         Intent intent = HighScores.withTime(this, game.getWatch().getTime());
         startActivityForResult(intent, HIGHSCORES_REQUEST);
     }
@@ -402,22 +396,6 @@ public class MineSweeper extends Activity {
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         debugLog("onActivityResult");
-//        if (requestCode == HIGHSCORES_REQUEST) {
-//            showDialog(DIALOG_NEW_GAME);
-//        }
-    }
-
-    private void onGameLost() {
-//        ensureNonZoomedBoard();
-//        showDialog(DIALOG_NEW_GAME);
-    }
-
-    private void ensureNonZoomedBoard() {
-        if (settings.isZoom()) {
-            settings.toggleZoom();
-            adjustZoomIcon();
-            boardController.onZoomChange();
-        }
     }
 
 }

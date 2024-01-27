@@ -1,7 +1,6 @@
 package de.devisnik.android.mine;
 
 import android.annotation.SuppressLint;
-import android.os.Build;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
@@ -57,24 +56,22 @@ public class FieldController {
         }
         // ensure view is drawn fully without being clipped
         view.bringToFront();
-        if (Build.VERSION.SDK_INT >= 17) {
-            view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-            CLICK_ZOOM_ANIMATION.setAnimationListener(new AnimationListener() {
+        view.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        CLICK_ZOOM_ANIMATION.setAnimationListener(new AnimationListener() {
 
-                @Override
-                public void onAnimationStart(final Animation animation) {
-                }
+            @Override
+            public void onAnimationStart(final Animation animation) {
+            }
 
-                @Override
-                public void onAnimationRepeat(final Animation animation) {
-                }
+            @Override
+            public void onAnimationRepeat(final Animation animation) {
+            }
 
-                @Override
-                public void onAnimationEnd(final Animation animation) {
-                    view.setLayerType(View.LAYER_TYPE_NONE, null);
-                }
-            });
-        }
+            @Override
+            public void onAnimationEnd(final Animation animation) {
+                view.setLayerType(View.LAYER_TYPE_NONE, null);
+            }
+        });
         view.startAnimation(CLICK_ZOOM_ANIMATION);
     }
 
@@ -85,5 +82,4 @@ public class FieldController {
     public void dispose() {
         field.removeListener(fieldListener);
     }
-
 }

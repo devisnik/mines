@@ -57,7 +57,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 		flingRunnable = new FlingRunnable();
 		Configuration configuration = getResources().getConfiguration();
 		isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
-        setScrollbarFadingEnabled(true);
+		setScrollbarFadingEnabled(true);
 		setScrollBarDefaultDelayBeforeFade(0);
         setHorizontalFadingEdgeEnabled(true);
         setVerticalFadingEdgeEnabled(true);
@@ -268,7 +268,7 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 
 	private BoardPanel getCanvas() {
 		if (canvas == null)
-			canvas = (BoardPanel) findViewById(R.id.board_panel);
+			canvas = findViewById(R.id.board_panel);
 		return canvas;
 	}
 

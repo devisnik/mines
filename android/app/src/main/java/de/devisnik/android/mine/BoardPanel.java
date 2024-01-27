@@ -3,7 +3,6 @@ package de.devisnik.android.mine;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import de.devisnik.android.mine.drawable.CachingDrawer;
@@ -98,7 +97,7 @@ public class BoardPanel extends ViewGroup {
 		}
 	}
 
-	public FieldView getField(final int posX, final int posY) {
+	FieldView getField(final int posX, final int posY) {
 		return fieldViews[posX][posY];
 	}
 
@@ -110,8 +109,8 @@ public class BoardPanel extends ViewGroup {
 	}
 
 
-	int fieldSizeX = 0;
-	int fieldSizeY = 0;
+	private int fieldSizeX = 0;
+	private int fieldSizeY = 0;
 
 	@Override
 	protected void onMeasure(final int widthMeasureSpec, final int heightMeasureSpec) {
