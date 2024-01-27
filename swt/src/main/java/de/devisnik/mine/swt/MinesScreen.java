@@ -54,6 +54,10 @@ public class MinesScreen {
         public void onStart() {
             startTimer();
         }
+
+        @Override
+        public void onClickAfterFinished() {
+        }
     };
 
     private static GridLayout createLayout(int numColumns) {

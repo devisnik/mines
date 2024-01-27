@@ -113,6 +113,10 @@ public class GameCanvas extends Composite {
 
             public void onStart() {
             }
+
+            @Override
+            public void onClickAfterFinished() {
+            }
         });
         Button cloneButton = new Button(shell, SWT.PUSH);
         cloneButton.setText("Clone");
