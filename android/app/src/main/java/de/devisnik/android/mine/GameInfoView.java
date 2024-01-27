@@ -6,8 +6,8 @@ import android.widget.TextView;
 
 public class GameInfoView extends TextView {
 
-	public GameInfoView(Context context, AttributeSet attrs) {
-		super(context, attrs);
+    public GameInfoView(Context context, AttributeSet attrs) {
+        super(context, attrs);
         setSelected(true);
-	}
+    }
 }

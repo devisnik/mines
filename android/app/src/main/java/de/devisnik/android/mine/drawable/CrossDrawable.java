@@ -7,18 +7,18 @@ import android.graphics.drawable.shapes.PathShape;
 
 public final class CrossDrawable extends ShapeDrawable {
 
-	public CrossDrawable(int color) {
-		super(new PathShape(createPath(), 10, 10));
-		getPaint().setStyle(Paint.Style.STROKE);
-		getPaint().setColor(color);
-		getPaint().setStrokeWidth(1);
-	}
+    public CrossDrawable(int color) {
+        super(new PathShape(createPath(), 10, 10));
+        getPaint().setStyle(Paint.Style.STROKE);
+        getPaint().setColor(color);
+        getPaint().setStrokeWidth(1);
+    }
 
-	private static Path createPath() {
-		Path path = new Path();
-		path.lineTo(10, 10);
-		path.moveTo(0, 10);
-		path.lineTo(10, 0);
-		return path;
-	}
+    private static Path createPath() {
+        Path path = new Path();
+        path.lineTo(10, 10);
+        path.moveTo(0, 10);
+        path.lineTo(10, 0);
+        return path;
+    }
 }

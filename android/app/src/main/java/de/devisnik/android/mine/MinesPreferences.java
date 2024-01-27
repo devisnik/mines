@@ -11,42 +11,42 @@ import de.devisnik.android.mine.device.Device;
 
 public class MinesPreferences extends PreferenceActivity {
 
-	private final SummaryUpdater summaryUpdater = new SummaryUpdater();
+    private final SummaryUpdater summaryUpdater = new SummaryUpdater();
 
-	@Override
-	protected void onCreate(final Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		getDevice().enableHomeButton(this);
-		addPreferencesFromResource(R.xml.preferences);
+    @Override
+    protected void onCreate(final Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        getDevice().enableHomeButton(this);
+        addPreferencesFromResource(R.xml.preferences);
 
-		adjustListPreference(R.string.prefkey_board_theme);
-		adjustStringPreference(R.string.prefkey_user_name);
-	}
+        adjustListPreference(R.string.prefkey_board_theme);
+        adjustStringPreference(R.string.prefkey_user_name);
+    }
 
-	private void adjustListPreference(final int key) {
-		final ListPreference preference = (ListPreference) findPreference(getString(key));
-		summaryUpdater.onPreferenceChange(preference, preference.getValue());
-		preference.setOnPreferenceChangeListener(summaryUpdater);
-	}
+    private void adjustListPreference(final int key) {
+        final ListPreference preference = (ListPreference) findPreference(getString(key));
+        summaryUpdater.onPreferenceChange(preference, preference.getValue());
+        preference.setOnPreferenceChangeListener(summaryUpdater);
+    }
 
-	private void adjustStringPreference(final int key) {
-		final EditTextPreference preference = (EditTextPreference) findPreference(getString(key));
-		final String value = preference.getText();
-		summaryUpdater
-				.onPreferenceChange(preference, value == null ? getString(R.string.pref_value_not_set) : value);
-		preference.setOnPreferenceChangeListener(summaryUpdater);
-	}
+    private void adjustStringPreference(final int key) {
+        final EditTextPreference preference = (EditTextPreference) findPreference(getString(key));
+        final String value = preference.getText();
+        summaryUpdater
+                .onPreferenceChange(preference, value == null ? getString(R.string.pref_value_not_set) : value);
+        preference.setOnPreferenceChangeListener(summaryUpdater);
+    }
 
-	@Override
-	public boolean onOptionsItemSelected(final MenuItem item) {
-		if (item.getItemId() == android.R.id.home) {
-			startActivity(new Intent(this, MineSweeper.class));
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(this, MineSweeper.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
-	private Device getDevice() {
-		return ((MinesApplication) getApplication()).getDevice();
-	}
+    private Device getDevice() {
+        return ((MinesApplication) getApplication()).getDevice();
+    }
 }

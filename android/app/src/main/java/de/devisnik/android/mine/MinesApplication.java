@@ -8,13 +8,13 @@ import de.devisnik.android.mine.device.Device;
 
 public class MinesApplication extends Application {
 
-	@Override
-	public void onCreate() {
-		super.onCreate();
-		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
-	}
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
+    }
 
-	public Device getDevice() {
-		return DeviceFactory.create(this);
-	}
+    public Device getDevice() {
+        return DeviceFactory.create(this);
+    }
 }

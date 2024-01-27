@@ -4,15 +4,15 @@ import android.app.Activity;
 
 public interface Device {
 
-	boolean isGoogleTv();
+    boolean isGoogleTv();
 
-	int getBuildVersion();
+    int getBuildVersion();
 
-	void setFullScreen(Activity activity);
+    void setFullScreen(Activity activity);
 
-	void enableHomeButton(Activity activity);
+    void enableHomeButton(Activity activity);
 
-	void setHighScoresTitle(Activity activity, CharSequence title, CharSequence subtitle);
+    void setHighScoresTitle(Activity activity, CharSequence title, CharSequence subtitle);
 
-	void setGameTitle(Activity activity, CharSequence title, CharSequence subtitle);
+    void setGameTitle(Activity activity, CharSequence title, CharSequence subtitle);
 }
