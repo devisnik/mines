@@ -99,8 +99,8 @@ public class BoardView extends ViewGroup implements OnGestureListener {
 
     public boolean fitsIntoArea(final int width, final int height) {
         if (isLandscape)
-            return getWidth() < height || getHeight() < width;
-        return getWidth() < width || getHeight() < height;
+            return getWidth() <= height && getHeight() <= width;
+        return getWidth() <= width && getHeight() <= height;
     }
 
     @Override
