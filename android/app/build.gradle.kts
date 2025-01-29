@@ -43,4 +43,9 @@ android {
 
         lintConfig = file("lint_config.xml")
     }
+    namespace = "de.devisnik.android.mine"
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
 }

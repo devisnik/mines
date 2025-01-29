@@ -4,8 +4,8 @@ object Android {
     const val APP_NAME = "de.devisnik.android.mine"
 
     const val MIN_SDK = 23
-    const val TARGET_SDK = 34
-    const val COMPILE_SDK = 34
+    const val TARGET_SDK = 35
+    const val COMPILE_SDK = 35
 
-    const val BUILD_TOOLS = "34.0.0"
+    const val BUILD_TOOLS = "35.0.1"
 }

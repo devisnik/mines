@@ -5,7 +5,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:7.4.0")
+        classpath("com.android.tools.build:gradle:8.8.0")
         classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
         classpath("org.wisepersist:gwt-gradle-plugin:1.1.18")
 
