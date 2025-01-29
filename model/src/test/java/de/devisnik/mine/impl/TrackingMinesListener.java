@@ -43,4 +43,7 @@ public class TrackingMinesListener implements IMinesGameListener {
 		start++;
 	}
 
+	@Override
+	public void onClickAfterFinished() { }
+
 }

@@ -389,5 +389,9 @@ public class GameTest {
             fail();
         }
 
+        @Override
+        public void onClickAfterFinished() {
+            fail();
+        }
     }
 }
