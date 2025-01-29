@@ -24,7 +24,7 @@ if (platform == 'macosx') {
 configurations.all {
     resolutionStrategy {
         dependencySubstitution {
-            substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') with module("org.eclipse.platform:${swtArtifactName}")
+            substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') using  module("org.eclipse.platform:${swtArtifactName}")
         }
     }
 }

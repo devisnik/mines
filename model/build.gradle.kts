@@ -28,22 +28,22 @@ val jarTask = tasks.named<Jar>("jar") {
     }
 }
 
-val sourcesJarTask by tasks.registering(Jar::class) {
-    description = "Assembles a jar archive containing the sources."
-    group = "build"
-    classifier = "sources"
-    from(sourceSets["main"].allSource)
-}
-
-val linkJarsTask by tasks.registering(Task::class) {
-    val jarProperties = jarTask.map { "${it.archivePath}.properties" }
-    inputs.files(jarTask, sourcesJarTask)
-    outputs.file(jarProperties)
-    doLast {
-        file(jarProperties).appendText("src=${sourcesJarTask.map { it.archiveName }.get()}\n")
-    }
-}
-
-tasks.named<Task>("assemble") {
-    dependsOn(linkJarsTask)
-}
+// val sourcesJarTask by tasks.registering(Jar::class) {
+//     description = "Assembles a jar archive containing the sources."
+//     group = "build"
+//     classifier = "sources"
+//     from(sourceSets["main"].allSource)
+// }
+// 
+// val linkJarsTask by tasks.registering(Task::class) {
+//     val jarProperties = jarTask.map { "${it.archivePath}.properties" }
+//     inputs.files(jarTask, sourcesJarTask)
+//     outputs.file(jarProperties)
+//     doLast {
+//         file(jarProperties).appendText("src=${sourcesJarTask.map { it.archiveName }.get()}\n")
+//     }
+// }
+// 
+// tasks.named<Task>("assemble") {
+//     dependsOn(linkJarsTask)
+// }

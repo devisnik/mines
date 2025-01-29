@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClassName = "Shell"
+    mainClass = "Shell"
 }
 
 dependencies {
