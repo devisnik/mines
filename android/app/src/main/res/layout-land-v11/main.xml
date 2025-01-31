@@ -12,6 +12,18 @@
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
 		android:layout_alignParentTop="true" />
+
+	<ImageView
+		android:id="@+id/time_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_toEndOf="@id/time"
+		android:layout_alignBottom="@id/time"
+		android:layout_alignTop="@id/time"
+		android:src="@drawable/ic_timer"
+		android:tint="?attr/scoresColor"
+		android:scaleType="center" />
+
 	<de.devisnik.android.mine.CounterView
 		style="?attr/counterViewStyle"
 		android:id="@+id/count"
@@ -20,6 +32,17 @@
     android:layout_alignParentBottom="true"
 		android:layout_alignParentLeft="true" />
 
+	<ImageView
+		android:id="@+id/count_icon"
+		android:layout_width="wrap_content"
+		android:layout_height="match_parent"
+		android:layout_toEndOf="@id/count"
+		android:layout_alignBottom="@id/count"
+		android:layout_alignTop="@id/count"
+		android:src="@drawable/ic_flag"
+		android:tint="?attr/scoresColor"
+		android:scaleType="center" />
+
 	<!--
 		seems that putting fill_parent below breaks zooming!!!  
 	 -->
@@ -27,7 +50,7 @@
 		layout="@layout/board" 
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_toRightOf="@id/time"
+		android:layout_toRightOf="@id/time_icon"
 		android:layout_alignParentTop="true"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentRight="true"
