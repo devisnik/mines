@@ -7,7 +7,7 @@ sourceCompatibility = 1.8
 def windowingLibrary = getSWTWindowingLibrary(System.properties['os.name'])
 def platform = getSWTPlatform(System.properties['os.name'])
 def architecture = getSWTArch(System.properties['os.arch'])
-def version = '3.119.0'
+def version = '3.128.0'
 def swtArtifactName = "org.eclipse.swt.${windowingLibrary}.${platform}.${architecture}:${version}"
 
 dependencies {
