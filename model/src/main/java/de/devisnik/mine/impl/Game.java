@@ -139,7 +139,7 @@ public class Game implements IGame {
 	@Override
 	public void onRequestOpen(final IField fieldInterface) {
 		Field field = (Field) fieldInterface;
-		if (isFinished()) {
+		if (isFinished() || (field.getNeighborBombs() == 0 && field.isOpen())) {
 			fireClickedAfterFinished();
             return;
         }
