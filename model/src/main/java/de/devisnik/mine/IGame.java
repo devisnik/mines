@@ -5,23 +5,23 @@ package de.devisnik.mine;
  */
 public interface IGame {
 
-	void onRequestOpen(IField field);
+    void onRequestOpen(IField field);
 
-	void onRequestFlag(IField field);
+    void onRequestFlag(IField field);
 
-	void addListener(IMinesGameListener listener);
+    void addListener(IMinesGameListener listener);
 
-	void removeListener(IMinesGameListener listener);
+    void removeListener(IMinesGameListener listener);
 
-	int getBombCount();
+    int getBombCount();
 
-	IBoard getBoard();
+    IBoard getBoard();
 
-	boolean isStarted();
-	
-	boolean isRunning();
-	
-	IStopWatch getWatch();
-	
-	void tickWatch();
+    boolean isStarted();
+    
+    boolean isRunning();
+    
+    IStopWatch getWatch();
+    
+    void tickWatch();
 }

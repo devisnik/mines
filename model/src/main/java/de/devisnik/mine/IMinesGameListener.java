@@ -5,13 +5,13 @@ package de.devisnik.mine;
  */
 public interface IMinesGameListener {
 
-	public void onDisarmed();
+    public void onDisarmed();
 
-	public void onBusted();
+    public void onBusted();
 
-	public void onChange(int flags, int mines);
+    public void onChange(int flags, int mines);
 
-	public void onStart();
+    public void onStart();
 
-	public void onClickAfterFinished();
+    public void onClickAfterFinished();
 }

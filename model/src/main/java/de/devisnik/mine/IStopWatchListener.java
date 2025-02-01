@@ -5,5 +5,5 @@ package de.devisnik.mine;
  */
 public interface IStopWatchListener {
 
-	void onTimeChange(int currentTime);
+    void onTimeChange(int currentTime);
 }

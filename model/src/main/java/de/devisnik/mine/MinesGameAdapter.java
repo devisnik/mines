@@ -5,19 +5,19 @@ package de.devisnik.mine;
  */
 public class MinesGameAdapter implements IMinesGameListener {
 
-	public void onBusted() {
-	}
+    public void onBusted() {
+    }
 
-	public void onChange(int flags, int mines) {
-	}
+    public void onChange(int flags, int mines) {
+    }
 
-	public void onDisarmed() {
-	}
+    public void onDisarmed() {
+    }
 
-	public void onStart() {
-	}
+    public void onStart() {
+    }
 
-	@Override
-	public void onClickAfterFinished() {
-	}
+    @Override
+    public void onClickAfterFinished() {
+    }
 }
