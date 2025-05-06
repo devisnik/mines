@@ -109,6 +109,9 @@
     </style>
 
     <style name="BaseTheme" parent="android:style/Theme.Material"/>
+    <style name="AppTheme" parent="android:style/Theme.Material">
+        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+    </style>
 
     <style name="MinesTheme" parent="BaseTheme">
         <item name="counterViewStyle">@style/Counter.Theme.LED</item>
