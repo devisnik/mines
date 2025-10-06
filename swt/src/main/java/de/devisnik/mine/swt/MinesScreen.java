@@ -132,7 +132,7 @@ public class MinesScreen {
                     }
                 });
             }
-        }, SECONDS.toMillis(1), MILLISECONDS.toMillis(800));
+        }, SECONDS.toMillis(1), MILLISECONDS.toMillis(400));
     }
 
     private void stopTimer() {
