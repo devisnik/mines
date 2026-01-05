@@ -16,7 +16,9 @@ public class MinesPreferences extends PreferenceActivity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getDevice().enableHomeButton(this);
+        Device device = getDevice();
+        device.enableHomeButton(this);
+        device.setFullScreen(this);
         addPreferencesFromResource(R.xml.preferences);
 
         adjustListPreference(R.string.prefkey_board_theme);

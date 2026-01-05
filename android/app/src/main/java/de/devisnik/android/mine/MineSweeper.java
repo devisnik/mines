@@ -150,6 +150,8 @@ public class MineSweeper extends Activity {
         super.onStart();
         setTheme(settings.getTheme());
         setContentView(R.layout.main);
+        setFullScreenMode();
+
         GameInfoView levelView = findViewById(R.id.level);
         if (levelView != null) {
             levelView.setText(new GameInfo(settings).createTitle());

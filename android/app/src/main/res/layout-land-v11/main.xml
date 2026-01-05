@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_height="match_parent"
+	android:layout_width="match_parent"
+	android:fitsSystemWindows="true"
+	>
 <RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   style="?attr/layoutStyle"
 >
-	<de.devisnik.android.mine.CounterView
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#333"
+        android:id="@+id/toolbar" />
+
+    <de.devisnik.android.mine.CounterView
 		style="?attr/counterViewStyle"
 		android:id="@+id/time"
+        android:layout_below="@id/toolbar"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
-		android:layout_alignParentTop="true" />
+		/>
 
 	<ImageView
 		android:id="@+id/time_icon"
@@ -44,15 +55,16 @@
 		android:scaleType="center" />
 
 	<!--
-		seems that putting fill_parent below breaks zooming!!!  
+		seems that putting fill_parent below breaks zooming!!!
 	 -->
-	<include 
-		layout="@layout/board" 
-		android:layout_width="wrap_content"
+	<include
+		layout="@layout/board"
+        android:layout_below="@id/toolbar"
+        android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_toRightOf="@id/time_icon"
-		android:layout_alignParentTop="true"
 		android:layout_alignParentBottom="true"
 		android:layout_alignParentRight="true"
 	/>
 </RelativeLayout>
+</FrameLayout>

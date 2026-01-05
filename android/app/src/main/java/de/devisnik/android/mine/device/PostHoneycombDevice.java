@@ -1,13 +1,14 @@
 package de.devisnik.android.mine.device;
 
-import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
+import android.widget.Toolbar;
 
-@TargetApi(11)
+import de.devisnik.android.mine.R;
+
 public class PostHoneycombDevice extends BaseDevice {
 
     private final Context mContext;
@@ -26,11 +27,16 @@ public class PostHoneycombDevice extends BaseDevice {
         // no fullscreen when action bar is available
         if (isGoogleTv()) {
             ActionBar actionBar = activity.getActionBar();
-            actionBar.hide();
+            if (actionBar != null) {
+                actionBar.hide();
+            }
+        }
+        Toolbar toolbar = activity.findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            activity.setActionBar(toolbar);
         }
     }
 
-    @TargetApi(14)
     @Override
     public void enableHomeButton(final Activity activity) {
         ActionBar actionBar = activity.getActionBar();

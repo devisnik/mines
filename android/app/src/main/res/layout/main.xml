@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:tools="http://schemas.android.com/tools"
-  style="?attr/layoutStyle"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  tools:context="de.devisnik.android.mine.MineSweeper"
-  tools:ignore="HardcodedText">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    >
 
-  <de.devisnik.android.mine.CounterView
-    android:id="@+id/count"
-    style="?attr/counterViewStyle"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:paddingEnd="2dp" />
+<RelativeLayout
+    android:id="@+id/root_screen"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/layoutStyle"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="de.devisnik.android.mine.MineSweeper"
+    tools:ignore="HardcodedText">
+
+    <Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#333"
+        android:id="@+id/toolbar" />
+
+    <de.devisnik.android.mine.CounterView
+        android:id="@+id/count"
+        style="?attr/counterViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:paddingEnd="2dp" />
 
   <ImageView
     android:id="@+id/count_icon"
@@ -64,3 +78,4 @@
     layout="@layout/board" />
 
 </RelativeLayout>
+</FrameLayout>

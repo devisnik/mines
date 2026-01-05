@@ -109,8 +109,7 @@
     </style>
 
     <style name="BaseTheme" parent="android:style/Theme.Material"/>
-    <style name="AppTheme" parent="android:style/Theme.Material">
-        <item name="android:windowOptOutEdgeToEdgeEnforcement">true</item>
+    <style name="AppTheme" parent="android:style/Theme.Material.NoActionBar">
     </style>
 
     <style name="MinesTheme" parent="BaseTheme">

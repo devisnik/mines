@@ -107,7 +107,6 @@ public class HighScores extends ListActivity {
     protected void onCreate(final Bundle savedInstanceState) {
         debugLog("onCreate");
         super.onCreate(savedInstanceState);
-        getDevice().enableHomeButton(this);
         time = getIntent().getIntExtra(EXTRA_TIME, -1);
         getIntent().removeExtra(EXTRA_TIME);
 
@@ -115,8 +114,11 @@ public class HighScores extends ListActivity {
         dbHelper = new DBHelper(this);
 
         setContentView(R.layout.scores);
-        ((MinesApplication) getApplication()).getDevice().setHighScoresTitle(this, getTitle(),
-                new GameInfo(settings).createTitle());
+
+        Device device = getDevice();
+        device.setFullScreen(this);
+        device.enableHomeButton(this);
+        device.setHighScoresTitle(this, getTitle(), new GameInfo(settings).createTitle());
         initScoresList();
     }
 
