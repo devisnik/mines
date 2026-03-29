@@ -1,5 +1,6 @@
 package de.devisnik.android.mine;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
@@ -9,12 +10,15 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowInsetsController;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Spinner;
@@ -151,6 +155,9 @@ public class MineSweeper extends Activity {
         setTheme(settings.getTheme());
         setContentView(R.layout.main);
         setFullScreenMode();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            setupEdgeToEdge();
+        }
 
         GameInfoView levelView = findViewById(R.id.level);
         if (levelView != null) {
@@ -168,6 +175,22 @@ public class MineSweeper extends Activity {
         boardController = new BoardController(game, boardView, settings);
         messagesController = new MessagesController(game, this, settings);
         showIntroOnAppStart();
+    }
+
+    @TargetApi(Build.VERSION_CODES.R)
+    private void setupEdgeToEdge() {
+        Window window = getWindow();
+        boolean isDarkTheme = settings.getTheme() == R.style.Dark;
+        WindowInsetsController controller = window.getInsetsController();
+        if (controller != null) {
+            int flags = WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                    | WindowInsetsController.APPEARANCE_LIGHT_NAVIGATION_BARS;
+            if (isDarkTheme) {
+                controller.setSystemBarsAppearance(0, flags);
+            } else {
+                controller.setSystemBarsAppearance(flags, flags);
+            }
+        }
     }
 
     private IGame restoreOrCreateGame(final IGame lastKnownGame) {
