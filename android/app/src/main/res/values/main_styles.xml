@@ -13,7 +13,7 @@
 	<style name="BoardPanel" parent="Transparent">
 	</style>
 	<style name="Counter" parent="Transparent">
-		<item name="android:textSize">24dip</item>
+		<item name="android:maxLines">1</item>
 	</style>
 	<style name="GameInfo" parent="Transparent">
 		<item name="android:gravity">center</item>
