@@ -24,7 +24,6 @@ If not, see <http://www.gnu.org/licenses
 	<string name="toast_win">Gagné !</string>
 	<string name="toast_lose">Perdu !</string>
 	<string name="pref_category_effects">Effets</string>
-	<string name="pref_category_online">Ressources en ligne</string>
 	<string name="pref_value_not_set">non positionné</string>
 	<string name="pref_user">Nom d\'utilisateur</string>
 	<string name="pref_user_dialog">Entrez votre nom</string>
@@ -38,10 +37,6 @@ If not, see <http://www.gnu.org/licenses
 
 	<string name="pref_vibrate">Utiliser vibreur</string>
 	<string name="pref_vibrate_summary">Vibrer sur appui long ou explosion</string>
-	<string name="pref_faq">FAQ</string>
-	<string name="pref_faq_summary">Ouvrir la Foire Aux Questions dans le navigateur</string>
-	<string name="pref_notes">Montrer les infos de version</string>
-	<string name="pref_notes_summary">Ouvrir les infos de version dans le navigateur</string>
 	<string name="board">Grille</string>
 	<string name="board_small">Petite</string>
 	<string name="board_medium">Moyenne</string>

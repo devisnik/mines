@@ -5,7 +5,6 @@
 	<string name="toast_win">¡Has ganado!</string>
 	<string name="toast_lose">¡Has explotado!</string>
 	<string name="pref_category_effects">Efectos</string>
-	<string name="pref_category_online">Recursos en línea</string>
 	<string name="pref_value_not_set">Sin definir</string>
 	<string name="pref_user">Nombre de usuario</string>
 	<string name="pref_user_dialog">Introduce tu nombre</string>
@@ -17,10 +16,6 @@
 	<string name="pref_touchfocus_summary">Desplazar el foco al pulsar en una casilla</string>
 	<string name="pref_vibrate">Usar Vibración</string>
 	<string name="pref_vibrate_summary">Vibrar en pulsaciones largas y explosiones</string>
-	<string name="pref_faq">Mostrar las FAQs</string>
-	<string name="pref_faq_summary">Abrir en línea las Frequently Asked Questions en el navegador</string>
-	<string name="pref_notes">Mostrar Notas de la Versión</string>
-	<string name="pref_notes_summary">Abrir en línea las notas de la versión en el navegador</string>
 	<string name="board">Tablero</string>
 	<string name="board_small">Pequeño</string>
 	<string name="board_medium">Mediano</string>

@@ -33,7 +33,5 @@
   <string name="theme_value_classic" translatable="false">classic</string>
   <string name="theme_value_dark" translatable="false">dark</string>
 
-  <string name="faq_url" translatable="false">http://mines.devisnik.de/faq.html</string>
-  <string name="notes_url" translatable="false">http://mines.devisnik.de/notes.txt</string>
   <string name="led_font" translatable="false">DIGITALDREAM.ttf</string>
 </resources>

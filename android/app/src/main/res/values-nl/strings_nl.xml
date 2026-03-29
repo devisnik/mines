@@ -5,7 +5,6 @@
 	<string name="toast_win">Gewonnen!</string>
 	<string name="toast_lose">Je bent ontploft!</string>
 	<string name="pref_category_effects">Effecten</string>
-	<string name="pref_category_online">Online hulp</string>
 	<string name="pref_value_not_set">niet ingesteld</string>
 	<string name="pref_user">Gebruikersnaam</string>
 	<string name="pref_user_dialog">Voor uw naam in</string>
@@ -18,10 +17,6 @@
 	<string name="pref_touchfocus_summary">Gebruik focus voor het selecteren van een veld in aanraakmodus</string>
 	<string name="pref_vibrate">Gebruik vibratie</string>
 	<string name="pref_vibrate_summary">Vibratie bij lang indrukken of explosie</string>
-	<string name="pref_faq">Geef FAQs weer</string>
-	<string name="pref_faq_summary">Open de veelgestelde vragen in de browser</string>
-	<string name="pref_notes">Geef \'Release notes\' weer</string>
-	<string name="pref_notes_summary">Geef de online \'Release notes\' weer in de browser</string>
 	<string name="board">Bord</string>
 	<string name="board_small">Klein</string>
 	<string name="board_medium">Gemiddeld</string>

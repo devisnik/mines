@@ -5,7 +5,6 @@
 	<string name="toast_win">Вы выиграли!</string>
 	<string name="toast_lose">Вы подорвались!</string>
 	<string name="pref_category_effects">Эффекты</string>
-	<string name="pref_category_online">Ресурсы онлайн</string>
 	<string name="pref_value_not_set">Не установлено</string>
 	<string name="pref_user">имя пользователя</string>
 	<string name="pref_user_dialog">введите свое имя</string>
@@ -19,10 +18,6 @@
 
 	<string name="pref_vibrate">использовать вибрацию</string>
 	<string name="pref_vibrate_summary">Вибрация при долгом нажатии и при взрыве</string>
-	<string name="pref_faq">Показать часто задаваемые вопросы</string>
-	<string name="pref_faq_summary">открыть часто задаваемые вопросы в браузере</string>
-	<string name="pref_notes">Показать примечания к релизу</string>
-	<string name="pref_notes_summary">Показать примечания к релизу в браузере</string>
 	<string name="board">Поле</string>
 	<string name="board_small">маленькое</string>
 	<string name="board_medium">среднее</string>

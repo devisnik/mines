@@ -5,7 +5,6 @@
 	<string name="toast_win">Hai vinto!</string>
 	<string name="toast_lose">Sei esploso!</string>
 	<string name="pref_category_effects">Effetti</string>
-	<string name="pref_category_online">Risorse online</string>
 	<string name="pref_value_not_set">non impostato</string>
 	<string name="pref_user">Nome Utente</string>
 	<string name="pref_user_dialog">Inserisci il tuo nome</string>
@@ -21,10 +20,6 @@
 	
 	<string name="pref_vibrate">Usa Vibrazione</string>
 	<string name="pref_vibrate_summary">Vibra alla pressione lunga e alle esplosioni</string>
-	<string name="pref_faq">Visualizza FAQ</string>
-	<string name="pref_faq_summary">Apre le domande frequenti online nel browser</string>
-	<string name="pref_notes">Visualizza Release notes</string>
-	<string name="pref_notes_summary">Apre le note di rilascio online nel browser</string>
 	<string name="board">Griglia</string>
 	<string name="board_small">Piccola</string>
 	<string name="board_medium">Media</string>

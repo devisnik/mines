@@ -5,7 +5,6 @@
 	<string name="toast_win">Výhra!</string>
 	<string name="toast_lose">Výbuch!</string>
 	<string name="pref_category_effects">Efekty</string>
-	<string name="pref_category_online">Online zdroje</string>
 	<string name="pref_value_not_set">nenastavené</string>
 	<string name="pref_user">Meno hráča</string>
 	<string name="pref_user_dialog">Zadaj svoje meno!</string>
@@ -17,10 +16,6 @@
 	<string name="pref_touchfocus_summary">Fókus pri voľbe políčka používať aj v dotykovom móde</string>
 	<string name="pref_vibrate">Používať vibráciu</string>
 	<string name="pref_vibrate_summary">Používať vibráciu pri dlhom kliknutí a pri výbuchu</string>
-	<string name="pref_faq">Ukázať FAQs</string>
-	<string name="pref_faq_summary">Otvára v prehliadači Online-odpovede často kladaných otázok</string>
-	<string name="pref_notes">Ukázať vývojovú históriu</string>
-	<string name="pref_notes_summary">Otvára v prehliadači vývojovú históriu</string>
 	<string name="board">Veľkosť</string>
 	<string name="board_small">Malá</string>
 	<string name="board_medium">Stredná</string>

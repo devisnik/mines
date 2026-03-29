@@ -5,7 +5,6 @@
 	<string name="toast_win">Gewonnen!</string>
 	<string name="toast_lose">Explodiert!</string>
 	<string name="pref_category_effects">Effekte</string>
-	<string name="pref_category_online">Online Ressourcen</string>
 	<string name="pref_value_not_set">nicht gesetzt</string>
 	<string name="pref_user">Spieler-Name</string>
 	<string name="pref_user_dialog">Gib deinen Namen ein!</string>
@@ -18,10 +17,6 @@
 		
 	<string name="pref_vibrate">Vibration verwenden</string>
 	<string name="pref_vibrate_summary">Vibration für langen Klick und bei Explosion verwenden</string>
-	<string name="pref_faq">FAQs anzeigen</string>
-	<string name="pref_faq_summary">Öffnet Online-Antworten häufig gestellter Fragen im Browser</string>
-	<string name="pref_notes">Entwicklungshistorie anzeigen</string>
-	<string name="pref_notes_summary">Öffnet die Entwicklungshistorie im Browser</string>
 	<string name="board">Größe</string>
 	<string name="board_small">Klein</string>
 	<string name="board_medium">Mittel</string>

@@ -5,7 +5,6 @@
 	<string name="toast_win">Tu laimėjai!</string>
 	<string name="toast_lose">Susprogai!</string>
 	<string name="pref_category_effects">Efektai</string>
-	<string name="pref_category_online">Tinklo resursai</string>
 	<string name="pref_value_not_set">nenustatyta</string>
 	<string name="pref_user">Slapyvardis</string>
 	<string name="pref_user_dialog">Įvesk savo vardą</string>
@@ -19,10 +18,6 @@
 
 	<string name="pref_vibrate">Naudoti vibraciją</string>
 	<string name="pref_vibrate_summary">Vibruoja ilgai paspaudus arba sprogus minai</string>
-	<string name="pref_faq">Rodyti DUK</string>
-	<string name="pref_faq_summary">Atveria dažniausiai užduodamus klausimus naršyklėje</string>
-	<string name="pref_notes">Show Release notes</string>
-	<string name="pref_notes_summary">Laidos užrašai</string>
 	<string name="board">Laukas</string>
 	<string name="board_small">Mažas</string>
 	<string name="board_medium">Vidutinis</string>

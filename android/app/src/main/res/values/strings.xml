@@ -11,8 +11,6 @@
 	
 	<!-- category name for preferences that are used in game presentation -->
 	<string name="pref_category_effects">Effects</string>
-	<!-- category name for preferences that link to external resources -->
-	<string name="pref_category_online">Online Resources</string>
 	<!-- shown when a preference has no value -->
 	<string name="pref_value_not_set">not set</string>
 	<!-- label of the 'user name' preference -->
@@ -54,14 +52,6 @@
 	<string name="pref_vibrate">Use Vibration</string>	
 	<!-- explanation text of the 'vibrate' preference, rendered below the name -->
 	<string name="pref_vibrate_summary">Vibrate on long press and on explosion</string>
-	<!-- label for the 'show_faq' preference -->
-	<string name="pref_faq">Show FAQs</string>
-	<!-- explanation text of the 'show_faq' preference, rendered below the name -->
-	<string name="pref_faq_summary">Open the online Frequently Asked Questions in the browser</string>
-	<!-- label for the 'show_notes' preference -->	
-	<string name="pref_notes">Show Release notes</string>
-	<!-- explanation text of the 'show_notes' preference, rendered below the name -->
-	<string name="pref_notes_summary">Open the online release notes in the browser</string>
 	<!-- label for the game board -->
 	<string name="board">Board</string>
 	<!-- labels for the different sizes of the game board -->

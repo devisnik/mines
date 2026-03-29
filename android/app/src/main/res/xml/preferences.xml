@@ -38,14 +38,4 @@
       android:title="@string/pref_notification_title"
       android:defaultValue="false" />
   </PreferenceCategory>
-  <PreferenceCategory android:title="@string/pref_category_online">
-    <de.devisnik.android.mine.BrowserPreference
-      android:title="@string/pref_faq"
-      app:url="@string/faq_url"
-      android:summary="@string/pref_faq_summary" />
-    <de.devisnik.android.mine.BrowserPreference
-      android:title="@string/pref_notes"
-      app:url="@string/notes_url"
-      android:summary="@string/pref_notes_summary" />
-  </PreferenceCategory>
 </PreferenceScreen>

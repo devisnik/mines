@@ -5,7 +5,6 @@
 	<string name="toast_win">Vyhrál jsi!</string>
 	<string name="toast_lose">Vybouchl jsi!</string>
 	<string name="pref_category_effects">Efekty</string>
-	<string name="pref_category_online">Online zdroje</string>
 	<string name="pref_value_not_set">nenastaveno</string>
 	<string name="pref_user">Jméno hráče</string>
 	<string name="pref_user_dialog">Zadej své jméno</string>
@@ -17,10 +16,6 @@
 	<string name="pref_touchfocus_summary">Stisk pro označení políčka, druhý stisk pro umístění vlajky</string>
 	<string name="pref_vibrate">Používat vibrace</string>
 	<string name="pref_vibrate_summary">Používat vibrace při dlouhém stisku a při výbuchu</string>
-	<string name="pref_faq">FAQs</string>
-	<string name="pref_faq_summary">Zobrazí v prohlížeči odpovědi na často kladené otázky</string>
-	<string name="pref_notes">Vývojová historie</string>
-	<string name="pref_notes_summary">Zobrazí v prohlížeči vývojovou historii aplikace</string>
 	<string name="board">Velikost herní plochy</string>
 	<string name="board_small">Malá</string>
 	<string name="board_medium">Střední</string>
