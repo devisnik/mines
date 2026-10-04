@@ -1,33 +1,31 @@
-apply plugin: 'java'
-apply plugin: 'war'
-apply plugin: 'gwt'
-apply plugin: 'eclipse'
+plugins {
+    id "org.docstr.gwt" version "2.2.9"
+}
 
 // needed to avoid crash in gwt-closure below due to project not resolved
 evaluationDependsOn(':robot')
 evaluationDependsOn(':model')
 
 dependencies {
-    implementation 'com.google.gwt:gwt-servlet:2.8.2'
-    implementation 'com.google.gwt:gwt-user:2.8.2'
-
 	implementation project(':robot')
 	implementation project(':model')
 }
 
 gwt {
-    gwtVersion='2.8.2'
-    minHeapSize = '512M'
-    maxHeapSize = '4096M'
+//    gwtVersion='2.8.2'
+//    minHeapSize = '512M'
+//    maxHeapSize = '4096M'
 
-    modules 'de.devisnik.web.Mines'
-    src += files(project(':model').sourceSets.main.allJava.srcDirs)
-    src += files(project(':model').sourceSets.main.output.resourcesDir)
-    src += files(project(':robot').sourceSets.main.allJava.srcDirs)
-    src += files(project(':robot').sourceSets.main.output.resourcesDir)
+    modules = ['de.devisnik.web.Mines']
+    extraSourceDirs = files(
+        files(project(':model').sourceSets.main.allJava.srcDirs).asPath,
+        files(project(':model').sourceSets.main.output.resourcesDir).asPath,
+        files(project(':robot').sourceSets.main.allJava.srcDirs).asPath,
+        files(project(':robot').sourceSets.main.output.resourcesDir).asPath
+    )
 
-    dev {
-        startupUrl='de.devisnik.web.Mines/Mines.html'
+    devMode {
+        startupUrl = 'de.devisnik.web.Mines/Mines.html'
     }
 }
 
