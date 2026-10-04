@@ -1,8 +1,9 @@
-apply plugin: 'application'
+plugins {
+    id 'application'
+}
 
 archivesBaseName = "de.devisnik.mine.swt"
 version = '1.0'
-sourceCompatibility = 1.8
 
 def windowingLibrary = getSWTWindowingLibrary(System.properties['os.name'])
 def platform = getSWTPlatform(System.properties['os.name'])
@@ -16,15 +17,18 @@ dependencies {
     implementation "org.eclipse.platform:${swtArtifactName}"
 }
 
-mainClassName = 'de.devisnik.mine.swt.MinesScreen'
+application {
+    mainClass = 'de.devisnik.mine.swt.MinesScreen'
+}
+
 if (platform == 'macosx') {
     applicationDefaultJvmArgs = ['-XstartOnFirstThread']
 }
 
-configurations.all {
+configurations.configureEach {
     resolutionStrategy {
         dependencySubstitution {
-            substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') using  module("org.eclipse.platform:${swtArtifactName}")
+            substitute module('org.eclipse.platform:org.eclipse.swt.${osgi.platform}') using module("org.eclipse.platform:${swtArtifactName}")
         }
     }
 }
@@ -57,4 +61,5 @@ static String getSWTPlatform(String platform) {
     }
 }
 
+java.sourceCompatibility = JavaVersion.VERSION_1_8
 java.targetCompatibility = JavaVersion.VERSION_1_8
