@@ -9,26 +9,26 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
-base {
-    archivesBaseName = "de.devisnik.mine.robot"
-}
-version = "1.0.0"
+//base {
+//    archivesBaseName = "de.devisnik.mine.robot"
+//}
+//version = "1.0.0"
 
 dependencies {
     api(project(":model"))
     testImplementation("junit:junit:4.12")
 }
 
-val jarTask = tasks.named<Jar>("jar") {
-    manifest {
-        attributes(
-                mapOf(
-                        "Implementation-Title" to base.archivesBaseName,
-                        "Implementation-Version" to version
-                )
-        )
-    }
-}
+//val jarTask = tasks.named<Jar>("jar") {
+//    manifest {
+//        attributes(
+//                mapOf(
+//                        "Implementation-Title" to base.archivesBaseName,
+//                        "Implementation-Version" to version
+//                )
+//        )
+//    }
+//}
 
 // val sourcesJarTask by tasks.registering(Jar::class) {
 //     description = "Assembles a jar archive containing the sources."

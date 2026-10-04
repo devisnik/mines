@@ -102,7 +102,7 @@ public class GamePanel extends VerticalPanel {
             @Override
             public void onValueChange(ValueChangeEvent<Boolean> event) {
                 if (event.getValue() && !isGameFinished())
-                    autoPlayTimer.scheduleRepeating(1000);
+                    autoPlayTimer.scheduleRepeating(500);
                 else
                     autoPlayTimer.cancel();
             }
