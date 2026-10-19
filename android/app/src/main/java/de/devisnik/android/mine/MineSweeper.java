@@ -2,6 +2,7 @@ package de.devisnik.android.mine;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.app.Dialog;
@@ -378,15 +379,16 @@ public class MineSweeper extends Activity {
     private void restartWithNewGame() {
         notifier.disable();
         restartingWithNewGame = true;
-        finish();
-        startActivity(new Intent(this, MineSweeper.class));
+        Intent intent = new Intent(this, MineSweeper.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION |  Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent, ActivityOptions.makeCustomAnimation(this, 0, 0).toBundle());
     }
 
     @Override
     protected Dialog onCreateDialog(final int id) {
         switch (id) {
             case DIALOG_NEW_GAME:
-                return new NewGameDialogBuilder().create();
+            return new NewGameDialogBuilder().create();
             case DIALOG_INTRO:
                 AlertDialog dialog = new IntroDialogBuilder(this).create();
 
