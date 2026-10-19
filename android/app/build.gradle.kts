@@ -9,7 +9,6 @@ dependencies {
 
 android {
     compileSdk = Android.COMPILE_SDK
-    buildToolsVersion = Android.BUILD_TOOLS
     defaultConfig {
         applicationId = Android.APP_NAME
         minSdk = Android.MIN_SDK

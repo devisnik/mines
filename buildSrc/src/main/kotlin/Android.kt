@@ -6,6 +6,4 @@ object Android {
     const val MIN_SDK = 23
     const val TARGET_SDK = 36
     const val COMPILE_SDK = 36
-
-    const val BUILD_TOOLS = "35.0.1"
 }
