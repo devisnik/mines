@@ -6,26 +6,16 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:9.3.3")
-        classpath("com.github.ben-manes:gradle-versions-plugin:0.42.0")
-
     }
 }
 
-//plugins {
-//  id("com.gradle.build-scan") version "2.4"
-//}
-//
-//buildScan {
-//    setTermsOfServiceUrl("https://gradle.com/terms-of-service")
-//    setTermsOfServiceAgree("yes")
-//    publishAlways()
-//    isCaptureTaskInputFiles = true
-//}
+plugins {
+    id("io.github.ben-manes.versions") version "0.66.0"
+}
 
 allprojects {
     repositories {
         mavenCentral()
         google()
     }
-    apply(plugin = "com.github.ben-manes.versions")
 }
