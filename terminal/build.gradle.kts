@@ -7,6 +7,10 @@ application {
     mainClass = "Shell"
 }
 
+tasks.named<JavaExec>("run") {
+    standardInput = System.`in`
+}
+
 dependencies {
     implementation(project(":model"))
     implementation(project(":robot"))
