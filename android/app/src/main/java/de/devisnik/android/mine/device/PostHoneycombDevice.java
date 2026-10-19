@@ -30,10 +30,16 @@ public class PostHoneycombDevice extends BaseDevice {
             if (actionBar != null) {
                 actionBar.hide();
             }
+            Toolbar toolbar = activity.findViewById(R.id.toolbar);
+            if (toolbar != null) {
+                toolbar.setVisibility(android.view.View.GONE);
+            }
         }
-        Toolbar toolbar = activity.findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            activity.setActionBar(toolbar);
+        else {
+            Toolbar toolbar = activity.findViewById(R.id.toolbar);
+            if (toolbar != null) {
+                activity.setActionBar(toolbar);
+            }
         }
     }
 
